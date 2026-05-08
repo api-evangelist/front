@@ -5,38 +5,170 @@ provider: Front
 providerId: front
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Customer Support
-- Email
-- Inbox
-- Customer Operations
-- Collaboration
-- Plans
-description: Placeholder plans/pricing artifact for Front. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled against the provider's documentation.
+  - Customer Support
+  - Customer Operations
+  - Plans
+description: >-
+  Front sells per-seat-per-month plans across Starter, Professional, and
+  Enterprise tiers, plus AI add-ons (Copilot, Smart QA, Smart CSAT) and
+  Autopilot. Annual commitment earns 24% off vs monthly.
 sources:
-- https://front.com/
+  - https://front.com/pricing
 plans:
-- id: front-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers (Free / Pro / Enterprise / pay-as-you-go,
-    etc.) once pricing is reconciled.
-  entries:
-  - label: API Access
-    name: api_access
-    type: flat
-    metric: varies
-    limit: -1
-    timeFrame: usage
-    geo: global
-    unit: 1
-    price: see https://front.com/
-    userMultiplied: false
-  elements:
-  - name: Pending Reconciliation
+  - id: front-starter
+    name: Starter
+    type: per-seat
+    description: >-
+      Essential single-channel support with shared inbox, ticketing, basic
+      AI Topics, and up to 10 automation rules. Capped at 10 seats.
+    entries:
+      - label: Per Seat / Month
+        name: front_starter_seat
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '25'
+        currency: USD
+        userMultiplied: true
+    elements:
+      - name: Up to 10 seats
+      - name: Shared inbox and ticketing
+      - name: Basic AI Topics
+      - name: Up to 10 automation rules
+  - id: front-professional
+    name: Professional
+    type: per-seat
+    description: >-
+      Enhanced automation and reporting for omnichannel support — email,
+      SMS, social — macros, and up to 20 automation rules. Up to 50 seats.
+    entries:
+      - label: Per Seat / Month
+        name: front_pro_seat
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '65'
+        currency: USD
+        userMultiplied: true
+  - id: front-enterprise
+    name: Enterprise
+    type: per-seat
+    description: >-
+      Advanced AI tools (Copilot, Smart QA, Smart CSAT included),
+      unlimited rules, multi-language knowledge base, and enterprise
+      security.
+    entries:
+      - label: Per Seat / Month
+        name: front_enterprise_seat
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '105'
+        currency: USD
+        userMultiplied: true
+  - id: front-copilot-addon
+    name: Copilot AI Add-On
+    type: addon
+    description: AI assistant for drafting replies (included in Enterprise).
+    entries:
+      - label: Per Seat / Month
+        name: front_copilot
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '20'
+        currency: USD
+        userMultiplied: true
+  - id: front-smart-qa-addon
+    name: Smart QA Add-On
+    type: addon
+    description: AI quality assurance scoring (included in Enterprise).
+    entries:
+      - label: Per Seat / Month
+        name: front_smart_qa
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '20'
+        currency: USD
+        userMultiplied: true
+  - id: front-smart-csat-addon
+    name: Smart CSAT Add-On
+    type: addon
+    description: AI-driven sentiment-based CSAT (included in Enterprise).
+    entries:
+      - label: Per Seat / Month
+        name: front_smart_csat
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '10'
+        currency: USD
+        userMultiplied: true
+  - id: front-smart-bundle
+    name: Smart QA + Smart CSAT Bundle
+    type: addon
+    description: Discounted bundle of Smart QA and Smart CSAT.
+    entries:
+      - label: Per Seat / Month
+        name: front_smart_bundle
+        type: flat
+        metric: seats
+        timeFrame: monthly
+        unit: 1
+        price: '25'
+        currency: USD
+        userMultiplied: true
+  - id: front-autopilot
+    name: Autopilot
+    type: addon
+    description: AI agent that resolves conversations autonomously. Custom-quoted.
+    entries:
+      - label: Custom Quote
+        name: front_autopilot
+        type: flat
+        metric: addon
+        timeFrame: monthly
+        unit: 1
+        price: contact-sales
+        currency: USD
+        userMultiplied: false
+  - id: front-rate-limit-increase
+    name: API Rate Limit Increase
+    type: addon
+    description: Add +100 API requests/minute headroom for $200/month each.
+    entries:
+      - label: Per +100 RPM / Month
+        name: front_rate_limit_increase
+        type: flat
+        metric: rpm-increment
+        timeFrame: monthly
+        unit: 1
+        price: '200'
+        currency: USD
+        userMultiplied: false
+  - id: front-whatsapp
+    name: Native WhatsApp Channel
+    type: addon
+    description: Meta-billed WhatsApp Business pricing plus 20% Front admin fee.
+    entries:
+      - label: Pass-through + 20%
+        name: front_whatsapp
+        type: percent
+        metric: meta_passthrough
+        timeFrame: monthly
+        unit: 1
+        price: meta-passthrough-plus-20-percent
+        currency: USD
+        userMultiplied: false
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

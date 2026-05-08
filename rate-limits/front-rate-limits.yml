@@ -5,32 +5,82 @@ provider: Front
 providerId: front
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Customer Support
-- Email
-- Inbox
-- Customer Operations
-- Collaboration
-- Rate Limiting
-- Quotas
-- Throttling
-description: Placeholder rate-limit artifact for Front. Replace with real limits once the pipeline
-  researches the provider's rate-limit documentation.
-notes: Initial scaffold — limits have not yet been reconciled against the provider's documentation.
+  - Customer Support
+  - Customer Operations
+  - Rate Limiting
+  - Throttling
+description: >-
+  Front enforces per-company per-minute rate limits scaled by plan tier
+  with a separate bucket for partner OAuth integrations. Burst capacity of
+  half the plan limit is available with a 10-minute replenishment window.
+  Some resource-intensive endpoints have a tighter per-second per-resource
+  limit.
 sources:
-- https://front.com/
+  - https://dev.frontapp.com/docs/rate-limiting
 responseCodes:
   throttled: 429
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  - name: Starter Plan
+    scope: company
+    metric: requests
+    limit: 50
+    unit: per minute
+    notes: Per-company rpm limit on Starter.
+  - name: Professional Plan
+    scope: company
+    metric: requests
+    limit: 100
+    unit: per minute
+    notes: Per-company rpm limit on Professional.
+  - name: Enterprise Plan
+    scope: company
+    metric: requests
+    limit: 200
+    unit: per minute
+    notes: Per-company rpm limit on Enterprise.
+  - name: Partner OAuth
+    scope: company
+    metric: requests
+    limit: 120
+    unit: per minute
+    notes: >-
+      Separate bucket of 120 rpm per company for partner integrations
+      using OAuth — does not count against the standard plan limit
+      (Zapier excluded).
+  - name: Burst Capacity
+    scope: company
+    metric: requests
+    notes: >-
+      Additional burst equal to half the plan rate limit; if the burst
+      bucket is exhausted, replenishment takes 10 minutes.
+  - name: Resource-Intensive Endpoints
+    scope: resource
+    metric: requests
+    limit: 1-5
+    unit: per second per resource
+    notes: >-
+      Certain resource-intensive endpoints have a tighter 1-5 rps per
+      resource limit on top of the company limit.
+  - name: Rate Limit Increase Add-On
+    scope: company
+    metric: requests
+    notes: >-
+      $200/month buys an additional +100 rpm; can be stacked.
 policies:
-- name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  - name: Backoff Strategy
+    description: >-
+      Honor 429 Retry-After (in milliseconds). Implement exponential
+      backoff with jitter.
+  - name: Header Telemetry
+    description: >-
+      Track x-ratelimit-limit / x-ratelimit-remaining / x-ratelimit-reset
+      and slow down proactively as remaining drops.
+  - name: Partner OAuth
+    description: >-
+      Use OAuth instead of API tokens to access the separate 120 rpm
+      partner-integration bucket.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

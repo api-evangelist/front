@@ -5,22 +5,19 @@ provider: Front
 providerId: front
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Customer Support
-- Email
-- Inbox
-- Customer Operations
-- Collaboration
-- FinOps
-- Cost Management
-- FOCUS
-description: FOCUS-aligned FinOps placeholder for Front. Pipeline will replace with the provider's
-  real billing-model details once researched.
-notes: Initial scaffold — billing model has not yet been reconciled.
+  - Customer Support
+  - Customer Operations
+  - FinOps
+  - FOCUS
+description: >-
+  Front bills per-seat-per-month subscriptions across Starter, Professional,
+  Enterprise tiers, plus AI add-ons, an API rate-limit increase add-on, and
+  pass-through WhatsApp messaging from Meta. Annual commit earns 24% off.
 sources:
-- https://front.com/
-- https://focus.finops.org/focus-specification/v1-3/
+  - https://front.com/pricing
+  - https://focus.finops.org/focus-specification/v1-3/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -30,13 +27,14 @@ alignedWith:
 publisherName: Front
 serviceCategory: Customer Support
 billingModel:
-  pricingCategory: To Be Reconciled
+  pricingCategory: Subscription Per Seat
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
-  - Usage
-  - Purchase
-  - Adjustment
+    - Purchase
+    - Usage
+    - Adjustment
+    - Tax
 focusColumns:
   ServiceName: Front
   ServiceCategory: Customer Support
@@ -44,24 +42,62 @@ focusColumns:
   PublisherName: Front
   InvoiceIssuerName: Front
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-- name: api_usage
-  description: Catch-all meter pending reconciliation against the provider's published metering.
-  unit: varies
-  aggregation: sum
-  dimensions:
-  - account
-  - resource
+  - name: front_seats
+    description: Active Starter / Professional / Enterprise seats.
+    unit: seat-month
+    aggregation: sum
+    dimensions:
+      - tier
+      - team
+      - cost_center
+  - name: front_ai_addons
+    description: Copilot / Smart QA / Smart CSAT / bundle per-seat add-ons.
+    unit: addon-seat-month
+    aggregation: sum
+    dimensions:
+      - addon
+      - team
+      - cost_center
+  - name: front_autopilot
+    description: Custom-quoted autonomous AI agent.
+    unit: subscription-month
+    aggregation: sum
+    dimensions:
+      - cost_center
+  - name: front_rate_limit_increase
+    description: $200/month per +100 rpm of additional API capacity.
+    unit: rpm-increment-month
+    aggregation: sum
+    dimensions:
+      - api_token
+      - cost_center
+  - name: front_whatsapp_passthrough
+    description: Meta WhatsApp Business pricing plus 20% Front admin fee.
+    unit: messages
+    aggregation: sum
+    dimensions:
+      - country
+      - channel
 principles:
-- name: Visibility
-  description: Pull provider invoices or usage exports until a self-serve usage feed is documented.
-- name: Allocation
-  description: Tag invoice line items to consuming business units in your FinOps store.
-- name: Optimization
-  description: Levers depend on the provider's billing model; review at renewal once reconciled.
-- name: Accountability
-  description: Assign a contract owner to review billing against negotiated terms.
+  - name: Visibility
+    description: >-
+      Pull monthly Front invoices and AI add-on usage; track API rate-limit
+      headroom alongside seat counts.
+  - name: Allocation
+    description: >-
+      Allocate seats by team / inbox; allocate WhatsApp pass-through to
+      the channel and team driving outbound volume.
+  - name: Optimization
+    description: >-
+      Lock 24% annual discount; consolidate AI add-ons into Enterprise
+      tier when 3 add-ons are active; right-size rate-limit add-ons
+      against actual peak rpm.
+  - name: Accountability
+    description: >-
+      Designate Customer Operations as contract owner; review at renewal
+      against negotiated MSA.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
