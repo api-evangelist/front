@@ -30,6 +30,8 @@ apis:
         type: Documentation
       - url: https://dev.frontapp.com/reference/conversations
         type: API Reference
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Read, create, update, and delete conversations across email, SMS,
       chat, and social channels. Includes assign, archive, restore,
@@ -42,6 +44,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/messages
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Send and reply to messages on existing or new conversations across
       any channel; includes inbound import for sync use cases.
@@ -52,6 +56,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/drafts
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Create, edit, and delete message drafts assigned to a teammate or
       a shared inbox.
@@ -62,6 +68,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/channels
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Manage channels (email addresses, SMS numbers, chat connectors,
       custom channels) attached to inboxes.
@@ -72,6 +80,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/inboxes
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Manage shared inboxes and teammate access; attach channels to
       inboxes and read inbox configuration.
@@ -83,6 +93,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/contacts
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Manage Front contacts and their handles (email, phone, social).
       Contacts unify customer identity across channels.
@@ -94,6 +106,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/contact-groups
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Group contacts for segmentation and shared visibility across
       teammates.
@@ -105,6 +119,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/accounts
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Read and manage company / account records that group multiple
       contacts under a single business relationship.
@@ -116,6 +132,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/teammates
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Read teammates (Front users) and their availability, roles, and
       assignments.
@@ -126,6 +144,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/teams
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Read team membership and team-scoped resources for routing and
       analytics.
@@ -137,6 +157,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/comments
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Add, list, and remove internal comments on conversations for
       collaboration.
@@ -147,6 +169,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/tags
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Manage tags and apply them to conversations for categorization,
       automation, and reporting.
@@ -158,6 +182,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/topics
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Read AI-generated topics that classify conversation content for
       analytics and routing.
@@ -169,6 +195,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/rules
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Read configured automation rules; rule definitions are managed
       from the UI but exposed read-only via the API.
@@ -179,6 +207,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/signatures
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Read teammate and team signatures used on outbound messages.
   - aid: front:front-shifts-api
@@ -189,6 +219,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/shifts
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Manage teammate shifts that drive routing rules and SLA timers.
   - aid: front:front-knowledge-base-api
@@ -199,6 +231,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/knowledge-base
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Manage knowledge bases, categories, and articles published to
       customers and used by Front AI for self-service responses.
@@ -210,6 +244,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/analytics
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Generate analytics report exports for conversations, response
       times, SLA performance, and teammate productivity.
@@ -221,6 +257,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/events
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Read the historical event stream for the company (assignments,
       replies, comments, tag changes) for audit and integration use.
@@ -232,6 +270,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/webhooks
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Subscribe to Front events (conversation.assigned, message.received,
       message.sent, comment.added) with HMAC-signed deliveries.
@@ -244,6 +284,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/custom-channels-api
         type: Documentation
+      - url: openapi/front-channel-api-openapi.json
+        type: OpenAPI
     description: >-
       Build custom messaging channels that bridge Front to proprietary
       messaging platforms (e.g. internal portals, niche chat networks).
@@ -288,6 +330,8 @@ apis:
     properties:
       - url: https://dev.frontapp.com/reference/links
         type: Documentation
+      - url: openapi/front-core-api-openapi.json
+        type: OpenAPI
     description: >-
       Attach hyperlinks from external systems to Front conversations
       for cross-system traceability.
