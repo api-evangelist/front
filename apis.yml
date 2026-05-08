@@ -1,0 +1,29 @@
+aid: front
+url: https://raw.githubusercontent.com/api-evangelist/front/refs/heads/main/apis.yml
+name: Front
+x-type: company
+description: >-
+  Front is a customer operations platform unifying shared inboxes, chat, SMS, and CRM workflows. The Front API exposes conversations, messages, channels, contacts, teammates, and analytics.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Customer Support
+  - Email
+  - Inbox
+  - Customer Operations
+  - Collaboration
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://front.com/
+  - type: Plans
+    url: plans/front-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/front-rate-limits.yml
+  - type: FinOps
+    url: finops/front-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
