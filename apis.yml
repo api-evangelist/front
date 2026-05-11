@@ -388,6 +388,23 @@ common:
       - https://dev.frontapp.com/
       - https://dev.frontapp.com/docs/rate-limiting
     updated: '2026-05-08'
+  - type: Integrations
+    url: https://front.com/integrations
+integrations:
+  - name: Channel Partnerships
+  - name: AMGiNE Travel
+  - name: Aircall Voice & Telephony
+  - name: Asana Project Management & Issue Tracking
+  - name: One Bots & Workflow Automation
+  - name: Tabi Connect Logistics & Maritime
+  - name: RipeText Analytics & Reporting
+  - name: Chatra Channels & Messaging
+  - name: FullContact CRM & Ecommerce
+  - name: Gainsight CRM & Ecommerce
+  - name: HubSpot CRM & Ecommerce
+  - name: Alloy Project Management & Issue Tracking
+  - name: ClickUp Project Management & Issue Tracking
+  - name: Partner with us
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
