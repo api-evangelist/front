@@ -1,7 +1,7 @@
 aid: front
 url: https://raw.githubusercontent.com/api-evangelist/front/refs/heads/main/apis.yml
 name: Front
-x-type: company
+kind: company
 description: >-
   Front is a customer operations platform unifying shared inboxes, chat,
   SMS, social, and CRM workflows. Front exposes a Core API (conversations,
@@ -29,7 +29,7 @@ apis:
       - url: https://dev.frontapp.com/
         type: Documentation
       - url: https://dev.frontapp.com/reference/conversations
-        type: API Reference
+        type: APIReference
       - url: openapi/front-core-api-openapi.json
         type: OpenAPI
     description: >-
@@ -340,27 +340,27 @@ common:
     url: https://front.com/
   - type: Documentation
     url: https://dev.frontapp.com/
-  - type: API Reference
+  - type: APIReference
     url: https://dev.frontapp.com/reference
   - type: Pricing
     url: https://front.com/pricing
   - type: Login
     url: https://app.frontapp.com/
-  - type: Status
+  - type: StatusPage
     url: https://status.frontapp.com/
   - type: Blog
     url: https://front.com/blog
   - type: Support
     url: https://help.frontapp.com/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/frontapp
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://front.com/legal/privacy-notice
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://front.com/legal/terms
   - type: Authentication
     url: https://dev.frontapp.com/docs/authentication
-  - type: Rate Limits
+  - type: RateLimits
     url: https://dev.frontapp.com/docs/rate-limiting
   - type: Webhooks
     url: https://dev.frontapp.com/reference/webhooks
