@@ -1,0 +1,227 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Attachments
+  description: 'Core API — Attachments. 4 operations. Lead operation: Download attachment for a comment. Self-contained Naftiko
+    capability covering one Front business surface.'
+  tags:
+  - Front
+  - Attachments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-attachments
+    baseUri: https://api2.frontapp.com
+    description: Core API — Attachments business capability. Self-contained, no shared references.
+    resources:
+    - name: comments-comment_id-download-attachment_link_id
+      path: /comments/{comment_id}/download/{attachment_link_id}
+      operations:
+      - name: downloadattachmentforacomment
+        method: GET
+        description: Download attachment for a comment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: comment_id
+          in: path
+          type: string
+          description: The Comment ID
+          required: true
+        - name: attachment_link_id
+          in: path
+          type: string
+          description: The Attachment ID
+          required: true
+    - name: download-attachment_link_id
+      path: /download/{attachment_link_id}
+      operations:
+      - name: downloadattachment
+        method: GET
+        description: Download attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: attachment_link_id
+          in: path
+          type: string
+          description: The Attachment ID
+          required: true
+    - name: message_templates-message_template_id-download-attachment_link_id
+      path: /message_templates/{message_template_id}/download/{attachment_link_id}
+      operations:
+      - name: downloadattachmentforamessagetemplate
+        method: GET
+        description: Download attachment for a message template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: message_template_id
+          in: path
+          type: string
+          description: The Message Template ID
+          required: true
+        - name: attachment_link_id
+          in: path
+          type: string
+          description: The Attachment ID
+          required: true
+    - name: messages-message_id-download-attachment_link_id
+      path: /messages/{message_id}/download/{attachment_link_id}
+      operations:
+      - name: downloadattachmentforamessage
+        method: GET
+        description: Download attachment for a message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: message_id
+          in: path
+          type: string
+          description: The Message ID
+          required: true
+        - name: attachment_link_id
+          in: path
+          type: string
+          description: The Attachment ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-attachments-rest
+    port: 8080
+    description: REST adapter for Core API — Attachments. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/comments/{comment-id}/download/{attachment-link-id}
+      name: comments-comment-id-download-attachment-link-id
+      description: REST surface for comments-comment_id-download-attachment_link_id.
+      operations:
+      - method: GET
+        name: downloadattachmentforacomment
+        description: Download attachment for a comment
+        call: core-attachments.downloadattachmentforacomment
+        with:
+          comment_id: rest.comment_id
+          attachment_link_id: rest.attachment_link_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/download/{attachment-link-id}
+      name: download-attachment-link-id
+      description: REST surface for download-attachment_link_id.
+      operations:
+      - method: GET
+        name: downloadattachment
+        description: Download attachment
+        call: core-attachments.downloadattachment
+        with:
+          attachment_link_id: rest.attachment_link_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/message-templates/{message-template-id}/download/{attachment-link-id}
+      name: message-templates-message-template-id-download-attachment-link-id
+      description: REST surface for message_templates-message_template_id-download-attachment_link_id.
+      operations:
+      - method: GET
+        name: downloadattachmentforamessagetemplate
+        description: Download attachment for a message template
+        call: core-attachments.downloadattachmentforamessagetemplate
+        with:
+          message_template_id: rest.message_template_id
+          attachment_link_id: rest.attachment_link_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/messages/{message-id}/download/{attachment-link-id}
+      name: messages-message-id-download-attachment-link-id
+      description: REST surface for messages-message_id-download-attachment_link_id.
+      operations:
+      - method: GET
+        name: downloadattachmentforamessage
+        description: Download attachment for a message
+        call: core-attachments.downloadattachmentforamessage
+        with:
+          message_id: rest.message_id
+          attachment_link_id: rest.attachment_link_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-attachments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Attachments. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: download-attachment-comment
+      description: Download attachment for a comment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-attachments.downloadattachmentforacomment
+      with:
+        comment_id: tools.comment_id
+        attachment_link_id: tools.attachment_link_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-attachment
+      description: Download attachment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-attachments.downloadattachment
+      with:
+        attachment_link_id: tools.attachment_link_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-attachment-message-template
+      description: Download attachment for a message template
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-attachments.downloadattachmentforamessagetemplate
+      with:
+        message_template_id: tools.message_template_id
+        attachment_link_id: tools.attachment_link_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-attachment-message
+      description: Download attachment for a message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-attachments.downloadattachmentforamessage
+      with:
+        message_id: tools.message_id
+        attachment_link_id: tools.attachment_link_id
+      outputParameters:
+      - type: object
+        mapping: $.

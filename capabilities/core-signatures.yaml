@@ -1,0 +1,325 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Signatures
+  description: 'Core API — Signatures. 7 operations. Lead operation: Get signatures. Self-contained Naftiko capability covering
+    one Front business surface.'
+  tags:
+  - Front
+  - Signatures
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-signatures
+    baseUri: https://api2.frontapp.com
+    description: Core API — Signatures business capability. Self-contained, no shared references.
+    resources:
+    - name: signatures-signature_id
+      path: /signatures/{signature_id}
+      operations:
+      - name: getsignatures
+        method: GET
+        description: Get signatures
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: signature_id
+          in: path
+          type: string
+          description: The signature ID
+          required: true
+      - name: updatesignature
+        method: PATCH
+        description: Update signature
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: signature_id
+          in: path
+          type: string
+          description: The signature ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletesignature
+        method: DELETE
+        description: Delete signature
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: signature_id
+          in: path
+          type: string
+          description: The signature ID
+          required: true
+    - name: teammates-teammate_id-signatures
+      path: /teammates/{teammate_id}/signatures
+      operations:
+      - name: listteammatesignatures
+        method: GET
+        description: List teammate signatures
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teammate_id
+          in: path
+          type: string
+          description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+      - name: createteammatesignature
+        method: POST
+        description: Create teammate signature
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teammate_id
+          in: path
+          type: string
+          description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: teams-team_id-signatures
+      path: /teams/{team_id}/signatures
+      operations:
+      - name: listteamsignatures
+        method: GET
+        description: List team signatures
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The team ID
+          required: true
+      - name: createteamsignature
+        method: POST
+        description: Create team signature
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The team ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-signatures-rest
+    port: 8080
+    description: REST adapter for Core API — Signatures. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/signatures/{signature-id}
+      name: signatures-signature-id
+      description: REST surface for signatures-signature_id.
+      operations:
+      - method: GET
+        name: getsignatures
+        description: Get signatures
+        call: core-signatures.getsignatures
+        with:
+          signature_id: rest.signature_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatesignature
+        description: Update signature
+        call: core-signatures.updatesignature
+        with:
+          signature_id: rest.signature_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesignature
+        description: Delete signature
+        call: core-signatures.deletesignature
+        with:
+          signature_id: rest.signature_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teammates/{teammate-id}/signatures
+      name: teammates-teammate-id-signatures
+      description: REST surface for teammates-teammate_id-signatures.
+      operations:
+      - method: GET
+        name: listteammatesignatures
+        description: List teammate signatures
+        call: core-signatures.listteammatesignatures
+        with:
+          teammate_id: rest.teammate_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createteammatesignature
+        description: Create teammate signature
+        call: core-signatures.createteammatesignature
+        with:
+          teammate_id: rest.teammate_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{team-id}/signatures
+      name: teams-team-id-signatures
+      description: REST surface for teams-team_id-signatures.
+      operations:
+      - method: GET
+        name: listteamsignatures
+        description: List team signatures
+        call: core-signatures.listteamsignatures
+        with:
+          team_id: rest.team_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createteamsignature
+        description: Create team signature
+        call: core-signatures.createteamsignature
+        with:
+          team_id: rest.team_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-signatures-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Signatures. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-signatures
+      description: Get signatures
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-signatures.getsignatures
+      with:
+        signature_id: tools.signature_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-signature
+      description: Update signature
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-signatures.updatesignature
+      with:
+        signature_id: tools.signature_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-signature
+      description: Delete signature
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: core-signatures.deletesignature
+      with:
+        signature_id: tools.signature_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-teammate-signatures
+      description: List teammate signatures
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-signatures.listteammatesignatures
+      with:
+        teammate_id: tools.teammate_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-teammate-signature
+      description: Create teammate signature
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-signatures.createteammatesignature
+      with:
+        teammate_id: tools.teammate_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-team-signatures
+      description: List team signatures
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-signatures.listteamsignatures
+      with:
+        team_id: tools.team_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-team-signature
+      description: Create team signature
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-signatures.createteamsignature
+      with:
+        team_id: tools.team_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

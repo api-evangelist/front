@@ -1,0 +1,539 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Knowledge Bases
+  description: 'Core API — Knowledge Bases. 11 operations. Lead operation: List knowledge bases. Self-contained Naftiko capability
+    covering one Front business surface.'
+  tags:
+  - Front
+  - Knowledge Bases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-knowledge-bases
+    baseUri: https://api2.frontapp.com
+    description: Core API — Knowledge Bases business capability. Self-contained, no shared references.
+    resources:
+    - name: knowledge_bases
+      path: /knowledge_bases
+      operations:
+      - name: listknowledgebases
+        method: GET
+        description: List knowledge bases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createaknowledgebase
+        method: POST
+        description: Create a knowledge base
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: knowledge_bases-knowledge_base_id
+      path: /knowledge_bases/{knowledge_base_id}
+      operations:
+      - name: getaknowledgebase
+        method: GET
+        description: Get a knowledge base
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: knowledge_base_id
+          in: path
+          type: string
+          description: The ID of the knowledge base to fetch
+          required: true
+    - name: knowledge_bases-knowledge_base_id-articles
+      path: /knowledge_bases/{knowledge_base_id}/articles
+      operations:
+      - name: createarticleinaknowledgebaseindefaultlocale
+        method: POST
+        description: Create article in a knowledge base in default locale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: knowledge_base_id
+          in: path
+          type: string
+          description: The ID of the knowledge base to create the article in
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: knowledge_bases-knowledge_base_id-categories
+      path: /knowledge_bases/{knowledge_base_id}/categories
+      operations:
+      - name: createknowledgebasecategoryindefaultlocale
+        method: POST
+        description: Create knowledge base category in default locale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: knowledge_base_id
+          in: path
+          type: string
+          description: The ID of the knowledge base to create the category in
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: knowledge_bases-knowledge_base_id-content
+      path: /knowledge_bases/{knowledge_base_id}/content
+      operations:
+      - name: getaknowledgebasewithcontentindefaultlocale
+        method: GET
+        description: Get a knowledge base with content in default locale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: knowledge_base_id
+          in: path
+          type: string
+          description: The ID of the knowledge base to fetch
+          required: true
+      - name: updateknowledgebaseindefaultlocale
+        method: PATCH
+        description: Update knowledge base in default locale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: knowledge_base_id
+          in: path
+          type: string
+          description: The ID of the knowledge base to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: knowledge_bases-knowledge_base_id-locales-locale-articles
+      path: /knowledge_bases/{knowledge_base_id}/locales/{locale}/articles
+      operations:
+      - name: createarticleinaknowledgebaseinspecifiedlocale
+        method: POST
+        description: Create article in a knowledge base in specified locale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: knowledge_base_id
+          in: path
+          type: string
+          description: The ID of the knowledge base to create the article in
+          required: true
+        - name: locale
+          in: path
+          type: string
+          description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the article's content
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: knowledge_bases-knowledge_base_id-locales-locale-categories
+      path: /knowledge_bases/{knowledge_base_id}/locales/{locale}/categories
+      operations:
+      - name: createknowledgebasecategoryinspecifiedlocale
+        method: POST
+        description: Create knowledge base category in specified locale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: knowledge_base_id
+          in: path
+          type: string
+          description: The ID of the knowledge base to create the category in
+          required: true
+        - name: locale
+          in: path
+          type: string
+          description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the category's content
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: knowledge_bases-knowledge_base_id-locales-locale-content
+      path: /knowledge_bases/{knowledge_base_id}/locales/{locale}/content
+      operations:
+      - name: getaknowledgebasewithcontentinspecifiedlocale
+        method: GET
+        description: Get a knowledge base with content in specified locale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: knowledge_base_id
+          in: path
+          type: string
+          description: The ID of the knowledge base to fetch
+          required: true
+        - name: locale
+          in: path
+          type: string
+          description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch
+          required: true
+      - name: updateknowledgebaseinspecifiedlocale
+        method: PATCH
+        description: Update knowledge base in specified locale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: knowledge_base_id
+          in: path
+          type: string
+          description: The ID of the knowledge base to update
+          required: true
+        - name: locale
+          in: path
+          type: string
+          description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-knowledge-bases-rest
+    port: 8080
+    description: REST adapter for Core API — Knowledge Bases. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/knowledge-bases
+      name: knowledge-bases
+      description: REST surface for knowledge_bases.
+      operations:
+      - method: GET
+        name: listknowledgebases
+        description: List knowledge bases
+        call: core-knowledge-bases.listknowledgebases
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaknowledgebase
+        description: Create a knowledge base
+        call: core-knowledge-bases.createaknowledgebase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-bases/{knowledge-base-id}
+      name: knowledge-bases-knowledge-base-id
+      description: REST surface for knowledge_bases-knowledge_base_id.
+      operations:
+      - method: GET
+        name: getaknowledgebase
+        description: Get a knowledge base
+        call: core-knowledge-bases.getaknowledgebase
+        with:
+          knowledge_base_id: rest.knowledge_base_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-bases/{knowledge-base-id}/articles
+      name: knowledge-bases-knowledge-base-id-articles
+      description: REST surface for knowledge_bases-knowledge_base_id-articles.
+      operations:
+      - method: POST
+        name: createarticleinaknowledgebaseindefaultlocale
+        description: Create article in a knowledge base in default locale
+        call: core-knowledge-bases.createarticleinaknowledgebaseindefaultlocale
+        with:
+          knowledge_base_id: rest.knowledge_base_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-bases/{knowledge-base-id}/categories
+      name: knowledge-bases-knowledge-base-id-categories
+      description: REST surface for knowledge_bases-knowledge_base_id-categories.
+      operations:
+      - method: POST
+        name: createknowledgebasecategoryindefaultlocale
+        description: Create knowledge base category in default locale
+        call: core-knowledge-bases.createknowledgebasecategoryindefaultlocale
+        with:
+          knowledge_base_id: rest.knowledge_base_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-bases/{knowledge-base-id}/content
+      name: knowledge-bases-knowledge-base-id-content
+      description: REST surface for knowledge_bases-knowledge_base_id-content.
+      operations:
+      - method: GET
+        name: getaknowledgebasewithcontentindefaultlocale
+        description: Get a knowledge base with content in default locale
+        call: core-knowledge-bases.getaknowledgebasewithcontentindefaultlocale
+        with:
+          knowledge_base_id: rest.knowledge_base_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateknowledgebaseindefaultlocale
+        description: Update knowledge base in default locale
+        call: core-knowledge-bases.updateknowledgebaseindefaultlocale
+        with:
+          knowledge_base_id: rest.knowledge_base_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-bases/{knowledge-base-id}/locales/{locale}/articles
+      name: knowledge-bases-knowledge-base-id-locales-locale-articles
+      description: REST surface for knowledge_bases-knowledge_base_id-locales-locale-articles.
+      operations:
+      - method: POST
+        name: createarticleinaknowledgebaseinspecifiedlocale
+        description: Create article in a knowledge base in specified locale
+        call: core-knowledge-bases.createarticleinaknowledgebaseinspecifiedlocale
+        with:
+          knowledge_base_id: rest.knowledge_base_id
+          locale: rest.locale
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-bases/{knowledge-base-id}/locales/{locale}/categories
+      name: knowledge-bases-knowledge-base-id-locales-locale-categories
+      description: REST surface for knowledge_bases-knowledge_base_id-locales-locale-categories.
+      operations:
+      - method: POST
+        name: createknowledgebasecategoryinspecifiedlocale
+        description: Create knowledge base category in specified locale
+        call: core-knowledge-bases.createknowledgebasecategoryinspecifiedlocale
+        with:
+          knowledge_base_id: rest.knowledge_base_id
+          locale: rest.locale
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-bases/{knowledge-base-id}/locales/{locale}/content
+      name: knowledge-bases-knowledge-base-id-locales-locale-content
+      description: REST surface for knowledge_bases-knowledge_base_id-locales-locale-content.
+      operations:
+      - method: GET
+        name: getaknowledgebasewithcontentinspecifiedlocale
+        description: Get a knowledge base with content in specified locale
+        call: core-knowledge-bases.getaknowledgebasewithcontentinspecifiedlocale
+        with:
+          knowledge_base_id: rest.knowledge_base_id
+          locale: rest.locale
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateknowledgebaseinspecifiedlocale
+        description: Update knowledge base in specified locale
+        call: core-knowledge-bases.updateknowledgebaseinspecifiedlocale
+        with:
+          knowledge_base_id: rest.knowledge_base_id
+          locale: rest.locale
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-knowledge-bases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Knowledge Bases. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-knowledge-bases
+      description: List knowledge bases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-knowledge-bases.listknowledgebases
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-knowledge-base
+      description: Create a knowledge base
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-knowledge-bases.createaknowledgebase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-knowledge-base
+      description: Get a knowledge base
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-knowledge-bases.getaknowledgebase
+      with:
+        knowledge_base_id: tools.knowledge_base_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-article-knowledge-base-default
+      description: Create article in a knowledge base in default locale
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-knowledge-bases.createarticleinaknowledgebaseindefaultlocale
+      with:
+        knowledge_base_id: tools.knowledge_base_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-knowledge-base-category-default
+      description: Create knowledge base category in default locale
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-knowledge-bases.createknowledgebasecategoryindefaultlocale
+      with:
+        knowledge_base_id: tools.knowledge_base_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-knowledge-base-content-default
+      description: Get a knowledge base with content in default locale
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-knowledge-bases.getaknowledgebasewithcontentindefaultlocale
+      with:
+        knowledge_base_id: tools.knowledge_base_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-knowledge-base-default-locale
+      description: Update knowledge base in default locale
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-knowledge-bases.updateknowledgebaseindefaultlocale
+      with:
+        knowledge_base_id: tools.knowledge_base_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-article-knowledge-base-specified
+      description: Create article in a knowledge base in specified locale
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-knowledge-bases.createarticleinaknowledgebaseinspecifiedlocale
+      with:
+        knowledge_base_id: tools.knowledge_base_id
+        locale: tools.locale
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-knowledge-base-category-specified
+      description: Create knowledge base category in specified locale
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-knowledge-bases.createknowledgebasecategoryinspecifiedlocale
+      with:
+        knowledge_base_id: tools.knowledge_base_id
+        locale: tools.locale
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-knowledge-base-content-specified
+      description: Get a knowledge base with content in specified locale
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-knowledge-bases.getaknowledgebasewithcontentinspecifiedlocale
+      with:
+        knowledge_base_id: tools.knowledge_base_id
+        locale: tools.locale
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-knowledge-base-specified-locale
+      description: Update knowledge base in specified locale
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-knowledge-bases.updateknowledgebaseinspecifiedlocale
+      with:
+        knowledge_base_id: tools.knowledge_base_id
+        locale: tools.locale
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

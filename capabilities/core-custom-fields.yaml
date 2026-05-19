@@ -1,0 +1,262 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Custom Fields
+  description: 'Core API — Custom Fields. 7 operations. Lead operation: List Account''s custom fields. Self-contained Naftiko
+    capability covering one Front business surface.'
+  tags:
+  - Front
+  - Custom Fields
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-custom-fields
+    baseUri: https://api2.frontapp.com
+    description: Core API — Custom Fields business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-custom_fields
+      path: /accounts/custom_fields
+      operations:
+      - name: listaccountcustomfields
+        method: GET
+        description: List Account's custom fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contacts-custom_fields
+      path: /contacts/custom_fields
+      operations:
+      - name: listcontactcustomfields
+        method: GET
+        description: List Contact's custom fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: conversations-custom_fields
+      path: /conversations/custom_fields
+      operations:
+      - name: listconversationcustomfields
+        method: GET
+        description: List Conversation's custom fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: custom_fields
+      path: /custom_fields
+      operations:
+      - name: listcustomfields
+        method: GET
+        description: List Contact's custom fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: inboxes-custom_fields
+      path: /inboxes/custom_fields
+      operations:
+      - name: listinboxcustomfields
+        method: GET
+        description: List Inbox's custom fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: links-custom_fields
+      path: /links/custom_fields
+      operations:
+      - name: listlinkcustomfields
+        method: GET
+        description: List Link's custom fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teammates-custom_fields
+      path: /teammates/custom_fields
+      operations:
+      - name: listteammatecustomfields
+        method: GET
+        description: List Teammate's custom fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-custom-fields-rest
+    port: 8080
+    description: REST adapter for Core API — Custom Fields. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/accounts/custom-fields
+      name: accounts-custom-fields
+      description: REST surface for accounts-custom_fields.
+      operations:
+      - method: GET
+        name: listaccountcustomfields
+        description: List Account's custom fields
+        call: core-custom-fields.listaccountcustomfields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/custom-fields
+      name: contacts-custom-fields
+      description: REST surface for contacts-custom_fields.
+      operations:
+      - method: GET
+        name: listcontactcustomfields
+        description: List Contact's custom fields
+        call: core-custom-fields.listcontactcustomfields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/conversations/custom-fields
+      name: conversations-custom-fields
+      description: REST surface for conversations-custom_fields.
+      operations:
+      - method: GET
+        name: listconversationcustomfields
+        description: List Conversation's custom fields
+        call: core-custom-fields.listconversationcustomfields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom-fields
+      name: custom-fields
+      description: REST surface for custom_fields.
+      operations:
+      - method: GET
+        name: listcustomfields
+        description: List Contact's custom fields
+        call: core-custom-fields.listcustomfields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/inboxes/custom-fields
+      name: inboxes-custom-fields
+      description: REST surface for inboxes-custom_fields.
+      operations:
+      - method: GET
+        name: listinboxcustomfields
+        description: List Inbox's custom fields
+        call: core-custom-fields.listinboxcustomfields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/links/custom-fields
+      name: links-custom-fields
+      description: REST surface for links-custom_fields.
+      operations:
+      - method: GET
+        name: listlinkcustomfields
+        description: List Link's custom fields
+        call: core-custom-fields.listlinkcustomfields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teammates/custom-fields
+      name: teammates-custom-fields
+      description: REST surface for teammates-custom_fields.
+      operations:
+      - method: GET
+        name: listteammatecustomfields
+        description: List Teammate's custom fields
+        call: core-custom-fields.listteammatecustomfields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-custom-fields-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Custom Fields. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-account-s-custom-fields
+      description: List Account's custom fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-custom-fields.listaccountcustomfields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-contact-s-custom-fields
+      description: List Contact's custom fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-custom-fields.listcontactcustomfields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-conversation-s-custom-fields
+      description: List Conversation's custom fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-custom-fields.listconversationcustomfields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-contact-s-custom-fields-2
+      description: List Contact's custom fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-custom-fields.listcustomfields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-inbox-s-custom-fields
+      description: List Inbox's custom fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-custom-fields.listinboxcustomfields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-link-s-custom-fields
+      description: List Link's custom fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-custom-fields.listlinkcustomfields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-teammate-s-custom-fields
+      description: List Teammate's custom fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-custom-fields.listteammatecustomfields
+      outputParameters:
+      - type: object
+        mapping: $.

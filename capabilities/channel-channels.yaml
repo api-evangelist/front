@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Channel API — Channels
+  description: 'Channel API — Channels. 1 operations. Lead operation: Update Channel. Self-contained Naftiko capability covering
+    one Front business surface.'
+  tags:
+  - Front
+  - Channels
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: channel-channels
+    baseUri: https://api2.frontapp.com
+    description: Channel API — Channels business capability. Self-contained, no shared references.
+    resources:
+    - name: channels-channel_id
+      path: /channels/{channel_id}
+      operations:
+      - name: updatechannel
+        method: PATCH
+        description: Update Channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: channel_id
+          in: path
+          type: string
+          description: The Channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: channel-channels-rest
+    port: 8080
+    description: REST adapter for Channel API — Channels. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels/{channel-id}
+      name: channels-channel-id
+      description: REST surface for channels-channel_id.
+      operations:
+      - method: PATCH
+        name: updatechannel
+        description: Update Channel
+        call: channel-channels.updatechannel
+        with:
+          channel_id: rest.channel_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: channel-channels-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Channel API — Channels. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: update-channel
+      description: Update Channel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: channel-channels.updatechannel
+      with:
+        channel_id: tools.channel_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

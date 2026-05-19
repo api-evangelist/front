@@ -1,0 +1,476 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Contacts
+  description: 'Core API — Contacts. 11 operations. Lead operation: List contacts. Self-contained Naftiko capability covering
+    one Front business surface.'
+  tags:
+  - Front
+  - Contacts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-contacts
+    baseUri: https://api2.frontapp.com
+    description: Core API — Contacts business capability. Self-contained, no shared references.
+    resources:
+    - name: contacts
+      path: /contacts
+      operations:
+      - name: listcontacts
+        method: GET
+        description: List contacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcontact
+        method: POST
+        description: Create contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: contacts-merge
+      path: /contacts/merge
+      operations:
+      - name: mergecontacts
+        method: POST
+        description: Merge contacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: contacts-contact_id
+      path: /contacts/{contact_id}
+      operations:
+      - name: getcontact
+        method: GET
+        description: Get contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contact_id
+          in: path
+          type: string
+          description: The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+      - name: updateacontact
+        method: PATCH
+        description: Update a contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contact_id
+          in: path
+          type: string
+          description: The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteacontact
+        method: DELETE
+        description: Delete a contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contact_id
+          in: path
+          type: string
+          description: The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+    - name: contacts-contact_id-conversations
+      path: /contacts/{contact_id}/conversations
+      operations:
+      - name: listcontactconversations
+        method: GET
+        description: List contact conversations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contact_id
+          in: path
+          type: string
+          description: The Contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+    - name: teammates-teammate_id-contacts
+      path: /teammates/{teammate_id}/contacts
+      operations:
+      - name: listteammatecontacts
+        method: GET
+        description: List teammate contacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teammate_id
+          in: path
+          type: string
+          description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+      - name: createteammatecontact
+        method: POST
+        description: Create teammate contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teammate_id
+          in: path
+          type: string
+          description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: teams-team_id-contacts
+      path: /teams/{team_id}/contacts
+      operations:
+      - name: listteamcontacts
+        method: GET
+        description: List team contacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The team ID
+          required: true
+      - name: createteamcontact
+        method: POST
+        description: Create team contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The team ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-contacts-rest
+    port: 8080
+    description: REST adapter for Core API — Contacts. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/contacts
+      name: contacts
+      description: REST surface for contacts.
+      operations:
+      - method: GET
+        name: listcontacts
+        description: List contacts
+        call: core-contacts.listcontacts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcontact
+        description: Create contact
+        call: core-contacts.createcontact
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/merge
+      name: contacts-merge
+      description: REST surface for contacts-merge.
+      operations:
+      - method: POST
+        name: mergecontacts
+        description: Merge contacts
+        call: core-contacts.mergecontacts
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{contact-id}
+      name: contacts-contact-id
+      description: REST surface for contacts-contact_id.
+      operations:
+      - method: GET
+        name: getcontact
+        description: Get contact
+        call: core-contacts.getcontact
+        with:
+          contact_id: rest.contact_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateacontact
+        description: Update a contact
+        call: core-contacts.updateacontact
+        with:
+          contact_id: rest.contact_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteacontact
+        description: Delete a contact
+        call: core-contacts.deleteacontact
+        with:
+          contact_id: rest.contact_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{contact-id}/conversations
+      name: contacts-contact-id-conversations
+      description: REST surface for contacts-contact_id-conversations.
+      operations:
+      - method: GET
+        name: listcontactconversations
+        description: List contact conversations
+        call: core-contacts.listcontactconversations
+        with:
+          contact_id: rest.contact_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teammates/{teammate-id}/contacts
+      name: teammates-teammate-id-contacts
+      description: REST surface for teammates-teammate_id-contacts.
+      operations:
+      - method: GET
+        name: listteammatecontacts
+        description: List teammate contacts
+        call: core-contacts.listteammatecontacts
+        with:
+          teammate_id: rest.teammate_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createteammatecontact
+        description: Create teammate contact
+        call: core-contacts.createteammatecontact
+        with:
+          teammate_id: rest.teammate_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{team-id}/contacts
+      name: teams-team-id-contacts
+      description: REST surface for teams-team_id-contacts.
+      operations:
+      - method: GET
+        name: listteamcontacts
+        description: List team contacts
+        call: core-contacts.listteamcontacts
+        with:
+          team_id: rest.team_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createteamcontact
+        description: Create team contact
+        call: core-contacts.createteamcontact
+        with:
+          team_id: rest.team_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-contacts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Contacts. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-contacts
+      description: List contacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-contacts.listcontacts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-contact
+      description: Create contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-contacts.createcontact
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: merge-contacts
+      description: Merge contacts
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-contacts.mergecontacts
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-contact
+      description: Get contact
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-contacts.getcontact
+      with:
+        contact_id: tools.contact_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-contact
+      description: Update a contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-contacts.updateacontact
+      with:
+        contact_id: tools.contact_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-contact
+      description: Delete a contact
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: core-contacts.deleteacontact
+      with:
+        contact_id: tools.contact_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-contact-conversations
+      description: List contact conversations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-contacts.listcontactconversations
+      with:
+        contact_id: tools.contact_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-teammate-contacts
+      description: List teammate contacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-contacts.listteammatecontacts
+      with:
+        teammate_id: tools.teammate_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-teammate-contact
+      description: Create teammate contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-contacts.createteammatecontact
+      with:
+        teammate_id: tools.teammate_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-team-contacts
+      description: List team contacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-contacts.listteamcontacts
+      with:
+        team_id: tools.team_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-team-contact
+      description: Create team contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-contacts.createteamcontact
+      with:
+        team_id: tools.team_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Token Identity
+  description: 'Core API — Token Identity. 1 operations. Lead operation: API Token details. Self-contained Naftiko capability
+    covering one Front business surface.'
+  tags:
+  - Front
+  - Token Identity
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-token-identity
+    baseUri: https://api2.frontapp.com
+    description: Core API — Token Identity business capability. Self-contained, no shared references.
+    resources:
+    - name: me
+      path: /me
+      operations:
+      - name: apitokendetails
+        method: GET
+        description: API Token details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-token-identity-rest
+    port: 8080
+    description: REST adapter for Core API — Token Identity. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/me
+      name: me
+      description: REST surface for me.
+      operations:
+      - method: GET
+        name: apitokendetails
+        description: API Token details
+        call: core-token-identity.apitokendetails
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-token-identity-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Token Identity. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: api-token-details
+      description: API Token details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-token-identity.apitokendetails
+      outputParameters:
+      - type: object
+        mapping: $.

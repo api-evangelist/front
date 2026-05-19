@@ -1,0 +1,231 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Links
+  description: 'Core API — Links. 5 operations. Lead operation: List links. Self-contained Naftiko capability covering one
+    Front business surface.'
+  tags:
+  - Front
+  - Links
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-links
+    baseUri: https://api2.frontapp.com
+    description: Core API — Links business capability. Self-contained, no shared references.
+    resources:
+    - name: links
+      path: /links
+      operations:
+      - name: listlinks
+        method: GET
+        description: List links
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createlink
+        method: POST
+        description: Create link
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: links-link_id
+      path: /links/{link_id}
+      operations:
+      - name: getlink
+        method: GET
+        description: Get link
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: link_id
+          in: path
+          type: string
+          description: The link ID
+          required: true
+      - name: updatealink
+        method: PATCH
+        description: Update a link
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: link_id
+          in: path
+          type: string
+          description: The Link ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: links-link_id-conversations
+      path: /links/{link_id}/conversations
+      operations:
+      - name: listlinkconversations
+        method: GET
+        description: List link conversations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: link_id
+          in: path
+          type: string
+          description: The Link ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-links-rest
+    port: 8080
+    description: REST adapter for Core API — Links. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/links
+      name: links
+      description: REST surface for links.
+      operations:
+      - method: GET
+        name: listlinks
+        description: List links
+        call: core-links.listlinks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlink
+        description: Create link
+        call: core-links.createlink
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/links/{link-id}
+      name: links-link-id
+      description: REST surface for links-link_id.
+      operations:
+      - method: GET
+        name: getlink
+        description: Get link
+        call: core-links.getlink
+        with:
+          link_id: rest.link_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatealink
+        description: Update a link
+        call: core-links.updatealink
+        with:
+          link_id: rest.link_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/links/{link-id}/conversations
+      name: links-link-id-conversations
+      description: REST surface for links-link_id-conversations.
+      operations:
+      - method: GET
+        name: listlinkconversations
+        description: List link conversations
+        call: core-links.listlinkconversations
+        with:
+          link_id: rest.link_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-links-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Links. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-links
+      description: List links
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-links.listlinks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-link
+      description: Create link
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-links.createlink
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-link
+      description: Get link
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-links.getlink
+      with:
+        link_id: tools.link_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-link
+      description: Update a link
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-links.updatealink
+      with:
+        link_id: tools.link_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-link-conversations
+      description: List link conversations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-links.listlinkconversations
+      with:
+        link_id: tools.link_id
+      outputParameters:
+      - type: object
+        mapping: $.

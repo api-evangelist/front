@@ -1,0 +1,525 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Inboxes
+  description: 'Core API — Inboxes. 12 operations. Lead operation: List inboxes. Self-contained Naftiko capability covering
+    one Front business surface.'
+  tags:
+  - Front
+  - Inboxes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-inboxes
+    baseUri: https://api2.frontapp.com
+    description: Core API — Inboxes business capability. Self-contained, no shared references.
+    resources:
+    - name: inboxes
+      path: /inboxes
+      operations:
+      - name: listinboxes
+        method: GET
+        description: List inboxes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createinbox
+        method: POST
+        description: Create inbox
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: inboxes-inbox_id
+      path: /inboxes/{inbox_id}
+      operations:
+      - name: getinbox
+        method: GET
+        description: Get inbox
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: inbox_id
+          in: path
+          type: string
+          description: The Inbox ID
+          required: true
+    - name: inboxes-inbox_id-channels
+      path: /inboxes/{inbox_id}/channels
+      operations:
+      - name: listinboxchannels
+        method: GET
+        description: List inbox channels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: inbox_id
+          in: path
+          type: string
+          description: The Inbox ID
+          required: true
+    - name: inboxes-inbox_id-conversations
+      path: /inboxes/{inbox_id}/conversations
+      operations:
+      - name: listinboxconversations
+        method: GET
+        description: List inbox conversations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: inbox_id
+          in: path
+          type: string
+          description: The Inbox ID
+          required: true
+    - name: inboxes-inbox_id-teammates
+      path: /inboxes/{inbox_id}/teammates
+      operations:
+      - name: listinboxaccess
+        method: GET
+        description: List inbox access
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: inbox_id
+          in: path
+          type: string
+          description: The Inbox ID
+          required: true
+      - name: addinboxaccess
+        method: POST
+        description: Add inbox access
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: inbox_id
+          in: path
+          type: string
+          description: The Inbox ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: removesinboxaccess
+        method: DELETE
+        description: Removes inbox access
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: inbox_id
+          in: path
+          type: string
+          description: The Inbox ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: teammates-teammate_id-private_inboxes
+      path: /teammates/{teammate_id}/private_inboxes
+      operations:
+      - name: listteammateprivateinboxes
+        method: GET
+        description: List teammate private inboxes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teammate_id
+          in: path
+          type: string
+          description: The teammate ID
+          required: true
+      - name: createteammateprivateinbox
+        method: POST
+        description: Create teammate private inbox
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teammate_id
+          in: path
+          type: string
+          description: The teammate ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: teams-team_id-inboxes
+      path: /teams/{team_id}/inboxes
+      operations:
+      - name: listteaminboxes
+        method: GET
+        description: List team inboxes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The team ID
+          required: true
+      - name: createteaminbox
+        method: POST
+        description: Create team inbox
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The team ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-inboxes-rest
+    port: 8080
+    description: REST adapter for Core API — Inboxes. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/inboxes
+      name: inboxes
+      description: REST surface for inboxes.
+      operations:
+      - method: GET
+        name: listinboxes
+        description: List inboxes
+        call: core-inboxes.listinboxes
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createinbox
+        description: Create inbox
+        call: core-inboxes.createinbox
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/inboxes/{inbox-id}
+      name: inboxes-inbox-id
+      description: REST surface for inboxes-inbox_id.
+      operations:
+      - method: GET
+        name: getinbox
+        description: Get inbox
+        call: core-inboxes.getinbox
+        with:
+          inbox_id: rest.inbox_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/inboxes/{inbox-id}/channels
+      name: inboxes-inbox-id-channels
+      description: REST surface for inboxes-inbox_id-channels.
+      operations:
+      - method: GET
+        name: listinboxchannels
+        description: List inbox channels
+        call: core-inboxes.listinboxchannels
+        with:
+          inbox_id: rest.inbox_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/inboxes/{inbox-id}/conversations
+      name: inboxes-inbox-id-conversations
+      description: REST surface for inboxes-inbox_id-conversations.
+      operations:
+      - method: GET
+        name: listinboxconversations
+        description: List inbox conversations
+        call: core-inboxes.listinboxconversations
+        with:
+          inbox_id: rest.inbox_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/inboxes/{inbox-id}/teammates
+      name: inboxes-inbox-id-teammates
+      description: REST surface for inboxes-inbox_id-teammates.
+      operations:
+      - method: GET
+        name: listinboxaccess
+        description: List inbox access
+        call: core-inboxes.listinboxaccess
+        with:
+          inbox_id: rest.inbox_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addinboxaccess
+        description: Add inbox access
+        call: core-inboxes.addinboxaccess
+        with:
+          inbox_id: rest.inbox_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removesinboxaccess
+        description: Removes inbox access
+        call: core-inboxes.removesinboxaccess
+        with:
+          inbox_id: rest.inbox_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teammates/{teammate-id}/private-inboxes
+      name: teammates-teammate-id-private-inboxes
+      description: REST surface for teammates-teammate_id-private_inboxes.
+      operations:
+      - method: GET
+        name: listteammateprivateinboxes
+        description: List teammate private inboxes
+        call: core-inboxes.listteammateprivateinboxes
+        with:
+          teammate_id: rest.teammate_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createteammateprivateinbox
+        description: Create teammate private inbox
+        call: core-inboxes.createteammateprivateinbox
+        with:
+          teammate_id: rest.teammate_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{team-id}/inboxes
+      name: teams-team-id-inboxes
+      description: REST surface for teams-team_id-inboxes.
+      operations:
+      - method: GET
+        name: listteaminboxes
+        description: List team inboxes
+        call: core-inboxes.listteaminboxes
+        with:
+          team_id: rest.team_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createteaminbox
+        description: Create team inbox
+        call: core-inboxes.createteaminbox
+        with:
+          team_id: rest.team_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-inboxes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Inboxes. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-inboxes
+      description: List inboxes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-inboxes.listinboxes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-inbox
+      description: Create inbox
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-inboxes.createinbox
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-inbox
+      description: Get inbox
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-inboxes.getinbox
+      with:
+        inbox_id: tools.inbox_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-inbox-channels
+      description: List inbox channels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-inboxes.listinboxchannels
+      with:
+        inbox_id: tools.inbox_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-inbox-conversations
+      description: List inbox conversations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-inboxes.listinboxconversations
+      with:
+        inbox_id: tools.inbox_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-inbox-access
+      description: List inbox access
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-inboxes.listinboxaccess
+      with:
+        inbox_id: tools.inbox_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-inbox-access
+      description: Add inbox access
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-inboxes.addinboxaccess
+      with:
+        inbox_id: tools.inbox_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removes-inbox-access
+      description: Removes inbox access
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: core-inboxes.removesinboxaccess
+      with:
+        inbox_id: tools.inbox_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-teammate-private-inboxes
+      description: List teammate private inboxes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-inboxes.listteammateprivateinboxes
+      with:
+        teammate_id: tools.teammate_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-teammate-private-inbox
+      description: Create teammate private inbox
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-inboxes.createteammateprivateinbox
+      with:
+        teammate_id: tools.teammate_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-team-inboxes
+      description: List team inboxes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-inboxes.listteaminboxes
+      with:
+        team_id: tools.team_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-team-inbox
+      description: Create team inbox
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-inboxes.createteaminbox
+      with:
+        team_id: tools.team_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

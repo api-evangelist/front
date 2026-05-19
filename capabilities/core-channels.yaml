@@ -1,0 +1,329 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Channels
+  description: 'Core API — Channels. 7 operations. Lead operation: List channels. Self-contained Naftiko capability covering
+    one Front business surface.'
+  tags:
+  - Front
+  - Channels
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-channels
+    baseUri: https://api2.frontapp.com
+    description: Core API — Channels business capability. Self-contained, no shared references.
+    resources:
+    - name: channels
+      path: /channels
+      operations:
+      - name: listchannels
+        method: GET
+        description: List channels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: channels-channel_id
+      path: /channels/{channel_id}
+      operations:
+      - name: getchannel
+        method: GET
+        description: Get channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: channel_id
+          in: path
+          type: string
+          description: The Channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+      - name: updatechannel
+        method: PATCH
+        description: Update Channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: channel_id
+          in: path
+          type: string
+          description: The Channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: channels-channel_id-validate
+      path: /channels/{channel_id}/validate
+      operations:
+      - name: validatechannel
+        method: POST
+        description: Validate channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: channel_id
+          in: path
+          type: string
+          description: The Channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+    - name: inboxes-inbox_id-channels
+      path: /inboxes/{inbox_id}/channels
+      operations:
+      - name: createachannel
+        method: POST
+        description: Create a channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: inbox_id
+          in: path
+          type: string
+          description: The Inbox ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: teammates-teammate_id-channels
+      path: /teammates/{teammate_id}/channels
+      operations:
+      - name: listteammatechannels
+        method: GET
+        description: List teammate channels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teammate_id
+          in: path
+          type: string
+          description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+    - name: teams-team_id-channels
+      path: /teams/{team_id}/channels
+      operations:
+      - name: listteamchannels
+        method: GET
+        description: List team channels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The team ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-channels-rest
+    port: 8080
+    description: REST adapter for Core API — Channels. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/channels
+      name: channels
+      description: REST surface for channels.
+      operations:
+      - method: GET
+        name: listchannels
+        description: List channels
+        call: core-channels.listchannels
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}
+      name: channels-channel-id
+      description: REST surface for channels-channel_id.
+      operations:
+      - method: GET
+        name: getchannel
+        description: Get channel
+        call: core-channels.getchannel
+        with:
+          channel_id: rest.channel_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatechannel
+        description: Update Channel
+        call: core-channels.updatechannel
+        with:
+          channel_id: rest.channel_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/validate
+      name: channels-channel-id-validate
+      description: REST surface for channels-channel_id-validate.
+      operations:
+      - method: POST
+        name: validatechannel
+        description: Validate channel
+        call: core-channels.validatechannel
+        with:
+          channel_id: rest.channel_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/inboxes/{inbox-id}/channels
+      name: inboxes-inbox-id-channels
+      description: REST surface for inboxes-inbox_id-channels.
+      operations:
+      - method: POST
+        name: createachannel
+        description: Create a channel
+        call: core-channels.createachannel
+        with:
+          inbox_id: rest.inbox_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teammates/{teammate-id}/channels
+      name: teammates-teammate-id-channels
+      description: REST surface for teammates-teammate_id-channels.
+      operations:
+      - method: GET
+        name: listteammatechannels
+        description: List teammate channels
+        call: core-channels.listteammatechannels
+        with:
+          teammate_id: rest.teammate_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{team-id}/channels
+      name: teams-team-id-channels
+      description: REST surface for teams-team_id-channels.
+      operations:
+      - method: GET
+        name: listteamchannels
+        description: List team channels
+        call: core-channels.listteamchannels
+        with:
+          team_id: rest.team_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-channels-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Channels. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-channels
+      description: List channels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-channels.listchannels
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-channel
+      description: Get channel
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-channels.getchannel
+      with:
+        channel_id: tools.channel_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-channel
+      description: Update Channel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-channels.updatechannel
+      with:
+        channel_id: tools.channel_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: validate-channel
+      description: Validate channel
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: core-channels.validatechannel
+      with:
+        channel_id: tools.channel_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-channel
+      description: Create a channel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-channels.createachannel
+      with:
+        inbox_id: tools.inbox_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-teammate-channels
+      description: List teammate channels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-channels.listteammatechannels
+      with:
+        teammate_id: tools.teammate_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-team-channels
+      description: List team channels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-channels.listteamchannels
+      with:
+        team_id: tools.team_id
+      outputParameters:
+      - type: object
+        mapping: $.

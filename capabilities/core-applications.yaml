@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Applications
+  description: 'Core API — Applications. 1 operations. Lead operation: Trigger application event. Self-contained Naftiko capability
+    covering one Front business surface.'
+  tags:
+  - Front
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-applications
+    baseUri: https://api2.frontapp.com
+    description: Core API — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-application_uid-events
+      path: /applications/{application_uid}/events
+      operations:
+      - name: triggerappevent
+        method: POST
+        description: Trigger application event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_uid
+          in: path
+          type: string
+          description: The application UID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-applications-rest
+    port: 8080
+    description: REST adapter for Core API — Applications. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/applications/{application-uid}/events
+      name: applications-application-uid-events
+      description: REST surface for applications-application_uid-events.
+      operations:
+      - method: POST
+        name: triggerappevent
+        description: Trigger application event
+        call: core-applications.triggerappevent
+        with:
+          application_uid: rest.application_uid
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Applications. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: trigger-application-event
+      description: Trigger application event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-applications.triggerappevent
+      with:
+        application_uid: tools.application_uid
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

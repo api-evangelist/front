@@ -1,0 +1,269 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Drafts
+  description: 'Core API — Drafts. 5 operations. Lead operation: Create draft. Self-contained Naftiko capability covering
+    one Front business surface.'
+  tags:
+  - Front
+  - Drafts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-drafts
+    baseUri: https://api2.frontapp.com
+    description: Core API — Drafts business capability. Self-contained, no shared references.
+    resources:
+    - name: channels-channel_id-drafts
+      path: /channels/{channel_id}/drafts
+      operations:
+      - name: createdraft
+        method: POST
+        description: Create draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: channel_id
+          in: path
+          type: string
+          description: The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: conversations-conversation_id-drafts
+      path: /conversations/{conversation_id}/drafts
+      operations:
+      - name: listconversationdrafts
+        method: GET
+        description: List conversation drafts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: conversation_id
+          in: path
+          type: string
+          description: The conversation ID
+          required: true
+      - name: createdraftreply
+        method: POST
+        description: Create draft reply
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: conversation_id
+          in: path
+          type: string
+          description: The conversation ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: drafts-draft_id
+      path: /drafts/{draft_id}
+      operations:
+      - name: deletedraft
+        method: DELETE
+        description: Delete draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: draft_id
+          in: path
+          type: string
+          description: The draft ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: drafts-message_id
+      path: /drafts/{message_id}/
+      operations:
+      - name: editdraft
+        method: PATCH
+        description: Edit draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: message_id
+          in: path
+          type: string
+          description: The draft ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-drafts-rest
+    port: 8080
+    description: REST adapter for Core API — Drafts. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/channels/{channel-id}/drafts
+      name: channels-channel-id-drafts
+      description: REST surface for channels-channel_id-drafts.
+      operations:
+      - method: POST
+        name: createdraft
+        description: Create draft
+        call: core-drafts.createdraft
+        with:
+          channel_id: rest.channel_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/conversations/{conversation-id}/drafts
+      name: conversations-conversation-id-drafts
+      description: REST surface for conversations-conversation_id-drafts.
+      operations:
+      - method: GET
+        name: listconversationdrafts
+        description: List conversation drafts
+        call: core-drafts.listconversationdrafts
+        with:
+          conversation_id: rest.conversation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdraftreply
+        description: Create draft reply
+        call: core-drafts.createdraftreply
+        with:
+          conversation_id: rest.conversation_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/drafts/{draft-id}
+      name: drafts-draft-id
+      description: REST surface for drafts-draft_id.
+      operations:
+      - method: DELETE
+        name: deletedraft
+        description: Delete draft
+        call: core-drafts.deletedraft
+        with:
+          draft_id: rest.draft_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/drafts/{message-id}
+      name: drafts-message-id
+      description: REST surface for drafts-message_id.
+      operations:
+      - method: PATCH
+        name: editdraft
+        description: Edit draft
+        call: core-drafts.editdraft
+        with:
+          message_id: rest.message_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-drafts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Drafts. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-draft
+      description: Create draft
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-drafts.createdraft
+      with:
+        channel_id: tools.channel_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-conversation-drafts
+      description: List conversation drafts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-drafts.listconversationdrafts
+      with:
+        conversation_id: tools.conversation_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-draft-reply
+      description: Create draft reply
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-drafts.createdraftreply
+      with:
+        conversation_id: tools.conversation_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-draft
+      description: Delete draft
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: core-drafts.deletedraft
+      with:
+        draft_id: tools.draft_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: edit-draft
+      description: Edit draft
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-drafts.editdraft
+      with:
+        message_id: tools.message_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

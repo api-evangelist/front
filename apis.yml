@@ -2,409 +2,442 @@ aid: front
 url: https://raw.githubusercontent.com/api-evangelist/front/refs/heads/main/apis.yml
 name: Front
 kind: company
-description: >-
-  Front is a customer operations platform unifying shared inboxes, chat,
-  SMS, social, and CRM workflows. Front exposes a Core API (conversations,
-  messages, channels, contacts, teammates, analytics), a Channels API for
-  custom messaging integrations, a Plugin SDK for embedded UI apps, a
-  Chat Widget, and Connectors for low-code automations.
+description: Front is a customer operations platform unifying shared inboxes, chat, SMS, social, and CRM workflows. Front
+  exposes a Core API (conversations, messages, channels, contacts, teammates, analytics), a Channels API for custom messaging
+  integrations, a Plugin SDK for embedded UI apps, a Chat Widget, and Connectors for low-code automations.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Customer Support
-  - Email
-  - Inbox
-  - Customer Operations
-  - Collaboration
-  - Omnichannel
+- Customer Support
+- Email
+- Inbox
+- Customer Operations
+- Collaboration
+- Omnichannel
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: front:front-conversations-api
-    name: Front Conversations API
-    tags:
-      - Conversations
-      - Tickets
-    properties:
-      - url: https://dev.frontapp.com/
-        type: Documentation
-      - url: https://dev.frontapp.com/reference/conversations
-        type: APIReference
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read, create, update, and delete conversations across email, SMS,
-      chat, and social channels. Includes assign, archive, restore,
-      snooze, follow, and merge actions.
-  - aid: front:front-messages-api
-    name: Front Messages API
-    tags:
-      - Messages
-      - Replies
-    properties:
-      - url: https://dev.frontapp.com/reference/messages
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Send and reply to messages on existing or new conversations across
-      any channel; includes inbound import for sync use cases.
-  - aid: front:front-drafts-api
-    name: Front Drafts API
-    tags:
-      - Drafts
-    properties:
-      - url: https://dev.frontapp.com/reference/drafts
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Create, edit, and delete message drafts assigned to a teammate or
-      a shared inbox.
-  - aid: front:front-channels-api
-    name: Front Channels API
-    tags:
-      - Channels
-    properties:
-      - url: https://dev.frontapp.com/reference/channels
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Manage channels (email addresses, SMS numbers, chat connectors,
-      custom channels) attached to inboxes.
-  - aid: front:front-inboxes-api
-    name: Front Inboxes API
-    tags:
-      - Inboxes
-    properties:
-      - url: https://dev.frontapp.com/reference/inboxes
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Manage shared inboxes and teammate access; attach channels to
-      inboxes and read inbox configuration.
-  - aid: front:front-contacts-api
-    name: Front Contacts API
-    tags:
-      - Contacts
-      - People
-    properties:
-      - url: https://dev.frontapp.com/reference/contacts
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Manage Front contacts and their handles (email, phone, social).
-      Contacts unify customer identity across channels.
-  - aid: front:front-contact-groups-api
-    name: Front Contact Groups API
-    tags:
-      - Groups
-      - Segmentation
-    properties:
-      - url: https://dev.frontapp.com/reference/contact-groups
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Group contacts for segmentation and shared visibility across
-      teammates.
-  - aid: front:front-accounts-api
-    name: Front Accounts API
-    tags:
-      - Accounts
-      - Companies
-    properties:
-      - url: https://dev.frontapp.com/reference/accounts
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read and manage company / account records that group multiple
-      contacts under a single business relationship.
-  - aid: front:front-teammates-api
-    name: Front Teammates API
-    tags:
-      - Teammates
-      - Users
-    properties:
-      - url: https://dev.frontapp.com/reference/teammates
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read teammates (Front users) and their availability, roles, and
-      assignments.
-  - aid: front:front-teams-api
-    name: Front Teams API
-    tags:
-      - Teams
-    properties:
-      - url: https://dev.frontapp.com/reference/teams
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read team membership and team-scoped resources for routing and
-      analytics.
-  - aid: front:front-comments-api
-    name: Front Comments API
-    tags:
-      - Comments
-      - Internal Notes
-    properties:
-      - url: https://dev.frontapp.com/reference/comments
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Add, list, and remove internal comments on conversations for
-      collaboration.
-  - aid: front:front-tags-api
-    name: Front Tags API
-    tags:
-      - Tags
-    properties:
-      - url: https://dev.frontapp.com/reference/tags
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Manage tags and apply them to conversations for categorization,
-      automation, and reporting.
-  - aid: front:front-topics-api
-    name: Front Topics API
-    tags:
-      - Topics
-      - AI
-    properties:
-      - url: https://dev.frontapp.com/reference/topics
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read AI-generated topics that classify conversation content for
-      analytics and routing.
-  - aid: front:front-rules-api
-    name: Front Rules API
-    tags:
-      - Rules
-      - Automation
-    properties:
-      - url: https://dev.frontapp.com/reference/rules
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read configured automation rules; rule definitions are managed
-      from the UI but exposed read-only via the API.
-  - aid: front:front-signatures-api
-    name: Front Signatures API
-    tags:
-      - Signatures
-    properties:
-      - url: https://dev.frontapp.com/reference/signatures
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read teammate and team signatures used on outbound messages.
-  - aid: front:front-shifts-api
-    name: Front Shifts API
-    tags:
-      - Shifts
-      - Scheduling
-    properties:
-      - url: https://dev.frontapp.com/reference/shifts
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Manage teammate shifts that drive routing rules and SLA timers.
-  - aid: front:front-knowledge-base-api
-    name: Front Knowledge Base API
-    tags:
-      - Knowledge Base
-      - Articles
-    properties:
-      - url: https://dev.frontapp.com/reference/knowledge-base
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Manage knowledge bases, categories, and articles published to
-      customers and used by Front AI for self-service responses.
-  - aid: front:front-analytics-api
-    name: Front Analytics API
-    tags:
-      - Analytics
-      - Reports
-    properties:
-      - url: https://dev.frontapp.com/reference/analytics
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Generate analytics report exports for conversations, response
-      times, SLA performance, and teammate productivity.
-  - aid: front:front-events-api
-    name: Front Events API
-    tags:
-      - Events
-      - Audit
-    properties:
-      - url: https://dev.frontapp.com/reference/events
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read the historical event stream for the company (assignments,
-      replies, comments, tag changes) for audit and integration use.
-  - aid: front:front-webhooks-api
-    name: Front Webhooks API
-    tags:
-      - Webhooks
-      - Subscriptions
-    properties:
-      - url: https://dev.frontapp.com/reference/webhooks
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Subscribe to Front events (conversation.assigned, message.received,
-      message.sent, comment.added) with HMAC-signed deliveries.
-  - aid: front:front-channels-platform-api
-    name: Front Channels Platform API
-    tags:
-      - Channels
-      - Custom
-      - Platform
-    properties:
-      - url: https://dev.frontapp.com/reference/custom-channels-api
-        type: Documentation
-      - url: openapi/front-channel-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Build custom messaging channels that bridge Front to proprietary
-      messaging platforms (e.g. internal portals, niche chat networks).
-  - aid: front:front-plugin-sdk
-    name: Front Plugin SDK
-    tags:
-      - Plugin
-      - Embedded UI
-    properties:
-      - url: https://dev.frontapp.com/docs/getting-started-with-plugins
-        type: Documentation
-    description: >-
-      Build embedded UI applications that render inside the Front
-      sidebar to surface third-party context alongside the conversation.
-  - aid: front:front-chat-widget
-    name: Front Chat Widget
-    tags:
-      - Chat Widget
-      - Web
-    properties:
-      - url: https://dev.frontapp.com/docs/chat-widget
-        type: Documentation
-    description: >-
-      Embed Front's live chat widget on a website or web app to capture
-      live conversations into shared inboxes.
-  - aid: front:front-connectors-api
-    name: Front Connectors
-    tags:
-      - Connectors
-      - Low-Code
-    properties:
-      - url: https://dev.frontapp.com/docs/connectors
-        type: Documentation
-    description: >-
-      Low-code connector framework for invoking external HTTP APIs from
-      within Front rules and workflows.
-  - aid: front:front-links-api
-    name: Front Links API
-    tags:
-      - Links
-      - External Resources
-    properties:
-      - url: https://dev.frontapp.com/reference/links
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Attach hyperlinks from external systems to Front conversations
-      for cross-system traceability.
+- aid: front:front-conversations-api
+  name: Front Conversations API
+  tags:
+  - Conversations
+  - Tickets
+  properties:
+  - url: https://dev.frontapp.com/
+    type: Documentation
+  - url: https://dev.frontapp.com/reference/conversations
+    type: APIReference
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  - type: NaftikoCapability
+    url: capabilities/core-accounts.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-analytics.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-applications.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-attachments.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-channels.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-comments.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-contact-groups.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-contact-handles.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-contact-lists.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-contact-notes.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-contacts.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-conversations.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-custom-fields.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-drafts.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-events.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-inboxes.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-knowledge-base-articles.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-knowledge-base-categories.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-knowledge-bases.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-links.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-message-template-folders.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-message-templates.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-messages.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-rules.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-shifts.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-signatures.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-statuses.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-tags.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-teammate-groups.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-teammates.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-teams.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-time-off.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-token-identity.yaml
+  - type: NaftikoCapability
+    url: capabilities/core-views.yaml
+  description: Read, create, update, and delete conversations across email, SMS, chat, and social channels. Includes assign,
+    archive, restore, snooze, follow, and merge actions.
+- aid: front:front-messages-api
+  name: Front Messages API
+  tags:
+  - Messages
+  - Replies
+  properties:
+  - url: https://dev.frontapp.com/reference/messages
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Send and reply to messages on existing or new conversations across any channel; includes inbound import for
+    sync use cases.
+- aid: front:front-drafts-api
+  name: Front Drafts API
+  tags:
+  - Drafts
+  properties:
+  - url: https://dev.frontapp.com/reference/drafts
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Create, edit, and delete message drafts assigned to a teammate or a shared inbox.
+- aid: front:front-channels-api
+  name: Front Channels API
+  tags:
+  - Channels
+  properties:
+  - url: https://dev.frontapp.com/reference/channels
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Manage channels (email addresses, SMS numbers, chat connectors, custom channels) attached to inboxes.
+- aid: front:front-inboxes-api
+  name: Front Inboxes API
+  tags:
+  - Inboxes
+  properties:
+  - url: https://dev.frontapp.com/reference/inboxes
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Manage shared inboxes and teammate access; attach channels to inboxes and read inbox configuration.
+- aid: front:front-contacts-api
+  name: Front Contacts API
+  tags:
+  - Contacts
+  - People
+  properties:
+  - url: https://dev.frontapp.com/reference/contacts
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Manage Front contacts and their handles (email, phone, social). Contacts unify customer identity across channels.
+- aid: front:front-contact-groups-api
+  name: Front Contact Groups API
+  tags:
+  - Groups
+  - Segmentation
+  properties:
+  - url: https://dev.frontapp.com/reference/contact-groups
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Group contacts for segmentation and shared visibility across teammates.
+- aid: front:front-accounts-api
+  name: Front Accounts API
+  tags:
+  - Accounts
+  - Companies
+  properties:
+  - url: https://dev.frontapp.com/reference/accounts
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Read and manage company / account records that group multiple contacts under a single business relationship.
+- aid: front:front-teammates-api
+  name: Front Teammates API
+  tags:
+  - Teammates
+  - Users
+  properties:
+  - url: https://dev.frontapp.com/reference/teammates
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Read teammates (Front users) and their availability, roles, and assignments.
+- aid: front:front-teams-api
+  name: Front Teams API
+  tags:
+  - Teams
+  properties:
+  - url: https://dev.frontapp.com/reference/teams
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Read team membership and team-scoped resources for routing and analytics.
+- aid: front:front-comments-api
+  name: Front Comments API
+  tags:
+  - Comments
+  - Internal Notes
+  properties:
+  - url: https://dev.frontapp.com/reference/comments
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Add, list, and remove internal comments on conversations for collaboration.
+- aid: front:front-tags-api
+  name: Front Tags API
+  tags:
+  - Tags
+  properties:
+  - url: https://dev.frontapp.com/reference/tags
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Manage tags and apply them to conversations for categorization, automation, and reporting.
+- aid: front:front-topics-api
+  name: Front Topics API
+  tags:
+  - Topics
+  - AI
+  properties:
+  - url: https://dev.frontapp.com/reference/topics
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Read AI-generated topics that classify conversation content for analytics and routing.
+- aid: front:front-rules-api
+  name: Front Rules API
+  tags:
+  - Rules
+  - Automation
+  properties:
+  - url: https://dev.frontapp.com/reference/rules
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Read configured automation rules; rule definitions are managed from the UI but exposed read-only via the API.
+- aid: front:front-signatures-api
+  name: Front Signatures API
+  tags:
+  - Signatures
+  properties:
+  - url: https://dev.frontapp.com/reference/signatures
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Read teammate and team signatures used on outbound messages.
+- aid: front:front-shifts-api
+  name: Front Shifts API
+  tags:
+  - Shifts
+  - Scheduling
+  properties:
+  - url: https://dev.frontapp.com/reference/shifts
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Manage teammate shifts that drive routing rules and SLA timers.
+- aid: front:front-knowledge-base-api
+  name: Front Knowledge Base API
+  tags:
+  - Knowledge Base
+  - Articles
+  properties:
+  - url: https://dev.frontapp.com/reference/knowledge-base
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Manage knowledge bases, categories, and articles published to customers and used by Front AI for self-service
+    responses.
+- aid: front:front-analytics-api
+  name: Front Analytics API
+  tags:
+  - Analytics
+  - Reports
+  properties:
+  - url: https://dev.frontapp.com/reference/analytics
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Generate analytics report exports for conversations, response times, SLA performance, and teammate productivity.
+- aid: front:front-events-api
+  name: Front Events API
+  tags:
+  - Events
+  - Audit
+  properties:
+  - url: https://dev.frontapp.com/reference/events
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Read the historical event stream for the company (assignments, replies, comments, tag changes) for audit and
+    integration use.
+- aid: front:front-webhooks-api
+  name: Front Webhooks API
+  tags:
+  - Webhooks
+  - Subscriptions
+  properties:
+  - url: https://dev.frontapp.com/reference/webhooks
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Subscribe to Front events (conversation.assigned, message.received, message.sent, comment.added) with HMAC-signed
+    deliveries.
+- aid: front:front-channels-platform-api
+  name: Front Channels Platform API
+  tags:
+  - Channels
+  - Custom
+  - Platform
+  properties:
+  - url: https://dev.frontapp.com/reference/custom-channels-api
+    type: Documentation
+  - url: openapi/front-channel-api-openapi.json
+    type: OpenAPI
+  - type: NaftikoCapability
+    url: capabilities/channel-application-message-templates.yaml
+  - type: NaftikoCapability
+    url: capabilities/channel-calls.yaml
+  - type: NaftikoCapability
+    url: capabilities/channel-channels.yaml
+  - type: NaftikoCapability
+    url: capabilities/channel-messages.yaml
+  description: Build custom messaging channels that bridge Front to proprietary messaging platforms (e.g. internal portals,
+    niche chat networks).
+- aid: front:front-plugin-sdk
+  name: Front Plugin SDK
+  tags:
+  - Plugin
+  - Embedded UI
+  properties:
+  - url: https://dev.frontapp.com/docs/getting-started-with-plugins
+    type: Documentation
+  description: Build embedded UI applications that render inside the Front sidebar to surface third-party context alongside
+    the conversation.
+- aid: front:front-chat-widget
+  name: Front Chat Widget
+  tags:
+  - Chat Widget
+  - Web
+  properties:
+  - url: https://dev.frontapp.com/docs/chat-widget
+    type: Documentation
+  description: Embed Front's live chat widget on a website or web app to capture live conversations into shared inboxes.
+- aid: front:front-connectors-api
+  name: Front Connectors
+  tags:
+  - Connectors
+  - Low-Code
+  properties:
+  - url: https://dev.frontapp.com/docs/connectors
+    type: Documentation
+  description: Low-code connector framework for invoking external HTTP APIs from within Front rules and workflows.
+- aid: front:front-links-api
+  name: Front Links API
+  tags:
+  - Links
+  - External Resources
+  properties:
+  - url: https://dev.frontapp.com/reference/links
+    type: Documentation
+  - url: openapi/front-core-api-openapi.json
+    type: OpenAPI
+  description: Attach hyperlinks from external systems to Front conversations for cross-system traceability.
 common:
-  - type: Website
-    url: https://front.com/
-  - type: Documentation
-    url: https://dev.frontapp.com/
-  - type: APIReference
-    url: https://dev.frontapp.com/reference
-  - type: Pricing
-    url: https://front.com/pricing
-  - type: Login
-    url: https://app.frontapp.com/
-  - type: StatusPage
-    url: https://status.frontapp.com/
-  - type: Blog
-    url: https://front.com/blog
-  - type: Support
-    url: https://help.frontapp.com/
-  - type: GitHubOrganization
-    url: https://github.com/frontapp
-  - type: PrivacyPolicy
-    url: https://front.com/legal/privacy-notice
-  - type: TermsOfService
-    url: https://front.com/legal/terms
-  - type: Authentication
-    url: https://dev.frontapp.com/docs/authentication
-  - type: RateLimits
-    url: https://dev.frontapp.com/docs/rate-limiting
-  - type: Webhooks
-    url: https://dev.frontapp.com/reference/webhooks
-  - type: Plans
-    url: plans/front-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/front-rate-limits.yml
-  - type: FinOps
-    url: finops/front-finops.yml
-  - type: Features
-    data:
-      - REST API at https://api2.frontapp.com/ (JSON)
-      - OAuth 2 and API token authentication
-      - Starter $25/seat/mo (up to 10 seats), Professional $65, Enterprise $105
-      - 24% off when billed annually
-      - AI add-ons - Copilot $20, Smart QA $20, Smart CSAT $10, bundle $25 per seat/mo
-      - API rate-limit increase add-on at $200 per +100 rpm/month
-      - Rate limits 50/100/200 rpm by plan, partner OAuth 120 rpm separate bucket
-      - Channels Platform API for custom messaging integrations
-      - Plugin SDK for embedded sidebar applications
-      - Connectors for low-code external HTTP integrations
-      - HMAC-signed webhook deliveries
-    sources:
-      - https://front.com/pricing
-      - https://dev.frontapp.com/
-      - https://dev.frontapp.com/docs/rate-limiting
-    updated: '2026-05-08'
-  - type: Integrations
-    url: https://front.com/integrations
+- type: LinkedIn
+  url: https://www.linkedin.com/company/frontapp
+- type: Website
+  url: https://front.com/
+- type: Documentation
+  url: https://dev.frontapp.com/
+- type: APIReference
+  url: https://dev.frontapp.com/reference
+- type: Pricing
+  url: https://front.com/pricing
+- type: Login
+  url: https://app.frontapp.com/
+- type: StatusPage
+  url: https://status.frontapp.com/
+- type: Blog
+  url: https://front.com/blog
+- type: Support
+  url: https://help.frontapp.com/
+- type: GitHubOrganization
+  url: https://github.com/frontapp
+- type: PrivacyPolicy
+  url: https://front.com/legal/privacy-notice
+- type: TermsOfService
+  url: https://front.com/legal/terms
+- type: Authentication
+  url: https://dev.frontapp.com/docs/authentication
+- type: RateLimits
+  url: https://dev.frontapp.com/docs/rate-limiting
+- type: Webhooks
+  url: https://dev.frontapp.com/reference/webhooks
+- type: Plans
+  url: plans/front-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/front-rate-limits.yml
+- type: FinOps
+  url: finops/front-finops.yml
+- type: Features
+  data:
+  - REST API at https://api2.frontapp.com/ (JSON)
+  - OAuth 2 and API token authentication
+  - Starter $25/seat/mo (up to 10 seats), Professional $65, Enterprise $105
+  - 24% off when billed annually
+  - AI add-ons - Copilot $20, Smart QA $20, Smart CSAT $10, bundle $25 per seat/mo
+  - API rate-limit increase add-on at $200 per +100 rpm/month
+  - Rate limits 50/100/200 rpm by plan, partner OAuth 120 rpm separate bucket
+  - Channels Platform API for custom messaging integrations
+  - Plugin SDK for embedded sidebar applications
+  - Connectors for low-code external HTTP integrations
+  - HMAC-signed webhook deliveries
+  sources:
+  - https://front.com/pricing
+  - https://dev.frontapp.com/
+  - https://dev.frontapp.com/docs/rate-limiting
+  updated: '2026-05-08'
+- type: Integrations
+  url: https://front.com/integrations
 integrations:
-  - name: Channel Partnerships
-  - name: AMGiNE Travel
-  - name: Aircall Voice & Telephony
-  - name: Asana Project Management & Issue Tracking
-  - name: One Bots & Workflow Automation
-  - name: Tabi Connect Logistics & Maritime
-  - name: RipeText Analytics & Reporting
-  - name: Chatra Channels & Messaging
-  - name: FullContact CRM & Ecommerce
-  - name: Gainsight CRM & Ecommerce
-  - name: HubSpot CRM & Ecommerce
-  - name: Alloy Project Management & Issue Tracking
-  - name: ClickUp Project Management & Issue Tracking
-  - name: Partner with us
+- name: Channel Partnerships
+- name: AMGiNE Travel
+- name: Aircall Voice & Telephony
+- name: Asana Project Management & Issue Tracking
+- name: One Bots & Workflow Automation
+- name: Tabi Connect Logistics & Maritime
+- name: RipeText Analytics & Reporting
+- name: Chatra Channels & Messaging
+- name: FullContact CRM & Ecommerce
+- name: Gainsight CRM & Ecommerce
+- name: HubSpot CRM & Ecommerce
+- name: Alloy Project Management & Issue Tracking
+- name: ClickUp Project Management & Issue Tracking
+- name: Partner with us
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

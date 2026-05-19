@@ -1,0 +1,203 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Teams
+  description: 'Core API — Teams. 4 operations. Lead operation: List teams. Self-contained Naftiko capability covering one
+    Front business surface.'
+  tags:
+  - Front
+  - Teams
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-teams
+    baseUri: https://api2.frontapp.com
+    description: Core API — Teams business capability. Self-contained, no shared references.
+    resources:
+    - name: teams
+      path: /teams
+      operations:
+      - name: listteams
+        method: GET
+        description: List teams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-team_id
+      path: /teams/{team_id}
+      operations:
+      - name: getteam
+        method: GET
+        description: Get team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The Team ID
+          required: true
+    - name: teams-team_id-teammates
+      path: /teams/{team_id}/teammates
+      operations:
+      - name: addteammatestoteam
+        method: POST
+        description: Add teammates to team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The Team ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: removeteammatesfromteam
+        method: DELETE
+        description: Remove teammates from team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The Team ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-teams-rest
+    port: 8080
+    description: REST adapter for Core API — Teams. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/teams
+      name: teams
+      description: REST surface for teams.
+      operations:
+      - method: GET
+        name: listteams
+        description: List teams
+        call: core-teams.listteams
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{team-id}
+      name: teams-team-id
+      description: REST surface for teams-team_id.
+      operations:
+      - method: GET
+        name: getteam
+        description: Get team
+        call: core-teams.getteam
+        with:
+          team_id: rest.team_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{team-id}/teammates
+      name: teams-team-id-teammates
+      description: REST surface for teams-team_id-teammates.
+      operations:
+      - method: POST
+        name: addteammatestoteam
+        description: Add teammates to team
+        call: core-teams.addteammatestoteam
+        with:
+          team_id: rest.team_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removeteammatesfromteam
+        description: Remove teammates from team
+        call: core-teams.removeteammatesfromteam
+        with:
+          team_id: rest.team_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-teams-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Teams. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-teams
+      description: List teams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-teams.listteams
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-team
+      description: Get team
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-teams.getteam
+      with:
+        team_id: tools.team_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-teammates-team
+      description: Add teammates to team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-teams.addteammatestoteam
+      with:
+        team_id: tools.team_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-teammates-team
+      description: Remove teammates from team
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: core-teams.removeteammatesfromteam
+      with:
+        team_id: tools.team_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

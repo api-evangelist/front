@@ -1,0 +1,283 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Core API — Time Off
+  description: 'Core API — Time Off. 6 operations. Lead operation: List teammate time offs. Self-contained Naftiko capability
+    covering one Front business surface.'
+  tags:
+  - Front
+  - Time Off
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FRONT_API_KEY: FRONT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: core-time-off
+    baseUri: https://api2.frontapp.com
+    description: Core API — Time Off business capability. Self-contained, no shared references.
+    resources:
+    - name: teammates-teammate_id-time_offs
+      path: /teammates/{teammate_id}/time_offs
+      operations:
+      - name: listteammatetimeoffs
+        method: GET
+        description: List teammate time offs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teammate_id
+          in: path
+          type: string
+          description: The teammate ID
+          required: true
+      - name: createtimeoff
+        method: POST
+        description: Create time off
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teammate_id
+          in: path
+          type: string
+          description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: teams-team_id-time_offs
+      path: /teams/{team_id}/time_offs
+      operations:
+      - name: listteamtimeoffs
+        method: GET
+        description: List team time offs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: team_id
+          in: path
+          type: string
+          description: The team ID
+          required: true
+    - name: time_offs-time_off_id
+      path: /time_offs/{time_off_id}
+      operations:
+      - name: gettimeoff
+        method: GET
+        description: Get time off
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: time_off_id
+          in: path
+          type: string
+          description: The time off ID
+          required: true
+      - name: updatetimeoff
+        method: PATCH
+        description: Update time off
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: time_off_id
+          in: path
+          type: string
+          description: The time off ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletetimeoff
+        method: DELETE
+        description: Delete time off
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: time_off_id
+          in: path
+          type: string
+          description: The time off ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FRONT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: core-time-off-rest
+    port: 8080
+    description: REST adapter for Core API — Time Off. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/teammates/{teammate-id}/time-offs
+      name: teammates-teammate-id-time-offs
+      description: REST surface for teammates-teammate_id-time_offs.
+      operations:
+      - method: GET
+        name: listteammatetimeoffs
+        description: List teammate time offs
+        call: core-time-off.listteammatetimeoffs
+        with:
+          teammate_id: rest.teammate_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtimeoff
+        description: Create time off
+        call: core-time-off.createtimeoff
+        with:
+          teammate_id: rest.teammate_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{team-id}/time-offs
+      name: teams-team-id-time-offs
+      description: REST surface for teams-team_id-time_offs.
+      operations:
+      - method: GET
+        name: listteamtimeoffs
+        description: List team time offs
+        call: core-time-off.listteamtimeoffs
+        with:
+          team_id: rest.team_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/time-offs/{time-off-id}
+      name: time-offs-time-off-id
+      description: REST surface for time_offs-time_off_id.
+      operations:
+      - method: GET
+        name: gettimeoff
+        description: Get time off
+        call: core-time-off.gettimeoff
+        with:
+          time_off_id: rest.time_off_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatetimeoff
+        description: Update time off
+        call: core-time-off.updatetimeoff
+        with:
+          time_off_id: rest.time_off_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetimeoff
+        description: Delete time off
+        call: core-time-off.deletetimeoff
+        with:
+          time_off_id: rest.time_off_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: core-time-off-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Core API — Time Off. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-teammate-time-offs
+      description: List teammate time offs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-time-off.listteammatetimeoffs
+      with:
+        teammate_id: tools.teammate_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-time-off
+      description: Create time off
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: core-time-off.createtimeoff
+      with:
+        teammate_id: tools.teammate_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-team-time-offs
+      description: List team time offs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-time-off.listteamtimeoffs
+      with:
+        team_id: tools.team_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-time-off
+      description: Get time off
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: core-time-off.gettimeoff
+      with:
+        time_off_id: tools.time_off_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-time-off
+      description: Update time off
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: core-time-off.updatetimeoff
+      with:
+        time_off_id: tools.time_off_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-time-off
+      description: Delete time off
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: core-time-off.deletetimeoff
+      with:
+        time_off_id: tools.time_off_id
+      outputParameters:
+      - type: object
+        mapping: $.
