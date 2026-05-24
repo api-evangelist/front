@@ -423,6 +423,8 @@ common:
   updated: '2026-05-08'
 - type: Integrations
   url: https://front.com/integrations
+- type: LLMsTxt
+  url: https://dev.frontapp.com/llms.txt
 integrations:
 - name: Channel Partnerships
 - name: AMGiNE Travel
