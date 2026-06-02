@@ -1,0 +1,540 @@
+asyncapi: 2.6.0
+info:
+  title: Front Webhooks
+  version: '2026-05-30'
+  description: |
+    AsyncAPI description of Front's webhook surface. Front delivers events
+    over outbound HTTP POST requests signed with HMAC-SHA256.
+
+    Two delivery modes are documented:
+
+    - **Application webhooks** - subscribed to as a feature of an OAuth
+      application on the Front Developers page. Signed with the application's
+      webhook secret using HMAC-SHA256 over the concatenation of the
+      `x-front-request-timestamp` value, a colon, and the raw request body.
+    - **Rule webhooks** - delivered when a Front rule's "Call a webhook"
+      action fires. Signed with HMAC-SHA1 over the raw request body using
+      the rule's API secret. Included here for completeness because the
+      task asks for the full webhook + Event Sync surface.
+
+    No content is inferred beyond what is documented at
+    `https://dev.frontapp.com/docs/application-webhooks`,
+    `https://dev.frontapp.com/docs/rule-webhooks`,
+    `https://dev.frontapp.com/docs/webhooks-1`, and
+    `https://dev.frontapp.com/reference/events`. Fields whose exact JSON
+    shape is not documented on those pages are described as a generic
+    object (`additionalProperties: true`) rather than fabricated.
+  contact:
+    name: Front Developer Platform
+    url: https://dev.frontapp.com/
+  license:
+    name: Front Developer Terms
+    url: https://front.com/legal/terms
+  termsOfService: https://front.com/legal/terms
+defaultContentType: application/json
+servers:
+  subscriber:
+    url: '{webhookUrl}'
+    protocol: https
+    description: |
+      The HTTPS URL of the consumer endpoint that Front delivers webhook
+      events to. Configured per application (application webhooks) or per
+      rule (rule webhooks).
+    variables:
+      webhookUrl:
+        description: Fully-qualified HTTPS URL registered by the consumer.
+        default: https://example.com/front/webhooks
+channels:
+  application/webhook:
+    description: |
+      Application webhook delivery channel. Front POSTs a JSON envelope
+      for every subscribed event. The envelope is always
+      `{ type, authorization: { id }, payload }`. The `payload` body
+      varies by event type.
+
+      Delivery contract (from
+      https://dev.frontapp.com/docs/application-webhooks):
+      - Consumer must respond within 5 seconds.
+      - HTTP 2xx is treated as success.
+      - HTTP 429 signals back-off; Front retries up to 3 times.
+      - Other errors / timeouts also trigger up to 3 retries.
+    bindings:
+      http:
+        bindingVersion: '0.3.0'
+        type: request
+        method: POST
+    subscribe:
+      operationId: receiveApplicationWebhook
+      summary: Receive a Front application webhook event.
+      bindings:
+        http:
+          bindingVersion: '0.3.0'
+          type: request
+          method: POST
+      message:
+        oneOf:
+          - $ref: '#/components/messages/InboundReceived'
+          - $ref: '#/components/messages/OutboundSent'
+          - $ref: '#/components/messages/MessageDeliveryFailed'
+          - $ref: '#/components/messages/ConversationMoved'
+          - $ref: '#/components/messages/ConversationArchived'
+          - $ref: '#/components/messages/ConversationReopened'
+          - $ref: '#/components/messages/ConversationDeleted'
+          - $ref: '#/components/messages/ConversationRestored'
+          - $ref: '#/components/messages/ConversationSnoozed'
+          - $ref: '#/components/messages/ConversationSnoozeExpired'
+          - $ref: '#/components/messages/NewCommentAdded'
+          - $ref: '#/components/messages/AssigneeChanged'
+          - $ref: '#/components/messages/TagAdded'
+          - $ref: '#/components/messages/TagRemoved'
+          - $ref: '#/components/messages/LinkAdded'
+          - $ref: '#/components/messages/LinkRemoved'
+  application/webhook/validation:
+    description: |
+      Webhook URL validation handshake. When an application webhook URL is
+      first registered (or re-validated), Front issues a request containing
+      `x-front-challenge`. The consumer must respond within 10 seconds with
+      HTTP 200 echoing the challenge value in one of:
+        - text/plain body, or
+        - form-encoded `challenge=<value>`, or
+        - JSON `{"challenge":"<value>"}`.
+    subscribe:
+      operationId: receiveApplicationWebhookValidation
+      summary: Receive the URL validation challenge.
+      message:
+        $ref: '#/components/messages/ValidationChallenge'
+  rule/webhook:
+    description: |
+      Rule webhook delivery channel. Triggered by Front rules that include
+      a "Call a webhook" action. Signed with HMAC-SHA1 base64 over the raw
+      request body using the rule's API secret (per
+      https://dev.frontapp.com/docs/rule-webhooks). Body is either the full
+      Front event object or a lightweight preview, as configured on the
+      rule. 5 second timeout; failed deliveries are not retried.
+    bindings:
+      http:
+        bindingVersion: '0.3.0'
+        type: request
+        method: POST
+    subscribe:
+      operationId: receiveRuleWebhook
+      summary: Receive a Front rule webhook event.
+      message:
+        $ref: '#/components/messages/RuleWebhookEvent'
+components:
+  messageTraits:
+    ApplicationWebhookHeaders:
+      headers:
+        type: object
+        required:
+          - x-front-signature
+          - x-front-request-timestamp
+        properties:
+          x-front-signature:
+            type: string
+            description: |
+              Base64-encoded HMAC-SHA256 of
+              `<x-front-request-timestamp>:<raw_request_body>` computed
+              with the application's webhook secret. Consumers MUST
+              compare in constant time.
+          x-front-request-timestamp:
+            type: string
+            description: Millisecond Unix timestamp at which Front emitted the request.
+          x-front-challenge:
+            type: string
+            description: |
+              Present on the initial URL validation request and on
+              re-validation. Echo this value back in the response body to
+              confirm ownership of the endpoint.
+    RuleWebhookHeaders:
+      headers:
+        type: object
+        required:
+          - X-Front-Signature
+        properties:
+          X-Front-Signature:
+            type: string
+            description: |
+              Base64-encoded HMAC-SHA1 of the raw UTF-8 request body
+              computed with the rule's API secret. Compare in constant time.
+  messages:
+    InboundReceived:
+      name: inbound_received
+      title: Inbound message received
+      summary: A new inbound message arrived in a subscribed inbox.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: inbound_received
+    OutboundSent:
+      name: outbound_sent
+      title: Outbound message sent
+      summary: An outbound message was sent from Front.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: outbound_sent
+    MessageDeliveryFailed:
+      name: message_delivery_failed
+      title: Message delivery failed
+      summary: Front could not deliver a message to the recipient channel.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: message_delivery_failed
+    ConversationMoved:
+      name: conversation_moved
+      title: Conversation moved
+      summary: A conversation was moved to another inbox.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: conversation_moved
+    ConversationArchived:
+      name: conversation_archived
+      title: Conversation archived
+      summary: A conversation was archived.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: conversation_archived
+    ConversationReopened:
+      name: conversation_reopened
+      title: Conversation reopened
+      summary: A conversation was reopened (unarchived).
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: conversation_reopened
+    ConversationDeleted:
+      name: conversation_deleted
+      title: Conversation deleted
+      summary: A conversation was moved to trash / deleted.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: conversation_deleted
+    ConversationRestored:
+      name: conversation_restored
+      title: Conversation restored
+      summary: A previously deleted conversation was restored.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: conversation_restored
+    ConversationSnoozed:
+      name: conversation_snoozed
+      title: Conversation snoozed
+      summary: A conversation was snoozed.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: conversation_snoozed
+    ConversationSnoozeExpired:
+      name: conversation_snooze_expired
+      title: Conversation snooze expired
+      summary: A snooze timer expired and reopened the conversation.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: conversation_snooze_expired
+    NewCommentAdded:
+      name: new_comment_added
+      title: New internal comment added
+      summary: A teammate posted an internal comment on a conversation.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: new_comment_added
+    AssigneeChanged:
+      name: assignee_changed
+      title: Assignee changed
+      summary: |
+        The teammate assigned to a conversation was changed (covers both
+        the documented assign and unassign transitions).
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: assignee_changed
+    TagAdded:
+      name: tag_added
+      title: Tag added
+      summary: A tag was applied to a conversation.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: tag_added
+    TagRemoved:
+      name: tag_removed
+      title: Tag removed
+      summary: A tag was removed from a conversation.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: tag_removed
+    LinkAdded:
+      name: link_added
+      title: Link added
+      summary: An external link was attached to a conversation.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: link_added
+    LinkRemoved:
+      name: link_removed
+      title: Link removed
+      summary: An external link was removed from a conversation.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/ApplicationWebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/ApplicationWebhookEnvelope'
+          - type: object
+            properties:
+              type:
+                const: link_removed
+    ValidationChallenge:
+      name: validation_challenge
+      title: Webhook URL validation challenge
+      summary: |
+        Initial validation request from Front. Contains the
+        `x-front-challenge` header. Consumer must reply within 10 seconds
+        with HTTP 200 echoing the challenge value (text/plain, form-encoded
+        `challenge=<value>`, or JSON `{"challenge":"<value>"}`).
+      contentType: application/json
+      headers:
+        type: object
+        required:
+          - x-front-challenge
+          - x-front-signature
+          - x-front-request-timestamp
+        properties:
+          x-front-challenge:
+            type: string
+            description: Random value Front expects to be echoed back.
+          x-front-signature:
+            type: string
+          x-front-request-timestamp:
+            type: string
+      payload:
+        type: object
+        additionalProperties: true
+    RuleWebhookEvent:
+      name: rule_webhook_event
+      title: Rule webhook delivery
+      summary: |
+        A Front rule's "Call a webhook" action fired. The body is either
+        the full Front event object or an event preview, depending on the
+        rule configuration. Refer to the Front Events API (`/events`) for
+        the event object shape.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/RuleWebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/FrontEvent'
+  schemas:
+    ApplicationWebhookEnvelope:
+      type: object
+      description: |
+        Application webhook envelope as documented at
+        https://dev.frontapp.com/docs/application-webhooks. The structure
+        of the `payload` object varies per event type and the exact field
+        list per event is not enumerated on the documentation page, so it
+        is represented here as an open object.
+      required:
+        - type
+        - authorization
+        - payload
+      properties:
+        type:
+          type: string
+          description: Event type name.
+          enum:
+            - inbound_received
+            - outbound_sent
+            - message_delivery_failed
+            - conversation_moved
+            - conversation_archived
+            - conversation_reopened
+            - conversation_deleted
+            - conversation_restored
+            - conversation_snoozed
+            - conversation_snooze_expired
+            - new_comment_added
+            - assignee_changed
+            - tag_added
+            - tag_removed
+            - link_added
+            - link_removed
+        authorization:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              description: |
+                Identifier of the Front company (e.g. `cmp_abc`) the event
+                belongs to.
+        payload:
+          type: object
+          description: |
+            Event-specific payload. Shape varies by `type`. See the Front
+            Events reference at https://dev.frontapp.com/reference/events
+            for the underlying event object structure.
+          additionalProperties: true
+    FrontEvent:
+      type: object
+      description: |
+        Core Front event object as referenced by
+        https://dev.frontapp.com/reference/events. Only fields documented
+        on that page are listed explicitly; everything else is left open.
+      properties:
+        id:
+          type: string
+          description: Sequential event identifier (base 36 encoded).
+        type:
+          type: string
+          description: Event classification.
+          enum:
+            - assign
+            - unassign
+            - archive
+            - reopen
+            - trash
+            - restore
+            - move
+            - comment
+            - mention
+            - inbound
+            - outbound
+            - forward
+            - out_reply
+            - sending_error
+            - message_bounce_error
+            - tag
+            - untag
+            - link_added
+            - link_removed
+            - reminder
+            - macro_triggered
+            - topic_identified
+            - conversations_merged
+            - ticket_status_update
+            - call_started
+            - call_abandoned
+            - call_queued
+            - call_on_hold
+            - call_resumed
+            - call_connected
+            - call_missed
+            - call_hangup
+            - call_transferred
+        emitted_at:
+          type: number
+          description: Time the event was emitted in Front.
+        source:
+          type: object
+          description: |
+            Origin of the event (teammate, rule, inbox, or recipient).
+          additionalProperties: true
+        target:
+          type: object
+          description: Subject affected by the event.
+          additionalProperties: true
+        conversation:
+          type: object
+          description: Associated conversation details.
+          additionalProperties: true
+      additionalProperties: true

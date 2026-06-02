@@ -14,7 +14,7 @@ tags:
 - Collaboration
 - Omnichannel
 created: '2026-05-08'
-modified: '2026-05-19'
+modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
 - aid: front:front-conversations-api
@@ -304,6 +304,8 @@ apis:
     type: Documentation
   - url: openapi/front-core-api-openapi.json
     type: OpenAPI
+  - url: openapi/front-webhooks-asyncapi.yaml
+    type: AsyncAPI
   description: Subscribe to Front events (conversation.assigned, message.received, message.sent, comment.added) with HMAC-signed
     deliveries.
 - aid: front:front-channels-platform-api
