@@ -1,0 +1,354 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/channels/:channel_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a channel."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Message Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sync application message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api2.frontapp.com/channels/:channel_id/application_message_templates",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import an application message template from an external service (such as WhatsApp or Facebook). The message template becomes available for use by the channel specified if configured as described in [this topic](https://dev.frontapp.com/update/docs/application-channel-message-templates)."
+        },
+        {
+          "info": {
+            "name": "Update application message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/channels/:channel_id/application_message_templates/:external_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "The external ID of the application message template."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an application message template that already exists in Front."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Calls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a call in Front."
+        },
+        {
+          "info": {
+            "name": "Update call status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls/:external_call_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              },
+              {
+                "name": "external_call_id",
+                "value": "",
+                "type": "path",
+                "description": "The external call ID from the provider system (same as `external_call_id` on create)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the call status of a call in Front."
+        },
+        {
+          "info": {
+            "name": "Add call recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls/:external_call_id/recording",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              },
+              {
+                "name": "external_call_id",
+                "value": "",
+                "type": "path",
+                "description": "The external call ID from the provider system."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "attachments",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "recording_type",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Adds a recording to a call in Front. Send `multipart/form-data` with exactly one file in the `attachments` field, `Content-Type: audio/*`, and required `recording_type` (`call` or `voicemail`).\n"
+        },
+        {
+          "info": {
+            "name": "Add call summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls/:external_call_id/summary",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              },
+              {
+                "name": "external_call_id",
+                "value": "",
+                "type": "path",
+                "description": "The external call ID from the provider system."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a summary to a call in Front."
+        },
+        {
+          "info": {
+            "name": "Add call transcript",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls/:external_call_id/transcript",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              },
+              {
+                "name": "external_call_id",
+                "value": "",
+                "type": "path",
+                "description": "The external call ID from the provider system."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a transcript to a call in Front."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update external message status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api2.frontapp.com/channels/:channel_id/conversations/:conv_ext_id/messages/:message_ext_id/status",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              },
+              {
+                "name": "conv_ext_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation's external ID."
+              },
+              {
+                "name": "message_ext_id",
+                "value": "",
+                "type": "path",
+                "description": "The message's external ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status of an outbound message by external ID. This endpoint is used by external systems (like SMS providers or custom channels)\nto notify Front when a message's delivery status has changed.\n\n**Available status changes:**\n- `failed`: Mark a message as failed. When marked as failed, the conversation is reopened so the team can take action.\n\n**Note:** This endpoint is only available for outbound messages.\n"
+        },
+        {
+          "info": {
+            "name": "Sync inbound message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/inbound_messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import a message that was received by the channel."
+        },
+        {
+          "info": {
+            "name": "Sync outbound message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/outbound_messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import a message that was sent from the channel."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
