@@ -6,7 +6,7 @@ description: >-
   Front is a customer operations platform unifying shared inboxes, chat, SMS, social, and CRM workflows. Front exposes a
   Core API (conversations, messages, channels, contacts, teammates, analytics), a Channels API for custom messaging
   integrations, a Plugin SDK for embedded UI apps, a Chat Widget, and Connectors for low-code automations.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Customer Support
   - Email
