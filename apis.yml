@@ -357,7 +357,7 @@ common:
     updated: '2026-05-08'
   - type: Integrations
     url: https://front.com/integrations
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://dev.frontapp.com/llms.txt
 integrations:
   - name: Channel Partnerships
