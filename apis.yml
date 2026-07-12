@@ -301,6 +301,14 @@ apis:
         type: OpenAPI
     description: Attach hyperlinks from external systems to Front conversations for cross-system traceability.
 common:
+  - type: TrustCenter
+    url: security/front-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/front-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/front-domain-security.yml
+  - type: Authentication
+    url: authentication/front-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/frontapp
   - type: Website

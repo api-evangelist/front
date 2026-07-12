@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/front-channel-api-openapi.json, openapi/front-core-api-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: http
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/front-channel-api-openapi.json
+  - openapi/front-core-api-openapi.json
