@@ -301,6 +301,8 @@ apis:
         type: OpenAPI
     description: Attach hyperlinks from external systems to Front conversations for cross-system traceability.
 common:
+  - type: AgenticAccess
+    url: agentic-access/front-agentic-access.yml
   - type: TrustCenter
     url: security/front-trust-center.yml
   - type: VulnerabilityDisclosure
