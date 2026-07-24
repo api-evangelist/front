@@ -1,0 +1,571 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Accounts
+paths:
+  /accounts:
+    get:
+      summary: List Accounts
+      operationId: list-accounts
+      description: 'List the accounts of the company.
+
+
+        Required scope: `accounts:read`'
+      tags:
+      - Accounts
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      - $ref: '#/components/parameters/sortByAccounts'
+      - $ref: '#/components/parameters/sortOrder'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfAccounts'
+      x-required-scopes:
+      - accounts:read
+    post:
+      summary: Create account
+      operationId: create-account
+      description: 'Create a new account.
+
+
+        Required scope: `accounts:write`'
+      tags:
+      - Accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          $ref: '#/components/responses/account'
+      x-required-scopes:
+      - accounts:write
+  /accounts/{account_id}:
+    get:
+      summary: Fetch an account
+      operationId: fetch-an-account
+      description: 'Fetches an account
+
+
+        Required scope: `accounts:read`'
+      tags:
+      - Accounts
+      parameters:
+      - in: path
+        name: account_id
+        required: true
+        description: The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: acc_123
+      responses:
+        '200':
+          $ref: '#/components/responses/account'
+      x-required-scopes:
+      - accounts:read
+    patch:
+      summary: Update account
+      operationId: update-account
+      description: 'Updates an account.
+
+
+        Required scope: `accounts:write`'
+      tags:
+      - Accounts
+      parameters:
+      - in: path
+        name: account_id
+        required: true
+        description: The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: acc_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountPatch'
+      responses:
+        '200':
+          $ref: '#/components/responses/account'
+      x-required-scopes:
+      - accounts:write
+    delete:
+      summary: Delete an account
+      operationId: delete-an-account
+      description: 'Deletes an account
+
+
+        Required scope: `accounts:delete`'
+      tags:
+      - Accounts
+      parameters:
+      - in: path
+        name: account_id
+        required: true
+        description: The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: acc_123
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - accounts:delete
+  /accounts/{account_id}/contacts:
+    get:
+      summary: List account contacts
+      operationId: list-account-contacts
+      description: 'Lists the contacts associated with an Account
+
+
+        Required scope: `contacts:read`'
+      tags:
+      - Accounts
+      parameters:
+      - in: path
+        name: account_id
+        required: true
+        description: The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: acc_123
+      - $ref: '#/components/parameters/pageToken'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/sortByCards'
+      - $ref: '#/components/parameters/sortOrder'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfContacts'
+      x-required-scopes:
+      - contacts:read
+    post:
+      summary: Add contact to Account
+      operationId: add-contact-to-account
+      description: 'Adds a list of contacts to an Account
+
+
+        Required scope: `accounts:write`'
+      tags:
+      - Accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactIds'
+      parameters:
+      - in: path
+        name: account_id
+        required: true
+        description: The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: acc_123
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - accounts:write
+    delete:
+      summary: Remove contact from Account
+      operationId: remove-contact-from-account
+      description: 'Removes a list of contacts from an Account
+
+
+        Required scope: `accounts:write`'
+      tags:
+      - Accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactIds'
+      parameters:
+      - in: path
+        name: account_id
+        required: true
+        description: The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: acc_123
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - accounts:write
+components:
+  parameters:
+    sortByAccounts:
+      name: sort_by
+      in: query
+      description: Field used to sort the accounts. Either `created_at` or `updated_at`.
+      schema:
+        type: string
+    sortOrder:
+      name: sort_order
+      in: query
+      description: Order by which results should be sorted
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        example: asc
+    sortByCards:
+      name: sort_by
+      in: query
+      description: Field used to sort the contacts. Either `created_at` or `updated_at`.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+  schemas:
+    Account:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the Account
+        description:
+          type: string
+          description: Account description
+        domains:
+          type: array
+          description: List of domains associated with the Account
+          items:
+            type: string
+        external_id:
+          type: string
+          description: ID of the Account in an external system
+        custom_fields:
+          description: Custom fields for this account
+          $ref: '#/components/schemas/CustomFieldParameter'
+    ContactHandle:
+      type: object
+      required:
+      - handle
+      - source
+      properties:
+        handle:
+          type: string
+          description: Handle used to reach the contact.
+          example: dwight@limitlesspaper.com
+        source:
+          type: string
+          enum:
+          - twitter
+          - email
+          - phone
+          - facebook
+          - intercom
+          - front_chat
+          - custom
+          description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
+          example: email
+    ContactListResponses:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342
+            related:
+              type: object
+              properties:
+                contacts:
+                  type: string
+                  description: Link to contact list contacts
+                  example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts
+                owner:
+                  type: string
+                  description: Link to list owner
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
+        id:
+          type: string
+          description: Unique identifier of the list
+          example: grp_3j342
+        name:
+          type: string
+          description: Name of the list
+          example: Party Planning Committee
+        is_private:
+          type: boolean
+          description: Whether or not the contact is individual
+          example: false
+    ContactResponse:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge"
+            related:
+              type: object
+              properties:
+                notes:
+                  type: string
+                  description: Link to contact notes
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes
+                conversations:
+                  type: string
+                  description: Link to contact conversations
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations
+                owner:
+                  type: string
+                  description: Link to contact owner
+                  example: null
+        id:
+          type: string
+          description: Unique identifier of the contact
+          example: crd_3cgz4ge
+        name:
+          type: string
+          description: Contact name
+          example: Dwight Schrute
+        description:
+          type: string
+          description: Contact description
+          example: Assistant to the regional manager
+        avatar_url:
+          type: string
+          description: URL of the contact's avatar
+          example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707
+        links:
+          type: array
+          description: List of all the links of the contact
+          items:
+            type: string
+            example:
+            - https://shrutefarms.com
+            - https://eatyourbeets.com
+        groups:
+          type: array
+          deprecated: true
+          description: List of the groups the contact belongs to. ⚠️ Deprecated. use `lists` instead.
+          items:
+            $ref: '#/components/schemas/ContactListResponses'
+        lists:
+          type: array
+          description: List of the contact lists the contact belongs to.
+          items:
+            $ref: '#/components/schemas/ContactListResponses'
+        handles:
+          type: array
+          description: List of the handles and sources with which the contact is reachable.
+          items:
+            $ref: '#/components/schemas/ContactHandle'
+        custom_fields:
+          description: Custom fields for this contact.
+          $ref: '#/components/schemas/CustomFieldParameter'
+        is_private:
+          type: boolean
+          description: Whether or not the contact is individual
+          example: true
+    ContactIds:
+      type: object
+      required:
+      - contact_ids
+      properties:
+        contact_ids:
+          type: array
+          description: The contact IDs to include. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    ResourceID:
+      type: string
+    AccountPatch:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the Account
+        description:
+          type: string
+          description: Account description
+        domains:
+          type: array
+          description: List of domains associated with the Account
+          items:
+            type: string
+        custom_fields:
+          description: Custom fields for this account. If you want to keep all custom fields the same when updating this resource, do not include any custom fields in the update. If you want to update custom fields, make sure to include all custom fields, not just the fields you want to add or update. If you send only the custom fields you want to update, the other custom fields will be erased. You can retrieve the existing custom fields before making the update to note the current fields.
+          $ref: '#/components/schemas/CustomFieldParameter'
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    AccountResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - logo_url
+      - description
+      - domains
+      - external_id
+      - custom_fields
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/accounts/acc_76
+            related:
+              type: object
+              properties:
+                contacts:
+                  type: string
+                  description: Link to contacts associated to the account
+                  example: https://yourCompany.api.frontapp.com/accounts/acc_76/contacts
+        id:
+          type: string
+          description: Unique identifier of the account
+          example: acc_76
+        name:
+          type: string
+          description: Account name
+          example: Dunder Mifflin, Inc.
+        logo_url:
+          type: string
+          nullable: true
+          description: URL of the Account's logo
+          example: https://yourCompany.api.frontapp.com/accounts/acc_aq/logo-1654309308278
+        description:
+          type: string
+          nullable: true
+          description: Account Description
+          example: Limitless Paper in a Paperless World
+        domains:
+          type: array
+          description: List of domains associated to the Account
+          items:
+            type: string
+            example:
+            - dundermifflininc.com
+            - limitlesspaper.com
+        external_id:
+          type: string
+          nullable: true
+          description: ID of the Account in an External system, such as your backoffice system or CRM
+          example: 8739674733
+        custom_fields:
+          description: Custom fields for this account
+          $ref: '#/components/schemas/CustomFieldParameter'
+        created_at:
+          type: number
+          description: Timestamp when the account was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the account was updated
+          example: 1654309308.278
+  responses:
+    account:
+      description: An Account
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccountResponse'
+    listOfAccounts:
+      description: Array of accounts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/accounts?page_token=abae846b73ddd80f67fff73c491c41b8b0e74972f3a1079c3c8800416e06cf46
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/accounts
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountResponse'
+    listOfContacts:
+      description: Array of contacts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/contacts
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactResponse'
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

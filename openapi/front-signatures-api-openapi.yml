@@ -1,0 +1,376 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Signatures API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Signatures
+paths:
+  /signatures/{signature_id}:
+    get:
+      summary: Get signatures
+      operationId: get-signatures
+      description: 'Get the given signature.
+
+
+        Required scope: `signatures:read`'
+      tags:
+      - Signatures
+      parameters:
+      - in: path
+        name: signature_id
+        required: true
+        description: The signature ID
+        schema:
+          type: string
+          default: sig_123
+      responses:
+        '200':
+          $ref: '#/components/responses/signature'
+      x-required-scopes:
+      - signatures:read
+    patch:
+      summary: Update signature
+      operationId: update-signature
+      description: 'Update signature
+
+
+        Required scope: `signatures:write`'
+      tags:
+      - Signatures
+      requestBody:
+        description: Signature to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSignature'
+      parameters:
+      - in: path
+        name: signature_id
+        required: true
+        description: The signature ID
+        schema:
+          type: string
+          default: sig_123
+      responses:
+        '200':
+          $ref: '#/components/responses/signature'
+      x-required-scopes:
+      - signatures:write
+    delete:
+      summary: Delete signature
+      operationId: delete-signature
+      description: 'Delete signature
+
+
+        Required scope: `signatures:delete`'
+      tags:
+      - Signatures
+      parameters:
+      - in: path
+        name: signature_id
+        required: true
+        description: The signature ID
+        schema:
+          type: string
+          default: sig_123
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - signatures:delete
+  /teammates/{teammate_id}/signatures:
+    get:
+      summary: List teammate signatures
+      operationId: list-teammate-signatures
+      description: 'List the signatures belonging to the given teammate.
+
+
+        Required scope: `signatures:read`'
+      tags:
+      - Signatures
+      parameters:
+      - in: path
+        name: teammate_id
+        required: true
+        description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: tea_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfSignatures'
+      x-required-scopes:
+      - signatures:read
+    post:
+      summary: Create teammate signature
+      operationId: create-teammate-signature
+      description: 'Create a new signature for the given teammate
+
+
+        Required scope: `signatures:write`'
+      tags:
+      - Signatures
+      requestBody:
+        description: Signature to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePrivateSignature'
+      parameters:
+      - in: path
+        name: teammate_id
+        required: true
+        description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: tea_123
+      responses:
+        '201':
+          $ref: '#/components/responses/signature'
+      x-required-scopes:
+      - signatures:write
+  /teams/{team_id}/signatures:
+    get:
+      summary: List team signatures
+      operationId: list-team-signatures
+      description: 'List the signatures belonging to the given team (workspace).
+
+
+        Required scope: `signatures:read`'
+      tags:
+      - Signatures
+      parameters:
+      - in: path
+        name: team_id
+        required: true
+        description: The team ID
+        schema:
+          type: string
+          default: tim_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfSignatures'
+      x-required-scopes:
+      - signatures:read
+    post:
+      summary: Create team signature
+      operationId: create-team-signature
+      description: 'Create a new signature for the given team (workspace).
+
+
+        Required scope: `signatures:write`'
+      tags:
+      - Signatures
+      requestBody:
+        description: Signature to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSharedSignature'
+      parameters:
+      - in: path
+        name: team_id
+        required: true
+        description: The team ID
+        schema:
+          type: string
+          default: tim_123
+      responses:
+        '201':
+          $ref: '#/components/responses/signature'
+      x-required-scopes:
+      - signatures:write
+components:
+  responses:
+    signature:
+      description: A signature
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SignatureResponse'
+    listOfSignatures:
+      description: Array of signatures
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/signatures?page_token=9fa92a7f385fd7be43f7153055b30e6d
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/signatures
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SignatureResponse'
+  schemas:
+    CreateSharedSignature:
+      type: object
+      description: A signature that can be used to sign messages.
+      required:
+      - name
+      - body
+      properties:
+        name:
+          type: string
+          description: Name of the signature
+        sender_info:
+          type: string
+          description: Sender info of the signature that will appear in the From line of emails sent.
+        body:
+          type: string
+          description: Body of the signature
+        is_visible_for_all_teammate_channels:
+          type: boolean
+          description: Whether or not the signature is visible in all individual channels for teammates in the given team.
+        is_default:
+          type: boolean
+          description: If true, the signature will be set as the default signature for the team.
+          default: false
+        channel_ids:
+          type: array
+          description: The specific channels this signature is available in. If omitted or null, the signature will be available in all channels the team has access to. Alternatively, you can specify channels using a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            type: string
+    UpdateSignature:
+      type: object
+      description: A signature that can be used to sign messages.
+      properties:
+        name:
+          type: string
+          description: Name of the signature
+        sender_info:
+          type: string
+          description: Sender info of the signature that will appear in the From line of emails sent.
+        body:
+          type: string
+          description: Body of the signature
+        is_visible_for_all_teammate_channels:
+          type: boolean
+          description: Whether or not the signature is visible in all individual channels for teammates in the given team. Can only be set for shared signatures.
+        is_default:
+          type: boolean
+          description: If true, the signature will be set as the default signature for the team or teammate.
+          default: false
+        channel_ids:
+          type: array
+          description: The specific shared channels this signature if available in. If null, then it will be available in all channels. If unspecified, will retain previous value. Alternatively, you can specify channels using a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            type: string
+    SignatureResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - body
+      - sender_info
+      - is_private
+      - is_visible_for_all_teammate_channels
+      - is_default
+      - channel_ids
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/signatures/sig_6rrv2
+            related:
+              type: object
+              properties:
+                owner:
+                  type: string
+                  description: Link to signature's owner (either a team or teammate)
+                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
+        id:
+          type: string
+          description: Unique identifier of the signature
+          example: sig_6rrv2
+        name:
+          type: string
+          nullable: true
+          description: Name of the signature
+          example: Finer Things Club signature
+        body:
+          type: string
+          description: Body of the signature
+          example: <div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>
+        sender_info:
+          type: string
+          nullable: true
+          description: Sender info of the signature
+          example:
+            '[object Object]': null
+        is_visible_for_all_teammate_channels:
+          type: boolean
+          description: Whether or not the signature is available in teammate channels.
+          example: true
+        is_default:
+          type: boolean
+          description: Whether the signature is the default signature for the team or teammate.
+          example: false
+        is_private:
+          type: boolean
+          description: Whether the signature is private to the teammate.
+          example: true
+        channel_ids:
+          type: array
+          nullable: true
+          items:
+            type: string
+            description: List of channels the signature is available in. If belonging to a teammate, represents all channels this can be used in. If belonging to a team, represents all team channels this can be used in. If null, there are no restrictions.
+            example: null
+    CreatePrivateSignature:
+      type: object
+      description: A signature that can be used to sign messages.
+      required:
+      - name
+      - body
+      properties:
+        name:
+          type: string
+          description: Name of the signature
+        sender_info:
+          type: string
+          description: Sender info of the signature that will appear in the From line of emails sent.
+        body:
+          type: string
+          description: Body of the signature
+        is_default:
+          type: boolean
+          description: If true, the signature will be set as the default signature for the teammate.
+          default: false
+        channel_ids:
+          type: array
+          description: The specific channels this signature is available in. If omitted or null, the signature will be available in all channels the teammate has access to. Alternatively, you can specify channels using a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            type: string
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

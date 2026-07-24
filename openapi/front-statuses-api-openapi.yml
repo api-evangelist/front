@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Statuses API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Statuses
+paths:
+  /company/statuses:
+    get:
+      summary: List company ticket statuses
+      operationId: list-company-ticket-statuses
+      description: 'List the ticket statuses available for your company.
+
+
+        Required scope: `statuses:read`'
+      tags:
+      - Statuses
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfStatuses'
+        '404':
+          description: Ticketing is not enabled, therefore, there are no ticket statuses.
+      x-required-scopes:
+      - statuses:read
+  /company/statuses/{status_id}:
+    get:
+      summary: Get ticket status
+      operationId: get-ticket-status-by-id
+      description: 'Fetch a ticket status.
+
+
+        Required scope: `statuses:read`'
+      tags:
+      - Statuses
+      parameters:
+      - in: path
+        name: status_id
+        required: true
+        description: The ticket status ID
+        schema:
+          type: string
+          default: sts_5z
+      responses:
+        '200':
+          $ref: '#/components/responses/status'
+      x-required-scopes:
+      - statuses:read
+components:
+  responses:
+    listOfStatuses:
+      description: Array of ticket statuses
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/company/statuses
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatusResponse'
+    status:
+      description: A ticket status
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+  schemas:
+    StatusResponse:
+      type: object
+      description: A ticket status of a conversation.
+      required:
+      - _links
+      - id
+      - name
+      - category
+      - description
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to ticket status
+              example: https://yourCompany.api.frontapp.com/company/statuses/sts_5z
+        id:
+          type: string
+          description: Unique identifier of the ticket status
+          example: sts_5z
+        name:
+          type: string
+          description: The name of the ticket status. Default statuses match the category name. Custom statuses have a unique name.
+          example: Open
+        category:
+          type: string
+          nullable: true
+          description: Category of the ticket status.
+          enum:
+          - open
+          - waiting
+          - resolved
+          example: open
+        description:
+          type: string
+          nullable: true
+          description: Description of the ticket status
+          example: New or currently being worked on
+        created_at:
+          type: number
+          description: Timestamp of ticket status creation
+          example: 1682538996.583
+        updated_at:
+          type: number
+          description: Timestamp of the last ticket status update
+          example: 1699575875.186
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

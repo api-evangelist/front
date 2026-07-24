@@ -1,0 +1,195 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Rules API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Rules
+paths:
+  /company/rules:
+    get:
+      summary: List all company rules
+      operationId: list-all-company-rules
+      description: 'List the company rules.
+
+
+        Required scope: `rules:read`'
+      tags:
+      - Rules
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfRules'
+      x-required-scopes:
+      - rules:read
+  /rules:
+    get:
+      summary: List rules
+      operationId: list-rules
+      description: 'List the rules of the company.
+
+
+        Required scope: `rules:read`'
+      tags:
+      - Rules
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfRules'
+      x-required-scopes:
+      - rules:read
+  /rules/{rule_id}:
+    get:
+      summary: Get rule
+      operationId: get-rule
+      description: 'Fetch a rule.
+
+
+        Required scope: `rules:read`'
+      tags:
+      - Rules
+      parameters:
+      - in: path
+        name: rule_id
+        required: true
+        description: The Rule ID
+        schema:
+          type: string
+          default: rul_123
+      responses:
+        '200':
+          $ref: '#/components/responses/rule'
+      x-required-scopes:
+      - rules:read
+  /teammates/{teammate_id}/rules:
+    get:
+      summary: List teammate rules
+      operationId: list-teammate-rules
+      description: 'List the rules of a teammate.
+
+
+        Required scope: `rules:read`'
+      tags:
+      - Rules
+      parameters:
+      - in: path
+        name: teammate_id
+        required: true
+        description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: tea_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfRules'
+      x-required-scopes:
+      - rules:read
+  /teams/{team_id}/rules:
+    get:
+      summary: List team rules
+      operationId: list-team-rules
+      description: 'List the rules of a team (workspace).
+
+
+        Required scope: `rules:read`'
+      tags:
+      - Rules
+      parameters:
+      - in: path
+        name: team_id
+        required: true
+        description: The team ID
+        schema:
+          type: string
+          default: tim_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfRules'
+      x-required-scopes:
+      - rules:read
+components:
+  responses:
+    rule:
+      description: A rule
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RuleResponse'
+    listOfRules:
+      description: Array of Rules
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/rules
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RuleResponse'
+  schemas:
+    RuleResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - actions
+      - is_private
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/rules/rul_58xhq
+            related:
+              type: object
+              properties:
+                owner:
+                  type: string
+                  description: Link to rule owner
+                  example: null
+                  nullable: true
+        id:
+          type: string
+          description: Unique identifier of the rule
+          example: rul_58xhq
+        name:
+          type: string
+          description: Name of the rule
+          example: Scranton new account workflow
+        actions:
+          type: array
+          description: List of the rule's actions description
+          items:
+            type: string
+            example:
+            - Assign to Pam
+            - Unassign from Michael
+            - Tag with Scranton is the Best Branch
+            - Tag with Michael is the Best Boss
+        is_private:
+          type: boolean
+          description: Whether or not the rule is individual
+          example: false
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

@@ -1,0 +1,367 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Time Off API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Time Off
+paths:
+  /teammates/{teammate_id}/time_offs:
+    get:
+      summary: List teammate time offs
+      operationId: list-teammate-time-offs
+      description: 'List the time offs of a teammate.
+
+
+        Required scope: `time_off:read`'
+      tags:
+      - Time Off
+      parameters:
+      - in: path
+        name: teammate_id
+        required: true
+        description: The teammate ID
+        schema:
+          type: string
+          default: tea_abc123
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      - $ref: '#/components/parameters/timeOffQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfTimeOffs'
+      x-required-scopes:
+      - time_off:read
+    post:
+      summary: Create time off
+      operationId: create-time-off
+      description: 'Create a time off for a teammate.
+
+
+        Required scope: `time_off:write`'
+      tags:
+      - Time Off
+      parameters:
+      - in: path
+        name: teammate_id
+        required: true
+        description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: tea_abc123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTimeOff'
+      responses:
+        '201':
+          $ref: '#/components/responses/time_off'
+      x-required-scopes:
+      - time_off:write
+  /teams/{team_id}/time_offs:
+    get:
+      summary: List team time offs
+      operationId: list-team-time-offs
+      description: 'List the time offs of all teammates in a team.
+
+
+        Required scope: `time_off:read`'
+      tags:
+      - Time Off
+      parameters:
+      - in: path
+        name: team_id
+        required: true
+        description: The team ID
+        schema:
+          type: string
+          default: tim_abc123
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      - $ref: '#/components/parameters/timeOffQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfTimeOffs'
+      x-required-scopes:
+      - time_off:read
+  /time_offs/{time_off_id}:
+    get:
+      summary: Get time off
+      operationId: get-time-off
+      description: 'Fetch a time off.
+
+
+        Required scope: `time_off:read`'
+      tags:
+      - Time Off
+      parameters:
+      - in: path
+        name: time_off_id
+        required: true
+        description: The time off ID
+        schema:
+          type: string
+          default: vcr_abc123
+      responses:
+        '200':
+          $ref: '#/components/responses/time_off'
+      x-required-scopes:
+      - time_off:read
+    patch:
+      summary: Update time off
+      operationId: update-time-off
+      description: 'Update a time off.
+
+
+        Required scope: `time_off:write`'
+      tags:
+      - Time Off
+      parameters:
+      - in: path
+        name: time_off_id
+        required: true
+        description: The time off ID
+        schema:
+          type: string
+          default: vcr_abc123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTimeOff'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - time_off:write
+    delete:
+      summary: Delete time off
+      operationId: delete-time-off
+      description: 'Delete a time off.
+
+
+        Required scope: `time_off:delete`'
+      tags:
+      - Time Off
+      parameters:
+      - in: path
+        name: time_off_id
+        required: true
+        description: The time off ID
+        schema:
+          type: string
+          default: vcr_abc123
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - time_off:delete
+components:
+  responses:
+    listOfTimeOffs:
+      description: Array of time offs
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs?page_token=9fa92a7f385fd7be43f7153055b30e6d
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeOffResponse'
+    time_off:
+      description: A time off
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TimeOffResponse'
+  parameters:
+    timeOffQuery:
+      name: q
+      in: query
+      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `active_from` and `active_until`, whose value should be a timestamp in seconds with up to 3 decimal places.'
+      schema:
+        type: string
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+  schemas:
+    ResourceID:
+      type: string
+    UpdateTimeOff:
+      properties:
+        name:
+          type: string
+          description: Name of the time off
+        start_at:
+          type: number
+          description: Timestamp when the time off starts (in seconds)
+        end_at:
+          type: number
+          nullable: true
+          description: Timestamp when the time off ends (in seconds), or null to clear it
+        auto_responder:
+          type: object
+          properties:
+            body:
+              type: string
+              description: The auto-reply message body
+            is_enabled:
+              type: boolean
+              description: Whether the auto-responder is enabled
+            is_contacts_only:
+              type: boolean
+              description: Whether the auto-responder only replies to known contacts
+            channel_ids:
+              type: array
+              description: List of channel IDs the auto-responder applies to
+              items:
+                $ref: '#/components/schemas/ResourceID'
+    CreateTimeOff:
+      required:
+      - name
+      - start_at
+      properties:
+        name:
+          type: string
+          description: Name of the time off
+        start_at:
+          type: number
+          description: Timestamp when the time off starts (in seconds)
+        end_at:
+          type: number
+          nullable: true
+          description: Timestamp when the time off ends (in seconds), or null if open-ended
+        auto_responder:
+          type: object
+          properties:
+            body:
+              type: string
+              description: The auto-reply message body
+            is_enabled:
+              type: boolean
+              description: Whether the auto-responder is enabled
+            is_contacts_only:
+              type: boolean
+              description: Whether the auto-responder only replies to known contacts
+            channel_ids:
+              type: array
+              description: List of channel IDs the auto-responder applies to
+              items:
+                $ref: '#/components/schemas/ResourceID'
+    TimeOffResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - start_at
+      - auto_responder
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to the time off resource
+              example: https://yourCompany.api.frontapp.com/time_offs/vcr_1bri
+            related:
+              type: object
+              properties:
+                teammate:
+                  type: string
+                  description: Link to the teammate this time off belongs to
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_1bri
+        id:
+          type: string
+          description: Unique identifier of the time off
+          example: vcr_1bri
+        name:
+          type: string
+          description: Name of the time off
+          example: Out of office
+        start_at:
+          type: number
+          description: Timestamp when the time off starts
+          example: 1606943265.298
+        end_at:
+          type: number
+          nullable: true
+          description: Timestamp when the time off ends, or null if open-ended
+          example: 1607548065.298
+        created_at:
+          type: number
+          description: Timestamp when the time off was created
+          example: 1606943265.298
+        updated_at:
+          type: number
+          description: Timestamp when the time off was last updated
+          example: 1606943265.298
+        auto_responder:
+          type: object
+          properties:
+            is_enabled:
+              type: boolean
+              description: Whether the auto-responder is enabled
+              example: true
+            channel_ids:
+              type: array
+              description: List of channel IDs the auto-responder applies to
+              items:
+                type: string
+              example:
+              - cha_1bri
+              - cha_2bri
+            is_contacts_only:
+              type: boolean
+              description: Whether the auto-responder only replies to known contacts
+              example: false
+            body:
+              type: string
+              description: The auto-reply message body
+              example: Thanks for reaching out, I will reply when I am back.
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

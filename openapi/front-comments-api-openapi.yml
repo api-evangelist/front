@@ -1,0 +1,446 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Comments API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Comments
+paths:
+  /comments/{comment_id}:
+    get:
+      summary: Get comment
+      operationId: get-comment
+      description: 'Fetches a comment.
+
+
+        Required scope: `comments:read`'
+      tags:
+      - Comments
+      parameters:
+      - in: path
+        name: comment_id
+        required: true
+        description: The Comment ID
+        schema:
+          type: string
+          default: com_123
+      responses:
+        '200':
+          $ref: '#/components/responses/comment'
+      x-required-scopes:
+      - comments:read
+  /comments/{comment_id}/:
+    patch:
+      summary: Update comment
+      operationId: update-comment
+      description: 'Update a comment in a [conversation](https://dev.frontapp.com/reference/conversations).
+
+
+        Required scope: `comments:write`'
+      tags:
+      - Comments
+      parameters:
+      - in: path
+        name: comment_id
+        required: true
+        description: The Comment ID
+        schema:
+          type: string
+          default: com_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateComment'
+      responses:
+        '200':
+          $ref: '#/components/responses/comment'
+      x-required-scopes:
+      - comments:write
+  /comments/{comment_id}/mentions:
+    get:
+      summary: List comment mentions
+      operationId: list-comment-mentions
+      description: 'List the teammates mentioned in a comment.
+
+
+        Required scope: `teammates:read`'
+      tags:
+      - Comments
+      parameters:
+      - in: path
+        name: comment_id
+        required: true
+        description: The Comment ID
+        schema:
+          type: string
+          default: com_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfTeammates'
+      x-required-scopes:
+      - teammates:read
+  /comments/{comment_id}/replies:
+    post:
+      summary: Add comment reply
+      operationId: add-comment-reply
+      description: 'Add a reply to a comment on a [conversation](https://dev.frontapp.com/reference/conversations). Comment replies visually indicate which comment is being responded to, helping users follow the conversation.
+
+
+        Required scope: `comments:write`'
+      tags:
+      - Comments
+      parameters:
+      - in: path
+        name: comment_id
+        required: true
+        description: The comment ID to reply to
+        schema:
+          type: string
+          default: com_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateComment'
+      responses:
+        '201':
+          $ref: '#/components/responses/comment'
+      x-required-scopes:
+      - comments:write
+  /conversations/{conversation_id}/comments:
+    get:
+      summary: List conversation comments
+      operationId: list-conversation-comments
+      description: 'List the comments in a conversation in reverse chronological order (newest first).
+
+
+        Required scope: `comments:read`'
+      tags:
+      - Comments
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfComments'
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - comments:read
+    post:
+      summary: Add comment
+      operationId: add-comment
+      description: 'Add a comment to a [conversation](https://dev.frontapp.com/reference/conversations). If you want to create a new comment-only conversation, use the [Create discussion conversation](https://dev.frontapp.com/reference/create-conversation) endpoint.
+
+
+        Required scope: `comments:write`'
+      tags:
+      - Comments
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateComment'
+      responses:
+        '201':
+          $ref: '#/components/responses/comment'
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - comments:write
+components:
+  responses:
+    listOfTeammates:
+      description: Array of teammates
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/teammates
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeammateResponse'
+    listOfComments:
+      description: Array of Comments
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/comments
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentResponse'
+    comment:
+      description: A comment
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CommentResponse'
+  schemas:
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    UpdateComment:
+      properties:
+        body:
+          type: string
+          description: Content of the comment. Can include markdown formatting. Can only be updated if the comment was created using the same token.
+        is_pinned:
+          type: boolean
+          description: Whether or not the comment is pinned in its conversation.
+    CommentResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - author
+      - body
+      - attachments
+      - is_pinned
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2
+            related:
+              type: object
+              properties:
+                conversation:
+                  type: string
+                  description: Link to comment's conversation
+                  example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i
+                mentions:
+                  type: string
+                  description: Link to comment mentions
+                  example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions
+                comment_replied_to:
+                  nullable: true
+                  type: string
+                  description: Link to the comment that is being replied to.
+                  example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2
+        id:
+          type: string
+          description: Unique identifier of the comment
+          example: com_1ywg3f2
+        author:
+          description: Teammate who wrote the comment
+          $ref: '#/components/schemas/TeammateResponse'
+        body:
+          type: string
+          description: Content of the comment
+          example: Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.
+        posted_at:
+          type: number
+          description: The timestamp when the comment was posted
+          example: 1698943401.378
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+          description: List of files attached to the comment
+        is_pinned:
+          type: boolean
+          description: Whether or not the comment is pinned in its conversation
+          example: true
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+    CreateComment:
+      required:
+      - body
+      properties:
+        author_id:
+          type: string
+          description: ID of the teammate creating the comment. Alternatively, you can supply the author as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1). If omitted, will post as the API Token or OAuth client of the requester.
+        body:
+          type: string
+          description: Content of the comment. Can include markdown formatting.
+        is_pinned:
+          type: boolean
+          description: Whether or not the comment is pinned in its conversation.
+        attachments:
+          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
+          type: array
+          items:
+            type: string
+            format: binary
+    TeammateResponse:
+      type: object
+      description: A teammate is a user in Front.
+      required:
+      - _links
+      - id
+      - email
+      - username
+      - first_name
+      - last_name
+      - license_type
+      - is_admin
+      - is_available
+      - is_blocked
+      - type
+      - custom_fields
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+            related:
+              type: object
+              properties:
+                inboxes:
+                  type: string
+                  description: Link to teammate's inboxes
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes
+                conversations:
+                  type: string
+                  description: Link to teammate's conversations
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations
+                botSource:
+                  type: string
+                  description: Link to the source resource of the bot (e.g. rule)
+                  example: https://yourCompany.api.frontapp.com/rules/rul_6r55a
+        id:
+          type: string
+          description: Unique identifier of the teammate
+          example: tea_6r55a
+        email:
+          type: string
+          description: Email address of the teammate
+          example: michael.scott@dundermifflin.com
+        username:
+          type: string
+          description: Username of the teammate (used for "@" mentions)
+          example: PrisonMike
+        first_name:
+          type: string
+          description: First name of the teammate
+          example: Michael
+        last_name:
+          type: string
+          description: Last name of the teammate
+          example: Scott
+        is_admin:
+          type: boolean
+          description: Whether or not the teammate is an admin in your company
+          example: true
+        is_available:
+          type: boolean
+          description: Whether or not the teammate is available
+          example: false
+        is_blocked:
+          type: boolean
+          description: Whether or not the teammate account has been blocked
+          example: false
+        type:
+          type: string
+          description: "Type of the teammate, normal teammates are denoted as \"user\", while visitors are denoted as \"visitor\".\nBot users are denoted by their parent resource type.\nThe following bot types are available:\n  * rule: acting on behalf of a Rule, author of comments and drafts\n  * macro: acting on behalf of a Macro, author of comments and drafts\n  * API: acting on behalf of OAuth clients\n  * integration: acting on behalf of an Integration\n  * CSAT: used for authoring CSAT response comments\n"
+          enum:
+          - user
+          - visitor
+          - rule
+          - macro
+          - API
+          - integration
+          - CSAT
+        custom_fields:
+          description: Custom fields for this teammate
+          $ref: '#/components/schemas/CustomFieldParameter'
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

@@ -1,0 +1,215 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Custom Fields API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Custom Fields
+paths:
+  /accounts/custom_fields:
+    get:
+      summary: List Account's custom fields
+      operationId: list-account-custom-fields
+      description: 'Lists the custom fields that can be attached to an Account.
+
+
+        Required scope: `custom_fields:read`'
+      tags:
+      - Custom Fields
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfCustomFields'
+      x-required-scopes:
+      - custom_fields:read
+  /contacts/custom_fields:
+    get:
+      summary: List Contact's custom fields
+      operationId: list-contact-custom-fields
+      description: 'Lists the custom fields that can be attached to a Contact.
+
+
+        Required scope: `custom_fields:read`'
+      tags:
+      - Custom Fields
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfCustomFields'
+      x-required-scopes:
+      - custom_fields:read
+  /conversations/custom_fields:
+    get:
+      summary: List Conversation's custom fields
+      operationId: list-conversation-custom-fields
+      description: 'Lists the custom fields that can be attached to a Conversation.
+
+
+        Required scope: `custom_fields:read`'
+      tags:
+      - Custom Fields
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfCustomFields'
+      x-required-scopes:
+      - custom_fields:read
+  /custom_fields:
+    get:
+      deprecated: true
+      summary: List Contact's custom fields
+      operationId: list-custom-fields
+      description: 'Lists the custom fields that can be attached to a Contact.
+
+
+        > ⚠️ Deprecated endpoint
+
+        >
+
+        > This endpoint has been deprecated. Please use the fully compatible `GET /contacts/custom_fields` endpoint instead.
+
+
+
+        Required scope: `custom_fields:read`'
+      tags:
+      - Custom Fields
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfCustomFields'
+      x-required-scopes:
+      - custom_fields:read
+  /inboxes/custom_fields:
+    get:
+      summary: List Inbox's custom fields
+      operationId: list-inbox-custom-fields
+      description: 'Lists the custom fields that can be attached to an Inbox.
+
+
+        Required scope: `custom_fields:read`'
+      tags:
+      - Custom Fields
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfCustomFields'
+      x-required-scopes:
+      - custom_fields:read
+  /links/custom_fields:
+    get:
+      summary: List Link's custom fields
+      operationId: list-link-custom-fields
+      description: 'Lists the custom fields that can be attached to a Link.
+
+        For more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.
+
+
+
+        Required scope: `custom_fields:read`'
+      tags:
+      - Custom Fields
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfCustomFields'
+      x-required-scopes:
+      - custom_fields:read
+  /teammates/custom_fields:
+    get:
+      summary: List Teammate's custom fields
+      operationId: list-teammate-custom-fields
+      description: 'Lists the custom fields that can be attached to a Teammate.
+
+
+        Required scope: `custom_fields:read`'
+      tags:
+      - Custom Fields
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfCustomFields'
+      x-required-scopes:
+      - custom_fields:read
+components:
+  schemas:
+    CustomFieldResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - type
+      - description
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/custom_fields/fld_co0e
+        id:
+          type: string
+          description: Unique identifier of the custom field
+          example: fld_co0e
+        name:
+          type: string
+          description: Name of the custom field
+          example: Customer plan
+        description:
+          type: string
+          description: Description of the custom field
+          example: The billing plan of the customer
+        type:
+          type: string
+          description: Type of the custom field
+          enum:
+          - string
+          - boolean
+          - datetime
+          - number
+          - teammate
+          - inbox
+          - enum
+          example: enum
+        values:
+          type: array
+          description: List of possible values for a custom field of type `enum`.
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                description: Value of the custom field
+                example: Enterprise
+              label:
+                type: string
+                description: Human readable label for the value
+                example: Customer plan
+  responses:
+    listOfCustomFields:
+      description: Array of Custom Fields
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/custom_fields
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomFieldResponse'
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

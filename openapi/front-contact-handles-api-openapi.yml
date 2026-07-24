@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Contact Handles API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Contact Handles
+paths:
+  /contacts/{contact_id}/handles:
+    post:
+      summary: Add contact handle
+      operationId: add-contact-handle
+      description: 'Adds a new handle to a contact.
+
+
+        Required scope: `contacts:write`'
+      tags:
+      - Contact Handles
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        description: The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: crd_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactHandle'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - contacts:write
+    delete:
+      summary: Delete contact handle
+      operationId: delete-contact-handle
+      description: 'Remove a handle from a contact.
+
+
+        Required scope: `contacts:write`'
+      tags:
+      - Contact Handles
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        description: The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: crd_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteContactHandle'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - contacts:write
+components:
+  schemas:
+    DeleteContactHandle:
+      allOf:
+      - $ref: '#/components/schemas/ContactHandle'
+      - type: object
+        properties:
+          force:
+            type: boolean
+            description: Force the deletetion of the contact if the handle is the last one
+            default: false
+    ContactHandle:
+      type: object
+      required:
+      - handle
+      - source
+      properties:
+        handle:
+          type: string
+          description: Handle used to reach the contact.
+          example: dwight@limitlesspaper.com
+        source:
+          type: string
+          enum:
+          - twitter
+          - email
+          - phone
+          - facebook
+          - intercom
+          - front_chat
+          - custom
+          description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
+          example: email
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

@@ -1,0 +1,578 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Shifts API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Shifts
+paths:
+  /shifts:
+    get:
+      summary: List Shifts
+      operationId: list-shifts
+      description: 'List the shifts.
+
+
+        Required scope: `shifts:read`'
+      tags:
+      - Shifts
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfShifts'
+      x-required-scopes:
+      - shifts:read
+    post:
+      summary: Create shift
+      operationId: create-shift
+      description: 'Create a shift in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team shift](https://dev.frontapp.com/reference/create-team-shift) endpoint instead.
+
+
+        Required scope: `shifts:write`'
+      tags:
+      - Shifts
+      requestBody:
+        description: Shift to create details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShift'
+      responses:
+        '201':
+          $ref: '#/components/responses/shift'
+      x-required-scopes:
+      - shifts:write
+  /shifts/{shift_id}:
+    get:
+      summary: Get shift
+      operationId: get-shift
+      description: 'Fetch a shift.
+
+
+        Required scope: `shifts:read`'
+      tags:
+      - Shifts
+      parameters:
+      - in: path
+        name: shift_id
+        required: true
+        description: The Shift ID
+        schema:
+          type: string
+          default: shf_123
+      responses:
+        '200':
+          $ref: '#/components/responses/shift'
+      x-required-scopes:
+      - shifts:read
+    patch:
+      summary: Update shift
+      operationId: update-shift
+      description: 'Update a shift.
+
+
+        Required scope: `shifts:write`'
+      tags:
+      - Shifts
+      parameters:
+      - in: path
+        name: shift_id
+        required: true
+        description: The Shift ID
+        schema:
+          type: string
+          default: shf_123
+      requestBody:
+        description: Updated Shift Body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateShift'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - shifts:write
+  /shifts/{shift_id}/teammates:
+    get:
+      summary: List shift's teammates
+      operationId: list-shifts-teammates
+      description: 'List the teammates assigned to a shift.
+
+
+        Required scope: `teammates:read`'
+      tags:
+      - Shifts
+      parameters:
+      - in: path
+        name: shift_id
+        required: true
+        description: The Shift ID
+        schema:
+          type: string
+          default: shf_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfTeammates'
+      x-required-scopes:
+      - teammates:read
+    post:
+      summary: Add teammates to shift
+      operationId: add-teammates-to-shift
+      description: 'Add teammates to a shift. The selected teammates must be in the team that owns the shift.
+
+
+        Required scope: `shifts:write`'
+      tags:
+      - Shifts
+      parameters:
+      - in: path
+        name: shift_id
+        required: true
+        description: The Shift ID
+        schema:
+          type: string
+          default: shf_123
+      requestBody:
+        description: Teammate IDs to add. Alternatively, you can supply emails as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeammateIds'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - shifts:write
+    delete:
+      summary: Remove teammates from shift
+      operationId: remove-teammates-from-shift
+      description: 'Remove teammates from a shift.
+
+
+        Required scope: `shifts:write`'
+      tags:
+      - Shifts
+      parameters:
+      - in: path
+        name: shift_id
+        required: true
+        description: The Shift ID
+        schema:
+          type: string
+          default: shf_123
+      requestBody:
+        description: Teammate IDs to remove. Alternatively, you can supply emails as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeammateIds'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - shifts:write
+  /teammates/{teammate_id}/shifts:
+    get:
+      summary: List Teammate Shifts
+      operationId: list-teammate-shifts
+      description: 'Lists all the shifts for the teammate.
+
+
+        Required scope: `shifts:read`'
+      tags:
+      - Shifts
+      parameters:
+      - in: path
+        name: teammate_id
+        required: true
+        description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: tea_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfShifts'
+      x-required-scopes:
+      - shifts:read
+  /teams/{team_id}/shifts:
+    get:
+      summary: List team Shifts
+      operationId: list-team-shifts
+      description: 'List the shifts for a team (workspace).
+
+
+        Required scope: `shifts:read`'
+      tags:
+      - Shifts
+      parameters:
+      - in: path
+        name: team_id
+        required: true
+        description: The team ID
+        schema:
+          type: string
+          default: tim_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfShifts'
+      x-required-scopes:
+      - shifts:read
+    post:
+      summary: Create team shift
+      operationId: create-team-shift
+      description: 'Create a shift for a team (workspace).
+
+
+        Required scope: `shifts:write`'
+      tags:
+      - Shifts
+      parameters:
+      - in: path
+        name: team_id
+        required: true
+        description: The Team ID
+        schema:
+          type: string
+          default: tim_123
+      requestBody:
+        description: Shift to create details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShift'
+      responses:
+        '201':
+          $ref: '#/components/responses/shift'
+      x-required-scopes:
+      - shifts:write
+components:
+  schemas:
+    ShiftIntervals:
+      type: object
+      properties:
+        mon:
+          $ref: '#/components/schemas/ShiftInterval'
+        tue:
+          $ref: '#/components/schemas/ShiftInterval'
+        wed:
+          $ref: '#/components/schemas/ShiftInterval'
+        thu:
+          $ref: '#/components/schemas/ShiftInterval'
+        fri:
+          $ref: '#/components/schemas/ShiftInterval'
+        sat:
+          $ref: '#/components/schemas/ShiftInterval'
+        sun:
+          $ref: '#/components/schemas/ShiftInterval'
+    CreateShift:
+      required:
+      - name
+      - color
+      - timezone
+      - times
+      - teammate_ids
+      properties:
+        name:
+          type: string
+          description: Name of the shift
+        color:
+          type: string
+          enum:
+          - black
+          - grey
+          - pink
+          - purple
+          - blue
+          - teal
+          - green
+          - yellow
+          - orange
+          - red
+          description: Color of the shift
+        timezone:
+          type: string
+          description: A timezone name as defined in the IANA tz database
+        times:
+          description: The shift intervals per day of the week
+          $ref: '#/components/schemas/ShiftIntervals'
+        teammate_ids:
+          type: array
+          description: List of all the teammate ids who will be part of this shift. Alternatively, you can supply emails as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    TeammateIds:
+      type: object
+      required:
+      - teammate_ids
+      properties:
+        teammate_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    ShiftInterval:
+      type: object
+      required:
+      - start
+      - end
+      properties:
+        start:
+          type: string
+          description: Start of shift
+          example: 09:00
+        end:
+          type: string
+          description: End of shift
+          example: '17:00'
+    ResourceID:
+      type: string
+    UpdateShift:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the shift
+        color:
+          type: string
+          enum:
+          - black
+          - grey
+          - pink
+          - purple
+          - blue
+          - teal
+          - green
+          - yellow
+          - orange
+          - red
+          description: Color of the shift
+        timezone:
+          type: string
+          description: A timezone name as defined in the IANA tz database
+        times:
+          description: The shift intervals per day of the week
+          $ref: '#/components/schemas/ShiftIntervals'
+        teammate_ids:
+          type: array
+          description: List of all the teammate ids who will be part of this shift. Alternatively, you can supply emails as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    ShiftResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - color
+      - timezone
+      - times
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/shifts/shf_1bri
+            related:
+              type: object
+              properties:
+                teammates:
+                  type: string
+                  description: Link to shift teammates
+                  example: https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates
+                owner:
+                  type: string
+                  description: Link to shift owner
+                  example: https://yourCompany.api.frontapp.com/teams/tim_4kxji
+        id:
+          type: string
+          description: Unique identifier of the shift
+          example: shf_1bri
+        name:
+          type: string
+          description: Name of the shift
+          example: Scranton Business Park shifts
+        color:
+          type: string
+          enum:
+          - black
+          - grey
+          - pink
+          - purple
+          - blue
+          - teal
+          - green
+          - yellow
+          - orange
+          - red
+          description: Color of the shift
+          example: green
+        timezone:
+          type: string
+          description: A timezone name as defined in the IANA tz database
+          example: America/New_York
+        times:
+          description: The shift intervals per day of the week
+          $ref: '#/components/schemas/ShiftIntervals'
+        created_at:
+          type: number
+          description: The timestamp when the shift was created.
+          example: 1606943265.298
+        updated_at:
+          type: number
+          description: The timestamp when the shift was updated.
+          example: 1701878404.43
+    TeammateResponse:
+      type: object
+      description: A teammate is a user in Front.
+      required:
+      - _links
+      - id
+      - email
+      - username
+      - first_name
+      - last_name
+      - license_type
+      - is_admin
+      - is_available
+      - is_blocked
+      - type
+      - custom_fields
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+            related:
+              type: object
+              properties:
+                inboxes:
+                  type: string
+                  description: Link to teammate's inboxes
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes
+                conversations:
+                  type: string
+                  description: Link to teammate's conversations
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations
+                botSource:
+                  type: string
+                  description: Link to the source resource of the bot (e.g. rule)
+                  example: https://yourCompany.api.frontapp.com/rules/rul_6r55a
+        id:
+          type: string
+          description: Unique identifier of the teammate
+          example: tea_6r55a
+        email:
+          type: string
+          description: Email address of the teammate
+          example: michael.scott@dundermifflin.com
+        username:
+          type: string
+          description: Username of the teammate (used for "@" mentions)
+          example: PrisonMike
+        first_name:
+          type: string
+          description: First name of the teammate
+          example: Michael
+        last_name:
+          type: string
+          description: Last name of the teammate
+          example: Scott
+        is_admin:
+          type: boolean
+          description: Whether or not the teammate is an admin in your company
+          example: true
+        is_available:
+          type: boolean
+          description: Whether or not the teammate is available
+          example: false
+        is_blocked:
+          type: boolean
+          description: Whether or not the teammate account has been blocked
+          example: false
+        type:
+          type: string
+          description: "Type of the teammate, normal teammates are denoted as \"user\", while visitors are denoted as \"visitor\".\nBot users are denoted by their parent resource type.\nThe following bot types are available:\n  * rule: acting on behalf of a Rule, author of comments and drafts\n  * macro: acting on behalf of a Macro, author of comments and drafts\n  * API: acting on behalf of OAuth clients\n  * integration: acting on behalf of an Integration\n  * CSAT: used for authoring CSAT response comments\n"
+          enum:
+          - user
+          - visitor
+          - rule
+          - macro
+          - API
+          - integration
+          - CSAT
+        custom_fields:
+          description: Custom fields for this teammate
+          $ref: '#/components/schemas/CustomFieldParameter'
+  responses:
+    listOfTeammates:
+      description: Array of teammates
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/teammates
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeammateResponse'
+    shift:
+      description: A shift
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShiftResponse'
+    listOfShifts:
+      description: Array of Shifts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/shifts
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShiftResponse'
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

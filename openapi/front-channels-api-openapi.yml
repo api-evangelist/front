@@ -1,0 +1,371 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Channels API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Channels
+paths:
+  /channels/{channel_id}:
+    patch:
+      summary: Update Channel
+      operationId: update-channel
+      description: Update a channel.
+      tags:
+      - Channels
+      parameters:
+      - in: path
+        name: channel_id
+        required: true
+        description: The Channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: cha_123
+      requestBody:
+        description: Channel details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateChannel'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - channels:write
+    get:
+      summary: Get channel
+      operationId: get-channel
+      description: 'Fetch a channel.
+
+
+        Required scope: `channels:read`'
+      tags:
+      - Channels
+      parameters:
+      - in: path
+        name: channel_id
+        required: true
+        description: The Channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: cha_123
+      responses:
+        '200':
+          $ref: '#/components/responses/channel'
+      x-required-scopes:
+      - channels:read
+  /channels:
+    get:
+      summary: List channels
+      operationId: list-channels
+      description: 'List the channels of the company.
+
+
+        Required scope: `channels:read`'
+      tags:
+      - Channels
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfChannels'
+      x-required-scopes:
+      - channels:read
+  /channels/{channel_id}/validate:
+    post:
+      summary: Validate channel
+      operationId: validate-channel
+      description: 'Asynchronously validate an SMTP channel (this endpoint is irrelevant to other channel types). When you create an SMTP channel via the API, [create a channel](https://dev.frontapp.com/reference/post_inboxes-inbox-id-channels) with type smtp and the send_as set to the needed email address. You then [configure the email provider](https://help.front.com/en/articles/2081), after which you use this endpoint to asynchronously validate the SMTP settings.
+
+
+        Required scope: `channels:write`'
+      tags:
+      - Channels
+      parameters:
+      - in: path
+        name: channel_id
+        required: true
+        description: The Channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: cha_123
+      responses:
+        '202':
+          $ref: '#/components/responses/accepted'
+      x-required-scopes:
+      - channels:write
+  /inboxes/{inbox_id}/channels:
+    post:
+      summary: Create a channel
+      operationId: create-a-channel
+      description: 'Create a channel in an inbox.
+
+
+        Required scope: `channels:write`'
+      tags:
+      - Channels
+      parameters:
+      - in: path
+        name: inbox_id
+        required: true
+        description: The Inbox ID
+        schema:
+          type: string
+          default: inb_123
+      requestBody:
+        description: Channel to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChannel'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - channels:write
+  /teammates/{teammate_id}/channels:
+    get:
+      summary: List teammate channels
+      operationId: list-teammate-channels
+      description: 'List the channels of a teammate.
+
+
+        Required scope: `channels:read`'
+      tags:
+      - Channels
+      parameters:
+      - in: path
+        name: teammate_id
+        required: true
+        description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: tea_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfChannels'
+      x-required-scopes:
+      - channels:read
+  /teams/{team_id}/channels:
+    get:
+      summary: List team channels
+      operationId: list-team-channels
+      description: 'List the channels of a team (workspace).
+
+
+        Required scope: `channels:read`'
+      tags:
+      - Channels
+      parameters:
+      - in: path
+        name: team_id
+        required: true
+        description: The team ID
+        schema:
+          type: string
+          default: tim_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfChannels'
+      x-required-scopes:
+      - channels:read
+components:
+  responses:
+    channel:
+      description: A channel
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ChannelResponse'
+    listOfChannels:
+      description: Array of Channels
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/channels
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChannelResponse'
+    accepted:
+      description: Request accepted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                default: accepted
+                example: accepted
+  schemas:
+    CreateChannel:
+      required:
+      - type
+      properties:
+        name:
+          type: string
+          description: Name of the channel
+        settings:
+          type: object
+          description: Settings of the channel
+          properties:
+            undo_send_time:
+              type: integer
+              description: The time (measured in seconds) that users have to undo a send operation in the channel.
+              enum:
+              - 0
+              - 5
+              - 10
+              - 15
+              - 30
+              - 60
+            all_teammates_can_reply:
+              type: boolean
+              description: Whether teammates without inbox access can reply on this channel. Only allowed for shared channels.
+            webhook_url:
+              type: string
+              description: The webhook URL outbound messages should be sent to. Only allowed for "custom" type channels.
+            sid:
+              type: string
+              description: The SID of the Twilio channel. Only allowed for "twilio" type channels.
+            auth_token:
+              type: string
+              description: The auth token for the Twilio account. Only allowed for "twilio" type channels.
+        type:
+          type: string
+          description: Type of the channel
+          enum:
+          - custom
+          - smtp
+          - twilio
+        send_as:
+          type: string
+          description: Sending address of your channel. Required for SMTP and Twilio channels.
+    UpdateChannel:
+      properties:
+        status:
+          type: string
+          description: Status of the channel
+          enum:
+          - offline
+          - ok
+    ChannelResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - type
+      - settings
+      - is_private
+      - is_valid
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/channels/cha_1gv4
+            related:
+              type: object
+              properties:
+                inbox:
+                  type: string
+                  nullable: true
+                  description: Link to channel inbox
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6
+                owner:
+                  type: string
+                  description: Link to channel owner
+                  example: https://yourCompany.api.frontapp.com/teams/jen_k30
+        id:
+          type: string
+          description: Unique identifier for the channel
+          example: cha_1gv4
+        name:
+          type: string
+          description: The name of the channel
+          example: Paper Sales Inbox
+        address:
+          type: string
+          description: Address receiving the messages
+          example: sales@dundermifflin.com
+        type:
+          type: string
+          description: Type of the channel
+          enum:
+          - custom
+          - facebook
+          - gmail
+          - google_play
+          - imap
+          - intercom
+          - form
+          - office365
+          - layer_anon
+          - smtp
+          - talkdesk
+          - truly
+          - twilio
+          - twilio_whatsapp
+          - twitter
+          - twitter_dm
+          - yalo_wha
+          - front_chat
+          - front_mail
+          example: gmail
+        send_as:
+          type: string
+          description: Address which appears as the sender for messages sent from Front
+          example: sales@dundermifflin.com
+        settings:
+          type: object
+          description: Channel settings
+          properties:
+            undo_send_time:
+              type: integer
+              description: The time (measured in seconds) that users have to undo a send operation in the channel.
+              enum:
+              - 0
+              - 5
+              - 10
+              - 15
+              - 30
+              - 60
+              example: 15
+            all_teammates_can_reply:
+              type: boolean
+              description: Whether teammates without inbox access can reply on this channel. Only present for shared channels; omitted for private channels.
+              example: false
+        is_private:
+          type: boolean
+          default: false
+          description: Whether or not the channel is individual
+          example: false
+        is_valid:
+          type: boolean
+          default: false
+          description: Whether or not the channel configuration is valid
+          example: true
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

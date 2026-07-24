@@ -1,0 +1,542 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Knowledge Base Articles API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Knowledge Base Articles
+paths:
+  /knowledge_base_articles/{article_id}:
+    get:
+      summary: Get a knowledge base article
+      operationId: get-a-knowledge-base-article
+      description: 'Fetches a knowledge base article.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Articles
+      parameters:
+      - in: path
+        name: article_id
+        required: true
+        description: The ID of the article to fetch
+        schema:
+          type: string
+          default: kba_123
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseArticleSlim'
+      x-required-scopes:
+      - knowledge_bases:read
+    delete:
+      summary: Delete an article
+      operationId: delete-an-article
+      description: 'Deletes an article and all its content and translations.
+
+
+        Required scope: `knowledge_bases:delete`'
+      tags:
+      - Knowledge Base Articles
+      parameters:
+      - in: path
+        name: article_id
+        required: true
+        description: The ID of the article to delete
+        schema:
+          type: string
+          default: kba_123
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseArticleSlim'
+      x-required-scopes:
+      - knowledge_bases:delete
+  /knowledge_base_articles/{article_id}/content:
+    get:
+      summary: Get knowledge base article with content in default locale
+      operationId: get-knowledge-base-article-with-content-in-default-locale
+      description: 'Fetches a knowledge base article with content in the default locale.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Articles
+      parameters:
+      - in: path
+        name: article_id
+        required: true
+        description: The ID of the article to fetch
+        schema:
+          type: string
+          default: kba_123
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseArticle'
+      x-required-scopes:
+      - knowledge_bases:read
+    patch:
+      summary: Update article content in default locale.
+      operationId: update-article-content-in-default-locale
+      description: 'Updates an article''s content in the default locale
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Base Articles
+      parameters:
+      - in: path
+        name: article_id
+        required: true
+        description: The ID of the article to update
+        schema:
+          type: string
+          default: kba_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - author_id
+              - content
+              $ref: '#/components/schemas/KnowledgeBaseArticlePatch'
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseArticle'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_base_articles/{article_id}/download/{attachment_id}:
+    get:
+      summary: Download attachment from an article
+      operationId: download-attachment-from-an-article
+      description: 'Downloads the attachment from an article.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Articles
+      parameters:
+      - in: path
+        name: article_id
+        required: true
+        description: The ID of the article
+        schema:
+          type: string
+          default: kba_123
+      - in: path
+        name: attachment_id
+        required: true
+        description: The ID of the file to download
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/attachment'
+      x-required-scopes:
+      - knowledge_bases:read
+  /knowledge_base_articles/{article_id}/locales/{locale}/content:
+    get:
+      summary: Get knowledge base article with content in specified locale
+      operationId: get-knowledge-base-article-with-content-in-specified-locale
+      description: 'Fetches a knowledge base article with content for a given locale.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Articles
+      parameters:
+      - in: path
+        name: article_id
+        required: true
+        description: The ID of the article to fetch
+        schema:
+          type: string
+          default: kba_123
+      - in: path
+        name: locale
+        required: true
+        description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch
+        schema:
+          type: string
+          default: en
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseArticle'
+      x-required-scopes:
+      - knowledge_bases:read
+    patch:
+      summary: Update article content in specified locale
+      operationId: update-article-content-in-specified-locale
+      description: 'Updates an article''s content for a given locale.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Base Articles
+      parameters:
+      - in: path
+        name: article_id
+        required: true
+        description: The ID of the article to update
+        schema:
+          type: string
+          default: kba_123
+      - in: path
+        name: locale
+        required: true
+        description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content
+        schema:
+          type: string
+          default: en
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - author_id
+              - content
+              $ref: '#/components/schemas/KnowledgeBaseArticlePatch'
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseArticle'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_base_categories/{category_id}/articles:
+    get:
+      summary: List articles in a category
+      operationId: list-articles-in-a-category
+      description: 'List articles in a category.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Articles
+      parameters:
+      - in: path
+        name: category_id
+        required: true
+        description: The ID of the category
+        schema:
+          type: string
+          default: kbc_123
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfKnowledgeBaseArticles'
+      x-required-scopes:
+      - knowledge_bases:read
+  /knowledge_bases/{knowledge_base_id}/articles:
+    get:
+      summary: List articles in a knowledge base
+      operationId: list-articles-in-a-knowledge-base
+      description: 'List articles in a knowledge base
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Articles
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base
+        schema:
+          type: string
+          default: knb_123
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfKnowledgeBaseArticles'
+      x-required-scopes:
+      - knowledge_bases:read
+components:
+  responses:
+    attachment:
+      description: The binary content of the attachment file
+      content:
+        '*/*':
+          schema:
+            type: string
+            format: binary
+      headers:
+        Content-Type:
+          description: The MIME type of the attachment file
+          schema:
+            type: string
+            example: application/pdf
+        Content-Length:
+          description: The size of the attachment file in bytes
+          schema:
+            type: string
+            example: '1024'
+    knowledgeBaseArticle:
+      description: A knowledge base article with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseArticleResponse'
+    listOfKnowledgeBaseArticles:
+      description: Array of knowledge base articles
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles?page_token=134287aba8eaa55cf366400c63300a75bab0c
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
+    knowledgeBaseArticleSlim:
+      description: A knowledge base article
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
+  schemas:
+    KnowledgeBaseArticleSlimResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - slug
+      - locales
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12
+            related:
+              type: object
+              properties:
+                knowledge_base:
+                  type: string
+                  description: Link to the article's knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+                category:
+                  type: string
+                  nullable: true
+                  description: Link to the article's category
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12
+                content:
+                  type: string
+                  description: Link to the article's content
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12/content
+        id:
+          type: string
+          description: Unique identifier of the knowledge base article
+          example: kba_12
+        slug:
+          type: string
+          description: URL slug of the article. Construct the full URL using the template of protocol/knowledge base domain/locale/slug, such as https://yourDomain.com/en/articles/5
+          example: /articles/5
+        locales:
+          type: array
+          description: List of the locales the article supports
+          items:
+            type: string
+            example:
+            - en
+            - es
+        created_at:
+          type: number
+          description: Timestamp when the article was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the article was updated
+          example: 1654309308.278
+    KnowledgeBaseArticlePatch:
+      type: object
+      properties:
+        author_id:
+          type: string
+          description: Teammate ID of the article author
+        subject:
+          type: string
+          description: Subject of the article
+        content:
+          type: string
+          description: HTML content of the article
+        status:
+          type: string
+          enum:
+          - draft
+          - published
+          description: Article status
+          default: draft
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+    KnowledgeBaseArticleResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - slug
+      - name
+      - status
+      - keywords
+      - content
+      - locale
+      - attachments
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12
+            related:
+              type: object
+              properties:
+                knowledge_base:
+                  type: string
+                  description: Link to the article's knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+                category:
+                  type: string
+                  description: Link to the article's category
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12
+                last_editor:
+                  type: string
+                  description: Link to the article's last editor
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+        id:
+          type: string
+          description: Unique identifier of the knowledge base article
+          example: kba_12
+        slug:
+          type: string
+          description: URL slug of the article. Construct the full URL using the template of protocol/knowledge base domain/locale/slug, such as https://yourDomain.com/en/articles/5
+          example: /articles/5
+        name:
+          type: string
+          description: Name of the article
+          example: Billing 101
+        status:
+          type: string
+          description: Status of the article
+          example: published
+        keywords:
+          type: array
+          description: Article keywords
+          items:
+            type: string
+            example:
+            - billing
+            - returns
+        content:
+          type: string
+          description: Article HTML content
+          example: <h1>How to process a return</h1><p>To process a return...</p>
+        locale:
+          type: string
+          description: Locale of the article
+          example: en
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+          description: List of files attached to the article
+        last_edited_at:
+          type: number
+          description: Timestamp when the article was last edited
+          example: 1622672452.363
+        created_at:
+          type: number
+          description: Timestamp when the article was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the article was updated
+          example: 1654309308.278
+  parameters:
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

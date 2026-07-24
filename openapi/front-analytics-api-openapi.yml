@@ -1,0 +1,683 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Analytics API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Analytics
+paths:
+  /analytics/exports:
+    post:
+      summary: Create a new analytics export
+      operationId: create-analytics-export
+      description: 'Create a new analytics export of messages or events (activities) over a specific time span.
+
+        The export will be executed asynchronously. The response will include a link that can be used to retrieve the export status & result. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.
+
+
+
+        Required scope: `analytics:read`'
+      tags:
+      - Analytics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyticsExportRequest'
+      responses:
+        '201':
+          description: An analytics export.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsExportResponse'
+      x-required-scopes:
+      - analytics:read
+  /analytics/exports/{export_id}:
+    get:
+      summary: Fetch an analytics export
+      operationId: get-analytics-export
+      description: 'Fetch an analytics exports. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.
+
+
+        Required scope: `analytics:read`'
+      tags:
+      - Analytics
+      parameters:
+      - in: path
+        name: export_id
+        required: true
+        description: The export ID.
+        schema:
+          type: string
+          default: exp_123
+      responses:
+        '200':
+          description: An analytics export.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsExportResponse'
+      x-required-scopes:
+      - analytics:read
+  /analytics/reports:
+    post:
+      summary: Create a new analytics report
+      operationId: create-analytics-report
+      description: 'Create a new analytics report for a set of metrics over a specific time span. Different filters (e.g. Inbox v Tag v Teammates) will be joined with AND logic, but the IDs within a filter will be joined with OR logic (e.g. Inbox A or Inbox B, Tag A or Tag B).
+
+        The report will be executed asynchronously. The response will include a link that can be used to retrieve the
+
+        report status & result. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.
+
+
+
+        Required scope: `analytics:read`'
+      tags:
+      - Analytics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyticsReportRequest'
+      responses:
+        '201':
+          description: An analytics report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsReportResponse'
+      x-required-scopes:
+      - analytics:read
+  /analytics/reports/{report_uid}:
+    get:
+      summary: Fetch an analytics report
+      operationId: get-analytics-report
+      description: 'Fetch an analytics report. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.
+
+
+        Required scope: `analytics:read`'
+      tags:
+      - Analytics
+      parameters:
+      - in: path
+        name: report_uid
+        required: true
+        description: The report UID.
+        schema:
+          type: string
+          default: 723ec32796f12c6f05f6b124d8ef76191a38cec990e0f65d549206c51373f1a0
+      responses:
+        '200':
+          description: An analytics report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsReportResponse'
+      x-required-scopes:
+      - analytics:read
+components:
+  schemas:
+    AnalyticsActivitiesColumns:
+      type: string
+      enum:
+      - Activity ID
+      - Type
+      - Source
+      - Message ID
+      - Segment ID
+      - Conversation ID
+      - Ticket IDs
+      - Segment
+      - Segment start
+      - Segment end
+      - Direction
+      - Status
+      - Status at activity time
+      - Inbox
+      - Inbox API ID
+      - Inbox at activity time
+      - Inbox API IDs at activity time
+      - Previous inbox IDs
+      - Message date
+      - Autoreply
+      - Reaction time
+      - Total reply time
+      - Handle time
+      - Response time
+      - Stage resolution time
+      - Replies to resolution
+      - Ticket resolution time
+      - Ticket replies to resolution
+      - Attributed to
+      - Assignee
+      - Author
+      - Contact name
+      - Contact handle
+      - Account names
+      - From
+      - To
+      - Cc
+      - Bcc
+      - Extract
+      - Tags
+      - Tag API IDs
+      - Tags at activity time
+      - Tag API IDs at activity time
+      - Tag application duration
+      - Activity API ID
+      - Message API ID
+      - Comment API ID
+      - Conversation API ID
+      - Message original ID
+      - New Conversation
+      - First response
+      - Business hours
+      - Subject
+      - Account name
+      - Survey rating
+      - Survey comment
+      - Segment closed
+      - Segment contains messages
+      - Last segment activity
+      - Added tag
+      - Added tag API ID
+      - Removed tag
+      - Removed tag API ID
+      - Segment cumulative teammates
+      - Ticket status name
+      - Ticket status category
+      - Time spent in Ticket Status
+      - Transitions to Ticket Status
+      - Smart QA score
+      - Custom Field
+      - Updated Custom Field
+    AccountIds:
+      type: object
+      required:
+      - account_ids
+      properties:
+        account_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    AnalyticsScalar:
+      type: object
+      required:
+      - id
+      - type
+      - value
+      properties:
+        id:
+          $ref: '#/components/schemas/AnalyticsMetricId'
+        type:
+          $ref: '#/components/schemas/AnalyticsScalarType'
+        value:
+          $ref: '#/components/schemas/AnalyticsScalarValue'
+    ResourceID:
+      type: string
+    AnalyticsExportRequest:
+      discriminator:
+        propertyName: type
+        mapping:
+          messages: '#/components/schemas/AnalyticsMessagesExportColumns'
+          events: '#/components/schemas/AnalyticsActivitiesExportsColumns'
+      oneOf:
+      - $ref: '#/components/schemas/AnalyticsMessagesExportColumns'
+      - $ref: '#/components/schemas/AnalyticsActivitiesExportsColumns'
+      properties:
+        type:
+          type: string
+          description: The type of export to create. The type you specify determines which columns are available for the export.
+          enum:
+          - messages
+          - events
+        start:
+          type: number
+          description: Start time of the data to include in the export (seconds since 1970-01-01T00:00:00+00). Will be rounded down to the start of the day.
+        end:
+          type: number
+          description: End time of the data to include in the export (seconds since 1970-01-01T00:00:00+00). Will be rounded up to the end of the day.
+        timezone:
+          type: string
+          description: '[IANA name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the timezone to format the dates with. If omitted, the export will use Etc/UTC.'
+        filters:
+          $ref: '#/components/schemas/AnalyticsFilters'
+      required:
+      - start
+      - end
+      - type
+    AnalyticsActivitiesParameterizedColumns:
+      type: string
+      oneOf:
+      - type: string
+        pattern: ^Time spent in Ticket Status:\d+$
+      - type: string
+        pattern: ^Transitions to Ticket Status:\d+$
+      - type: string
+        pattern: ^Smart QA score:\w+$
+      - type: string
+        pattern: ^Custom Field:\d+$
+      - type: string
+        pattern: ^Updated Custom Field:\d+$
+    AnalyticsReportResponse:
+      type: object
+      required:
+      - _links
+      - uid
+      - status
+      - progress
+      - metrics
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to analytics job.
+              example: https://yourCompany.api.frontapp.com/analytics/reports/b45efa66237cc453252d9019449c7a64f5cfdb491b6c2c1d6df33c1050d60e33
+        uid:
+          type: string
+          description: The UID of the analytics report
+          example: b45efa66237cc453252d9019449c7a64f5cfdb491b6c2c1d6df33c1050d60e33
+        status:
+          type: string
+          enum:
+          - running
+          - done
+          - failed
+          description: Status of the report.
+          example: done
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Number ranging from 0 to 100 corresponding to the percentage of the analytics processed.
+          example: 100
+        metrics:
+          type: array
+          description: The metrics computed for the report.
+          items:
+            $ref: '#/components/schemas/AnalyticsScalar'
+    AnalyticsActivitiesExportsColumns:
+      required:
+      - columns
+      type: object
+      properties:
+        columns:
+          type: array
+          description: "List of the columns to include in the export. In addition to the\npredefined columns, you can also include parameterized columns by\nappending the parameter value to the column name, separated by a\ncolon (`:`). List of supported prefixes:\n  - `Time spent in Ticket Status` (e.g., \"Time spent in Ticket Status:123\", where 123 is the ticket status tag ID)\n  - `Transitions to Ticket Status` (e.g., \"Transitions to Ticket Status:123\", where 123 is the ticket status tag ID)\n  - `Smart QA score` (e.g., \"Smart QA score:Comprehension\", where \"Comprehension\" is the Smart QA criteria ID)\n  - `Custom Field` (e.g., \"Custom Field:456\", where 456 is the custom field ID)\n  - `Updated Custom Field` (e.g., \"Updated Custom Field:456\", where 456 is the custom field ID)\n\nExample: `[\"Message ID\", \"Time spent in Ticket Status:123\", \"Smart QA score:Comprehension\"]`\n"
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/AnalyticsActivitiesColumns'
+            - $ref: '#/components/schemas/AnalyticsActivitiesParameterizedColumns'
+          default:
+          - Activity ID
+          - Type
+          - Source
+          - Message ID
+          - Segment ID
+          - Conversation ID
+          - Ticket IDs
+          - Segment
+          - Segment start
+          - Segment end
+          - Direction
+          - Status
+          - Status at activity time
+          - Inbox
+          - Inbox API ID
+          - Inbox at activity time
+          - Inbox API IDs at activity time
+          - Previous inbox IDs
+          - Message date
+          - Autoreply
+          - Reaction time
+          - Total reply time
+          - Handle time
+          - Response time
+          - Ticket resolution time
+          - Ticket replies to resolution
+          - Attributed to
+          - Assignee
+          - Author
+          - Contact name
+          - Contact handle
+          - Account names
+          - From
+          - To
+          - Cc
+          - Bcc
+          - Extract
+          - Tags
+          - Tag API IDs
+          - Tags at activity time
+          - Tag API IDs at activity time
+          - Tag application duration
+          - Activity API ID
+          - Message API ID
+          - Comment API ID
+          - Conversation API ID
+          - Message original ID
+          - New Conversation
+          - First response
+          - Business hours
+          - Subject
+          - Account name
+          - Survey rating
+          - Survey comment
+          - Segment closed
+          - Segment contains messages
+          - Last segment activity
+          - Added tag
+          - Added tag API ID
+          - Removed tag
+          - Removed tag API ID
+          - Segment cumulative teammates
+    AnalyticsMetricId:
+      type: string
+      enum:
+      - avg_csat_survey_response
+      - avg_first_response_time
+      - avg_handle_time
+      - avg_replies_to_resolution
+      - avg_resolution_time
+      - avg_response_time
+      - avg_sla_breach_time
+      - avg_total_reply_time
+      - new_segments_count
+      - num_active_segments_full
+      - num_archived_segments
+      - num_archived_segments_with_reply
+      - num_csat_survey_response
+      - num_messages_received
+      - num_messages_sent
+      - num_sla_breach
+      - pct_csat_survey_satisfaction
+      - pct_resolved_on_first_reply
+      - pct_tagged_conversations
+      - num_closed_segments
+      - num_open_segments_start
+      - num_open_segments_end
+      - num_resolved_segments
+      - num_unresolved_active_segments
+      - num_workload_segments
+    TagIds:
+      type: object
+      required:
+      - tag_ids
+      properties:
+        tag_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    AnalyticsExportResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - status
+      - progress
+      - filters
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to analytics export
+              example: https://yourCompany.api.frontapp.com/analytics/exports/exp_o9y1a
+        id:
+          type: string
+          description: The public ID of the analytics export
+          example: exp_o9y1a
+        status:
+          type: string
+          enum:
+          - running
+          - done
+          - too_big
+          - failed
+          description: Status of the analytics
+          example: running
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Number ranging from 0 to 100 corresponding to the percentage of the analytics processed.
+          example: 20
+        url:
+          type: string
+          description: The URL from which the export data can be downloaded. Only displays after you make a GET request to the link included in the POST response.
+          example: https://api.frontapp.com/analytics/exports/exp_o9y1a/download
+        filename:
+          type: string
+          description: The filename of the export with extension included. Only displays after you make a GET request to the link included in the POST response.
+          example: export-messages-yourCompany-2023-07-19-212d-e55df0.csv
+        size:
+          type: number
+          nullable: true
+          description: Size (in bytes) of the export data. Only displays after you make a GET request to the link included in the POST response.
+          example: 26639
+        created_at:
+          type: number
+          description: Timestamp (in seconds) at which the export was requested.
+          example: 1703103649.159
+        filters:
+          $ref: '#/components/schemas/AnalyticsFilters'
+    ChannelIds:
+      type: object
+      required:
+      - channel_ids
+      properties:
+        channel_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    AnalyticsReportRequest:
+      properties:
+        start:
+          type: number
+          description: Start time of the data to include in the export (seconds since 1970-01-01T00:00:00+00). Will be rounded down to the start of the day.
+        end:
+          type: number
+          description: End time of the data to include in the export (seconds since 1970-01-01T00:00:00+00). Will be rounded up to the end of the day.
+        timezone:
+          type: string
+          description: '[IANA name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the timezone to format the dates with. If omitted, the export will use Etc/UTC.'
+        filters:
+          $ref: '#/components/schemas/AnalyticsFilters'
+        metrics:
+          type: array
+          description: List of the metrics required.
+          items:
+            $ref: '#/components/schemas/AnalyticsMetricId'
+      required:
+      - start
+      - end
+      - metrics
+    AnalyticsScalarType:
+      type: string
+      example: number
+      enum:
+      - number
+      - percentage
+      - string
+      - duration
+      - resource
+    InboxIds:
+      type: object
+      required:
+      - inbox_ids
+      properties:
+        inbox_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    AnalyticsScalarValue:
+      oneOf:
+      - type: integer
+      - type: string
+      - type: object
+        properties:
+          label:
+            type: string
+          resource:
+            type: object
+            required:
+            - id
+            - _links
+            properties:
+              id:
+                type: string
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to a resource.
+      nullable: true
+      description: The value of a scalar metric.
+    AnalyticsFilters:
+      description: Resources to compute the analytics for. Defaults to all.
+      anyOf:
+      - $ref: '#/components/schemas/TagIds'
+      - $ref: '#/components/schemas/TeammateIds'
+      - $ref: '#/components/schemas/ChannelIds'
+      - $ref: '#/components/schemas/InboxIds'
+      - $ref: '#/components/schemas/TeamIds'
+      - $ref: '#/components/schemas/AccountIds'
+    TeamIds:
+      type: object
+      required:
+      - team_ids
+      properties:
+        team_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    TeammateIds:
+      type: object
+      required:
+      - teammate_ids
+      properties:
+        teammate_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    AnalyticsMessagesColumns:
+      type: string
+      enum:
+      - Message ID
+      - Segment ID
+      - Conversation ID
+      - Ticket IDs
+      - Segment
+      - Direction
+      - Status
+      - Inbox
+      - Inbox API ID
+      - Inbox at activity time
+      - Inbox API IDs at activity time
+      - Message date
+      - Autoreply
+      - Reaction time
+      - Total reply time
+      - Handle time
+      - Response time
+      - Attributed to
+      - Assignee
+      - Author
+      - Contact name
+      - Contact handle
+      - Account names
+      - From
+      - To
+      - Cc
+      - Bcc
+      - Extract
+      - Tags
+      - Tag API IDs
+      - Message API ID
+      - Conversation API ID
+      - New Conversation
+      - First response
+      - Business hours
+      - Subject
+      - Segment start
+      - Segment end
+      - Segment closed
+      - Last segment activity
+      - Segment cumulative teammates
+      - Ticket status name
+      - Ticket status category
+      - Custom Field
+    AnalyticsMessagesExportColumns:
+      required:
+      - columns
+      type: object
+      properties:
+        columns:
+          type: array
+          description: 'List of the columns to include in the export.
+
+            '
+          items:
+            $ref: '#/components/schemas/AnalyticsMessagesColumns'
+          default:
+          - Message ID
+          - Segment ID
+          - Conversation ID
+          - Ticket IDs
+          - Segment
+          - Direction
+          - Status
+          - Inbox
+          - Inbox API ID
+          - Inbox at activity time
+          - Inbox API IDs at activity time
+          - Message date
+          - Autoreply
+          - Reaction time
+          - Total reply time
+          - Handle time
+          - Response time
+          - Attributed to
+          - Assignee
+          - Author
+          - Contact name
+          - Contact handle
+          - Account names
+          - From
+          - To
+          - Cc
+          - Bcc
+          - Extract
+          - Tags
+          - Tag API IDs
+          - Message API ID
+          - Conversation API ID
+          - New Conversation
+          - First response
+          - Business hours
+          - Subject
+          - Segment start
+          - Segment end
+          - Segment closed
+          - Last segment activity
+          - Segment cumulative teammates
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

@@ -1,0 +1,751 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Knowledge Bases API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Knowledge Bases
+paths:
+  /knowledge_bases:
+    get:
+      summary: List knowledge bases
+      operationId: list-knowledge-bases
+      description: 'List the knowledge bases of the company.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Bases
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfKnowledgeBases'
+      x-required-scopes:
+      - knowledge_bases:read
+    post:
+      summary: Create a knowledge base
+      operationId: create-a-knowledge-base
+      description: 'Creates a knowledge base.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Bases
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              $ref: '#/components/schemas/KnowledgeBaseCreate'
+      responses:
+        '201':
+          $ref: '#/components/responses/knowledgeBase'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_bases/{knowledge_base_id}:
+    get:
+      summary: Get a knowledge base
+      operationId: get-a-knowledge-base
+      description: 'Fetches a knowledge base.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Bases
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base to fetch
+        schema:
+          type: string
+          default: knb_123
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseSlim'
+      x-required-scopes:
+      - knowledge_bases:read
+  /knowledge_bases/{knowledge_base_id}/articles:
+    post:
+      summary: Create article in a knowledge base in default locale
+      operationId: create-article-in-a-knowledge-base-in-default-locale
+      description: 'Creates an article in a knowledge base in the default locale.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Bases
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base to create the article in
+        schema:
+          type: string
+          default: knb_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - author_id
+              - subject
+              - content
+              $ref: '#/components/schemas/KnowledgeBaseArticleCreate'
+      responses:
+        '201':
+          $ref: '#/components/responses/knowledgeBaseArticle'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_bases/{knowledge_base_id}/categories:
+    post:
+      summary: Create knowledge base category in default locale
+      operationId: create-knowledge-base-category-in-default-locale
+      description: 'Creates a knowledge base category in the default locale.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Bases
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base to create the category in
+        schema:
+          type: string
+          default: knb_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              $ref: '#/components/schemas/KnowledgeBaseCategoryCreate'
+      responses:
+        '201':
+          $ref: '#/components/responses/knowledgeBaseCategory'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_bases/{knowledge_base_id}/content:
+    get:
+      summary: Get a knowledge base with content in default locale
+      operationId: get-a-knowledge-base-with-content-in-default-locale
+      description: 'Fetches a knowledge base with its content in the default locale.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Bases
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base to fetch
+        schema:
+          type: string
+          default: knb_123
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBase'
+      x-required-scopes:
+      - knowledge_bases:read
+    patch:
+      summary: Update knowledge base in default locale
+      operationId: update-knowledge-base-in-default-locale
+      description: 'Updates a knowledge base in the default locale. Will republish the knowledge base if the knowledge base is currently published.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Bases
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base to update
+        schema:
+          type: string
+          default: knb_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              $ref: '#/components/schemas/KnowledgeBasePatch'
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBase'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_bases/{knowledge_base_id}/locales/{locale}/articles:
+    post:
+      summary: Create article in a knowledge base in specified locale
+      operationId: create-article-in-a-knowledge-base-in-specified-locale
+      description: 'Create an article for a given locale in a knowledge base.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Bases
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base to create the article in
+        schema:
+          type: string
+          default: knb_123
+      - in: path
+        name: locale
+        required: true
+        description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the article's content
+        schema:
+          type: string
+          default: en
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - author_id
+              - subject
+              - content
+              $ref: '#/components/schemas/KnowledgeBaseArticleCreate'
+      responses:
+        '201':
+          $ref: '#/components/responses/knowledgeBaseArticle'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_bases/{knowledge_base_id}/locales/{locale}/categories:
+    post:
+      summary: Create knowledge base category in specified locale
+      operationId: create-knowledge-base-category-in-specified-locale
+      description: 'Creates a knowledge base category for a given locale.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Bases
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base to create the category in
+        schema:
+          type: string
+          default: knb_123
+      - in: path
+        name: locale
+        required: true
+        description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the category's content
+        schema:
+          type: string
+          default: en
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              $ref: '#/components/schemas/KnowledgeBaseCategoryCreate'
+      responses:
+        '201':
+          $ref: '#/components/responses/knowledgeBaseCategory'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_bases/{knowledge_base_id}/locales/{locale}/content:
+    get:
+      summary: Get a knowledge base with content in specified locale
+      operationId: get-a-knowledge-base-with-content-in-specified-locale
+      description: 'Fetches a knowledge base with its content for a given locale.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Bases
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base to fetch
+        schema:
+          type: string
+          default: knb_123
+      - in: path
+        name: locale
+        required: true
+        description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch
+        schema:
+          type: string
+          default: en
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBase'
+      x-required-scopes:
+      - knowledge_bases:read
+    patch:
+      summary: Update knowledge base in specified locale
+      operationId: update-knowledge-base-in-specified-locale
+      description: 'Updates a knowledge base for a given locale. Will republish the knowledge base if the knowledge base is currently published.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Bases
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base to update
+        schema:
+          type: string
+          default: knb_123
+      - in: path
+        name: locale
+        required: true
+        description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content
+        schema:
+          type: string
+          default: en
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              $ref: '#/components/schemas/KnowledgeBasePatch'
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBase'
+      x-required-scopes:
+      - knowledge_bases:write
+components:
+  schemas:
+    KnowledgeBaseSlimResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - type
+      - locales
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+            related:
+              type: object
+              properties:
+                articles:
+                  type: string
+                  description: Link to articles associated to the knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles
+                categories:
+                  type: string
+                  description: Link to categories associated to the knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories
+        id:
+          type: string
+          description: Unique identifier of the knowledge base
+          example: knb_12
+        type:
+          type: string
+          enum:
+          - internal
+          - external
+          description: Type of the KB
+          example: internal
+        locales:
+          type: array
+          description: List of the KB's possible locales
+          items:
+            type: string
+            example:
+            - en
+            - es
+        created_at:
+          type: number
+          description: Timestamp when the knowledge base was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the knowledge base was updated
+          example: 1654309308.278
+    KnowledgeBaseCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the knowledge base
+        type:
+          type: string
+          enum:
+          - internal
+          - external
+          description: Determines if the knowledge base is publicly available or private only to your company
+          default: external
+          example: internal
+    KnowledgeBasePatch:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the knowledge base
+    KnowledgeBaseCategoryCreate:
+      type: object
+      required:
+      - name
+      properties:
+        parent_category_id:
+          type: string
+          description: ID of the parent category
+        name:
+          type: string
+          description: Name of the knowledge base category
+        description:
+          type: string
+          description: Description of the knowledge base category
+    KnowledgeBaseArticleCreate:
+      type: object
+      properties:
+        category_id:
+          type: string
+          description: ID of the category this article belongs to
+        author_id:
+          type: string
+          description: Teammate ID of the article author
+        subject:
+          type: string
+          description: Subject of the article
+        content:
+          type: string
+          description: HTML content of the article
+        status:
+          type: string
+          enum:
+          - draft
+          - published
+          default: draft
+          description: Article status
+    KnowledgeBaseResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - status
+      - type
+      - locale
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+            related:
+              type: object
+              properties:
+                articles:
+                  type: string
+                  description: Link to articles associated to the knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles
+                categories:
+                  type: string
+                  description: Link to categories associated to the knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories
+        id:
+          type: string
+          description: Unique identifier of the knowledge base
+          example: knb_12
+        name:
+          type: string
+          description: Knowledge base name
+          example: Company Help Center
+        status:
+          type: string
+          enum:
+          - published
+          - unpublished
+          description: Status of the KB
+          example: unpublished
+        type:
+          type: string
+          enum:
+          - internal
+          - external
+          description: Type of the KB
+          example: internal
+        locale:
+          type: string
+          enum:
+          - fr
+          - en
+          description: Locale of this requested KB
+          example: en
+        created_at:
+          type: number
+          description: Timestamp when the knowledge base was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the knowledge base was updated
+          example: 1654309308.278
+    KnowledgeBaseCategoryResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - description
+      - is_hidden
+      - locale
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12
+            related:
+              type: object
+              properties:
+                knowledge_base:
+                  type: string
+                  description: Link to the category's knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+                parent_category:
+                  type: string
+                  nullable: true
+                  description: Link to the category's parent
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_catgories/kbc_10
+                articles:
+                  type: string
+                  description: Link to articles in this category
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12/articles
+        id:
+          type: string
+          description: Unique identifier of the knowledge base category
+          example: kbc_12
+        name:
+          type: string
+          nullable: true
+          description: Category name
+          example: Getting started
+        description:
+          type: string
+          nullable: true
+          description: Description of the category
+          example: How to get started in Front
+        is_hidden:
+          type: boolean
+          description: Is the category hidden
+          example: false
+        locale:
+          type: string
+          enum:
+          - fr
+          - en
+          description: Locale of this category
+          example: en
+        created_at:
+          type: number
+          description: Timestamp when the category was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the category was updated
+          example: 1654309308.278
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+    KnowledgeBaseArticleResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - slug
+      - name
+      - status
+      - keywords
+      - content
+      - locale
+      - attachments
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12
+            related:
+              type: object
+              properties:
+                knowledge_base:
+                  type: string
+                  description: Link to the article's knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+                category:
+                  type: string
+                  description: Link to the article's category
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12
+                last_editor:
+                  type: string
+                  description: Link to the article's last editor
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+        id:
+          type: string
+          description: Unique identifier of the knowledge base article
+          example: kba_12
+        slug:
+          type: string
+          description: URL slug of the article. Construct the full URL using the template of protocol/knowledge base domain/locale/slug, such as https://yourDomain.com/en/articles/5
+          example: /articles/5
+        name:
+          type: string
+          description: Name of the article
+          example: Billing 101
+        status:
+          type: string
+          description: Status of the article
+          example: published
+        keywords:
+          type: array
+          description: Article keywords
+          items:
+            type: string
+            example:
+            - billing
+            - returns
+        content:
+          type: string
+          description: Article HTML content
+          example: <h1>How to process a return</h1><p>To process a return...</p>
+        locale:
+          type: string
+          description: Locale of the article
+          example: en
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+          description: List of files attached to the article
+        last_edited_at:
+          type: number
+          description: Timestamp when the article was last edited
+          example: 1622672452.363
+        created_at:
+          type: number
+          description: Timestamp when the article was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the article was updated
+          example: 1654309308.278
+  responses:
+    knowledgeBase:
+      description: A knowledge base with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseResponse'
+    knowledgeBaseArticle:
+      description: A knowledge base article with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseArticleResponse'
+    listOfKnowledgeBases:
+      description: Array of knowledge bases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KnowledgeBaseSlimResponse'
+    knowledgeBaseSlim:
+      description: A knowledge base
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseSlimResponse'
+    knowledgeBaseCategory:
+      description: A knowledge base category with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseCategoryResponse'
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

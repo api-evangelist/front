@@ -1,0 +1,407 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Knowledge Base Categories API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Knowledge Base Categories
+paths:
+  /knowledge_base_categories/{category_id}:
+    get:
+      summary: Get a knowledge base category
+      operationId: get-a-knowledge-base-category
+      description: 'Fetches a knowledge base category.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Categories
+      parameters:
+      - in: path
+        name: category_id
+        required: true
+        description: The ID of the category to fetch
+        schema:
+          type: string
+          default: kbc_123
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseCategorySlim'
+      x-required-scopes:
+      - knowledge_bases:read
+    delete:
+      summary: Delete a knowledge base category
+      operationId: delete-a-knowledge-base-category
+      description: 'Deletes a knowledge base category.
+
+
+        > ⚠️ Warning
+
+        >
+
+        > When a category is deleted, all articles in the category are also deleted.
+
+
+
+        Required scope: `knowledge_bases:delete`'
+      tags:
+      - Knowledge Base Categories
+      parameters:
+      - in: path
+        name: category_id
+        required: true
+        description: The ID of the category to delete
+        schema:
+          type: string
+          default: kbc_123
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - knowledge_bases:delete
+  /knowledge_base_categories/{category_id}/content:
+    get:
+      summary: Get knowledge base category content in default locale
+      operationId: get-knowledge-base-category-content-in-default-locale
+      description: 'Fetches a knowledge base category with content in the default locale.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Categories
+      parameters:
+      - in: path
+        name: category_id
+        required: true
+        description: The ID of the category to fetch
+        schema:
+          type: string
+          default: kbc_123
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseCategory'
+      x-required-scopes:
+      - knowledge_bases:read
+    patch:
+      summary: Update knowledge base category in default locale
+      operationId: update-knowledge-base-category-in-default-locale
+      description: 'Updates a knowledge base category in the default locale. Will republish the knowledge base if the knowledge base is currently published.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Base Categories
+      parameters:
+      - in: path
+        name: category_id
+        required: true
+        description: The ID of the category to update
+        schema:
+          type: string
+          default: kbc_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeBaseCategoryPatch'
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseCategory'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_base_categories/{category_id}/locales/{locale}/content:
+    get:
+      summary: Get knowledge base category with content in specified locale
+      operationId: get-knowledge-base-category-with-content-in-specified-locale
+      description: 'Fetches a knowledge base category with content for a given locale.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Categories
+      parameters:
+      - in: path
+        name: category_id
+        required: true
+        description: The ID of the category to fetch
+        schema:
+          type: string
+          default: kbc_123
+      - in: path
+        name: locale
+        required: true
+        description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch
+        schema:
+          type: string
+          default: en
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseCategory'
+      x-required-scopes:
+      - knowledge_bases:read
+    patch:
+      summary: Update knowledge base category in specified locale
+      operationId: update-knowledge-base-category-in-specified-locale
+      description: 'Updates a knowledge base category for a given locale. Will republish the knowledge base if the knowledge base is currently published.
+
+
+        Required scope: `knowledge_bases:write`'
+      tags:
+      - Knowledge Base Categories
+      parameters:
+      - in: path
+        name: category_id
+        required: true
+        description: The ID of the category to update
+        schema:
+          type: string
+          default: kbc_123
+      - in: path
+        name: locale
+        required: true
+        description: The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content
+        schema:
+          type: string
+          default: en
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeBaseCategoryPatch'
+      responses:
+        '200':
+          $ref: '#/components/responses/knowledgeBaseCategory'
+      x-required-scopes:
+      - knowledge_bases:write
+  /knowledge_bases/{knowledge_base_id}/categories:
+    get:
+      summary: List categories in a knowledge base
+      operationId: list-categories-in-a-knowledge-base
+      description: 'List categories in a knowledge base.
+
+
+        Required scope: `knowledge_bases:read`'
+      tags:
+      - Knowledge Base Categories
+      parameters:
+      - in: path
+        name: knowledge_base_id
+        required: true
+        description: The ID of the knowledge base
+        schema:
+          type: string
+          default: knb_123
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfKnowledgeBaseCategories'
+      x-required-scopes:
+      - knowledge_bases:read
+components:
+  schemas:
+    KnowledgeBaseCategoryPatch:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the knowledge base category
+        description:
+          type: string
+          description: Description of the knowledge base category
+    KnowledgeBaseCategorySlimResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - slug
+      - is_hidden
+      - locales
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12
+            related:
+              type: object
+              properties:
+                knowledge_base:
+                  type: string
+                  description: Link to the category's knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+                parent_category:
+                  type: string
+                  nullable: true
+                  description: Link to the category's parent
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_catgories/kbc_10
+                articles:
+                  type: string
+                  description: Link to articles in this category
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12/articles
+        id:
+          type: string
+          description: Unique identifier of the knowledge base category
+          example: kbc_12
+        slug:
+          type: string
+          description: URL slug of the category. Construct the full URL using the template of protocol/knowledge base domain/locale/slug, such as https://yourDomain.com/en/categories/2
+          example: /categories/2
+        is_hidden:
+          type: boolean
+          description: Is the category hidden from navigation and breadcrumbs (topics are accessed as direct links)
+          example: false
+        locales:
+          type: array
+          description: List of the locales the category supports
+          items:
+            type: string
+            example:
+            - en
+            - es
+        created_at:
+          type: number
+          description: Timestamp when the category was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the category was updated
+          example: 1654309308.278
+    KnowledgeBaseCategoryResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - description
+      - is_hidden
+      - locale
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12
+            related:
+              type: object
+              properties:
+                knowledge_base:
+                  type: string
+                  description: Link to the category's knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+                parent_category:
+                  type: string
+                  nullable: true
+                  description: Link to the category's parent
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_catgories/kbc_10
+                articles:
+                  type: string
+                  description: Link to articles in this category
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12/articles
+        id:
+          type: string
+          description: Unique identifier of the knowledge base category
+          example: kbc_12
+        name:
+          type: string
+          nullable: true
+          description: Category name
+          example: Getting started
+        description:
+          type: string
+          nullable: true
+          description: Description of the category
+          example: How to get started in Front
+        is_hidden:
+          type: boolean
+          description: Is the category hidden
+          example: false
+        locale:
+          type: string
+          enum:
+          - fr
+          - en
+          description: Locale of this category
+          example: en
+        created_at:
+          type: number
+          description: Timestamp when the category was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the category was updated
+          example: 1654309308.278
+  responses:
+    knowledgeBaseCategorySlim:
+      description: A knowledge base category
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseCategorySlimResponse'
+    listOfKnowledgeBaseCategories:
+      description: Array of knowledge base categories
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/categories?page_token=134287aba8eaa55cf366400c63300a75bab0c
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/categories
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KnowledgeBaseCategorySlimResponse'
+    knowledgeBaseCategory:
+      description: A knowledge base category with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseCategoryResponse'
+  parameters:
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

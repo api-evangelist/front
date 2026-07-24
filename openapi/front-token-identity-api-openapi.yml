@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Token Identity API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Token Identity
+paths:
+  /me:
+    get:
+      tags:
+      - Token Identity
+      summary: API Token details
+      operationId: api-token-details
+      description: Fetch the details of the API token.
+      responses:
+        '200':
+          $ref: '#/components/responses/identity'
+components:
+  schemas:
+    IdentityResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/me
+        id:
+          type: string
+          description: Unique ID of company
+          example: cmp_k30
+        name:
+          type: string
+          description: Name of company
+          example: Dunder Mifflin Paper Company, Inc.
+  responses:
+    identity:
+      description: API Token details
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IdentityResponse'
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

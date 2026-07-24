@@ -1,0 +1,489 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Contact Lists API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Contact Lists
+paths:
+  /contact_lists:
+    get:
+      summary: List contact lists
+      operationId: list-contact-lists
+      description: 'List contact lists.
+
+
+        Required scope: `contacts:read`'
+      tags:
+      - Contact Lists
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfContactLists'
+      x-required-scopes:
+      - contacts:read
+    post:
+      summary: Create contact list
+      operationId: create-contact-list
+      description: 'Create a new contact list in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team contact list](https://dev.frontapp.com/reference/create-team-contact-list) endpoint instead.
+
+
+        Required scope: `contacts:write`'
+      tags:
+      - Contact Lists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactList'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - contacts:write
+  /contact_lists/{contact_list_id}:
+    delete:
+      summary: Delete contact list
+      operationId: delete-contact-list
+      description: 'Delete a contact lists.
+
+
+        Required scope: `contacts:delete`'
+      tags:
+      - Contact Lists
+      parameters:
+      - in: path
+        name: contact_list_id
+        required: true
+        description: The contact list ID
+        schema:
+          type: string
+          default: grp_123
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - contacts:delete
+  /contact_lists/{contact_list_id}/contacts:
+    get:
+      summary: List contacts in contact list
+      operationId: list-contacts-in-contact-list
+      description: 'List the contacts belonging to the requested contact list.
+
+
+        Required scope: `contacts:read`'
+      tags:
+      - Contact Lists
+      parameters:
+      - in: path
+        name: contact_list_id
+        required: true
+        description: The contact list ID
+        schema:
+          type: string
+          default: grp_123
+      - $ref: '#/components/parameters/pageToken'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfContacts'
+      x-required-scopes:
+      - contacts:read
+    post:
+      summary: Add contacts to contact list
+      operationId: add-contacts-to-contact-list
+      description: 'Add contacts to the requested contact list.
+
+
+        Required scope: `contacts:write`'
+      tags:
+      - Contact Lists
+      parameters:
+      - in: path
+        name: contact_list_id
+        required: true
+        description: The contact list ID
+        schema:
+          type: string
+          default: grp_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddContactsToList'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - contacts:write
+    delete:
+      summary: Remove contacts from contact list
+      operationId: remove-contacts-from-contact-list
+      description: 'Remove contacts from the requested contact list.
+
+
+        Required scope: `contacts:write`'
+      tags:
+      - Contact Lists
+      parameters:
+      - in: path
+        name: contact_list_id
+        required: true
+        description: The contact list ID
+        schema:
+          type: string
+          default: grp_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveContactsFromList'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - contacts:write
+  /teammates/{teammate_id}/contact_lists:
+    get:
+      summary: List teammate contact lists
+      operationId: list-teammate-contact-lists
+      description: 'List the contact lists belonging to the requested teammate.
+
+
+        Required scope: `contacts:read`'
+      tags:
+      - Contact Lists
+      parameters:
+      - in: path
+        name: teammate_id
+        required: true
+        description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: tea_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfContactLists'
+      x-required-scopes:
+      - contacts:read
+    post:
+      summary: Create teammate contact list
+      operationId: create-teammate-contact-list
+      description: 'Create a new contact list for the requested teammate.
+
+
+        Required scope: `contacts:write`'
+      tags:
+      - Contact Lists
+      parameters:
+      - in: path
+        name: teammate_id
+        required: true
+        description: The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: tea_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactList'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - contacts:write
+  /teams/{team_id}/contact_lists:
+    get:
+      summary: List team contact lists
+      operationId: list-team-contact-lists
+      description: 'List contact lists belonging to the requested team (workspace).
+
+
+        Required scope: `contacts:read`'
+      tags:
+      - Contact Lists
+      parameters:
+      - in: path
+        name: team_id
+        required: true
+        description: The team ID
+        schema:
+          type: string
+          default: tim_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfContactLists'
+      x-required-scopes:
+      - contacts:read
+    post:
+      summary: Create team contact list
+      operationId: create-team-contact-list
+      description: 'Create a new contact list for the requested team (workspace).
+
+
+        Required scope: `contacts:write`'
+      tags:
+      - Contact Lists
+      parameters:
+      - in: path
+        name: team_id
+        required: true
+        description: The team ID
+        schema:
+          type: string
+          default: tim_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactList'
+      responses:
+        '204':
+          description: No content
+      x-required-scopes:
+      - contacts:write
+components:
+  responses:
+    listOfContactLists:
+      description: Array of contact lists
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/contact_lists
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactListResponses'
+    listOfContacts:
+      description: Array of contacts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/contacts
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactResponse'
+  schemas:
+    AddContactsToList:
+      required:
+      - contact_ids
+      properties:
+        contact_ids:
+          type: array
+          description: List of IDs of the contacts to add in the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    ContactHandle:
+      type: object
+      required:
+      - handle
+      - source
+      properties:
+        handle:
+          type: string
+          description: Handle used to reach the contact.
+          example: dwight@limitlesspaper.com
+        source:
+          type: string
+          enum:
+          - twitter
+          - email
+          - phone
+          - facebook
+          - intercom
+          - front_chat
+          - custom
+          description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
+          example: email
+    ContactListResponses:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342
+            related:
+              type: object
+              properties:
+                contacts:
+                  type: string
+                  description: Link to contact list contacts
+                  example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts
+                owner:
+                  type: string
+                  description: Link to list owner
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
+        id:
+          type: string
+          description: Unique identifier of the list
+          example: grp_3j342
+        name:
+          type: string
+          description: Name of the list
+          example: Party Planning Committee
+        is_private:
+          type: boolean
+          description: Whether or not the contact is individual
+          example: false
+    ContactResponse:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge"
+            related:
+              type: object
+              properties:
+                notes:
+                  type: string
+                  description: Link to contact notes
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes
+                conversations:
+                  type: string
+                  description: Link to contact conversations
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations
+                owner:
+                  type: string
+                  description: Link to contact owner
+                  example: null
+        id:
+          type: string
+          description: Unique identifier of the contact
+          example: crd_3cgz4ge
+        name:
+          type: string
+          description: Contact name
+          example: Dwight Schrute
+        description:
+          type: string
+          description: Contact description
+          example: Assistant to the regional manager
+        avatar_url:
+          type: string
+          description: URL of the contact's avatar
+          example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707
+        links:
+          type: array
+          description: List of all the links of the contact
+          items:
+            type: string
+            example:
+            - https://shrutefarms.com
+            - https://eatyourbeets.com
+        groups:
+          type: array
+          deprecated: true
+          description: List of the groups the contact belongs to. ⚠️ Deprecated. use `lists` instead.
+          items:
+            $ref: '#/components/schemas/ContactListResponses'
+        lists:
+          type: array
+          description: List of the contact lists the contact belongs to.
+          items:
+            $ref: '#/components/schemas/ContactListResponses'
+        handles:
+          type: array
+          description: List of the handles and sources with which the contact is reachable.
+          items:
+            $ref: '#/components/schemas/ContactHandle'
+        custom_fields:
+          description: Custom fields for this contact.
+          $ref: '#/components/schemas/CustomFieldParameter'
+        is_private:
+          type: boolean
+          description: Whether or not the contact is individual
+          example: true
+    RemoveContactsFromList:
+      required:
+      - contact_ids
+      properties:
+        contact_ids:
+          type: array
+          description: List of IDs of the contacts to remove from the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          maxItems: 50
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    ResourceID:
+      type: string
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    CreateContactList:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the contact list
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

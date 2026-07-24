@@ -1,0 +1,243 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Contact Notes API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Contact Notes
+paths:
+  /contacts/{contact_id}/notes:
+    get:
+      summary: List notes
+      operationId: list-notes
+      description: 'List the notes added to a contact.
+
+
+        Required scope: `contacts:read`'
+      tags:
+      - Contact Notes
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        description: The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: crd_123
+      responses:
+        '202':
+          $ref: '#/components/responses/listOfContactNotes'
+      x-required-scopes:
+      - contacts:read
+    post:
+      summary: Add note
+      operationId: add-note
+      description: 'Create a new note on a contact.
+
+
+        Required scope: `contacts:write`'
+      tags:
+      - Contact Notes
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        description: The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        schema:
+          type: string
+          default: crd_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactNote'
+      responses:
+        '201':
+          $ref: '#/components/responses/contactNote'
+      x-required-scopes:
+      - contacts:write
+components:
+  responses:
+    contactNote:
+      description: A contact note
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContactNoteResponses'
+    listOfContactNotes:
+      description: Array of contact notes
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/contacts/crd_2okzojy/notes
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactNoteResponses'
+  schemas:
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    ContactNoteResponses:
+      type: object
+      required:
+      - _links
+      - author
+      - body
+      - is_private
+      properties:
+        _links:
+          type: object
+          properties:
+            related:
+              type: object
+              properties:
+                author:
+                  type: string
+                  description: Link to the teammate who wrote the note
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+                owner:
+                  type: string
+                  nullable: true
+                  description: Link to the owner of the note
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
+        author:
+          $ref: '#/components/schemas/TeammateResponse'
+          description: Teammate who wrote the note
+          example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+        body:
+          type: string
+          description: Content of the note
+          example: Mrs. Allen is our most important client … because every client is our most important client.
+        created_at:
+          type: number
+          description: The timestamp when the note was created
+          example: 1701806790.536
+    CreateContactNote:
+      type: object
+      required:
+      - author_id
+      - body
+      properties:
+        author_id:
+          type: string
+          description: ID of teammate creating the note
+        body:
+          type: string
+          description: Content of the note
+    TeammateResponse:
+      type: object
+      description: A teammate is a user in Front.
+      required:
+      - _links
+      - id
+      - email
+      - username
+      - first_name
+      - last_name
+      - license_type
+      - is_admin
+      - is_available
+      - is_blocked
+      - type
+      - custom_fields
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+            related:
+              type: object
+              properties:
+                inboxes:
+                  type: string
+                  description: Link to teammate's inboxes
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes
+                conversations:
+                  type: string
+                  description: Link to teammate's conversations
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations
+                botSource:
+                  type: string
+                  description: Link to the source resource of the bot (e.g. rule)
+                  example: https://yourCompany.api.frontapp.com/rules/rul_6r55a
+        id:
+          type: string
+          description: Unique identifier of the teammate
+          example: tea_6r55a
+        email:
+          type: string
+          description: Email address of the teammate
+          example: michael.scott@dundermifflin.com
+        username:
+          type: string
+          description: Username of the teammate (used for "@" mentions)
+          example: PrisonMike
+        first_name:
+          type: string
+          description: First name of the teammate
+          example: Michael
+        last_name:
+          type: string
+          description: Last name of the teammate
+          example: Scott
+        is_admin:
+          type: boolean
+          description: Whether or not the teammate is an admin in your company
+          example: true
+        is_available:
+          type: boolean
+          description: Whether or not the teammate is available
+          example: false
+        is_blocked:
+          type: boolean
+          description: Whether or not the teammate account has been blocked
+          example: false
+        type:
+          type: string
+          description: "Type of the teammate, normal teammates are denoted as \"user\", while visitors are denoted as \"visitor\".\nBot users are denoted by their parent resource type.\nThe following bot types are available:\n  * rule: acting on behalf of a Rule, author of comments and drafts\n  * macro: acting on behalf of a Macro, author of comments and drafts\n  * API: acting on behalf of OAuth clients\n  * integration: acting on behalf of an Integration\n  * CSAT: used for authoring CSAT response comments\n"
+          enum:
+          - user
+          - visitor
+          - rule
+          - macro
+          - API
+          - integration
+          - CSAT
+        custom_fields:
+          description: Custom fields for this teammate
+          $ref: '#/components/schemas/CustomFieldParameter'
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true

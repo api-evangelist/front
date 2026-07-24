@@ -1,0 +1,1828 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Channel Accounts Conversations API
+  contact:
+    name: Front Platform
+    url: https://community.front.com
+servers:
+- url: https://api2.frontapp.com
+security:
+- http: []
+tags:
+- name: Conversations
+paths:
+  /conversations:
+    get:
+      summary: List conversations
+      operationId: list-conversations
+      description: 'List the conversations in the company in reverse chronological order (most recently updated first). The order will respect your company''s [bump settings](https://help.front.com/t/y729th/customize-when-conversations-bump-up), which determine when conversations bump to the top. For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).
+
+
+
+        Required scope: `conversations:read`'
+      tags:
+      - Conversations
+      parameters:
+      - $ref: '#/components/parameters/conversationQuery'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      - $ref: '#/components/parameters/sortByConversations'
+      - $ref: '#/components/parameters/sortOrder'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfConversations'
+      x-required-scopes:
+      - conversations:read
+    post:
+      summary: Create discussion conversation
+      operationId: create-conversation
+      description: 'Create a new [conversation](https://dev.frontapp.com/reference/conversations#creating-a-new-conversation) that only supports comments (known as discussions in Front). If you want to create a conversation that supports messages, use the [Create message](https://dev.frontapp.com/reference/post_channels-channel-id-messages) endpoint. If you want to add a comment to an existing conversation, use the [Add comment](https://dev.frontapp.com/reference/post_conversations-conversation-id-comments) endpoint.
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateConversation'
+      responses:
+        '201':
+          $ref: '#/components/responses/conversation'
+      x-required-scopes:
+      - conversations:write
+  /conversations/search/{query}:
+    get:
+      summary: Search conversations
+      operationId: search-conversations
+      description: 'Search for conversations. Response will include a count of total matches and an array of conversations in descending order by last activity.
+
+        See the [search syntax documentation](https://dev.frontapp.com/docs/search-1) for usage examples.
+
+        **Note:** This endpoint is subject to [proportional rate limiting](https://dev.frontapp.com/docs/rate-limiting#additional-proportional-limiting) at 40% of your company''s rate limit.
+
+
+
+        Required scope: `conversations:read`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: query
+        required: true
+        description: Search query string. See [Search](https://dev.frontapp.com/docs/search-1) topic for usage details.
+        schema:
+          type: string
+          default: inbox:inb_123 tag:tag_345
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfConversationSearchResults'
+      x-required-scopes:
+      - conversations:read
+  /conversations/{conversation_id}:
+    get:
+      summary: Get conversation
+      operationId: get-conversation-by-id
+      description: 'Fetch a conversation.
+
+
+
+        Required scope: `conversations:read`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      responses:
+        '200':
+          $ref: '#/components/responses/conversation'
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - conversations:read
+    patch:
+      summary: Update conversation
+      operationId: update-conversation
+      description: 'Update a conversation.
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConversation'
+      responses:
+        '204':
+          description: No content
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+        '400':
+          description: Invalid input, such as invalid custom fields
+      x-required-scopes:
+      - conversations:write
+    delete:
+      summary: Delete conversation
+      operationId: delete-conversation
+      description: 'Permanently delete a conversation. The conversation must have status "trashed"
+
+        (in the trash) before it can be permanently deleted. This action cannot be undone.
+
+
+
+        Required scope: `conversations:delete`'
+      x-required-scopes:
+      - conversations:delete
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      responses:
+        '204':
+          description: No content
+        '400':
+          description: Conversation must have status "trashed" before it can be permanently deleted
+        '403':
+          description: Token lacks the required `conversations:delete` scope
+        '404':
+          description: Conversation not found
+  /conversations/{conversation_id}/assignee:
+    put:
+      summary: Update conversation assignee
+      operationId: update-conversation-assignee
+      description: 'Assign or unassign a conversation.
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConversationAssignee'
+      responses:
+        '204':
+          description: No content
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - conversations:write
+  /conversations/{conversation_id}/events:
+    get:
+      summary: List conversation events
+      operationId: list-conversation-events
+      description: 'List the events that occured for a conversation in reverse chronological order (newest first). The order will respect your company''s [bump settings](https://help.front.com/t/y729th/customize-when-conversations-bump-up), which determine when conversations bump to the top.
+
+
+        Required scope: `events:*:read`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfEvents'
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - events:*:read
+  /conversations/{conversation_id}/followers:
+    get:
+      summary: List conversation followers
+      operationId: list-conversation-followers
+      description: 'List the teammates following a conversation.
+
+
+        Required scope: `teammates:read`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfTeammates'
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - teammates:read
+    post:
+      summary: Add conversation followers
+      operationId: add-conversation-followers
+      description: 'Adds teammates to the list of followers of a conversation.
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      - in: query
+        name: ignore_errors
+        description: Whether to ignore invalid teammate IDs and continue adding valid ones.
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                teammate_ids:
+                  description: IDs of the teammate to add to the followers list. Alternatively, you can supply the teammates as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+                  type: array
+                  maxItems: 50
+                  items:
+                    type: string
+              required:
+              - teammate_ids
+      responses:
+        '204':
+          description: No content
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - conversations:write
+    delete:
+      summary: Delete conversation followers
+      operationId: delete-conversation-followers
+      description: 'Removes teammates from the list of followers of a conversation.
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                teammate_ids:
+                  description: IDs of the teammate to remove from the followers list. Alternatively, you can supply the teammates as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+                  type: array
+                  maxItems: 50
+                  items:
+                    type: string
+              required:
+              - teammate_ids
+      responses:
+        '204':
+          description: No content
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - conversations:write
+  /conversations/{conversation_id}/inboxes:
+    get:
+      summary: List conversation inboxes
+      operationId: list-conversation-inboxes
+      description: 'List the inboxes in which a conversation is listed.
+
+
+        Required scope: `inboxes:read`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfInboxes'
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - inboxes:read
+  /conversations/{conversation_id}/links:
+    post:
+      summary: Add conversation link
+      operationId: add-conversation-link
+      description: 'Adds one or more links to a conversation
+
+        For more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.
+
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                link_ids:
+                  description: Link IDs to add. Either link_ids or link_external_urls must be specified but not both
+                  type: array
+                  maxItems: 10
+                  items:
+                    type: string
+                link_external_urls:
+                  description: Link external URLs to add. Creates links if necessary. Either link_ids or link_external_urls must be specified but not both
+                  type: array
+                  maxItems: 10
+                  items:
+                    type: string
+      responses:
+        '204':
+          description: No content
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - conversations:write
+    delete:
+      summary: Remove conversation links
+      operationId: remove-conversation-links
+      description: 'Removes one or more links to a conversation.
+
+        For more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.
+
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                link_ids:
+                  description: Link IDs to remove.
+                  type: array
+                  maxItems: 10
+                  items:
+                    type: string
+              required:
+              - link_ids
+      responses:
+        '204':
+          description: No content
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - conversations:write
+  /conversations/{conversation_id}/messages:
+    get:
+      summary: List conversation messages
+      operationId: list-conversation-messages
+      description: 'List the messages in a conversation in reverse chronological order (newest first).
+
+
+        Required scope: `messages:read`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/pageToken'
+      - $ref: '#/components/parameters/sortByConversationMessages'
+      - $ref: '#/components/parameters/sortOrder'
+      responses:
+        '200':
+          $ref: '#/components/responses/listOfMessages'
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - messages:read
+  /conversations/{conversation_id}/reminders:
+    patch:
+      summary: Update conversation reminders
+      operationId: update-conversation-reminders
+      description: 'Snooze or unsnooze a conversation for the provided user.
+
+        For private conversations, reminders can only be created and edited through the API for teammates that own the conversation.
+
+        For shared conversations, reminders created and edited through the API are shared for all teammates within the shared inbox(es) that the conversation belongs to.
+
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConversationReminders'
+      responses:
+        '204':
+          description: No content
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - conversations:write
+  /conversations/{conversation_id}/tags:
+    post:
+      summary: Add conversation tag
+      operationId: add-conversation-tag
+      description: 'Adds one or more tags to a conversation
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      requestBody:
+        description: Tag IDs to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagIds'
+      responses:
+        '204':
+          description: No content
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - conversations:write
+    delete:
+      summary: Remove conversation tag
+      operationId: remove-conversation-tag
+      description: 'Removes one or more tags to a conversation
+
+
+        Required scope: `conversations:write`'
+      tags:
+      - Conversations
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        description: The conversation ID
+        schema:
+          type: string
+          default: cnv_123
+      requestBody:
+        description: Tag IDs to remove
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagIds'
+      responses:
+        '204':
+          description: No content
+        '301':
+          description: If the conversation has been merged, the response redirects you to the merged conversation.
+      x-required-scopes:
+      - conversations:write
+components:
+  schemas:
+    TagResponse:
+      type: object
+      description: A tag is a label that can be used to classify conversations.
+      required:
+      - _links
+      - id
+      - name
+      - description
+      - highlight
+      - is_private
+      - is_visible_in_conversation_lists
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/tags/tag_2oxhvy
+            related:
+              type: object
+              properties:
+                conversations:
+                  type: string
+                  description: Link to tag conversations
+                  example: https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations
+                owner:
+                  type: string
+                  nullable: true
+                  description: Link to tag owner
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6jydq
+                parent_tag:
+                  type: string
+                  nullable: true
+                  description: Link to parent tag
+                  example: https://yourCompany.api.frontapp.com/tags/tag_3h07ym
+                children:
+                  type: string
+                  nullable: true
+                  description: Link to tag children
+                  example: https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children
+        id:
+          type: string
+          description: Unique identifier of the tag
+          example: tag_2oxhvy
+        name:
+          type: string
+          description: Name of the tag
+          example: Warehouse task
+        description:
+          type: string
+          nullable: true
+          description: Description of the tag
+          example: Sitting on your biscuit, never having to risk it
+        highlight:
+          type: string
+          nullable: true
+          description: Highlight color or emoji of the tag. Null if the tag does not have a highlight.
+          example: null
+        is_private:
+          type: boolean
+          description: Whether or not the tag is individual
+          example: false
+        is_visible_in_conversation_lists:
+          type: boolean
+          description: Whether the tag is visible in conversation lists.
+          example: true
+        created_at:
+          type: number
+          description: Timestamp of tag create creation
+          example: 1682538996.583
+        updated_at:
+          type: number
+          description: Timestamp of the last tag update
+          example: 1699575875.186
+    UpdateConversation:
+      properties:
+        assignee_id:
+          type: string
+          description: ID of the teammate to assign the conversation to. Set it to null to unassign.
+        inbox_id:
+          type: string
+          description: ID of the inbox to move the conversation to.
+        status:
+          type: string
+          description: New status of the conversation
+          enum:
+          - archived
+          - open
+          - deleted
+          - spam
+        status_id:
+          type: string
+          description: Unique identifier of the status to set the conversation to. Only one of status and status_id should be provided. Ticketing must be enabled for the company to use this field.
+          example: sts_123
+        tag_ids:
+          type: array
+          description: List of all the tag IDs replacing the old conversation tags
+          items:
+            $ref: '#/components/schemas/ResourceID'
+        custom_fields:
+          description: Custom fields for this conversation. If you want to keep all custom fields the same when updating this resource, do not include any custom fields in the update. If you want to update custom fields, make sure to include all custom fields, not just the fields you want to add or update. If you send only the custom fields you want to update, the other custom fields will be erased. You can retrieve the existing custom fields before making the update to note the current fields. Send as an object of key:value pairs where the key is the custom field name and the value is the custom field value.
+          $ref: '#/components/schemas/CustomFieldParameter'
+    ResourceID:
+      type: string
+    TagIds:
+      type: object
+      required:
+      - tag_ids
+      properties:
+        tag_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    CommentResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - author
+      - body
+      - attachments
+      - is_pinned
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2
+            related:
+              type: object
+              properties:
+                conversation:
+                  type: string
+                  description: Link to comment's conversation
+                  example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i
+                mentions:
+                  type: string
+                  description: Link to comment mentions
+                  example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions
+                comment_replied_to:
+                  nullable: true
+                  type: string
+                  description: Link to the comment that is being replied to.
+                  example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2
+        id:
+          type: string
+          description: Unique identifier of the comment
+          example: com_1ywg3f2
+        author:
+          description: Teammate who wrote the comment
+          $ref: '#/components/schemas/TeammateResponse'
+        body:
+          type: string
+          description: Content of the comment
+          example: Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.
+        posted_at:
+          type: number
+          description: The timestamp when the comment was posted
+          example: 1698943401.378
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+          description: List of files attached to the comment
+        is_pinned:
+          type: boolean
+          description: Whether or not the comment is pinned in its conversation
+          example: true
+    ConversationResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - subject
+      - status
+      - ticket_ids
+      - assignee
+      - recipient
+      - tags
+      - links
+      - custom_fields
+      - is_private
+      - scheduled_reminders
+      - metadata
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q
+            related:
+              type: object
+              properties:
+                events:
+                  type: string
+                  description: Link to conversation events
+                  example: https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events
+                followers:
+                  type: string
+                  description: Link to conversation followers
+                  example: https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers
+                messages:
+                  type: string
+                  description: Link to conversation messages
+                  example: https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages
+                comments:
+                  type: string
+                  description: Link to conversation comments
+                  example: https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments
+                inboxes:
+                  type: string
+                  description: Link to conversation inboxes
+                  example: https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes
+                last_message:
+                  type: string
+                  description: Link to last message of the conversation
+                  example: https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation
+        id:
+          type: string
+          description: Unique identifier of the conversation
+          example: cnv_yo1kg5q
+        subject:
+          type: string
+          description: Subject of the message for email message
+          example: How to prank Dwight Schrute
+        status:
+          type: string
+          description: Status of the conversation
+          enum:
+          - archived
+          - unassigned
+          - deleted
+          - assigned
+          example: assigned
+        status_id:
+          type: string
+          description: Unique identifier of the conversation status category, only present if ticketing is enabled
+          example: sts_5x
+        status_category:
+          type: string
+          description: Status category of the conversation
+          enum:
+          - open
+          - waiting
+          - resolved
+          example: resolved
+        ticket_ids:
+          type: array
+          description: List of ticket ids associated with the conversation
+          items:
+            type: string
+          example:
+          - TICKET-1
+        assignee:
+          nullable: true
+          $ref: '#/components/schemas/TeammateResponse'
+          description: Partial representation of the teammate assigned to the conversation
+        recipient:
+          nullable: true
+          $ref: '#/components/schemas/RecipientResponse'
+          description: Main recipient of the conversation
+        tags:
+          type: array
+          description: List of the tags for this conversation
+          items:
+            $ref: '#/components/schemas/TagResponse'
+        links:
+          type: array
+          description: List of the links for this conversation
+          items:
+            $ref: '#/components/schemas/LinkResponse'
+        custom_fields:
+          description: Custom fields for this conversation
+          $ref: '#/components/schemas/CustomFieldParameter'
+        created_at:
+          type: number
+          description: Timestamp at which the conversation was created.
+          example: 1701292649.333
+        updated_at:
+          type: number
+          description: Timestamp at which the conversation was last updated.
+          example: 1701292649.333
+        waiting_since:
+          type: number
+          description: Timestamp of the oldest unreplied message.
+          example: 1701292649.333
+        is_private:
+          type: boolean
+          description: Whether or not the conversation is private
+          example: true
+        scheduled_reminders:
+          type: array
+          description: List of scheduled (non-expired and non-canceled) reminders for this conversation
+          items:
+            $ref: '#/components/schemas/Reminder'
+        metadata:
+          type: object
+          description: Optional metadata about the conversation
+          properties:
+            external_conversation_ids:
+              type: array
+              description: List of external_ids for partner channel associated with the conversation. Only present for partner channel token authenticated requests.
+              example:
+              - JS3949
+              - JS9403
+              items:
+                type: string
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+    Reminder:
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          type: object
+          properties:
+            related:
+              type: object
+              properties:
+                owner:
+                  type: string
+                  description: Link to conversation owner
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+        created_at:
+          type: number
+          description: Timestamp at which the conversation reminder has been created
+          example: 1701806790.536
+        scheduled_at:
+          type: number
+          description: Timestamp that the conversation reminder has been scheduled for
+          example: 1701874800
+        updated_at:
+          type: number
+          description: Timestamp at which the conversation reminder has been updated
+          example: 1701806790.536
+    LinkResponse:
+      type: object
+      description: A link used to connect a Front conversation to an external resource.
+      required:
+      - _links
+      - id
+      - name
+      - type
+      - external_url
+      - custom_fields
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/links/top_b2wpa
+        id:
+          type: string
+          description: Unique identifier of the link
+          example: top_b2wpa
+        name:
+          type: string
+          description: Display name of the link
+          example: JIRA-SCRAN-4567
+        type:
+          type: string
+          description: Type of the link. Typically associated with the underlying link provider (if known)
+          example: app_2f76b9ac738de158
+        external_url:
+          type: string
+          description: Underlying identifying external URL of the link
+          example: https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567
+        custom_fields:
+          description: Custom fields for this link
+          $ref: '#/components/schemas/CustomFieldParameter'
+    CreateConversation:
+      required:
+      - type
+      - subject
+      - comment
+      properties:
+        type:
+          description: Conversation type
+          type: string
+          enum:
+          - discussion
+        inbox_id:
+          description: Inbox ID for the conversation. Either `inbox_id` OR `teammate_ids` must be provided (not both).
+          type: string
+        teammate_ids:
+          description: Teammates to add to the conversation. Either `inbox_id` OR `teammate_ids` must be provided (not both).
+          type: array
+          items:
+            type: string
+        subject:
+          description: Subject of the conversation
+          type: string
+        comment:
+          description: Details for the starter comment
+          type: object
+          required:
+          - body
+          properties:
+            author_id:
+              description: ID of the teammate creating the comment. If omitted, will post as the API Token or OAuth client of the requester.
+              type: string
+            body:
+              description: Content of the comment
+              type: string
+            attachments:
+              description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).'
+              type: array
+              items:
+                type: string
+                format: binary
+        custom_fields:
+          description: Custom fields for this conversation
+          $ref: '#/components/schemas/CustomFieldParameter'
+    SignatureResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - body
+      - sender_info
+      - is_private
+      - is_visible_for_all_teammate_channels
+      - is_default
+      - channel_ids
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/signatures/sig_6rrv2
+            related:
+              type: object
+              properties:
+                owner:
+                  type: string
+                  description: Link to signature's owner (either a team or teammate)
+                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
+        id:
+          type: string
+          description: Unique identifier of the signature
+          example: sig_6rrv2
+        name:
+          type: string
+          nullable: true
+          description: Name of the signature
+          example: Finer Things Club signature
+        body:
+          type: string
+          description: Body of the signature
+          example: <div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>
+        sender_info:
+          type: string
+          nullable: true
+          description: Sender info of the signature
+          example:
+            '[object Object]': null
+        is_visible_for_all_teammate_channels:
+          type: boolean
+          description: Whether or not the signature is available in teammate channels.
+          example: true
+        is_default:
+          type: boolean
+          description: Whether the signature is the default signature for the team or teammate.
+          example: false
+        is_private:
+          type: boolean
+          description: Whether the signature is private to the teammate.
+          example: true
+        channel_ids:
+          type: array
+          nullable: true
+          items:
+            type: string
+            description: List of channels the signature is available in. If belonging to a teammate, represents all channels this can be used in. If belonging to a team, represents all team channels this can be used in. If null, there are no restrictions.
+            example: null
+    RecipientResponse:
+      type: object
+      required:
+      - _links
+      - name
+      - handle
+      - role
+      properties:
+        _links:
+          type: object
+          properties:
+            related:
+              type: object
+              properties:
+                contact:
+                  type: string
+                  nullable: true
+                  description: Link to recipient contact
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_2njtoem
+        name:
+          type: string
+          nullable: true
+          description: Name of the recipient.
+          example: Phyllis Lapin-Vance
+        handle:
+          type: string
+          description: Handle of the contact. Can be any string used to uniquely identify the contact
+          example: purpleboss@limitlesspaper.com
+        role:
+          type: string
+          description: Role of the recipient
+          enum:
+          - from
+          - to
+          - cc
+          - bcc
+          - reply-to
+          example: cc
+    UpdateConversationAssignee:
+      required:
+      - assignee_id
+      properties:
+        assignee_id:
+          type: string
+          description: ID of the teammate to assign the conversation to. Set it to null to unassign.
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    EventResponse:
+      type: object
+      description: An event is created every time something interesting is happening in Front.
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/events/evt_4ckcra8e
+        id:
+          type: string
+          description: Unique identifier of the event
+          example: evt_4ckcra8e
+        type:
+          type: string
+          description: Type of event
+          enum:
+          - assign
+          - unassign
+          - archive
+          - reopen
+          - trash
+          - restore
+          - reminder
+          - comment
+          - mention
+          - inbound
+          - outbound
+          - out_reply
+          - move
+          - forward
+          - tag
+          - untag
+          - sending_error
+          - message_bounce_error
+          - conversations_merged
+          - link_added
+          - link_removed
+          - custom_field_updated
+          - macro_triggered
+          - topic_identified
+          - ticket_status_update
+          - call_started
+          - call_abandoned
+          - call_queued
+          - call_on_hold
+          - call_resumed
+          - call_connected
+          - call_missed
+          - call_hangup
+          - call_transferred
+          example: inbound
+        emitted_at:
+          type: number
+          description: The timestamp when the event has been emitted
+          example: 1703102616
+        source:
+          type: object
+          description: Event source
+          properties:
+            _meta:
+              type: object
+              description: Metadata about the resource
+              properties:
+                type:
+                  description: Type of resource
+                  enum:
+                  - api
+                  - oauth_client
+                  - rule
+                  - teammate
+                  - imap
+                  - gmail
+                  - reminder
+                  - inboxes
+                  - recipient
+                  example: inboxes
+            data:
+              description: The resource which triggered the event
+              oneOf:
+              - $ref: '#/components/schemas/RuleResponse'
+              - $ref: '#/components/schemas/TeammateResponse'
+              - type: array
+                items:
+                  $ref: '#/components/schemas/InboxResponse'
+        target:
+          type: object
+          description: Partial representation (type & id) of the event's target
+          properties:
+            _meta:
+              type: object
+              description: Metadata about the resource
+              properties:
+                type:
+                  description: Type of resource
+                  enum:
+                  - teammate
+                  - inboxes
+                  - message
+                  - comment
+                  - tag
+                  - deleted_conversation_ids
+                  - link
+                  - custom_field
+                  example: inboxes
+            data:
+              description: The resource which received the event
+              oneOf:
+              - $ref: '#/components/schemas/TeammateResponse'
+              - $ref: '#/components/schemas/InboxResponse'
+              - $ref: '#/components/schemas/TagResponse'
+              - $ref: '#/components/schemas/CommentResponse'
+              - $ref: '#/components/schemas/MessageResponse'
+              - $ref: '#/components/schemas/LinkResponse'
+        conversation:
+          $ref: '#/components/schemas/ConversationResponse'
+          description: The conversation on which the event happened
+    RuleResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - actions
+      - is_private
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/rules/rul_58xhq
+            related:
+              type: object
+              properties:
+                owner:
+                  type: string
+                  description: Link to rule owner
+                  example: null
+                  nullable: true
+        id:
+          type: string
+          description: Unique identifier of the rule
+          example: rul_58xhq
+        name:
+          type: string
+          description: Name of the rule
+          example: Scranton new account workflow
+        actions:
+          type: array
+          description: List of the rule's actions description
+          items:
+            type: string
+            example:
+            - Assign to Pam
+            - Unassign from Michael
+            - Tag with Scranton is the Best Branch
+            - Tag with Michael is the Best Boss
+        is_private:
+          type: boolean
+          description: Whether or not the rule is individual
+          example: false
+    InboxResponse:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6
+            related:
+              type: object
+              properties:
+                teammates:
+                  type: string
+                  description: Link to inbox teammates
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates
+                conversations:
+                  type: string
+                  description: Link to inbox conversations
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations
+                channels:
+                  type: string
+                  description: Link to inbox channels
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels
+                owner:
+                  type: string
+                  description: Link to inbox owner
+                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
+        id:
+          type: string
+          description: Unique identifier for the inbox
+          example: inb_1ix6
+        name:
+          type: string
+          description: Name of the inbox
+          example: The Dundies
+        is_private:
+          type: boolean
+          description: Whether or not the inbox is individual
+          example: false
+        is_public:
+          type: boolean
+          description: Whether or not the inbox is available to all members of a team by default
+          example: true
+        custom_fields:
+          description: Custom fields for this inbox
+          $ref: '#/components/schemas/CustomFieldParameter'
+    MessageResponse:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq
+            related:
+              type: object
+              properties:
+                conversation:
+                  type: string
+                  description: Link to message conversation
+                  example: https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q
+                message_replied_to:
+                  type: string
+                  description: Link to message this message replied to
+                  example: https://yourCompany.api.frontapp.com/messages/msg_2y67qldq
+                message_seen:
+                  type: string
+                  description: Link to message seen information
+                  example: https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq/seen
+        id:
+          type: string
+          description: Unique identifier of the message
+          example: msg_1q15qmtq
+        message_uid:
+          type: string
+          description: Secondary unique identifier of a message. Generated by Front on message creation. Learn more at about the [message UID](https://dev.frontapp.com/reference/messages#creating-a-new-message).
+          example: 1eab543f84a0785f7b6b8967cck18f4d
+        type:
+          type: string
+          description: Type of the message
+          enum:
+          - call
+          - custom
+          - email
+          - facebook
+          - front_chat
+          - googleplay
+          - intercom
+          - internal
+          - phone-call
+          - sms
+          - tweet
+          - tweet_dm
+          - whatsapp
+          - yalo_wha
+          example: email
+        is_inbound:
+          type: boolean
+          description: Whether or not the message has been received or sent
+          example: false
+        draft_mode:
+          type: string
+          nullable: true
+          description: If the message is a draft, describes the draft mode. Can be 'private' (draft is visible to the author only) or 'shared' (draft is visible to all teammates with access to the conversation).
+          enum:
+          - shared
+          - private
+          example: shared
+        error_type:
+          type: string
+          description: Type of the error when the draft failed to be sent
+          example: null
+        version:
+          type: string
+          description: The current version of the message in Front
+          example: 551ba368f3e7803cce51503ee3e58ef0-26028-1701804863304-945c
+        created_at:
+          type: number
+          description: The timestamp when the message was sent or received
+          example: 1701292639
+        subject:
+          type: string
+          description: Subject of the message
+          example: Jim's pranks are getting out of hand
+        blurb:
+          type: string
+          description: Preview of the message body
+          example: It's high time we discuss the pranking culture in the office
+        author:
+          $ref: '#/components/schemas/TeammateResponse'
+          description: Front teammate who sent this message
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientResponse'
+        body:
+          type: string
+          description: Body of the message
+          example: <p>Hi there,</p><p>I wanted to let you know that I'm suggesting an update to <a href='https://dundermifflin.com/privacy/pranks'>Dunder Mifflin's Pranking Policy</a> to provide non-humorous employees greater control over their well-being in the office.</p>
+        text:
+          type: string
+          description: Text version of the body for email messages
+          example: Hi there,\n\nI wanted to let you know that I'm suggesting an update to Dunder Mifflin's Pranking Policy (https://dundermifflin.com/privacy/pranks) to provide non-humorous employees greater control over their well-being in the office.
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+          description: List of files attached to the message
+        signature:
+          $ref: '#/components/schemas/SignatureResponse'
+          description: The signature attached to this message
+        metadata:
+          type: object
+          description: Optional metadata about the message
+          properties:
+            intercom_url:
+              type: string
+              description: For `intercom` messages only. URL of the Intercom conversation the message is coming from.
+              example: http://intercom.com
+            duration:
+              type: integer
+              description: For `truly-call` messages only. Length of the call in seconds.
+              example: 189
+            have_been_answered:
+              type: boolean
+              description: For `truly-call` messages only. Whether or not the call have been answered.
+              example: false
+            external_id:
+              type: string
+              description: For `tweet` or 'custom' (partner channel token authenticated) messages only. Unique message identifier in the underlying provider (Twitter or Partner). For custom messages, only present for partner channel token authenticated requests.
+              example: dkd84992kduo903
+            twitter_url:
+              type: string
+              description: For `tweet` messages only. URL of the tweet.
+              example: https://twitter.com
+            is_retweet:
+              type: boolean
+              description: For `tweet` messages only. Whether or not the tweet is a retweet.
+              example: true
+            have_been_retweeted:
+              type: boolean
+              description: For `tweet` messages only. Whether or not the tweet have been retweeted.
+              example: true
+            have_been_favorited:
+              type: boolean
+              description: For `tweet` messages only. Whether or not the tweet have been favorited.
+              example: false
+            thread_ref:
+              type: string
+              description: For `custom` messages only. Custom reference which is used to thread messages.
+              example: t0930k9000-394
+            headers:
+              type: object
+              description: For `custom` messages only. Custom object holding internal information.
+            chat_visitor_url:
+              type: string
+              description: For `front_chat` messages only. Source URL from the chat widget when sending a message.
+              example: https://yourCompany.com/products
+    TeammateResponse:
+      type: object
+      description: A teammate is a user in Front.
+      required:
+      - _links
+      - id
+      - email
+      - username
+      - first_name
+      - last_name
+      - license_type
+      - is_admin
+      - is_available
+      - is_blocked
+      - type
+      - custom_fields
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+            related:
+              type: object
+              properties:
+                inboxes:
+                  type: string
+                  description: Link to teammate's inboxes
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes
+                conversations:
+                  type: string
+                  description: Link to teammate's conversations
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations
+                botSource:
+                  type: string
+                  description: Link to the source resource of the bot (e.g. rule)
+                  example: https://yourCompany.api.frontapp.com/rules/rul_6r55a
+        id:
+          type: string
+          description: Unique identifier of the teammate
+          example: tea_6r55a
+        email:
+          type: string
+          description: Email address of the teammate
+          example: michael.scott@dundermifflin.com
+        username:
+          type: string
+          description: Username of the teammate (used for "@" mentions)
+          example: PrisonMike
+        first_name:
+          type: string
+          description: First name of the teammate
+          example: Michael
+        last_name:
+          type: string
+          description: Last name of the teammate
+          example: Scott
+        is_admin:
+          type: boolean
+          description: Whether or not the teammate is an admin in your company
+          example: true
+        is_available:
+          type: boolean
+          description: Whether or not the teammate is available
+          example: false
+        is_blocked:
+          type: boolean
+          description: Whether or not the teammate account has been blocked
+          example: false
+        type:
+          type: string
+          description: "Type of the teammate, normal teammates are denoted as \"user\", while visitors are denoted as \"visitor\".\nBot users are denoted by their parent resource type.\nThe following bot types are available:\n  * rule: acting on behalf of a Rule, author of comments and drafts\n  * macro: acting on behalf of a Macro, author of comments and drafts\n  * API: acting on behalf of OAuth clients\n  * integration: acting on behalf of an Integration\n  * CSAT: used for authoring CSAT response comments\n"
+          enum:
+          - user
+          - visitor
+          - rule
+          - macro
+          - API
+          - integration
+          - CSAT
+        custom_fields:
+          description: Custom fields for this teammate
+          $ref: '#/components/schemas/CustomFieldParameter'
+    UpdateConversationReminders:
+      required:
+      - teammate_id
+      - scheduled_at
+      properties:
+        teammate_id:
+          type: string
+          description: ID of the teammate to create a reminder for. For a private conversation, specify the id of the teammate that owns the conversation. For a shared conversation, use the id of any teammate that has access to the conversation's shared inbox. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        scheduled_at:
+          type: number
+          description: Unix timestamp in seconds to schedule the reminder for. Must be in the future and within 50 years. Set to null to cancel.
+        status_id:
+          type: string
+          description: ID of the waiting status to which the conversation will be set. Ticketing must be enabled for the company to use this field. If no status is supplied and ticket is enabled, the default waiting status will be used.
+  responses:
+    listOfEvents:
+      description: Array of events
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/events?page_token=2d018a5809eb90d349bc08c52cb1f4987bef
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/events
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventResponse'
+    listOfConversationSearchResults:
+      description: Array of conversation search results
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/conversations/search/:query:?page_token=d4d5f065c89f1284ea262fa6b19456239b0
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: 'https://yourCompany.api.frontapp.com/conversations/search/:query:'
+              _total:
+                type: integer
+                description: Total number of matching conversations
+                example: 212
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConversationResponse'
+    listOfInboxes:
+      description: Array of Inboxes
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/inboxes
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InboxResponse'
+    listOfTeammates:
+      description: Array of teammates
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/teammates
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeammateResponse'
+    conversation:
+      description: A conversation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConversationResponse'
+    listOfMessages:
+      description: Array of messages
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages?page_token=klsljs8023j09suidfjlsjiei00043lllwww998303dkef0g
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageResponse'
+    listOfConversations:
+      description: Array of conversations
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type: string
+                    nullable: true
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/conversations?page_token=ce787da6f075740cf187d926f5e9f612bc7875763a8dd37d5
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/conversations
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConversationResponse'
+  parameters:
+    conversationQuery:
+      name: q
+      in: query
+      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative.'
+      schema:
+        type: string
+    sortByConversations:
+      name: sort_by
+      in: query
+      description: Field used to sort the conversations. Only supports `date`.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+    sortByConversationMessages:
+      name: sort_by
+      in: query
+      description: Field used to sort the messages. Only supports `created_at`.
+      schema:
+        type: string
+    sortOrder:
+      name: sort_order
+      in: query
+      description: Order by which results should be sorted
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        example: asc
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+  securitySchemes:
+    http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-api-id: front
+x-explorer-enabled: false
+x-proxy-enabled: true
+x-samples-enabled: true
