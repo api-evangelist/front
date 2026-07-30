@@ -6,7 +6,20 @@ description: >-
   Front is a customer operations platform unifying shared inboxes, chat, SMS, social, and CRM workflows. Front exposes a
   Core API (conversations, messages, channels, contacts, teammates, analytics), a Channels API for custom messaging
   integrations, a Plugin SDK for embedded UI apps, a Chat Widget, and Connectors for low-code automations.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/front.png
 tags:
   - Customer Support
   - Email
@@ -18,288 +31,2056 @@ created: '2026-05-08'
 modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
-  - aid: front:front-conversations-api
-    name: Front Conversations API
-    tags:
-      - Conversations
-      - Tickets
-    properties:
-      - url: https://dev.frontapp.com/
-        type: Documentation
-      - url: https://dev.frontapp.com/reference/conversations
-        type: APIReference
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read, create, update, and delete conversations across email, SMS, chat, and social channels. Includes assign,
-      archive, restore, snooze, follow, and merge actions.
-  - aid: front:front-messages-api
-    name: Front Messages API
-    tags:
-      - Messages
-      - Replies
-    properties:
-      - url: https://dev.frontapp.com/reference/messages
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Send and reply to messages on existing or new conversations across any channel; includes inbound import for sync
-      use cases.
-  - aid: front:front-drafts-api
-    name: Front Drafts API
-    tags:
-      - Drafts
-    properties:
-      - url: https://dev.frontapp.com/reference/drafts
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Create, edit, and delete message drafts assigned to a teammate or a shared inbox.
-  - aid: front:front-channels-api
-    name: Front Channels API
-    tags:
-      - Channels
-    properties:
-      - url: https://dev.frontapp.com/reference/channels
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Manage channels (email addresses, SMS numbers, chat connectors, custom channels) attached to inboxes.
-  - aid: front:front-inboxes-api
-    name: Front Inboxes API
-    tags:
-      - Inboxes
-    properties:
-      - url: https://dev.frontapp.com/reference/inboxes
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Manage shared inboxes and teammate access; attach channels to inboxes and read inbox configuration.
-  - aid: front:front-contacts-api
-    name: Front Contacts API
-    tags:
-      - Contacts
-      - People
-    properties:
-      - url: https://dev.frontapp.com/reference/contacts
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Manage Front contacts and their handles (email, phone, social). Contacts unify customer identity across channels.
-  - aid: front:front-contact-groups-api
-    name: Front Contact Groups API
-    tags:
-      - Groups
-      - Segmentation
-    properties:
-      - url: https://dev.frontapp.com/reference/contact-groups
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Group contacts for segmentation and shared visibility across teammates.
-  - aid: front:front-accounts-api
-    name: Front Accounts API
-    tags:
-      - Accounts
-      - Companies
-    properties:
-      - url: https://dev.frontapp.com/reference/accounts
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Read and manage company / account records that group multiple contacts under a single business relationship.
-  - aid: front:front-teammates-api
-    name: Front Teammates API
-    tags:
-      - Teammates
-      - Users
-    properties:
-      - url: https://dev.frontapp.com/reference/teammates
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Read teammates (Front users) and their availability, roles, and assignments.
-  - aid: front:front-teams-api
-    name: Front Teams API
-    tags:
-      - Teams
-    properties:
-      - url: https://dev.frontapp.com/reference/teams
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Read team membership and team-scoped resources for routing and analytics.
-  - aid: front:front-comments-api
-    name: Front Comments API
-    tags:
-      - Comments
-      - Internal Notes
-    properties:
-      - url: https://dev.frontapp.com/reference/comments
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Add, list, and remove internal comments on conversations for collaboration.
-  - aid: front:front-tags-api
-    name: Front Tags API
-    tags:
-      - Tags
-    properties:
-      - url: https://dev.frontapp.com/reference/tags
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Manage tags and apply them to conversations for categorization, automation, and reporting.
-  - aid: front:front-topics-api
-    name: Front Topics API
-    tags:
-      - Topics
-      - AI
-    properties:
-      - url: https://dev.frontapp.com/reference/topics
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Read AI-generated topics that classify conversation content for analytics and routing.
-  - aid: front:front-rules-api
-    name: Front Rules API
-    tags:
-      - Rules
-      - Automation
-    properties:
-      - url: https://dev.frontapp.com/reference/rules
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Read configured automation rules; rule definitions are managed from the UI but exposed read-only via the API.
-  - aid: front:front-signatures-api
-    name: Front Signatures API
-    tags:
-      - Signatures
-    properties:
-      - url: https://dev.frontapp.com/reference/signatures
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Read teammate and team signatures used on outbound messages.
-  - aid: front:front-shifts-api
-    name: Front Shifts API
-    tags:
-      - Shifts
-      - Scheduling
-    properties:
-      - url: https://dev.frontapp.com/reference/shifts
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Manage teammate shifts that drive routing rules and SLA timers.
-  - aid: front:front-knowledge-base-api
-    name: Front Knowledge Base API
-    tags:
-      - Knowledge Base
-      - Articles
-    properties:
-      - url: https://dev.frontapp.com/reference/knowledge-base
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Manage knowledge bases, categories, and articles published to customers and used by Front AI for self-service
-      responses.
-  - aid: front:front-analytics-api
-    name: Front Analytics API
-    tags:
-      - Analytics
-      - Reports
-    properties:
-      - url: https://dev.frontapp.com/reference/analytics
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Generate analytics report exports for conversations, response times, SLA performance, and teammate productivity.
-  - aid: front:front-events-api
-    name: Front Events API
-    tags:
-      - Events
-      - Audit
-    properties:
-      - url: https://dev.frontapp.com/reference/events
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Read the historical event stream for the company (assignments, replies, comments, tag changes) for audit and
-      integration use.
-  - aid: front:front-webhooks-api
-    name: Front Webhooks API
-    tags:
-      - Webhooks
-      - Subscriptions
-    properties:
-      - url: https://dev.frontapp.com/reference/webhooks
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-      - url: openapi/front-webhooks-asyncapi.yaml
-        type: AsyncAPI
-    description: >-
-      Subscribe to Front events (conversation.assigned, message.received, message.sent, comment.added) with HMAC-signed
-      deliveries.
-  - aid: front:front-channels-platform-api
-    name: Front Channels Platform API
-    tags:
-      - Channels
-      - Custom
-      - Platform
-    properties:
-      - url: https://dev.frontapp.com/reference/custom-channels-api
-        type: Documentation
-      - url: openapi/front-channel-api-openapi.json
-        type: OpenAPI
-    description: >-
-      Build custom messaging channels that bridge Front to proprietary messaging platforms (e.g. internal portals, niche
-      chat networks).
-  - aid: front:front-plugin-sdk
-    name: Front Plugin SDK
-    tags:
-      - Plugin
-      - Embedded UI
-    properties:
-      - url: https://dev.frontapp.com/docs/getting-started-with-plugins
-        type: Documentation
-    description: >-
-      Build embedded UI applications that render inside the Front sidebar to surface third-party context alongside the
-      conversation.
-  - aid: front:front-chat-widget
-    name: Front Chat Widget
-    tags:
-      - Chat Widget
-      - Web
-    properties:
-      - url: https://dev.frontapp.com/docs/chat-widget
-        type: Documentation
-    description: Embed Front's live chat widget on a website or web app to capture live conversations into shared inboxes.
-  - aid: front:front-connectors-api
-    name: Front Connectors
-    tags:
-      - Connectors
-      - Low-Code
-    properties:
-      - url: https://dev.frontapp.com/docs/connectors
-        type: Documentation
-    description: Low-code connector framework for invoking external HTTP APIs from within Front rules and workflows.
-  - aid: front:front-links-api
-    name: Front Links API
-    tags:
-      - Links
-      - External Resources
-    properties:
-      - url: https://dev.frontapp.com/reference/links
-        type: Documentation
-      - url: openapi/front-core-api-openapi.json
-        type: OpenAPI
-    description: Attach hyperlinks from external systems to Front conversations for cross-system traceability.
+- aid: front:front-plugin-sdk
+  name: Front Plugin SDK
+  tags:
+  - Plugin
+  - Embedded UI
+  properties:
+  - url: https://dev.frontapp.com/docs/getting-started-with-plugins
+    type: Documentation
+  description: >-
+    Build embedded UI applications that render inside the Front sidebar to surface third-party context
+    alongside the conversation.
+- aid: front:front-chat-widget
+  name: Front Chat Widget
+  tags:
+  - Chat Widget
+  - Web
+  properties:
+  - url: https://dev.frontapp.com/docs/chat-widget
+    type: Documentation
+  description: >-
+    Embed Front's live chat widget on a website or web app to capture live conversations into shared inboxes.
+- aid: front:front-connectors-api
+  name: Front Connectors
+  tags:
+  - Connectors
+  - Low-Code
+  properties:
+  - url: https://dev.frontapp.com/docs/connectors
+    type: Documentation
+  description: >-
+    Low-code connector framework for invoking external HTTP APIs from within Front rules and workflows.
+- aid: front:front-accounts-api
+  name: Front Accounts API
+  description: The Accounts API from Front — 3 operation(s) for accounts.
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/front-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-analytics-api
+  name: Front Analytics API
+  description: The Analytics API from Front — 4 operation(s) for analytics.
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/front-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-application-message-templates-api
+  name: Front Application Message Templates API
+  description: >-
+    The Application Message Templates API from Front — 2 operation(s) for application message templates.
+  tags:
+  - Application Message Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/front-application-message-templates-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-applications-api
+  name: Front Applications API
+  description: The Applications API from Front — 1 operation(s) for applications.
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/front-applications-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-attachments-api
+  name: Front Attachments API
+  description: The Attachments API from Front — 4 operation(s) for attachments.
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/front-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-calls-api
+  name: Front Calls API
+  description: The Calls API from Front — 5 operation(s) for calls.
+  tags:
+  - Calls
+  properties:
+  - type: OpenAPI
+    url: openapi/front-calls-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-channels-api
+  name: Front Channels API
+  description: The Channels API from Front — 6 operation(s) for channels.
+  tags:
+  - Channels
+  properties:
+  - type: OpenAPI
+    url: openapi/front-channels-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-comments-api
+  name: Front Comments API
+  description: The Comments API from Front — 5 operation(s) for comments.
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/front-comments-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-contact-groups-api
+  name: Front Contact Groups API
+  description: The Contact Groups API from Front — 5 operation(s) for contact groups.
+  tags:
+  - Contact Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/front-contact-groups-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-contact-handles-api
+  name: Front Contact Handles API
+  description: The Contact Handles API from Front — 1 operation(s) for contact handles.
+  tags:
+  - Contact Handles
+  properties:
+  - type: OpenAPI
+    url: openapi/front-contact-handles-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-contact-lists-api
+  name: Front Contact Lists API
+  description: The Contact Lists API from Front — 5 operation(s) for contact lists.
+  tags:
+  - Contact Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/front-contact-lists-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-contact-notes-api
+  name: Front Contact Notes API
+  description: The Contact Notes API from Front — 1 operation(s) for contact notes.
+  tags:
+  - Contact Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/front-contact-notes-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-contacts-api
+  name: Front Contacts API
+  description: The Contacts API from Front — 6 operation(s) for contacts.
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/front-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-conversations-api
+  name: Front Conversations API
+  description: The Conversations API from Front — 11 operation(s) for conversations.
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/front-conversations-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-custom-fields-api
+  name: Front Custom Fields API
+  description: The Custom Fields API from Front — 7 operation(s) for custom fields.
+  tags:
+  - Custom Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/front-custom-fields-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-drafts-api
+  name: Front Drafts API
+  description: The Drafts API from Front — 4 operation(s) for drafts.
+  tags:
+  - Drafts
+  properties:
+  - type: OpenAPI
+    url: openapi/front-drafts-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-events-api
+  name: Front Events API
+  description: The Events API from Front — 2 operation(s) for events.
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/front-events-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-inboxes-api
+  name: Front Inboxes API
+  description: The Inboxes API from Front — 7 operation(s) for inboxes.
+  tags:
+  - Inboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/front-inboxes-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-knowledge-base-articles-api
+  name: Front Knowledge Base Articles API
+  description: The Knowledge Base Articles API from Front — 6 operation(s) for knowledge base articles.
+  tags:
+  - Knowledge Base Articles
+  properties:
+  - type: OpenAPI
+    url: openapi/front-knowledge-base-articles-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-knowledge-base-categories-api
+  name: Front Knowledge Base Categories API
+  description: >-
+    The Knowledge Base Categories API from Front — 4 operation(s) for knowledge base categories.
+  tags:
+  - Knowledge Base Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/front-knowledge-base-categories-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-knowledge-bases-api
+  name: Front Knowledge Bases API
+  description: The Knowledge Bases API from Front — 8 operation(s) for knowledge bases.
+  tags:
+  - Knowledge Bases
+  properties:
+  - type: OpenAPI
+    url: openapi/front-knowledge-bases-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-links-api
+  name: Front Links API
+  description: The Links API from Front — 3 operation(s) for links.
+  tags:
+  - Links
+  properties:
+  - type: OpenAPI
+    url: openapi/front-links-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-message-template-folders-api
+  name: Front Message Template Folders API
+  description: >-
+    The Message Template Folders API from Front — 5 operation(s) for message template folders.
+  tags:
+  - Message Template Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/front-message-template-folders-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-message-templates-api
+  name: Front Message Templates API
+  description: The Message Templates API from Front — 5 operation(s) for message templates.
+  tags:
+  - Message Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/front-message-templates-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-messages-api
+  name: Front Messages API
+  description: The Messages API from Front — 9 operation(s) for messages.
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/front-messages-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-rules-api
+  name: Front Rules API
+  description: The Rules API from Front — 5 operation(s) for rules.
+  tags:
+  - Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/front-rules-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-shifts-api
+  name: Front Shifts API
+  description: The Shifts API from Front — 5 operation(s) for shifts.
+  tags:
+  - Shifts
+  properties:
+  - type: OpenAPI
+    url: openapi/front-shifts-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-signatures-api
+  name: Front Signatures API
+  description: The Signatures API from Front — 3 operation(s) for signatures.
+  tags:
+  - Signatures
+  properties:
+  - type: OpenAPI
+    url: openapi/front-signatures-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-statuses-api
+  name: Front Statuses API
+  description: The Statuses API from Front — 2 operation(s) for statuses.
+  tags:
+  - Statuses
+  properties:
+  - type: OpenAPI
+    url: openapi/front-statuses-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-tags-api
+  name: Front Tags API
+  description: The Tags API from Front — 7 operation(s) for tags.
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/front-tags-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-teammate-groups-api
+  name: Front Teammate groups API
+  description: The Teammate groups API from Front — 5 operation(s) for teammate groups.
+  tags:
+  - Teammate groups
+  properties:
+  - type: OpenAPI
+    url: openapi/front-teammate-groups-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-teammates-api
+  name: Front Teammates API
+  description: The Teammates API from Front — 4 operation(s) for teammates.
+  tags:
+  - Teammates
+  properties:
+  - type: OpenAPI
+    url: openapi/front-teammates-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-teams-api
+  name: Front Teams API
+  description: The Teams API from Front — 3 operation(s) for teams.
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/front-teams-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-time-off-api
+  name: Front Time Off API
+  description: The Time Off API from Front — 3 operation(s) for time off.
+  tags:
+  - Time Off
+  properties:
+  - type: OpenAPI
+    url: openapi/front-time-off-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-token-identity-api
+  name: Front Token Identity API
+  description: The Token Identity API from Front — 1 operation(s) for token identity.
+  tags:
+  - Token Identity
+  properties:
+  - type: OpenAPI
+    url: openapi/front-token-identity-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
+- aid: front:front-views-api
+  name: Front Views API
+  description: The Views API from Front — 4 operation(s) for views.
+  tags:
+  - Views
+  properties:
+  - type: OpenAPI
+    url: openapi/front-views-api-openapi.yml
+  - type: Documentation
+    url: https://dev.frontapp.com/
+  - type: APIReference
+    url: https://dev.frontapp.com/reference/conversations
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/messages
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/drafts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/channels
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/inboxes
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contacts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/contact-groups
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/accounts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teammates
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/teams
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/comments
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/tags
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/topics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/rules
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/signatures
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/shifts
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/knowledge-base
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/analytics
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/events
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/webhooks
+  - type: AsyncAPI
+    url: openapi/front-webhooks-asyncapi.yaml
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/custom-channels-api
+  - type: Documentation
+    url: https://dev.frontapp.com/reference/links
 common:
   - type: AgenticAccess
     url: agentic-access/front-agentic-access.yml
