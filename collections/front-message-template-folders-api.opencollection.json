@@ -1,0 +1,275 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Message Template Folders API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Message Template Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/message_template_folders",
+            "params": [
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Field used to sort the message template folders. Either `created_at` or `updated_at`."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Order by which results should be sorted"
+              }
+            ]
+          },
+          "docs": "List the message template folders.\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/message_template_folders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new message template folder in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team folder](https://dev.frontapp.com/reference/create-team-folder) endpoint instead.\n\nRequired scope: `message_templates:write`"
+        },
+        {
+          "info": {
+            "name": "Get folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/message_template_folders/:message_template_folder_id",
+            "params": [
+              {
+                "name": "message_template_folder_id",
+                "value": "",
+                "type": "path",
+                "description": "The message template folder ID"
+              }
+            ]
+          },
+          "docs": "Fetch a message template folder.\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Update folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/message_template_folders/:message_template_folder_id",
+            "params": [
+              {
+                "name": "message_template_folder_id",
+                "value": "",
+                "type": "path",
+                "description": "The message template folder ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update message template folder\n\nRequired scope: `message_templates:write`"
+        },
+        {
+          "info": {
+            "name": "Delete folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/message_template_folders/:message_template_folder_id",
+            "params": [
+              {
+                "name": "message_template_folder_id",
+                "value": "",
+                "type": "path",
+                "description": "The message template folder id"
+              }
+            ]
+          },
+          "docs": "Delete a message template folder and child folders/templates\n\nRequired scope: `message_templates:delete`"
+        },
+        {
+          "info": {
+            "name": "Get child folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/message_template_folders/:message_template_folder_id/message_template_folders",
+            "params": [
+              {
+                "name": "message_template_folder_id",
+                "value": "",
+                "type": "path",
+                "description": "The message template folder ID"
+              }
+            ]
+          },
+          "docs": "Fetch the child message templates folders of a message template folder.\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create child folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/message_template_folders/:message_template_folder_id/message_template_folders",
+            "params": [
+              {
+                "name": "message_template_folder_id",
+                "value": "",
+                "type": "path",
+                "description": "The parent message template folder ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new message template folder as a child of the given folder\n\nRequired scope: `message_templates:write`"
+        },
+        {
+          "info": {
+            "name": "List teammate folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/message_template_folders",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Field used to sort the message template folders. Either `created_at` or `updated_at`."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Order by which results should be sorted"
+              }
+            ]
+          },
+          "docs": "List the message template folders belonging to the requested teammate.\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create teammate folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/message_template_folders",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new message template folder belonging to the requested teammate.\n\nRequired scope: `message_templates:write`"
+        },
+        {
+          "info": {
+            "name": "List team folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teams/:team_id/message_template_folders",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Field used to sort the message template folders. Either `created_at` or `updated_at`."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Order by which results should be sorted"
+              }
+            ]
+          },
+          "docs": "List the message template folders belonging to the requested team (workspace).\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create team folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teams/:team_id/message_template_folders",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new message template folder belonging to the requested team (workspace).\n\nRequired scope: `message_templates:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

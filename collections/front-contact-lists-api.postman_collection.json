@@ -1,0 +1,1060 @@
+{
+  "item": [
+    {
+      "id": "705f99bb-42ba-4c76-9594-d81901639fe2",
+      "name": "Contact Lists",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0c98b6c-5123-4d3b-a74c-6de147be3790",
+          "name": "List contact lists",
+          "request": {
+            "name": "List contact lists",
+            "description": {
+              "content": "List contact lists.\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_lists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1041b622-6563-43ee-b6f3-ca8e6acaf976",
+              "name": "Array of contact lists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contact_lists\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78fcd561-a391-4d91-9f2f-b6a898e953c1",
+          "name": "Create contact list",
+          "request": {
+            "name": "Create contact list",
+            "description": {
+              "content": "Create a new contact list in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team contact list](https://dev.frontapp.com/reference/create-team-contact-list) endpoint instead.\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_lists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6f2b5a8-b8ce-4301-852c-9127406b082a",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99011a8d-cc44-47fa-880c-da0fc1ac7d1e",
+          "name": "Delete contact list",
+          "request": {
+            "name": "Delete contact list",
+            "description": {
+              "content": "Delete a contact lists.\n\nRequired scope: `contacts:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_lists",
+                ":contact_list_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "grp_123",
+                  "key": "contact_list_id",
+                  "description": "(Required) The contact list ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25bc5d05-ed0e-423a-a39b-042e27a7cd60",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_lists",
+                    ":contact_list_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "grp_123",
+                      "key": "contact_list_id",
+                      "description": "(Required) The contact list ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d753aba-b7df-4633-ad9d-9be02f849a27",
+          "name": "List contacts in contact list",
+          "request": {
+            "name": "List contacts in contact list",
+            "description": {
+              "content": "List the contacts belonging to the requested contact list.\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_lists",
+                ":contact_list_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "grp_123",
+                  "key": "contact_list_id",
+                  "description": "(Required) The contact list ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb086f59-0150-4296-a5f5-63754a8a14df",
+              "name": "Array of contacts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_lists",
+                    ":contact_list_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "grp_123",
+                      "key": "contact_list_id",
+                      "description": "(Required) The contact list ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64a606c3-4328-471d-9c8a-287e7214605a",
+          "name": "Add contacts to contact list",
+          "request": {
+            "name": "Add contacts to contact list",
+            "description": {
+              "content": "Add contacts to the requested contact list.\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_lists",
+                ":contact_list_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "grp_123",
+                  "key": "contact_list_id",
+                  "description": "(Required) The contact list ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ecc5d23-8052-4293-850e-d59be284c575",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_lists",
+                    ":contact_list_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "grp_123",
+                      "key": "contact_list_id",
+                      "description": "(Required) The contact list ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09edf89b-c18c-41b9-8af8-07dc2f9756f5",
+          "name": "Remove contacts from contact list",
+          "request": {
+            "name": "Remove contacts from contact list",
+            "description": {
+              "content": "Remove contacts from the requested contact list.\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_lists",
+                ":contact_list_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "grp_123",
+                  "key": "contact_list_id",
+                  "description": "(Required) The contact list ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54679241-e7d0-41c5-ba33-8b22ba2f67dc",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_lists",
+                    ":contact_list_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "grp_123",
+                      "key": "contact_list_id",
+                      "description": "(Required) The contact list ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29ea7d27-ce3a-4ad2-8af5-59854e29ca26",
+          "name": "List teammate contact lists",
+          "request": {
+            "name": "List teammate contact lists",
+            "description": {
+              "content": "List the contact lists belonging to the requested teammate.\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "contact_lists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c66ecf3d-c815-4ba9-8124-0d03ac81c587",
+              "name": "Array of contact lists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "contact_lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contact_lists\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80c2d2b4-4798-44de-80b4-adf53ab5808a",
+          "name": "Create teammate contact list",
+          "request": {
+            "name": "Create teammate contact list",
+            "description": {
+              "content": "Create a new contact list for the requested teammate.\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "contact_lists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1546a71b-4067-4f2c-b626-56785b77415e",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "contact_lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab297a92-c04b-4ab8-a012-d98c58cc4371",
+          "name": "List team contact lists",
+          "request": {
+            "name": "List team contact lists",
+            "description": {
+              "content": "List contact lists belonging to the requested team (workspace).\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "contact_lists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0434a254-1cd5-4e9c-8b22-a96918ecdae0",
+              "name": "Array of contact lists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "contact_lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contact_lists\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0966a85-93bf-4ab4-bb9f-f544ede9db1e",
+          "name": "Create team contact list",
+          "request": {
+            "name": "Create team contact list",
+            "description": {
+              "content": "Create a new contact list for the requested team (workspace).\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "contact_lists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11986937-f89f-4fd4-9922-cde1d7887fdb",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "contact_lists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0d5f2ca8-41fe-44a5-b5e5-094ef08d688a",
+    "name": "Channel Accounts Contact Lists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1300 @@
+{
+  "item": [
+    {
+      "id": "3343a684-c5d9-4793-931e-936e31101ec0",
+      "name": "Inboxes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1408bfa2-145b-4ef7-a670-ebfaffd9cb92",
+          "name": "List inboxes",
+          "request": {
+            "name": "List inboxes",
+            "description": {
+              "content": "List the inboxes of the company.\n\nRequired scope: `inboxes:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69112776-6b1e-4e31-895e-3b233c2ad3db",
+              "name": "Array of Inboxes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/inboxes\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85c65e9a-a570-4a9b-a9ed-7202c146a821",
+          "name": "Create inbox",
+          "request": {
+            "name": "Create inbox",
+            "description": {
+              "content": "Create an inbox in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team inbox](https://dev.frontapp.com/reference/create-team-inbox) endpoint instead.\n\nRequired scope: `inboxes:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_public\": \"<boolean>\",\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed3076b3-44d8-44e6-8706-57c3095805e3",
+              "name": "An inbox",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_public\": \"<boolean>\",\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n    \"related\": {\n      \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n      \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n      \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n    }\n  },\n  \"id\": \"inb_1ix6\",\n  \"name\": \"The Dundies\",\n  \"is_private\": false,\n  \"is_public\": true,\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c81b1a2-8119-48cb-a5e3-af7c2d990232",
+          "name": "Get inbox",
+          "request": {
+            "name": "Get inbox",
+            "description": {
+              "content": "Fetch an inbox.\n\nRequired scope: `inboxes:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes",
+                ":inbox_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "inb_123",
+                  "key": "inbox_id",
+                  "description": "(Required) The Inbox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9ccb639-98a3-4dbd-af73-ef8060e89f7a",
+              "name": "An inbox",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes",
+                    ":inbox_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "inb_123",
+                      "key": "inbox_id",
+                      "description": "(Required) The Inbox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n    \"related\": {\n      \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n      \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n      \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n    }\n  },\n  \"id\": \"inb_1ix6\",\n  \"name\": \"The Dundies\",\n  \"is_private\": false,\n  \"is_public\": true,\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "feefcda9-30d8-436c-bf9f-e6739cac3147",
+          "name": "List inbox channels",
+          "request": {
+            "name": "List inbox channels",
+            "description": {
+              "content": "List the channels in an inbox.\n\nRequired scope: `channels:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes",
+                ":inbox_id",
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "inb_123",
+                  "key": "inbox_id",
+                  "description": "(Required) The Inbox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd3dadf4-8e55-4aa5-a3c0-b802bba6f025",
+              "name": "Array of Channels",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes",
+                    ":inbox_id",
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "inb_123",
+                      "key": "inbox_id",
+                      "description": "(Required) The Inbox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/channels\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/channels/cha_1gv4\",\n        \"related\": {\n          \"inbox\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/jen_k30\"\n        }\n      },\n      \"id\": \"cha_1gv4\",\n      \"type\": \"gmail\",\n      \"settings\": {\n        \"undo_send_time\": 15,\n        \"all_teammates_can_reply\": false\n      },\n      \"is_private\": false,\n      \"is_valid\": true,\n      \"name\": \"Paper Sales Inbox\",\n      \"address\": \"sales@dundermifflin.com\",\n      \"send_as\": \"sales@dundermifflin.com\"\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/channels/cha_1gv4\",\n        \"related\": {\n          \"inbox\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/jen_k30\"\n        }\n      },\n      \"id\": \"cha_1gv4\",\n      \"type\": \"gmail\",\n      \"settings\": {\n        \"undo_send_time\": 15,\n        \"all_teammates_can_reply\": false\n      },\n      \"is_private\": false,\n      \"is_valid\": true,\n      \"name\": \"Paper Sales Inbox\",\n      \"address\": \"sales@dundermifflin.com\",\n      \"send_as\": \"sales@dundermifflin.com\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d38fde5d-cc59-496e-872b-faaac88ca891",
+          "name": "List inbox conversations",
+          "request": {
+            "name": "List inbox conversations",
+            "description": {
+              "content": "List the conversations in an inbox. For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).\n\n\nRequired scope: `conversations:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes",
+                ":inbox_id",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "inb_123",
+                  "key": "inbox_id",
+                  "description": "(Required) The Inbox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9448bb7-9853-4481-9c04-9d6f1556da59",
+              "name": "Array of conversations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes",
+                    ":inbox_id",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "inb_123",
+                      "key": "inbox_id",
+                      "description": "(Required) The Inbox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/conversations?page_token=ce787da6f075740cf187d926f5e9f612bc7875763a8dd37d5\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"integration\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": \"string\"\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"rule\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": 8692\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "080f137f-5122-4282-b86e-ff6a57873d31",
+          "name": "List inbox access",
+          "request": {
+            "name": "List inbox access",
+            "description": {
+              "content": "List the teammates with access to an inbox.\n\nRequired scope: `teammates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes",
+                ":inbox_id",
+                "teammates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "inb_123",
+                  "key": "inbox_id",
+                  "description": "(Required) The Inbox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9b2c7c1-e123-48c0-9115-c1509e97057e",
+              "name": "Array of teammates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes",
+                    ":inbox_id",
+                    "teammates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "inb_123",
+                      "key": "inbox_id",
+                      "description": "(Required) The Inbox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/teammates\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"CSAT\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"rule\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6da3e4e-5dcd-452d-80b9-5d084b15ea27",
+          "name": "Add inbox access",
+          "request": {
+            "name": "Add inbox access",
+            "description": {
+              "content": "Give access to one or more teammates to an inbox.\n\nRequired scope: `inboxes:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes",
+                ":inbox_id",
+                "teammates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "inb_123",
+                  "key": "inbox_id",
+                  "description": "(Required) The Inbox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5889410d-8e9d-4b34-aa7f-92032b872e9a",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes",
+                    ":inbox_id",
+                    "teammates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "inb_123",
+                      "key": "inbox_id",
+                      "description": "(Required) The Inbox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4ff92ff-725b-4692-9ec7-0f65cf57d654",
+          "name": "Removes inbox access",
+          "request": {
+            "name": "Removes inbox access",
+            "description": {
+              "content": "Remove access of one or more teammates from an inbox.\n\nRequired scope: `inboxes:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes",
+                ":inbox_id",
+                "teammates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "inb_123",
+                  "key": "inbox_id",
+                  "description": "(Required) The Inbox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f23c945a-fba5-4ad7-a142-c386f650e19c",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes",
+                    ":inbox_id",
+                    "teammates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "inb_123",
+                      "key": "inbox_id",
+                      "description": "(Required) The Inbox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "322b1a37-0b6d-439d-a61a-689e13e361fe",
+          "name": "List teammate private inboxes",
+          "request": {
+            "name": "List teammate private inboxes",
+            "description": {
+              "content": "List the private inboxes of a teammate.\n\nRequired scope: `inboxes:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "private_inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "078445e1-d86d-48a0-bf8a-4addaca3bb33",
+              "name": "Array of Inboxes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "private_inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/inboxes\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "251fdc3b-c15a-4e51-bd54-0ab01612cee3",
+          "name": "Create teammate private inbox",
+          "request": {
+            "name": "Create teammate private inbox",
+            "description": {
+              "content": "Create a private inbox for a teammate.\n\nRequired scope: `inboxes:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "private_inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4e5d507-793b-44ae-8968-9c59d91a565a",
+              "name": "An inbox",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "private_inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n    \"related\": {\n      \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n      \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n      \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n    }\n  },\n  \"id\": \"inb_1ix6\",\n  \"name\": \"The Dundies\",\n  \"is_private\": false,\n  \"is_public\": true,\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e21a145c-de2b-4ced-b3f1-7a700201a238",
+          "name": "List team inboxes",
+          "request": {
+            "name": "List team inboxes",
+            "description": {
+              "content": "List the inboxes belonging to a team (workspace).\n\nRequired scope: `inboxes:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b235288-6537-4f86-aaf6-0dc729254f10",
+              "name": "Array of Inboxes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/inboxes\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc383d72-adf7-43e1-baac-695a2c897201",
+          "name": "Create team inbox",
+          "request": {
+            "name": "Create team inbox",
+            "description": {
+              "content": "Create an inbox for a team (workspace).\n\nRequired scope: `inboxes:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_public\": \"<boolean>\",\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "17eb0afd-0b64-4c9d-ab1f-c416d252ba7b",
+              "name": "An inbox",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_public\": \"<boolean>\",\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n    \"related\": {\n      \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n      \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n      \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n    }\n  },\n  \"id\": \"inb_1ix6\",\n  \"name\": \"The Dundies\",\n  \"is_private\": false,\n  \"is_public\": true,\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2d4c6014-6a56-43a0-9af2-901c1a86708c",
+    "name": "Channel Accounts Inboxes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

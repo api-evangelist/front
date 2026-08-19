@@ -1,0 +1,1060 @@
+{
+  "item": [
+    {
+      "id": "93181c39-df76-40f3-b258-2f62275730fc",
+      "name": "Contact Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c8cf11b-5af5-465a-9c25-9eac07ba3df5",
+          "name": "List groups",
+          "request": {
+            "name": "List groups",
+            "description": {
+              "content": "List the contact groups.\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `GET /contact_lists`.\n\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27ea2685-5d62-4bf4-9a9a-7bdc7199bbcf",
+              "name": "Array of contact lists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contact_lists\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b228edf-e6dd-4219-ace7-124b4e4d3dc8",
+          "name": "Create group",
+          "request": {
+            "name": "Create group",
+            "description": {
+              "content": "Create a new contact group in the default team (workspace).\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `POST /contact_lists`.\n\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d8326d8e-ed15-457f-8bb7-2cff88d47d4d",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "585d5fe7-6b8c-4484-8971-665b99b8a446",
+          "name": "Delete group",
+          "request": {
+            "name": "Delete group",
+            "description": {
+              "content": "Delete a contact group.\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `DELETE /contact_lists/{contact_list_id}`.\n\n\nRequired scope: `contacts:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_groups",
+                ":contact_group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "grp_123",
+                  "key": "contact_group_id",
+                  "description": "(Required) The contact group ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c7c040b-e7d4-4db5-a5d9-2f838af39929",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_groups",
+                    ":contact_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "grp_123",
+                      "key": "contact_group_id",
+                      "description": "(Required) The contact group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd245bec-0dfc-4c5c-b970-673238e7f602",
+          "name": "List contacts in group",
+          "request": {
+            "name": "List contacts in group",
+            "description": {
+              "content": "List the contacts belonging to the requested group.\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `GET /contact_lists/{contact_list_id}/contacts`.\n\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_groups",
+                ":contact_group_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "grp_123",
+                  "key": "contact_group_id",
+                  "description": "(Required) The contact group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6a8cd00-b38a-4f24-948d-11bb02254785",
+              "name": "Array of contacts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_groups",
+                    ":contact_group_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "grp_123",
+                      "key": "contact_group_id",
+                      "description": "(Required) The contact group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c56d5650-4571-4790-8292-860fee43b4e0",
+          "name": "Add contacts to group",
+          "request": {
+            "name": "Add contacts to group",
+            "description": {
+              "content": "Add contacts to the requested group.\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `POST /contact_lists/{contact_list_id}/contacts`.\n\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_groups",
+                ":contact_group_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "grp_123",
+                  "key": "contact_group_id",
+                  "description": "(Required) The contact group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c75e4b90-334c-4429-adda-18a52c57219f",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_groups",
+                    ":contact_group_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "grp_123",
+                      "key": "contact_group_id",
+                      "description": "(Required) The contact group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83bc098b-5409-4269-834e-350bbd3affa8",
+          "name": "Remove contacts from group",
+          "request": {
+            "name": "Remove contacts from group",
+            "description": {
+              "content": "Remove contacts from the requested group.\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `DELETE /contact_lists/{contact_list_id}/contacts`.\n\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contact_groups",
+                ":contact_group_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "grp_123",
+                  "key": "contact_group_id",
+                  "description": "(Required) The contact group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1e648046-d7eb-4b9a-8d32-15fb86d18f5e",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contact_groups",
+                    ":contact_group_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "grp_123",
+                      "key": "contact_group_id",
+                      "description": "(Required) The contact group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9413fc00-47f0-4d91-bb39-b9870fefa20d",
+          "name": "List teammate groups",
+          "request": {
+            "name": "List teammate groups",
+            "description": {
+              "content": "List the contact groups belonging to the requested teammate.\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `GET /teammates/{teammate_id}/contact_lists`.\n\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "contact_groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ac6e7a2-6259-4638-adf8-b7b83066df90",
+              "name": "Array of contact lists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "contact_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contact_lists\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "186168f2-fd83-4118-8841-5ce6f4bb13f1",
+          "name": "Create teammate group",
+          "request": {
+            "name": "Create teammate group",
+            "description": {
+              "content": "Create a new contact group for the requested teammate.\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `POST /teammates/{teammate_id}/contact_lists`.\n\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "contact_groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cecb4578-be0e-4cb4-8244-5cfbfe7ca6dd",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "contact_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9934cd8-4a10-4707-be7a-f1810d1b684c",
+          "name": "List team groups",
+          "request": {
+            "name": "List team groups",
+            "description": {
+              "content": "List contact groups belonging to the requested team (workspace).\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `GET /teams/{team_id}/contact_lists`.\n\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "contact_groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bc56c41-5998-478f-a3c5-1ad287690d55",
+              "name": "Array of contact lists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "contact_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contact_lists\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb94f2fc-3023-4aa5-bfd3-9a191c7af4f6",
+          "name": "Create team group",
+          "request": {
+            "name": "Create team group",
+            "description": {
+              "content": "Create a new contact group for the requested team (workspace).\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the compatible contact list endpoints instead.\n> - `POST /teams/{team_id}/contact_lists`.\n\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "contact_groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1ccbcd3f-881d-4c5d-94d7-fb0e6841d20c",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "contact_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7837e0b7-f72a-498a-877a-d731f1ef954f",
+    "name": "Channel Accounts Contact Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

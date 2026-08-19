@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Teams API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teams"
+          },
+          "docs": "List the teams (workspaces) in the company.\n\nRequired scope: `teams:read`"
+        },
+        {
+          "info": {
+            "name": "Get team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teams/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The Team ID"
+              }
+            ]
+          },
+          "docs": "Fetch a team (workspace).\n\nRequired scope: `teams:read`"
+        },
+        {
+          "info": {
+            "name": "Add teammates to team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teams/:team_id/teammates",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The Team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add one or more teammates to a team (workspace).\n\nRequired scope: `teams:write`"
+        },
+        {
+          "info": {
+            "name": "Remove teammates from team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/teams/:team_id/teammates",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The Team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove one or more teammates from a team (workspace).\n\nRequired scope: `teams:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

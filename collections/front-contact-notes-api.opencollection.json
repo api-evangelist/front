@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Contact Notes API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contact Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/contacts/:contact_id/notes",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ]
+          },
+          "docs": "List the notes added to a contact.\n\nRequired scope: `contacts:read`"
+        },
+        {
+          "info": {
+            "name": "Add note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/contacts/:contact_id/notes",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new note on a contact.\n\nRequired scope: `contacts:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

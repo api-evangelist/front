@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Teammates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teammates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List teammates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates"
+          },
+          "docs": "List the teammates in the company.\n\nRequired scope: `teammates:read`"
+        },
+        {
+          "info": {
+            "name": "Get teammate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ]
+          },
+          "docs": "Fetch a teammate.\n\nRequired scope: `teammates:read`"
+        },
+        {
+          "info": {
+            "name": "Update teammate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a teammate.\n\nRequired scope: `teammates:write`"
+        },
+        {
+          "info": {
+            "name": "List assigned conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/conversations",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "List the conversations assigned to a teammate in reverse chronological order (most recently updated first). For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).\n\n\nRequired scope: `conversations:read`"
+        },
+        {
+          "info": {
+            "name": "List teammate inboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/inboxes",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ]
+          },
+          "docs": "Returns list of inboxes the teammate has access to.\n\nRequired scope: `inboxes:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

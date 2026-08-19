@@ -1,0 +1,476 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Conversations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/conversations",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Field used to sort the conversations. Only supports `date`."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Order by which results should be sorted"
+              }
+            ]
+          },
+          "docs": "List the conversations in the company in reverse chronological order (most recently updated first). The order will respect your company's [bump settings](https://help.front.com/t/y729th/customize-when-conversations-bump-up), which determine when conversations bump to the top. For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).\n\n\nRequired scope: `conversations:read`"
+        },
+        {
+          "info": {
+            "name": "Create discussion conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/conversations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new [conversation](https://dev.frontapp.com/reference/conversations#creating-a-new-conversation) that only supports comments (known as discussions in Front). If you want to create a conversation that supports messages, use the [Create message](https://dev.frontapp.com/reference/post_channels-channel-id-messages) endpoint. If you want to add a comment to an existing conversation, use the [Add comment](https://dev.frontapp.com/reference/post_conversations-conversation-id-comments) endpoin"
+        },
+        {
+          "info": {
+            "name": "Search conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/conversations/search/:query",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "path",
+                "description": "Search query string. See [Search](https://dev.frontapp.com/docs/search-1) topic for usage details."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "Search for conversations. Response will include a count of total matches and an array of conversations in descending order by last activity.\nSee the [search syntax documentation](https://dev.frontapp.com/docs/search-1) for usage examples.\n**Note:** This endpoint is subject to [proportional rate limiting](https://dev.frontapp.com/docs/rate-limiting#additional-proportional-limiting) at 40% of your company's rate limit.\n\n\nRequired scope: `conversations:read`"
+        },
+        {
+          "info": {
+            "name": "Get conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ]
+          },
+          "docs": "Fetch a conversation.\n\n\nRequired scope: `conversations:read`"
+        },
+        {
+          "info": {
+            "name": "Update conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a conversation.\n\nRequired scope: `conversations:write`"
+        },
+        {
+          "info": {
+            "name": "Delete conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ]
+          },
+          "docs": "Permanently delete a conversation. The conversation must have status \"trashed\"\n(in the trash) before it can be permanently deleted. This action cannot be undone.\n\n\nRequired scope: `conversations:delete`"
+        },
+        {
+          "info": {
+            "name": "Update conversation assignee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/assignee",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign or unassign a conversation.\n\nRequired scope: `conversations:write`"
+        },
+        {
+          "info": {
+            "name": "List conversation events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/events",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "List the events that occured for a conversation in reverse chronological order (newest first). The order will respect your company's [bump settings](https://help.front.com/t/y729th/customize-when-conversations-bump-up), which determine when conversations bump to the top.\n\nRequired scope: `events:*:read`"
+        },
+        {
+          "info": {
+            "name": "List conversation followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/followers",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ]
+          },
+          "docs": "List the teammates following a conversation.\n\nRequired scope: `teammates:read`"
+        },
+        {
+          "info": {
+            "name": "Add conversation followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/followers",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              },
+              {
+                "name": "ignore_errors",
+                "value": "",
+                "type": "query",
+                "description": "Whether to ignore invalid teammate IDs and continue adding valid ones."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds teammates to the list of followers of a conversation.\n\nRequired scope: `conversations:write`"
+        },
+        {
+          "info": {
+            "name": "Delete conversation followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/followers",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes teammates from the list of followers of a conversation.\n\nRequired scope: `conversations:write`"
+        },
+        {
+          "info": {
+            "name": "List conversation inboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/inboxes",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ]
+          },
+          "docs": "List the inboxes in which a conversation is listed.\n\nRequired scope: `inboxes:read`"
+        },
+        {
+          "info": {
+            "name": "Add conversation link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/links",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more links to a conversation\nFor more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `conversations:write`"
+        },
+        {
+          "info": {
+            "name": "Remove conversation links",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/links",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes one or more links to a conversation.\nFor more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `conversations:write`"
+        },
+        {
+          "info": {
+            "name": "List conversation messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/messages",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Field used to sort the messages. Only supports `created_at`."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Order by which results should be sorted"
+              }
+            ]
+          },
+          "docs": "List the messages in a conversation in reverse chronological order (newest first).\n\nRequired scope: `messages:read`"
+        },
+        {
+          "info": {
+            "name": "Update conversation reminders",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/reminders",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Snooze or unsnooze a conversation for the provided user.\nFor private conversations, reminders can only be created and edited through the API for teammates that own the conversation.\nFor shared conversations, reminders created and edited through the API are shared for all teammates within the shared inbox(es) that the conversation belongs to.\n\n\nRequired scope: `conversations:write`"
+        },
+        {
+          "info": {
+            "name": "Add conversation tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/tags",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more tags to a conversation\n\nRequired scope: `conversations:write`"
+        },
+        {
+          "info": {
+            "name": "Remove conversation tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/tags",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes one or more tags to a conversation\n\nRequired scope: `conversations:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

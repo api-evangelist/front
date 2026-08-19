@@ -1,0 +1,245 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Knowledge Base Articles API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Knowledge Base Articles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a knowledge base article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_base_articles/:article_id",
+            "params": [
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the article to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches a knowledge base article.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Delete an article",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/knowledge_base_articles/:article_id",
+            "params": [
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the article to delete"
+              }
+            ]
+          },
+          "docs": "Deletes an article and all its content and translations.\n\nRequired scope: `knowledge_bases:delete`"
+        },
+        {
+          "info": {
+            "name": "Get knowledge base article with content in default locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_base_articles/:article_id/content",
+            "params": [
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the article to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches a knowledge base article with content in the default locale.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Update article content in default locale.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/knowledge_base_articles/:article_id/content",
+            "params": [
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the article to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an article's content in the default locale\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "Download attachment from an article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_base_articles/:article_id/download/:attachment_id",
+            "params": [
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the article"
+              },
+              {
+                "name": "attachment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the file to download"
+              }
+            ]
+          },
+          "docs": "Downloads the attachment from an article.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Get knowledge base article with content in specified locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_base_articles/:article_id/locales/:locale/content",
+            "params": [
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the article to fetch"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches a knowledge base article with content for a given locale.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Update article content in specified locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/knowledge_base_articles/:article_id/locales/:locale/content",
+            "params": [
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the article to update"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an article's content for a given locale.\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "List articles in a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_base_categories/:category_id/articles",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the category"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "List articles in a category.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "List articles in a knowledge base",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/articles",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "List articles in a knowledge base\n\nRequired scope: `knowledge_bases:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

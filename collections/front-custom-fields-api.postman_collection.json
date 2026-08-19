@@ -1,0 +1,599 @@
+{
+  "item": [
+    {
+      "id": "75a48c85-8053-43aa-9607-8ef06d8a6b6e",
+      "name": "Custom Fields",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c32abd75-50eb-479e-af10-94fcd6e5bd81",
+          "name": "List Account's custom fields",
+          "request": {
+            "name": "List Account's custom fields",
+            "description": {
+              "content": "Lists the custom fields that can be attached to an Account.\n\nRequired scope: `custom_fields:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "custom_fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "205d7e46-64af-4274-9d39-1ea809acedd0",
+              "name": "Array of Custom Fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "custom_fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/custom_fields\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c41bec8c-34f4-4caf-af65-23a8eade5b3d",
+          "name": "List Contact's custom fields",
+          "request": {
+            "name": "List Contact's custom fields",
+            "description": {
+              "content": "Lists the custom fields that can be attached to a Contact.\n\nRequired scope: `custom_fields:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                "custom_fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4d48c19-b12e-417d-b290-fe924403e39b",
+              "name": "Array of Custom Fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "custom_fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/custom_fields\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "647df1e5-7681-4dc1-8c5b-49233c6b8d5d",
+          "name": "List Conversation's custom fields",
+          "request": {
+            "name": "List Conversation's custom fields",
+            "description": {
+              "content": "Lists the custom fields that can be attached to a Conversation.\n\nRequired scope: `custom_fields:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                "custom_fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8374845c-41db-4463-b754-db30534286a3",
+              "name": "Array of Custom Fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    "custom_fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/custom_fields\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb2418f8-8d5f-41b3-8daf-d799f5238ddb",
+          "name": "List Contact's custom fields",
+          "request": {
+            "name": "List Contact's custom fields",
+            "description": {
+              "content": "Lists the custom fields that can be attached to a Contact.\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the fully compatible `GET /contacts/custom_fields` endpoint instead.\n\n\nRequired scope: `custom_fields:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom_fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ba4e650-82ea-4c02-bc3e-8f23827c2f1f",
+              "name": "Array of Custom Fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/custom_fields\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86765819-4c2e-4229-95c9-7925994e3858",
+          "name": "List Inbox's custom fields",
+          "request": {
+            "name": "List Inbox's custom fields",
+            "description": {
+              "content": "Lists the custom fields that can be attached to an Inbox.\n\nRequired scope: `custom_fields:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes",
+                "custom_fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5ec3aa2-0024-43a7-8bd4-be8b4383c2c3",
+              "name": "Array of Custom Fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes",
+                    "custom_fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/custom_fields\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d456e97-a348-432e-816e-c33d5973f2b5",
+          "name": "List Link's custom fields",
+          "request": {
+            "name": "List Link's custom fields",
+            "description": {
+              "content": "Lists the custom fields that can be attached to a Link.\nFor more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `custom_fields:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                "custom_fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7afcae4-6521-4c4f-b916-34d0f59890a8",
+              "name": "Array of Custom Fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    "custom_fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/custom_fields\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45645141-6230-4174-b525-ff303e0a64d5",
+          "name": "List Teammate's custom fields",
+          "request": {
+            "name": "List Teammate's custom fields",
+            "description": {
+              "content": "Lists the custom fields that can be attached to a Teammate.\n\nRequired scope: `custom_fields:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                "custom_fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11b9fdb0-202d-4927-b4df-bda65eaac8d7",
+              "name": "Array of Custom Fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    "custom_fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/custom_fields\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/custom_fields/fld_co0e\"\n      },\n      \"id\": \"fld_co0e\",\n      \"name\": \"Customer plan\",\n      \"type\": \"enum\",\n      \"description\": \"The billing plan of the customer\",\n      \"values\": [\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        },\n        {\n          \"value\": \"Enterprise\",\n          \"label\": \"Customer plan\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dbcef963-0a2e-40a9-a434-f4e996d8cd96",
+    "name": "Channel Accounts Custom Fields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

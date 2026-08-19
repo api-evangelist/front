@@ -1,0 +1,271 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Message Templates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Message Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get child templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/message_template_folders/:message_template_folder_id/message_templates",
+            "params": [
+              {
+                "name": "message_template_folder_id",
+                "value": "",
+                "type": "path",
+                "description": "The message template folder ID"
+              }
+            ]
+          },
+          "docs": "Fetch the child message templates of a message template folder.\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create child template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/message_template_folders/:message_template_folder_id/message_templates",
+            "params": [
+              {
+                "name": "message_template_folder_id",
+                "value": "",
+                "type": "path",
+                "description": "The parent message template folder ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new message template as a child of the given folder\n\nRequired scope: `message_templates:write`"
+        },
+        {
+          "info": {
+            "name": "List message templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/message_templates",
+            "params": [
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Order by which results should be sorted"
+              }
+            ]
+          },
+          "docs": "List the message templates.\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/message_templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new message template in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team message template](https://dev.frontapp.com/reference/create-team-message-template) endpoint instead.\n\nRequired scope: `message_templates:write`"
+        },
+        {
+          "info": {
+            "name": "Get message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/message_templates/:message_template_id",
+            "params": [
+              {
+                "name": "message_template_id",
+                "value": "",
+                "type": "path",
+                "description": "The message template ID"
+              }
+            ]
+          },
+          "docs": "Fetch a message template.\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Update message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/message_templates/:message_template_id",
+            "params": [
+              {
+                "name": "message_template_id",
+                "value": "",
+                "type": "path",
+                "description": "The message template ID"
+              }
+            ]
+          },
+          "docs": "Update a message template.\n\nRequired scope: `message_templates:write`"
+        },
+        {
+          "info": {
+            "name": "Delete message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/message_templates/:message_template_id",
+            "params": [
+              {
+                "name": "message_template_id",
+                "value": "",
+                "type": "path",
+                "description": "The message template ID"
+              }
+            ]
+          },
+          "docs": "Delete a message template\n\nRequired scope: `message_templates:delete`"
+        },
+        {
+          "info": {
+            "name": "List teammate message templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/message_templates",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Order by which results should be sorted"
+              }
+            ]
+          },
+          "docs": "List the message templates belonging to the requested teammate.\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create teammate message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/message_templates",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new message template for the given teammate\n\nRequired scope: `message_templates:write`"
+        },
+        {
+          "info": {
+            "name": "List team message templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teams/:team_id/message_templates",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Order by which results should be sorted"
+              }
+            ]
+          },
+          "docs": "List the message templates belonging to the requested team (workspace).\n\nRequired scope: `message_templates:read`"
+        },
+        {
+          "info": {
+            "name": "Create team message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teams/:team_id/message_templates",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new message template for the given team (workspace).\n\nRequired scope: `message_templates:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

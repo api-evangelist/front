@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Application Message Templates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Message Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sync application message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api2.frontapp.com/channels/:channel_id/application_message_templates",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import an application message template from an external service (such as WhatsApp or Facebook). The message template becomes available for use by the channel specified if configured as described in [this topic](https://dev.frontapp.com/update/docs/application-channel-message-templates)."
+        },
+        {
+          "info": {
+            "name": "Update application message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/channels/:channel_id/application_message_templates/:external_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "The external ID of the application message template."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an application message template that already exists in Front."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

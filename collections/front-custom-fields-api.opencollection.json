@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Custom Fields API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Account's custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/accounts/custom_fields"
+          },
+          "docs": "Lists the custom fields that can be attached to an Account.\n\nRequired scope: `custom_fields:read`"
+        },
+        {
+          "info": {
+            "name": "List Contact's custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/contacts/custom_fields"
+          },
+          "docs": "Lists the custom fields that can be attached to a Contact.\n\nRequired scope: `custom_fields:read`"
+        },
+        {
+          "info": {
+            "name": "List Conversation's custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/conversations/custom_fields"
+          },
+          "docs": "Lists the custom fields that can be attached to a Conversation.\n\nRequired scope: `custom_fields:read`"
+        },
+        {
+          "info": {
+            "name": "List Contact's custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/custom_fields"
+          },
+          "docs": "Lists the custom fields that can be attached to a Contact.\n\n> ⚠️ Deprecated endpoint\n>\n> This endpoint has been deprecated. Please use the fully compatible `GET /contacts/custom_fields` endpoint instead.\n\n\nRequired scope: `custom_fields:read`"
+        },
+        {
+          "info": {
+            "name": "List Inbox's custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/inboxes/custom_fields"
+          },
+          "docs": "Lists the custom fields that can be attached to an Inbox.\n\nRequired scope: `custom_fields:read`"
+        },
+        {
+          "info": {
+            "name": "List Link's custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/links/custom_fields"
+          },
+          "docs": "Lists the custom fields that can be attached to a Link.\nFor more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `custom_fields:read`"
+        },
+        {
+          "info": {
+            "name": "List Teammate's custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/custom_fields"
+          },
+          "docs": "Lists the custom fields that can be attached to a Teammate.\n\nRequired scope: `custom_fields:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

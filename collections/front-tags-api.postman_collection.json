@@ -1,0 +1,1659 @@
+{
+  "item": [
+    {
+      "id": "977502d6-7abc-4490-839a-3f6843bc100b",
+      "name": "Tags",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a9100e8-488a-47b8-a314-9d0dd2607a5e",
+          "name": "List company tags",
+          "request": {
+            "name": "List company tags",
+            "description": {
+              "content": "List the company tags.\n\nRequired scope: `tags:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "company",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the tags. Only supports `id`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7631856c-c3d2-4325-862d-bd9342fbb299",
+              "name": "Array of Tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "company",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "463d3431-916c-4090-ac86-4b1b144985a7",
+          "name": "Create company tag",
+          "request": {
+            "name": "Create company tag",
+            "description": {
+              "content": "Create a company tag.\n\nRequired scope: `tags:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "company",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a0b169a8-b219-45bb-8f4a-0f7279ca45dc",
+              "name": "A tag",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "company",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n    \"related\": {\n      \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n      \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n      \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n    }\n  },\n  \"id\": \"tag_2oxhvy\",\n  \"name\": \"Warehouse task\",\n  \"description\": \"Sitting on your biscuit, never having to risk it\",\n  \"highlight\": null,\n  \"is_private\": false,\n  \"is_visible_in_conversation_lists\": true,\n  \"created_at\": 1682538996.583,\n  \"updated_at\": 1699575875.186\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b238622-7890-42a8-8ad6-c3a84f11bf30",
+          "name": "List tags",
+          "request": {
+            "name": "List tags",
+            "description": {
+              "content": "List all the tags of the company that the API token has access to, whether they be company tags, team tags, or teammate tags.\n\nRequired scope: `tags:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the tags. Only supports `id`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d19b281-60c5-4800-940a-9ae0ee610e07",
+              "name": "Array of Tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a32c3f57-7857-4010-9bf3-61107dd22bcb",
+          "name": "Create tag",
+          "request": {
+            "name": "Create tag",
+            "description": {
+              "content": "Create a tag in the oldest team (workspace). This is a legacy endpoint. Use the Create company tag, Create team tag, or Create teammate tag endpoints instead.\n\nRequired scope: `tags:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbfd902a-e3d1-4150-8b75-cb0ebfe77d8e",
+              "name": "A tag",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n    \"related\": {\n      \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n      \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n      \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n    }\n  },\n  \"id\": \"tag_2oxhvy\",\n  \"name\": \"Warehouse task\",\n  \"description\": \"Sitting on your biscuit, never having to risk it\",\n  \"highlight\": null,\n  \"is_private\": false,\n  \"is_visible_in_conversation_lists\": true,\n  \"created_at\": 1682538996.583,\n  \"updated_at\": 1699575875.186\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a52278fd-c974-4551-8841-0028a611563b",
+          "name": "Get tag",
+          "request": {
+            "name": "Get tag",
+            "description": {
+              "content": "Fetch a tag.\n\nRequired scope: `tags:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags",
+                ":tag_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tag_123",
+                  "key": "tag_id",
+                  "description": "(Required) The tag ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea7a27a5-38d1-4172-9b18-89b9cd082087",
+              "name": "A tag",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags",
+                    ":tag_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tag_123",
+                      "key": "tag_id",
+                      "description": "(Required) The tag ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n    \"related\": {\n      \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n      \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n      \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n    }\n  },\n  \"id\": \"tag_2oxhvy\",\n  \"name\": \"Warehouse task\",\n  \"description\": \"Sitting on your biscuit, never having to risk it\",\n  \"highlight\": null,\n  \"is_private\": false,\n  \"is_visible_in_conversation_lists\": true,\n  \"created_at\": 1682538996.583,\n  \"updated_at\": 1699575875.186\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec619071-9de3-4978-b649-a4b5de0d5716",
+          "name": "Update a tag",
+          "request": {
+            "name": "Update a tag",
+            "description": {
+              "content": "Update a tag.\n\nRequired scope: `tags:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags",
+                ":tag_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tag_123",
+                  "key": "tag_id",
+                  "description": "(Required) The tag ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"parent_tag_id\": \"<string>\",\n  \"is_visible_in_conversation_lists\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0762277a-3abe-40f2-b471-2d6bef087e0d",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags",
+                    ":tag_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tag_123",
+                      "key": "tag_id",
+                      "description": "(Required) The tag ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"parent_tag_id\": \"<string>\",\n  \"is_visible_in_conversation_lists\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c179b24-2c0c-4b13-bd54-188421cc6d99",
+          "name": "Delete tag",
+          "request": {
+            "name": "Delete tag",
+            "description": {
+              "content": "Delete a tag.\n\nRequired scope: `tags:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags",
+                ":tag_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tag_123",
+                  "key": "tag_id",
+                  "description": "(Required) The ID of the tag to delete"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35ae89ea-1be1-418e-8ad0-f9eda59bd2b4",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags",
+                    ":tag_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tag_123",
+                      "key": "tag_id",
+                      "description": "(Required) The ID of the tag to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8963ad95-cab6-420b-9d85-4d9ccec0e444",
+          "name": "List tag children",
+          "request": {
+            "name": "List tag children",
+            "description": {
+              "content": "List the children of a specific tag.\n\nRequired scope: `tags:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags",
+                ":tag_id",
+                "children"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tag_123",
+                  "key": "tag_id",
+                  "description": "(Required) The tag ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95b5a0f3-8342-4590-8aac-41878af52018",
+              "name": "Array of Tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags",
+                    ":tag_id",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tag_123",
+                      "key": "tag_id",
+                      "description": "(Required) The tag ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7642c00-c19d-4da8-bfc3-355acbb27b42",
+          "name": "Create child tag",
+          "request": {
+            "name": "Create child tag",
+            "description": {
+              "content": "Creates a child tag.\n\nRequired scope: `tags:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags",
+                ":tag_id",
+                "children"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tag_123",
+                  "key": "tag_id",
+                  "description": "(Required) The tag ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6df632e-072a-43ba-9989-e3d3f27e40f5",
+              "name": "A tag",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags",
+                    ":tag_id",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tag_123",
+                      "key": "tag_id",
+                      "description": "(Required) The tag ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n    \"related\": {\n      \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n      \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n      \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n    }\n  },\n  \"id\": \"tag_2oxhvy\",\n  \"name\": \"Warehouse task\",\n  \"description\": \"Sitting on your biscuit, never having to risk it\",\n  \"highlight\": null,\n  \"is_private\": false,\n  \"is_visible_in_conversation_lists\": true,\n  \"created_at\": 1682538996.583,\n  \"updated_at\": 1699575875.186\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7023edb1-0adb-4ca9-bdd2-5facb838b52b",
+          "name": "List tagged conversations",
+          "request": {
+            "name": "List tagged conversations",
+            "description": {
+              "content": "List the conversations tagged with a tag. For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).\n\n\nRequired scope: `conversations:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags",
+                ":tag_id",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tag_123",
+                  "key": "tag_id",
+                  "description": "(Required) The ID of the tag"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db7e5115-23ae-4223-b172-96726e541f05",
+              "name": "Array of conversations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags",
+                    ":tag_id",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tag_123",
+                      "key": "tag_id",
+                      "description": "(Required) The ID of the tag"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/conversations?page_token=ce787da6f075740cf187d926f5e9f612bc7875763a8dd37d5\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"macro\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": 553.0545247594954\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"rule\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": 5964.30405825461\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29006ec1-d1bc-4618-a8d0-34b94a2a6341",
+          "name": "List teammate tags",
+          "request": {
+            "name": "List teammate tags",
+            "description": {
+              "content": "List the tags for a teammate.\n\nRequired scope: `tags:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the tags. Only supports `id`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41869c24-478a-45fb-a10a-cae1f8ef9af2",
+              "name": "Array of Tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f00166f-774f-4e10-926e-fdb622346539",
+          "name": "Create teammate tag",
+          "request": {
+            "name": "Create teammate tag",
+            "description": {
+              "content": "Create a tag for a teammate.\n\nRequired scope: `tags:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d062586-be0c-44bf-a36d-a0a6daf6b3e9",
+              "name": "A tag",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n    \"related\": {\n      \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n      \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n      \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n    }\n  },\n  \"id\": \"tag_2oxhvy\",\n  \"name\": \"Warehouse task\",\n  \"description\": \"Sitting on your biscuit, never having to risk it\",\n  \"highlight\": null,\n  \"is_private\": false,\n  \"is_visible_in_conversation_lists\": true,\n  \"created_at\": 1682538996.583,\n  \"updated_at\": 1699575875.186\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17b2fe1f-6a3c-4c81-9324-495c5c61caa1",
+          "name": "List team tags",
+          "request": {
+            "name": "List team tags",
+            "description": {
+              "content": "List the tags for a team (workspace).\n\nRequired scope: `tags:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the tags. Only supports `id`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4a3d135-2943-4809-9e3d-8a6f33ea7eed",
+              "name": "Array of Tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e478aea-e8a8-463b-a6d2-01bc8ed18820",
+          "name": "Create team tag",
+          "request": {
+            "name": "Create team tag",
+            "description": {
+              "content": "Create a tag for a team (workspace).\n\nRequired scope: `tags:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e688a726-992d-4737-acd3-3c039e1376fc",
+              "name": "A tag",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"highlight\": \"<string>\",\n  \"is_visible_in_conversation_lists\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n    \"related\": {\n      \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n      \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n      \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n    }\n  },\n  \"id\": \"tag_2oxhvy\",\n  \"name\": \"Warehouse task\",\n  \"description\": \"Sitting on your biscuit, never having to risk it\",\n  \"highlight\": null,\n  \"is_private\": false,\n  \"is_visible_in_conversation_lists\": true,\n  \"created_at\": 1682538996.583,\n  \"updated_at\": 1699575875.186\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7be74ffc-dbcd-442b-8c14-3a242fe469d6",
+    "name": "Channel Accounts Tags API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

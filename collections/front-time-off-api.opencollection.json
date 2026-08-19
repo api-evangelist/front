@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Time Off API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Time Off",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List teammate time offs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/time_offs",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `active_from` and `active_until`, whose value should be a timestamp in seconds with up to 3 decimal places."
+              }
+            ]
+          },
+          "docs": "List the time offs of a teammate.\n\nRequired scope: `time_off:read`"
+        },
+        {
+          "info": {
+            "name": "Create time off",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/time_offs",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a time off for a teammate.\n\nRequired scope: `time_off:write`"
+        },
+        {
+          "info": {
+            "name": "List team time offs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teams/:team_id/time_offs",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `active_from` and `active_until`, whose value should be a timestamp in seconds with up to 3 decimal places."
+              }
+            ]
+          },
+          "docs": "List the time offs of all teammates in a team.\n\nRequired scope: `time_off:read`"
+        },
+        {
+          "info": {
+            "name": "Get time off",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/time_offs/:time_off_id",
+            "params": [
+              {
+                "name": "time_off_id",
+                "value": "",
+                "type": "path",
+                "description": "The time off ID"
+              }
+            ]
+          },
+          "docs": "Fetch a time off.\n\nRequired scope: `time_off:read`"
+        },
+        {
+          "info": {
+            "name": "Update time off",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/time_offs/:time_off_id",
+            "params": [
+              {
+                "name": "time_off_id",
+                "value": "",
+                "type": "path",
+                "description": "The time off ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a time off.\n\nRequired scope: `time_off:write`"
+        },
+        {
+          "info": {
+            "name": "Delete time off",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/time_offs/:time_off_id",
+            "params": [
+              {
+                "name": "time_off_id",
+                "value": "",
+                "type": "path",
+                "description": "The time off ID"
+              }
+            ]
+          },
+          "docs": "Delete a time off.\n\nRequired scope: `time_off:delete`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

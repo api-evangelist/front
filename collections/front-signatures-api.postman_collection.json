@@ -1,0 +1,774 @@
+{
+  "item": [
+    {
+      "id": "cf14adc8-7719-46e6-ae3d-1d030531bd71",
+      "name": "Signatures",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a42c759f-dbbf-499f-908b-32db7b628918",
+          "name": "Get signatures",
+          "request": {
+            "name": "Get signatures",
+            "description": {
+              "content": "Get the given signature.\n\nRequired scope: `signatures:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signatures",
+                ":signature_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "sig_123",
+                  "key": "signature_id",
+                  "description": "(Required) The signature ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d85d40e-449f-4240-85e4-d06eaf44a1e8",
+              "name": "A signature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signatures",
+                    ":signature_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "sig_123",
+                      "key": "signature_id",
+                      "description": "(Required) The signature ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n    }\n  },\n  \"id\": \"sig_6rrv2\",\n  \"name\": \"Finer Things Club signature\",\n  \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n  \"sender_info\": \"string\",\n  \"is_private\": true,\n  \"is_visible_for_all_teammate_channels\": true,\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56f1a6a2-81ef-4d2c-95d8-715e7fd1e86a",
+          "name": "Update signature",
+          "request": {
+            "name": "Update signature",
+            "description": {
+              "content": "Update signature\n\nRequired scope: `signatures:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signatures",
+                ":signature_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "sig_123",
+                  "key": "signature_id",
+                  "description": "(Required) The signature ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"sender_info\": \"<string>\",\n  \"body\": \"<string>\",\n  \"is_visible_for_all_teammate_channels\": \"<boolean>\",\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bcb77aa0-6404-4421-88a3-10c121adb197",
+              "name": "A signature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signatures",
+                    ":signature_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "sig_123",
+                      "key": "signature_id",
+                      "description": "(Required) The signature ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sender_info\": \"<string>\",\n  \"body\": \"<string>\",\n  \"is_visible_for_all_teammate_channels\": \"<boolean>\",\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n    }\n  },\n  \"id\": \"sig_6rrv2\",\n  \"name\": \"Finer Things Club signature\",\n  \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n  \"sender_info\": \"string\",\n  \"is_private\": true,\n  \"is_visible_for_all_teammate_channels\": true,\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac6f4fe6-73aa-44f6-ac76-14b3d538b023",
+          "name": "Delete signature",
+          "request": {
+            "name": "Delete signature",
+            "description": {
+              "content": "Delete signature\n\nRequired scope: `signatures:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signatures",
+                ":signature_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "sig_123",
+                  "key": "signature_id",
+                  "description": "(Required) The signature ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10218e9a-6759-4d5e-864a-d3f17bf1db5e",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signatures",
+                    ":signature_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "sig_123",
+                      "key": "signature_id",
+                      "description": "(Required) The signature ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b214c94-4d11-4980-acad-3feebbae6a9a",
+          "name": "List teammate signatures",
+          "request": {
+            "name": "List teammate signatures",
+            "description": {
+              "content": "List the signatures belonging to the given teammate.\n\nRequired scope: `signatures:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "signatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80549d24-c3d2-4c46-b534-35bca7778b2d",
+              "name": "Array of signatures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/signatures?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/signatures\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"sig_6rrv2\",\n      \"name\": \"Finer Things Club signature\",\n      \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n      \"sender_info\": \"string\",\n      \"is_private\": true,\n      \"is_visible_for_all_teammate_channels\": true,\n      \"is_default\": false,\n      \"channel_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"sig_6rrv2\",\n      \"name\": \"Finer Things Club signature\",\n      \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n      \"sender_info\": \"string\",\n      \"is_private\": true,\n      \"is_visible_for_all_teammate_channels\": true,\n      \"is_default\": false,\n      \"channel_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a141936-4420-44e3-adb4-22689999eb6c",
+          "name": "Create teammate signature",
+          "request": {
+            "name": "Create teammate signature",
+            "description": {
+              "content": "Create a new signature for the given teammate\n\nRequired scope: `signatures:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "signatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"sender_info\": \"<string>\",\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57c9f2c5-dbeb-459c-a618-bab10c8a6d31",
+              "name": "A signature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"sender_info\": \"<string>\",\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n    }\n  },\n  \"id\": \"sig_6rrv2\",\n  \"name\": \"Finer Things Club signature\",\n  \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n  \"sender_info\": \"string\",\n  \"is_private\": true,\n  \"is_visible_for_all_teammate_channels\": true,\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ed39be0-3246-4fdb-a29c-62f114afb692",
+          "name": "List team signatures",
+          "request": {
+            "name": "List team signatures",
+            "description": {
+              "content": "List the signatures belonging to the given team (workspace).\n\nRequired scope: `signatures:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "signatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "484f7d0e-01f5-4b2c-bb3a-0591c8b9ffe1",
+              "name": "Array of signatures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/signatures?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/signatures\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"sig_6rrv2\",\n      \"name\": \"Finer Things Club signature\",\n      \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n      \"sender_info\": \"string\",\n      \"is_private\": true,\n      \"is_visible_for_all_teammate_channels\": true,\n      \"is_default\": false,\n      \"channel_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"sig_6rrv2\",\n      \"name\": \"Finer Things Club signature\",\n      \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n      \"sender_info\": \"string\",\n      \"is_private\": true,\n      \"is_visible_for_all_teammate_channels\": true,\n      \"is_default\": false,\n      \"channel_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1c655f5-0bb7-4e43-98fb-d394264ab5fb",
+          "name": "Create team signature",
+          "request": {
+            "name": "Create team signature",
+            "description": {
+              "content": "Create a new signature for the given team (workspace).\n\nRequired scope: `signatures:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "signatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"sender_info\": \"<string>\",\n  \"is_visible_for_all_teammate_channels\": \"<boolean>\",\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc73a2dd-b778-4267-8d20-f61116f67b6e",
+              "name": "A signature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "signatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"sender_info\": \"<string>\",\n  \"is_visible_for_all_teammate_channels\": \"<boolean>\",\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n    }\n  },\n  \"id\": \"sig_6rrv2\",\n  \"name\": \"Finer Things Club signature\",\n  \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n  \"sender_info\": \"string\",\n  \"is_private\": true,\n  \"is_visible_for_all_teammate_channels\": true,\n  \"is_default\": false,\n  \"channel_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1f31699-93e5-420a-a990-9c82bba97f67",
+    "name": "Channel Accounts Signatures API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

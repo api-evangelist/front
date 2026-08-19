@@ -1,0 +1,1264 @@
+{
+  "item": [
+    {
+      "id": "e2444d69-d8ed-4c49-a394-170cecaab772",
+      "name": "Messages",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fef8b0f4-55ef-4d93-bb80-d9d67b8cdaef",
+          "name": "Update external message status",
+          "request": {
+            "name": "Update external message status",
+            "description": {
+              "content": "Update the status of an outbound message by external ID. This endpoint is used by external systems (like SMS providers or custom channels)\nto notify Front when a message's delivery status has changed.\n\n**Available status changes:**\n- `failed`: Mark a message as failed. When marked as failed, the conversation is reopened so the team can take action.\n\n**Note:** This endpoint is only available for outbound messages.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "conversations",
+                ":conv_ext_id",
+                "messages",
+                ":message_ext_id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cha_123",
+                  "key": "channel_id",
+                  "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conv_ext_id",
+                  "description": "(Required) The conversation's external ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "message_ext_id",
+                  "description": "(Required) The message's external ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72f4466a-8d36-49e4-802b-8ebdc6382a98",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "conversations",
+                    ":conv_ext_id",
+                    "messages",
+                    ":message_ext_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conv_ext_id",
+                      "description": "(Required) The conversation's external ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "message_ext_id",
+                      "description": "(Required) The message's external ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1aa7b34-8a26-4b7c-a9da-153a191ff572",
+          "name": "Sync inbound message",
+          "request": {
+            "name": "Sync inbound message",
+            "description": {
+              "content": "Import a message that was received by the channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "inbound_messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cha_123",
+                  "key": "channel_id",
+                  "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender\": {\n    \"handle\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"body\": \"<string>\",\n  \"metadata\": {\n    \"external_id\": \"<string>\",\n    \"external_conversation_id\": \"<string>\",\n    \"referenced_message_external_id\": \"<string>\"\n  },\n  \"subject\": \"<string>\",\n  \"delivered_at\": \"<integer>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b06ae5a2-4b13-4893-8327-53ba184d6bee",
+              "name": "An accepted message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "inbound_messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sender\": {\n    \"handle\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"body\": \"<string>\",\n  \"metadata\": {\n    \"external_id\": \"<string>\",\n    \"external_conversation_id\": \"<string>\",\n    \"referenced_message_external_id\": \"<string>\"\n  },\n  \"subject\": \"<string>\",\n  \"delivered_at\": \"<integer>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"accepted\",\n  \"message_uid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63ce991b-47c3-4b5d-b24c-348f355df9a8",
+          "name": "Sync outbound message",
+          "request": {
+            "name": "Sync outbound message",
+            "description": {
+              "content": "Import a message that was sent from the channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "outbound_messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cha_123",
+                  "key": "channel_id",
+                  "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": [\n    {\n      \"handle\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    {\n      \"handle\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  ],\n  \"body\": \"<string>\",\n  \"metadata\": {\n    \"external_id\": \"<string>\",\n    \"external_conversation_id\": \"<string>\",\n    \"referenced_message_external_id\": \"<string>\"\n  },\n  \"sender_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"delivered_at\": \"<integer>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce119047-9e28-4867-b67b-3ac0a0ecb679",
+              "name": "An accepted message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "outbound_messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    {\n      \"handle\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    {\n      \"handle\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  ],\n  \"body\": \"<string>\",\n  \"metadata\": {\n    \"external_id\": \"<string>\",\n    \"external_conversation_id\": \"<string>\",\n    \"referenced_message_external_id\": \"<string>\"\n  },\n  \"sender_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"delivered_at\": \"<integer>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"accepted\",\n  \"message_uid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe32f058-f048-4a6c-b1c5-de3b2648739f",
+          "name": "Receive custom messages",
+          "request": {
+            "name": "Receive custom messages",
+            "description": {
+              "content": "Receive a custom message in Front. This endpoint is available for custom channels **ONLY**.\n\nRequired scope: `messages:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "incoming_messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cha_123",
+                  "key": "channel_id",
+                  "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender\": {\n    \"handle\": \"<string>\",\n    \"contact_id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"body\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"body_format\": \"markdown\",\n  \"metadata\": {\n    \"thread_ref\": \"<string>\",\n    \"headers\": \"<object>\"\n  },\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d86766b6-0b4d-4383-ba13-17b84262d683",
+              "name": "An accepted response acknowledging your request to create a message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "incoming_messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sender\": {\n    \"handle\": \"<string>\",\n    \"contact_id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"body\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"body_format\": \"markdown\",\n  \"metadata\": {\n    \"thread_ref\": \"<string>\",\n    \"headers\": \"<object>\"\n  },\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"accepted\",\n  \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79b959a2-1152-4c79-a5d9-d2fc5424750f",
+          "name": "Create message",
+          "request": {
+            "name": "Create message",
+            "description": {
+              "content": "Send a new message from a channel. This is one of the ways to create a new [conversation](https://dev.frontapp.com/reference/conversations#creating-a-new-conversation). The new conversation will support both messages and comments (discussions).\n\nRequired scope: `messages:send`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cha_123",
+                  "key": "channel_id",
+                  "description": "(Required) The sending channel ID. Alternatively, you can supply the sending channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"body\": \"<string>\",\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sender_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"text\": \"<string>\",\n  \"options\": {\n    \"tag_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"archive\": true\n  },\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "669a33b8-825e-4682-ba2d-07ba9057c4e3",
+              "name": "An accepted response acknowledging your request to create a message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The sending channel ID. Alternatively, you can supply the sending channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"body\": \"<string>\",\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sender_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"text\": \"<string>\",\n  \"options\": {\n    \"tag_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"archive\": true\n  },\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"accepted\",\n  \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac7b3598-eea1-43cf-ba86-289f3a910dd8",
+          "name": "Create message reply",
+          "request": {
+            "name": "Create message reply",
+            "description": {
+              "content": "Reply to a conversation by sending a message and appending it to the conversation.\n\nRequired scope: `messages:send`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sender_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"channel_id\": \"<string>\",\n  \"text\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"options\": {\n    \"tag_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"archive\": true\n  },\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0edd7618-1ba8-4037-9557-bebe678b01ec",
+              "name": "An accepted response acknowledging your request to create a message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sender_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"channel_id\": \"<string>\",\n  \"text\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"options\": {\n    \"tag_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"archive\": true\n  },\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"accepted\",\n  \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc975093-4cf1-4127-a34e-12cf860a1b69",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sender_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"channel_id\": \"<string>\",\n  \"text\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"options\": {\n    \"tag_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"archive\": true\n  },\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "765634dc-e39c-4937-8bfb-27113018277b",
+          "name": "Import message",
+          "request": {
+            "name": "Import message",
+            "description": {
+              "content": "Use this endpoint to import conversations into Front without sending data through a channel. Typical use cases include importing historical conversations or creating new conversations from non-standard sources, such as web form submissions that can't use the default Form channel (for example, forms that don't have static URLs or form providers that send email notifications after submission). Avoid using this endpoint for conversations that can be handled by a dedicated Front channel—instead, use the [Create message](https://dev.frontapp.com/reference/create-message) endpoint to send (rather than import) a new message.\n\nRequired scope: `messages:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes",
+                ":inbox_id",
+                "imported_messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "inb_123",
+                  "key": "inbox_id",
+                  "description": "(Required) The Inbox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender\": {\n    \"handle\": \"<string>\",\n    \"author_id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"body\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"created_at\": \"<integer>\",\n  \"metadata\": {\n    \"is_inbound\": \"<boolean>\",\n    \"thread_ref\": \"<string>\",\n    \"is_archived\": true,\n    \"should_skip_rules\": true\n  },\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": \"<string>\",\n  \"body_format\": \"markdown\",\n  \"type\": \"email\",\n  \"assignee_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conversation_id\": \"<string>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42422c4a-1100-4e18-aeeb-ab9f2feed328",
+              "name": "An accepted response acknowledging your request to create a message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes",
+                    ":inbox_id",
+                    "imported_messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "inb_123",
+                      "key": "inbox_id",
+                      "description": "(Required) The Inbox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sender\": {\n    \"handle\": \"<string>\",\n    \"author_id\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"body\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"created_at\": \"<integer>\",\n  \"metadata\": {\n    \"is_inbound\": \"<boolean>\",\n    \"thread_ref\": \"<string>\",\n    \"is_archived\": true,\n    \"should_skip_rules\": true\n  },\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": \"<string>\",\n  \"body_format\": \"markdown\",\n  \"type\": \"email\",\n  \"assignee_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conversation_id\": \"<string>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"accepted\",\n  \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c707b08-ea95-4666-a733-896049fbe3a4",
+          "name": "Get message",
+          "request": {
+            "name": "Get message",
+            "description": {
+              "content": "Fetch a message.\n\n> ℹ️ The HTTP Header `Accept` can be used to request the message in a different format.\n> By default, Front will return the documented JSON response. By requesting `message/rfc822`, the response will contain the message in the EML format (for email messages only).\n\n\nRequired scope: `messages:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":message_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "msg_123",
+                  "key": "message_id",
+                  "description": "(Required) The message ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c6e4afa-7089-4d04-9118-ba002742ac23",
+              "name": "A message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":message_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "msg_123",
+                      "key": "message_id",
+                      "description": "(Required) The message ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq\",\n    \"related\": {\n      \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n      \"message_replied_to\": \"https://yourCompany.api.frontapp.com/messages/msg_2y67qldq\",\n      \"message_seen\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq/seen\"\n    }\n  },\n  \"id\": \"msg_1q15qmtq\",\n  \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\",\n  \"type\": \"email\",\n  \"is_inbound\": false,\n  \"draft_mode\": \"shared\",\n  \"error_type\": \"string\",\n  \"version\": \"551ba368f3e7803cce51503ee3e58ef0-26028-1701804863304-945c\",\n  \"created_at\": 1701292639,\n  \"subject\": \"Jim's pranks are getting out of hand\",\n  \"blurb\": \"It's high time we discuss the pranking culture in the office\",\n  \"author\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"integration\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": 7365.972684209378\n  },\n  \"recipients\": [\n    {\n      \"_links\": {\n        \"related\": {\n          \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n        }\n      },\n      \"name\": \"Phyllis Lapin-Vance\",\n      \"handle\": \"purpleboss@limitlesspaper.com\",\n      \"role\": \"cc\"\n    },\n    {\n      \"_links\": {\n        \"related\": {\n          \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n        }\n      },\n      \"name\": \"Phyllis Lapin-Vance\",\n      \"handle\": \"purpleboss@limitlesspaper.com\",\n      \"role\": \"cc\"\n    }\n  ],\n  \"body\": \"<p>Hi there,</p><p>I wanted to let you know that I'm suggesting an update to <a href='https://dundermifflin.com/privacy/pranks'>Dunder Mifflin's Pranking Policy</a> to provide non-humorous employees greater control over their well-being in the office.</p>\",\n  \"text\": \"Hi there,\\\\n\\\\nI wanted to let you know that I'm suggesting an update to Dunder Mifflin's Pranking Policy (https://dundermifflin.com/privacy/pranks) to provide non-humorous employees greater control over their well-being in the office.\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"signature\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n      \"related\": {\n        \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n      }\n    },\n    \"id\": \"sig_6rrv2\",\n    \"name\": \"Finer Things Club signature\",\n    \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n    \"sender_info\": \"string\",\n    \"is_private\": true,\n    \"is_visible_for_all_teammate_channels\": true,\n    \"is_default\": false,\n    \"channel_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"metadata\": {\n    \"intercom_url\": \"http://intercom.com\",\n    \"duration\": 189,\n    \"have_been_answered\": false,\n    \"external_id\": \"dkd84992kduo903\",\n    \"twitter_url\": \"https://twitter.com\",\n    \"is_retweet\": true,\n    \"have_been_retweeted\": true,\n    \"have_been_favorited\": false,\n    \"thread_ref\": \"t0930k9000-394\",\n    \"headers\": {},\n    \"chat_visitor_url\": \"https://yourCompany.com/products\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e24d09c-11d4-4e14-b5fc-da5d9acfe834",
+          "name": "Get message seen status",
+          "request": {
+            "name": "Get message seen status",
+            "description": {
+              "content": "Get the seen receipts for the given message. If no seen-by information is available, there will be a single entry for the first time the message was seen by any recipient. If seen-by information is available, there will be an entry for each recipient who has seen the message.\n\nRequired scope: `messages:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":message_id",
+                "seen"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "msg_123",
+                  "key": "message_id",
+                  "description": "(Required) The message ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93cd44d4-ba89-461a-8387-68a529871eb9",
+              "name": "Array of seen receipts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":message_id",
+                    "seen"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "msg_123",
+                      "key": "message_id",
+                      "description": "(Required) The message ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen?page_token=jk7893fgeet644abnn39\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen\",\n        \"related\": {\n          \"message\": \"https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym\"\n        }\n      },\n      \"first_seen_at\": \"string\",\n      \"seen_by\": {\n        \"handle\": \"dwight@limitlesspaper.com\",\n        \"source\": \"email\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen\",\n        \"related\": {\n          \"message\": \"https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym\"\n        }\n      },\n      \"first_seen_at\": \"string\",\n      \"seen_by\": {\n        \"handle\": \"dwight@limitlesspaper.com\",\n        \"source\": \"email\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83271311-131e-40f9-836d-c309bc83cb0a",
+          "name": "Mark message seen",
+          "request": {
+            "name": "Mark message seen",
+            "description": {
+              "content": "Mark an outbound message from Front as seen. Note, the message seen route should only be called in response to an actual end-user's message-seen action. In accordance with this behavior, the route is rate limited to 10 requests per message per hour.\n\nRequired scope: `messages:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":message_id",
+                "seen"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "msg_123",
+                  "key": "message_id",
+                  "description": "(Required) The message ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e7bc934-7745-43cc-8b10-99a084d14463",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":message_id",
+                    "seen"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "msg_123",
+                      "key": "message_id",
+                      "description": "(Required) The message ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4e5471c3-528c-4d40-856d-851fa85bd990",
+    "name": "Channel Accounts Messages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

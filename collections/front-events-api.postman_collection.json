@@ -1,0 +1,271 @@
+{
+  "item": [
+    {
+      "id": "bf20284f-42bb-47be-b00e-32acb5507f34",
+      "name": "Events",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "734af5ac-ca79-47a4-97e2-c0723c021e4a",
+          "name": "List events",
+          "request": {
+            "name": "List events",
+            "description": {
+              "content": "Lists all the detailed events which occurred in the inboxes of the company ordered in reverse chronological order (newest first).\nRefer to the [Events](https://dev.frontapp.com/reference/events) topic for more information, including sorting and filtering.\n\n\nRequired scope: `events:*:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with optional properties `before`, `after`, `types`, or `inboxes`. `before` and `after` should be a timestamp in seconds with up to 3 decimal places. `types` should be a list of [event types](https://dev.frontapp.com/reference/events). `inboxes` should be a list of inbox IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "15",
+                  "description": "Max number of results per page (max 15)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the events. Only supports `created_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4afd228-d1e8-4c09-b092-2baf0b615d84",
+              "name": "Array of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "15"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/events?page_token=2d018a5809eb90d349bc08c52cb1f4987bef\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/events\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/events/evt_4ckcra8e\"\n      },\n      \"id\": \"evt_4ckcra8e\",\n      \"type\": \"inbound\",\n      \"emitted_at\": 1703102616,\n      \"source\": {\n        \"_meta\": {\n          \"type\": \"string\"\n        },\n        \"data\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n            \"related\": {\n              \"owner\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"rul_58xhq\",\n          \"name\": \"Scranton new account workflow\",\n          \"actions\": [\n            \"string\",\n            \"string\"\n          ],\n          \"is_private\": false\n        }\n      },\n      \"target\": {\n        \"_meta\": {\n          \"type\": \"string\"\n        },\n        \"data\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n            \"related\": {\n              \"inboxes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conversations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"botSource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"tea_6r55a\",\n          \"email\": \"michael.scott@dundermifflin.com\",\n          \"username\": \"PrisonMike\",\n          \"first_name\": \"Michael\",\n          \"last_name\": \"Scott\",\n          \"is_admin\": true,\n          \"is_available\": false,\n          \"is_blocked\": false,\n          \"type\": \"rule\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          },\n          \"license_type\": 12.436141722007577\n        }\n      },\n      \"conversation\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n          \"related\": {\n            \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n            \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n            \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n            \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n            \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n          }\n        },\n        \"id\": \"cnv_yo1kg5q\",\n        \"subject\": \"How to prank Dwight Schrute\",\n        \"status\": \"assigned\",\n        \"ticket_ids\": [\n          \"TICKET-1\"\n        ],\n        \"assignee\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n            \"related\": {\n              \"inboxes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conversations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"botSource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"tea_6r55a\",\n          \"email\": \"michael.scott@dundermifflin.com\",\n          \"username\": \"PrisonMike\",\n          \"first_name\": \"Michael\",\n          \"last_name\": \"Scott\",\n          \"is_admin\": true,\n          \"is_available\": false,\n          \"is_blocked\": false,\n          \"type\": \"user\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          },\n          \"license_type\": 4473.301585402915\n        },\n        \"recipient\": {\n          \"_links\": {\n            \"related\": {\n              \"contact\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        },\n        \"tags\": [\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"tag_2oxhvy\",\n            \"name\": \"Warehouse task\",\n            \"description\": \"Sitting on your biscuit, never having to risk it\",\n            \"highlight\": null,\n            \"is_private\": false,\n            \"is_visible_in_conversation_lists\": true,\n            \"created_at\": 1682538996.583,\n            \"updated_at\": 1699575875.186\n          },\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"tag_2oxhvy\",\n            \"name\": \"Warehouse task\",\n            \"description\": \"Sitting on your biscuit, never having to risk it\",\n            \"highlight\": null,\n            \"is_private\": false,\n            \"is_visible_in_conversation_lists\": true,\n            \"created_at\": 1682538996.583,\n            \"updated_at\": 1699575875.186\n          }\n        ],\n        \"links\": [\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"top_b2wpa\",\n            \"name\": \"JIRA-SCRAN-4567\",\n            \"type\": \"app_2f76b9ac738de158\",\n            \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n            \"custom_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"top_b2wpa\",\n            \"name\": \"JIRA-SCRAN-4567\",\n            \"type\": \"app_2f76b9ac738de158\",\n            \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n            \"custom_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"is_private\": true,\n        \"scheduled_reminders\": [\n          {\n            \"_links\": {\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"created_at\": 1701806790.536,\n            \"scheduled_at\": 1701874800,\n            \"updated_at\": 1701806790.536\n          },\n          {\n            \"_links\": {\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"created_at\": 1701806790.536,\n            \"scheduled_at\": 1701874800,\n            \"updated_at\": 1701806790.536\n          }\n        ],\n        \"metadata\": {\n          \"external_conversation_ids\": [\n            \"JS3949\",\n            \"JS9403\"\n          ]\n        },\n        \"status_id\": \"sts_5x\",\n        \"status_category\": \"resolved\",\n        \"created_at\": 1701292649.333,\n        \"updated_at\": 1701292649.333,\n        \"waiting_since\": 1701292649.333\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/events/evt_4ckcra8e\"\n      },\n      \"id\": \"evt_4ckcra8e\",\n      \"type\": \"inbound\",\n      \"emitted_at\": 1703102616,\n      \"source\": {\n        \"_meta\": {\n          \"type\": \"string\"\n        },\n        \"data\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n            \"related\": {\n              \"owner\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"rul_58xhq\",\n          \"name\": \"Scranton new account workflow\",\n          \"actions\": [\n            \"string\",\n            \"string\"\n          ],\n          \"is_private\": false\n        }\n      },\n      \"target\": {\n        \"_meta\": {\n          \"type\": \"string\"\n        },\n        \"data\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n            \"related\": {\n              \"inboxes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conversations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"botSource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"tea_6r55a\",\n          \"email\": \"michael.scott@dundermifflin.com\",\n          \"username\": \"PrisonMike\",\n          \"first_name\": \"Michael\",\n          \"last_name\": \"Scott\",\n          \"is_admin\": true,\n          \"is_available\": false,\n          \"is_blocked\": false,\n          \"type\": \"integration\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          },\n          \"license_type\": 1668\n        }\n      },\n      \"conversation\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n          \"related\": {\n            \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n            \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n            \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n            \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n            \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n          }\n        },\n        \"id\": \"cnv_yo1kg5q\",\n        \"subject\": \"How to prank Dwight Schrute\",\n        \"status\": \"assigned\",\n        \"ticket_ids\": [\n          \"TICKET-1\"\n        ],\n        \"assignee\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n            \"related\": {\n              \"inboxes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conversations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"botSource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"tea_6r55a\",\n          \"email\": \"michael.scott@dundermifflin.com\",\n          \"username\": \"PrisonMike\",\n          \"first_name\": \"Michael\",\n          \"last_name\": \"Scott\",\n          \"is_admin\": true,\n          \"is_available\": false,\n          \"is_blocked\": false,\n          \"type\": \"integration\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          },\n          \"license_type\": 8278.944237294258\n        },\n        \"recipient\": {\n          \"_links\": {\n            \"related\": {\n              \"contact\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        },\n        \"tags\": [\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"tag_2oxhvy\",\n            \"name\": \"Warehouse task\",\n            \"description\": \"Sitting on your biscuit, never having to risk it\",\n            \"highlight\": null,\n            \"is_private\": false,\n            \"is_visible_in_conversation_lists\": true,\n            \"created_at\": 1682538996.583,\n            \"updated_at\": 1699575875.186\n          },\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"tag_2oxhvy\",\n            \"name\": \"Warehouse task\",\n            \"description\": \"Sitting on your biscuit, never having to risk it\",\n            \"highlight\": null,\n            \"is_private\": false,\n            \"is_visible_in_conversation_lists\": true,\n            \"created_at\": 1682538996.583,\n            \"updated_at\": 1699575875.186\n          }\n        ],\n        \"links\": [\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"top_b2wpa\",\n            \"name\": \"JIRA-SCRAN-4567\",\n            \"type\": \"app_2f76b9ac738de158\",\n            \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n            \"custom_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"top_b2wpa\",\n            \"name\": \"JIRA-SCRAN-4567\",\n            \"type\": \"app_2f76b9ac738de158\",\n            \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n            \"custom_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"is_private\": true,\n        \"scheduled_reminders\": [\n          {\n            \"_links\": {\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"created_at\": 1701806790.536,\n            \"scheduled_at\": 1701874800,\n            \"updated_at\": 1701806790.536\n          },\n          {\n            \"_links\": {\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"created_at\": 1701806790.536,\n            \"scheduled_at\": 1701874800,\n            \"updated_at\": 1701806790.536\n          }\n        ],\n        \"metadata\": {\n          \"external_conversation_ids\": [\n            \"JS3949\",\n            \"JS9403\"\n          ]\n        },\n        \"status_id\": \"sts_5x\",\n        \"status_category\": \"resolved\",\n        \"created_at\": 1701292649.333,\n        \"updated_at\": 1701292649.333,\n        \"waiting_since\": 1701292649.333\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e94bfacb-3c4e-45b1-ad23-7fae6f4d22c5",
+          "name": "Get event",
+          "request": {
+            "name": "Get event",
+            "description": {
+              "content": "Fetch an event.\nRefer to the [Events](https://dev.frontapp.com/reference/events) topic for more information, including sorting and filtering.\n\n\nRequired scope: `events:*:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":event_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "evt_55c8c149",
+                  "key": "event_id",
+                  "description": "(Required) The event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fa19103-167d-4ed2-b694-c2103cf603df",
+              "name": "An event",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":event_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "evt_55c8c149",
+                      "key": "event_id",
+                      "description": "(Required) The event ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/events/evt_4ckcra8e\"\n  },\n  \"id\": \"evt_4ckcra8e\",\n  \"type\": \"inbound\",\n  \"emitted_at\": 1703102616,\n  \"source\": {\n    \"_meta\": {\n      \"type\": \"string\"\n    },\n    \"data\": {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n        \"related\": {\n          \"owner\": null\n        }\n      },\n      \"id\": \"rul_58xhq\",\n      \"name\": \"Scranton new account workflow\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_private\": false\n    }\n  },\n  \"target\": {\n    \"_meta\": {\n      \"type\": \"string\"\n    },\n    \"data\": {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"CSAT\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": true\n    }\n  },\n  \"conversation\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n      \"related\": {\n        \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n        \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n        \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n        \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n        \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n      }\n    },\n    \"id\": \"cnv_yo1kg5q\",\n    \"subject\": \"How to prank Dwight Schrute\",\n    \"status\": \"assigned\",\n    \"ticket_ids\": [\n      \"TICKET-1\"\n    ],\n    \"assignee\": {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"macro\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": \"string\"\n    },\n    \"recipient\": {\n      \"_links\": {\n        \"related\": {\n          \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n        }\n      },\n      \"name\": \"Phyllis Lapin-Vance\",\n      \"handle\": \"purpleboss@limitlesspaper.com\",\n      \"role\": \"cc\"\n    },\n    \"tags\": [\n      {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n          \"related\": {\n            \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n            \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n            \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n            \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n          }\n        },\n        \"id\": \"tag_2oxhvy\",\n        \"name\": \"Warehouse task\",\n        \"description\": \"Sitting on your biscuit, never having to risk it\",\n        \"highlight\": null,\n        \"is_private\": false,\n        \"is_visible_in_conversation_lists\": true,\n        \"created_at\": 1682538996.583,\n        \"updated_at\": 1699575875.186\n      },\n      {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n          \"related\": {\n            \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n            \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n            \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n            \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n          }\n        },\n        \"id\": \"tag_2oxhvy\",\n        \"name\": \"Warehouse task\",\n        \"description\": \"Sitting on your biscuit, never having to risk it\",\n        \"highlight\": null,\n        \"is_private\": false,\n        \"is_visible_in_conversation_lists\": true,\n        \"created_at\": 1682538996.583,\n        \"updated_at\": 1699575875.186\n      }\n    ],\n    \"links\": [\n      {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n        },\n        \"id\": \"top_b2wpa\",\n        \"name\": \"JIRA-SCRAN-4567\",\n        \"type\": \"app_2f76b9ac738de158\",\n        \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        }\n      },\n      {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n        },\n        \"id\": \"top_b2wpa\",\n        \"name\": \"JIRA-SCRAN-4567\",\n        \"type\": \"app_2f76b9ac738de158\",\n        \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        }\n      }\n    ],\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"is_private\": true,\n    \"scheduled_reminders\": [\n      {\n        \"_links\": {\n          \"related\": {\n            \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n          }\n        },\n        \"created_at\": 1701806790.536,\n        \"scheduled_at\": 1701874800,\n        \"updated_at\": 1701806790.536\n      },\n      {\n        \"_links\": {\n          \"related\": {\n            \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n          }\n        },\n        \"created_at\": 1701806790.536,\n        \"scheduled_at\": 1701874800,\n        \"updated_at\": 1701806790.536\n      }\n    ],\n    \"metadata\": {\n      \"external_conversation_ids\": [\n        \"JS3949\",\n        \"JS9403\"\n      ]\n    },\n    \"status_id\": \"sts_5x\",\n    \"status_category\": \"resolved\",\n    \"created_at\": 1701292649.333,\n    \"updated_at\": 1701292649.333,\n    \"waiting_since\": 1701292649.333\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "afca4948-333c-4c30-a135-2009f9c5fb3f",
+    "name": "Channel Accounts Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

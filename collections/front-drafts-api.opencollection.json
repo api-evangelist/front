@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Drafts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Drafts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/drafts",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a draft message which is the first message of a new [conversation](https://dev.frontapp.com/reference/conversations).\n\nRequired scope: `drafts:write`"
+        },
+        {
+          "info": {
+            "name": "List conversation drafts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/drafts",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ]
+          },
+          "docs": "List the drafts in a conversation.\n\nRequired scope: `drafts:read`"
+        },
+        {
+          "info": {
+            "name": "Create draft reply",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/drafts",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new draft as a reply to the last message in the conversation.\n\nRequired scope: `drafts:write`"
+        },
+        {
+          "info": {
+            "name": "Delete draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/drafts/:draft_id",
+            "params": [
+              {
+                "name": "draft_id",
+                "value": "",
+                "type": "path",
+                "description": "The draft ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a draft message.\n\nRequired scope: `drafts:delete`"
+        },
+        {
+          "info": {
+            "name": "Edit draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/drafts/:message_id/",
+            "params": [
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The draft ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit a draft message.\n\nRequired scope: `drafts:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

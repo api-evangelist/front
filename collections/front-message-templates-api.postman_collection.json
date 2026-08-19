@@ -1,0 +1,1213 @@
+{
+  "item": [
+    {
+      "id": "ce84a2c7-1ede-4d13-b550-f627b37cae38",
+      "name": "Message Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1204a073-5c56-45eb-aad7-244b05fbe484",
+          "name": "Get child templates",
+          "request": {
+            "name": "Get child templates",
+            "description": {
+              "content": "Fetch the child message templates of a message template folder.\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_template_folders",
+                ":message_template_folder_id",
+                "message_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsf_123",
+                  "key": "message_template_folder_id",
+                  "description": "(Required) The message template folder ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d52103d-5dde-4bee-b51e-cf1d2bd9047e",
+              "name": "Array of message template folders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_template_folders",
+                    ":message_template_folder_id",
+                    "message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsf_123",
+                      "key": "message_template_folder_id",
+                      "description": "(Required) The message template folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/message_template_folders?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c752e3b8-5f8c-40f6-9762-338be2f08d06",
+          "name": "Create child template",
+          "request": {
+            "name": "Create child template",
+            "description": {
+              "content": "Create a new message template as a child of the given folder\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_template_folders",
+                ":message_template_folder_id",
+                "message_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsf_123",
+                  "key": "message_template_folder_id",
+                  "description": "(Required) The parent message template folder ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8c859eb-832c-4066-962d-dc5d8acb47f6",
+              "name": "A message template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_template_folders",
+                    ":message_template_folder_id",
+                    "message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsf_123",
+                      "key": "message_template_folder_id",
+                      "description": "(Required) The parent message template folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Out of Office\",\n  \"body\": \"<p>Sorry, I'm OOO until <span style=\\\"color: green;\\\">October 25th</span>.</p>\\n\",\n  \"subject\": \"Out of Office\",\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n    }\n  },\n  \"id\": \"rsp_16yc\",\n  \"name\": \"Pam wedding planning complaint\",\n  \"subject\": \"Work time being used for wedding planning\",\n  \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_available_for_all_inboxes\": true,\n  \"inbox_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8235dbc2-5cc4-4215-bdca-d2e52ff42ee9",
+          "name": "List message templates",
+          "request": {
+            "name": "List message templates",
+            "description": {
+              "content": "List the message templates.\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a251ff94-d059-4b78-a7e1-975319f28569",
+              "name": "Array of message templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/message_templates?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_templates\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n        }\n      },\n      \"id\": \"rsp_16yc\",\n      \"name\": \"Pam wedding planning complaint\",\n      \"subject\": \"Work time being used for wedding planning\",\n      \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"is_available_for_all_inboxes\": true,\n      \"inbox_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n        }\n      },\n      \"id\": \"rsp_16yc\",\n      \"name\": \"Pam wedding planning complaint\",\n      \"subject\": \"Work time being used for wedding planning\",\n      \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"is_available_for_all_inboxes\": true,\n      \"inbox_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e2c7f4c-24b6-437b-9aab-b49e7f8e5f22",
+          "name": "Create message template",
+          "request": {
+            "name": "Create message template",
+            "description": {
+              "content": "Create a new message template in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team message template](https://dev.frontapp.com/reference/create-team-message-template) endpoint instead.\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"folder_id\": \"<string>\",\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "571dd4ce-2064-46bd-bbb3-c2a7b75a9a57",
+              "name": "A message template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Out of Office\",\n  \"body\": \"<p>Sorry, I'm OOO until <span style=\\\"color: green;\\\">October 25th</span>.</p>\\n\",\n  \"subject\": \"Out of Office\",\n  \"folder_id\": \"<string>\",\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n    }\n  },\n  \"id\": \"rsp_16yc\",\n  \"name\": \"Pam wedding planning complaint\",\n  \"subject\": \"Work time being used for wedding planning\",\n  \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_available_for_all_inboxes\": true,\n  \"inbox_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c11bbee-f038-4487-9985-16c72ef5af26",
+          "name": "Get message template",
+          "request": {
+            "name": "Get message template",
+            "description": {
+              "content": "Fetch a message template.\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_templates",
+                ":message_template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsp_123",
+                  "key": "message_template_id",
+                  "description": "(Required) The message template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9be8cc28-96ec-4b69-a016-dfaf32691651",
+              "name": "A message template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_templates",
+                    ":message_template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsp_123",
+                      "key": "message_template_id",
+                      "description": "(Required) The message template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n    }\n  },\n  \"id\": \"rsp_16yc\",\n  \"name\": \"Pam wedding planning complaint\",\n  \"subject\": \"Work time being used for wedding planning\",\n  \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_available_for_all_inboxes\": true,\n  \"inbox_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57d0a4d6-e687-44d0-b43f-2e9f343a0403",
+          "name": "Update message template",
+          "request": {
+            "name": "Update message template",
+            "description": {
+              "content": "Update a message template.\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_templates",
+                ":message_template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsp_123",
+                  "key": "message_template_id",
+                  "description": "(Required) The message template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a5747bd-7d78-4a08-978b-fdfd17005f10",
+              "name": "A message template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_templates",
+                    ":message_template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsp_123",
+                      "key": "message_template_id",
+                      "description": "(Required) The message template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n    }\n  },\n  \"id\": \"rsp_16yc\",\n  \"name\": \"Pam wedding planning complaint\",\n  \"subject\": \"Work time being used for wedding planning\",\n  \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_available_for_all_inboxes\": true,\n  \"inbox_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ae858d8-83f1-43a1-94ea-1c3588c73797",
+          "name": "Delete message template",
+          "request": {
+            "name": "Delete message template",
+            "description": {
+              "content": "Delete a message template\n\nRequired scope: `message_templates:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_templates",
+                ":message_template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsp_123",
+                  "key": "message_template_id",
+                  "description": "(Required) The message template ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebbb2f8d-d5e7-4b36-8149-36161656e04e",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_templates",
+                    ":message_template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsp_123",
+                      "key": "message_template_id",
+                      "description": "(Required) The message template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67a7a0f3-fcc7-487e-b871-03677956c09f",
+          "name": "List teammate message templates",
+          "request": {
+            "name": "List teammate message templates",
+            "description": {
+              "content": "List the message templates belonging to the requested teammate.\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "message_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc8c0d5e-7142-4613-bfcc-9aa6328de98a",
+              "name": "Array of message templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/message_templates?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_templates\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n        }\n      },\n      \"id\": \"rsp_16yc\",\n      \"name\": \"Pam wedding planning complaint\",\n      \"subject\": \"Work time being used for wedding planning\",\n      \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"is_available_for_all_inboxes\": true,\n      \"inbox_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n        }\n      },\n      \"id\": \"rsp_16yc\",\n      \"name\": \"Pam wedding planning complaint\",\n      \"subject\": \"Work time being used for wedding planning\",\n      \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"is_available_for_all_inboxes\": true,\n      \"inbox_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30dd75b9-407e-47b6-ad7c-03b09683dec5",
+          "name": "Create teammate message template",
+          "request": {
+            "name": "Create teammate message template",
+            "description": {
+              "content": "Create a new message template for the given teammate\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "message_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"folder_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4cd0f0f-2089-472d-8da3-34196025efcd",
+              "name": "A message template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Out of Office\",\n  \"body\": \"<p>Sorry, I'm OOO until <span style=\\\"color: green;\\\">October 25th</span>.</p>\\n\",\n  \"subject\": \"Out of Office\",\n  \"folder_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n    }\n  },\n  \"id\": \"rsp_16yc\",\n  \"name\": \"Pam wedding planning complaint\",\n  \"subject\": \"Work time being used for wedding planning\",\n  \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_available_for_all_inboxes\": true,\n  \"inbox_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0df1d7a-2b7f-425b-bfd2-e5ba3e415a26",
+          "name": "List team message templates",
+          "request": {
+            "name": "List team message templates",
+            "description": {
+              "content": "List the message templates belonging to the requested team (workspace).\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "message_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_55c8c149",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81b4ea45-784a-462e-bcb0-eeb991a88fa6",
+              "name": "Array of message templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_55c8c149",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/message_templates?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_templates\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n        }\n      },\n      \"id\": \"rsp_16yc\",\n      \"name\": \"Pam wedding planning complaint\",\n      \"subject\": \"Work time being used for wedding planning\",\n      \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"is_available_for_all_inboxes\": true,\n      \"inbox_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n        }\n      },\n      \"id\": \"rsp_16yc\",\n      \"name\": \"Pam wedding planning complaint\",\n      \"subject\": \"Work time being used for wedding planning\",\n      \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"is_available_for_all_inboxes\": true,\n      \"inbox_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8755dec6-33e3-4694-948e-0ee2570d8992",
+          "name": "Create team message template",
+          "request": {
+            "name": "Create team message template",
+            "description": {
+              "content": "Create a new message template for the given team (workspace).\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "message_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_55c8c149",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"folder_id\": \"<string>\",\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "476c0ef1-dd81-4beb-8c62-7c94b73dedf7",
+              "name": "A message template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_55c8c149",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Out of Office\",\n  \"body\": \"<p>Sorry, I'm OOO until <span style=\\\"color: green;\\\">October 25th</span>.</p>\\n\",\n  \"subject\": \"Out of Office\",\n  \"folder_id\": \"<string>\",\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/responses/rsp_16yc\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\"\n    }\n  },\n  \"id\": \"rsp_16yc\",\n  \"name\": \"Pam wedding planning complaint\",\n  \"subject\": \"Work time being used for wedding planning\",\n  \"body\": \"<div><p>Pam is spending time planning her <span style=\\\"color:red;\\\">wedding</span> at the office. This message <b>WAS NOT</b> sent by Angela.</p></div>\\n\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_available_for_all_inboxes\": true,\n  \"inbox_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b722af88-4642-453e-8f46-5b3c5ab1d943",
+    "name": "Channel Accounts Message Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

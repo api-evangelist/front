@@ -1,0 +1,633 @@
+{
+  "item": [
+    {
+      "id": "c6c34c1f-03b9-4c18-a2bb-69b82ee60a72",
+      "name": "Links",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed39429a-97ca-41bf-acf4-d3d4018a774d",
+          "name": "List links",
+          "request": {
+            "name": "List links",
+            "description": {
+              "content": "List the links of the company paginated by id. Allows filtering by link type via the q.types param.\nThese links include application objects; for more details, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `links:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `types`, whose value should be a list of link types. Links created via the API have type `web` and links created by application objects have type `app_<uid>`, matching the app UID where the object is configured. There are also types `jira`, `asana`, `monday`, `trello`, and `github`, which correspond to the integrations built by Front."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the links. Only supports `id`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b82742c6-5cc7-4f2c-9ed6-cecbf1cae4b3",
+              "name": "Array of Links",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/links?page_token=4fcb1f8ca11971c5da59c21ea686fd50\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/links\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n      },\n      \"id\": \"top_b2wpa\",\n      \"name\": \"JIRA-SCRAN-4567\",\n      \"type\": \"app_2f76b9ac738de158\",\n      \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n      },\n      \"id\": \"top_b2wpa\",\n      \"name\": \"JIRA-SCRAN-4567\",\n      \"type\": \"app_2f76b9ac738de158\",\n      \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b42b2301-e371-45d0-bf3b-34deeaca2d70",
+          "name": "Create link",
+          "request": {
+            "name": "Create link",
+            "description": {
+              "content": "Create a link. You must supply either `pattern` or `external_url` in the request, but not both (`pattern` is for application objects while `external_url` is for standard links). If `pattern` is provided, the API call updates the application objects matching the exact pattern. Keep in mind this endpoint only creates or updates an existing link from an application object. It does not create new application objects. If the link is resolved to an installed links integration, any name retrieved from the integration will override the provided name in the request.\n\nRequired scope: `links:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"external_url\": \"<string>\",\n  \"pattern\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61345416-474e-4a02-be80-a9e34ba43f29",
+              "name": "A link",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"external_url\": \"<string>\",\n  \"pattern\": \"ORDER-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n  },\n  \"id\": \"top_b2wpa\",\n  \"name\": \"JIRA-SCRAN-4567\",\n  \"type\": \"app_2f76b9ac738de158\",\n  \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1438f8f-80b7-412e-9ba8-0158c792e62f",
+          "name": "Get link",
+          "request": {
+            "name": "Get link",
+            "description": {
+              "content": "Fetch a link.\nFor more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `links:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":link_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "top_123",
+                  "key": "link_id",
+                  "description": "(Required) The link ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df803935-55d9-467c-9835-f94e607e8ad6",
+              "name": "A link",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":link_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "top_123",
+                      "key": "link_id",
+                      "description": "(Required) The link ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n  },\n  \"id\": \"top_b2wpa\",\n  \"name\": \"JIRA-SCRAN-4567\",\n  \"type\": \"app_2f76b9ac738de158\",\n  \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aefdc514-ba51-4e30-9530-c526b0608704",
+          "name": "Update a link",
+          "request": {
+            "name": "Update a link",
+            "description": {
+              "content": "Update a link.\nFor more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `links:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":link_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "top_123",
+                  "key": "link_id",
+                  "description": "(Required) The Link ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aaeca6fe-0f8e-4072-87d3-ab898432d000",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":link_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "top_123",
+                      "key": "link_id",
+                      "description": "(Required) The Link ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5259ec81-6617-4725-a5b0-b2dc323b5553",
+          "name": "List link conversations",
+          "request": {
+            "name": "List link conversations",
+            "description": {
+              "content": "List the conversations linked to a specific link. For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).\nFor more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `conversations:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":link_id",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the conversations. Only supports `date`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "top_123",
+                  "key": "link_id",
+                  "description": "(Required) The Link ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49319287-5b41-4ce6-abc6-82524f511128",
+              "name": "Array of conversations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":link_id",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "top_123",
+                      "key": "link_id",
+                      "description": "(Required) The Link ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/conversations?page_token=ce787da6f075740cf187d926f5e9f612bc7875763a8dd37d5\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"API\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": 3576\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"rule\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": 1125\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ecec6168-0fe0-40d1-831a-85b97c6b230d",
+    "name": "Channel Accounts Links API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

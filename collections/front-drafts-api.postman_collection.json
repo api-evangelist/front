@@ -1,0 +1,711 @@
+{
+  "item": [
+    {
+      "id": "cd426c3a-cfd3-4310-bde5-671535b3c1a2",
+      "name": "Drafts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2609429-31e0-4c16-a680-cd534e2f4ccc",
+          "name": "Create draft",
+          "request": {
+            "name": "Create draft",
+            "description": {
+              "content": "Create a draft message which is the first message of a new [conversation](https://dev.frontapp.com/reference/conversations).\n\nRequired scope: `drafts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "drafts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cha_123",
+                  "key": "channel_id",
+                  "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"mode\": \"private\",\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bec6148d-939d-4fa5-ae19-42334b6fce4b",
+              "name": "A message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "drafts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"mode\": \"private\",\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq\",\n    \"related\": {\n      \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n      \"message_replied_to\": \"https://yourCompany.api.frontapp.com/messages/msg_2y67qldq\",\n      \"message_seen\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq/seen\"\n    }\n  },\n  \"id\": \"msg_1q15qmtq\",\n  \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\",\n  \"type\": \"email\",\n  \"is_inbound\": false,\n  \"draft_mode\": \"shared\",\n  \"error_type\": \"string\",\n  \"version\": \"551ba368f3e7803cce51503ee3e58ef0-26028-1701804863304-945c\",\n  \"created_at\": 1701292639,\n  \"subject\": \"Jim's pranks are getting out of hand\",\n  \"blurb\": \"It's high time we discuss the pranking culture in the office\",\n  \"author\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"API\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": false\n  },\n  \"recipients\": [\n    {\n      \"_links\": {\n        \"related\": {\n          \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n        }\n      },\n      \"name\": \"Phyllis Lapin-Vance\",\n      \"handle\": \"purpleboss@limitlesspaper.com\",\n      \"role\": \"cc\"\n    },\n    {\n      \"_links\": {\n        \"related\": {\n          \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n        }\n      },\n      \"name\": \"Phyllis Lapin-Vance\",\n      \"handle\": \"purpleboss@limitlesspaper.com\",\n      \"role\": \"cc\"\n    }\n  ],\n  \"body\": \"<p>Hi there,</p><p>I wanted to let you know that I'm suggesting an update to <a href='https://dundermifflin.com/privacy/pranks'>Dunder Mifflin's Pranking Policy</a> to provide non-humorous employees greater control over their well-being in the office.</p>\",\n  \"text\": \"Hi there,\\\\n\\\\nI wanted to let you know that I'm suggesting an update to Dunder Mifflin's Pranking Policy (https://dundermifflin.com/privacy/pranks) to provide non-humorous employees greater control over their well-being in the office.\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"signature\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n      \"related\": {\n        \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n      }\n    },\n    \"id\": \"sig_6rrv2\",\n    \"name\": \"Finer Things Club signature\",\n    \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n    \"sender_info\": \"string\",\n    \"is_private\": true,\n    \"is_visible_for_all_teammate_channels\": true,\n    \"is_default\": false,\n    \"channel_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"metadata\": {\n    \"intercom_url\": \"http://intercom.com\",\n    \"duration\": 189,\n    \"have_been_answered\": false,\n    \"external_id\": \"dkd84992kduo903\",\n    \"twitter_url\": \"https://twitter.com\",\n    \"is_retweet\": true,\n    \"have_been_retweeted\": true,\n    \"have_been_favorited\": false,\n    \"thread_ref\": \"t0930k9000-394\",\n    \"headers\": {},\n    \"chat_visitor_url\": \"https://yourCompany.com/products\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f549d9f-6e0b-45ca-a79b-66d35e5bb365",
+          "name": "List conversation drafts",
+          "request": {
+            "name": "List conversation drafts",
+            "description": {
+              "content": "List the drafts in a conversation.\n\nRequired scope: `drafts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "drafts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ccab657-4168-460b-86e7-6cc843ccd4ef",
+              "name": "Array of messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "drafts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages?page_token=klsljs8023j09suidfjlsjiei00043lllwww998303dkef0g\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq\",\n        \"related\": {\n          \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n          \"message_replied_to\": \"https://yourCompany.api.frontapp.com/messages/msg_2y67qldq\",\n          \"message_seen\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq/seen\"\n        }\n      },\n      \"id\": \"msg_1q15qmtq\",\n      \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\",\n      \"type\": \"email\",\n      \"is_inbound\": false,\n      \"draft_mode\": \"shared\",\n      \"error_type\": \"string\",\n      \"version\": \"551ba368f3e7803cce51503ee3e58ef0-26028-1701804863304-945c\",\n      \"created_at\": 1701292639,\n      \"subject\": \"Jim's pranks are getting out of hand\",\n      \"blurb\": \"It's high time we discuss the pranking culture in the office\",\n      \"author\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"user\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": false\n      },\n      \"recipients\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        }\n      ],\n      \"body\": \"<p>Hi there,</p><p>I wanted to let you know that I'm suggesting an update to <a href='https://dundermifflin.com/privacy/pranks'>Dunder Mifflin's Pranking Policy</a> to provide non-humorous employees greater control over their well-being in the office.</p>\",\n      \"text\": \"Hi there,\\\\n\\\\nI wanted to let you know that I'm suggesting an update to Dunder Mifflin's Pranking Policy (https://dundermifflin.com/privacy/pranks) to provide non-humorous employees greater control over their well-being in the office.\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"signature\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n          \"related\": {\n            \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n          }\n        },\n        \"id\": \"sig_6rrv2\",\n        \"name\": \"Finer Things Club signature\",\n        \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n        \"sender_info\": \"string\",\n        \"is_private\": true,\n        \"is_visible_for_all_teammate_channels\": true,\n        \"is_default\": false,\n        \"channel_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"metadata\": {\n        \"intercom_url\": \"http://intercom.com\",\n        \"duration\": 189,\n        \"have_been_answered\": false,\n        \"external_id\": \"dkd84992kduo903\",\n        \"twitter_url\": \"https://twitter.com\",\n        \"is_retweet\": true,\n        \"have_been_retweeted\": true,\n        \"have_been_favorited\": false,\n        \"thread_ref\": \"t0930k9000-394\",\n        \"headers\": {},\n        \"chat_visitor_url\": \"https://yourCompany.com/products\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq\",\n        \"related\": {\n          \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n          \"message_replied_to\": \"https://yourCompany.api.frontapp.com/messages/msg_2y67qldq\",\n          \"message_seen\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq/seen\"\n        }\n      },\n      \"id\": \"msg_1q15qmtq\",\n      \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\",\n      \"type\": \"email\",\n      \"is_inbound\": false,\n      \"draft_mode\": \"shared\",\n      \"error_type\": \"string\",\n      \"version\": \"551ba368f3e7803cce51503ee3e58ef0-26028-1701804863304-945c\",\n      \"created_at\": 1701292639,\n      \"subject\": \"Jim's pranks are getting out of hand\",\n      \"blurb\": \"It's high time we discuss the pranking culture in the office\",\n      \"author\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"integration\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": \"string\"\n      },\n      \"recipients\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        }\n      ],\n      \"body\": \"<p>Hi there,</p><p>I wanted to let you know that I'm suggesting an update to <a href='https://dundermifflin.com/privacy/pranks'>Dunder Mifflin's Pranking Policy</a> to provide non-humorous employees greater control over their well-being in the office.</p>\",\n      \"text\": \"Hi there,\\\\n\\\\nI wanted to let you know that I'm suggesting an update to Dunder Mifflin's Pranking Policy (https://dundermifflin.com/privacy/pranks) to provide non-humorous employees greater control over their well-being in the office.\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"signature\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n          \"related\": {\n            \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n          }\n        },\n        \"id\": \"sig_6rrv2\",\n        \"name\": \"Finer Things Club signature\",\n        \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n        \"sender_info\": \"string\",\n        \"is_private\": true,\n        \"is_visible_for_all_teammate_channels\": true,\n        \"is_default\": false,\n        \"channel_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"metadata\": {\n        \"intercom_url\": \"http://intercom.com\",\n        \"duration\": 189,\n        \"have_been_answered\": false,\n        \"external_id\": \"dkd84992kduo903\",\n        \"twitter_url\": \"https://twitter.com\",\n        \"is_retweet\": true,\n        \"have_been_retweeted\": true,\n        \"have_been_favorited\": false,\n        \"thread_ref\": \"t0930k9000-394\",\n        \"headers\": {},\n        \"chat_visitor_url\": \"https://yourCompany.com/products\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5711b829-1f38-4c67-b788-22b1af57a201",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "drafts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "400d6d80-8446-4482-90d8-a8a411fff7aa",
+          "name": "Create draft reply",
+          "request": {
+            "name": "Create draft reply",
+            "description": {
+              "content": "Create a new draft as a reply to the last message in the conversation.\n\nRequired scope: `drafts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "drafts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<string>\",\n  \"channel_id\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"mode\": \"private\",\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2598b895-13fa-4810-aeb0-d993f1e60f67",
+              "name": "A message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "drafts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"channel_id\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"mode\": \"private\",\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq\",\n    \"related\": {\n      \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n      \"message_replied_to\": \"https://yourCompany.api.frontapp.com/messages/msg_2y67qldq\",\n      \"message_seen\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq/seen\"\n    }\n  },\n  \"id\": \"msg_1q15qmtq\",\n  \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\",\n  \"type\": \"email\",\n  \"is_inbound\": false,\n  \"draft_mode\": \"shared\",\n  \"error_type\": \"string\",\n  \"version\": \"551ba368f3e7803cce51503ee3e58ef0-26028-1701804863304-945c\",\n  \"created_at\": 1701292639,\n  \"subject\": \"Jim's pranks are getting out of hand\",\n  \"blurb\": \"It's high time we discuss the pranking culture in the office\",\n  \"author\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"visitor\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": \"string\"\n  },\n  \"recipients\": [\n    {\n      \"_links\": {\n        \"related\": {\n          \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n        }\n      },\n      \"name\": \"Phyllis Lapin-Vance\",\n      \"handle\": \"purpleboss@limitlesspaper.com\",\n      \"role\": \"cc\"\n    },\n    {\n      \"_links\": {\n        \"related\": {\n          \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n        }\n      },\n      \"name\": \"Phyllis Lapin-Vance\",\n      \"handle\": \"purpleboss@limitlesspaper.com\",\n      \"role\": \"cc\"\n    }\n  ],\n  \"body\": \"<p>Hi there,</p><p>I wanted to let you know that I'm suggesting an update to <a href='https://dundermifflin.com/privacy/pranks'>Dunder Mifflin's Pranking Policy</a> to provide non-humorous employees greater control over their well-being in the office.</p>\",\n  \"text\": \"Hi there,\\\\n\\\\nI wanted to let you know that I'm suggesting an update to Dunder Mifflin's Pranking Policy (https://dundermifflin.com/privacy/pranks) to provide non-humorous employees greater control over their well-being in the office.\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"signature\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n      \"related\": {\n        \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n      }\n    },\n    \"id\": \"sig_6rrv2\",\n    \"name\": \"Finer Things Club signature\",\n    \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n    \"sender_info\": \"string\",\n    \"is_private\": true,\n    \"is_visible_for_all_teammate_channels\": true,\n    \"is_default\": false,\n    \"channel_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"metadata\": {\n    \"intercom_url\": \"http://intercom.com\",\n    \"duration\": 189,\n    \"have_been_answered\": false,\n    \"external_id\": \"dkd84992kduo903\",\n    \"twitter_url\": \"https://twitter.com\",\n    \"is_retweet\": true,\n    \"have_been_retweeted\": true,\n    \"have_been_favorited\": false,\n    \"thread_ref\": \"t0930k9000-394\",\n    \"headers\": {},\n    \"chat_visitor_url\": \"https://yourCompany.com/products\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb20a887-d9ec-4c12-bf5e-aa201653bce6",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "drafts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"channel_id\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"mode\": \"private\",\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1ea5955-ba96-4d66-b379-efb8a0c32d15",
+          "name": "Delete draft",
+          "request": {
+            "name": "Delete draft",
+            "description": {
+              "content": "Delete a draft message.\n\nRequired scope: `drafts:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "drafts",
+                ":draft_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "msg_123",
+                  "key": "draft_id",
+                  "description": "(Required) The draft ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5331e70c-36d0-4682-b3a3-6cb542f509a5",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drafts",
+                    ":draft_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "msg_123",
+                      "key": "draft_id",
+                      "description": "(Required) The draft ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bb75da8-fad2-4136-a6f3-030c5ae7a31b",
+          "name": "Edit draft",
+          "request": {
+            "name": "Edit draft",
+            "description": {
+              "content": "Edit a draft message.\n\nRequired scope: `drafts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "drafts",
+                ":message_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "msg_123",
+                  "key": "message_id",
+                  "description": "(Required) The draft ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<string>\",\n  \"channel_id\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"mode\": \"private\",\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ccd00c8-4667-4e9c-93ba-bd1171ddf215",
+              "name": "A message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drafts",
+                    ":message_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "msg_123",
+                      "key": "message_id",
+                      "description": "(Required) The draft ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"channel_id\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bcc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": \"<string>\",\n  \"quote_body\": \"<string>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ],\n  \"mode\": \"private\",\n  \"signature_id\": \"<string>\",\n  \"should_add_default_signature\": \"<boolean>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq\",\n    \"related\": {\n      \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n      \"message_replied_to\": \"https://yourCompany.api.frontapp.com/messages/msg_2y67qldq\",\n      \"message_seen\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq/seen\"\n    }\n  },\n  \"id\": \"msg_1q15qmtq\",\n  \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\",\n  \"type\": \"email\",\n  \"is_inbound\": false,\n  \"draft_mode\": \"shared\",\n  \"error_type\": \"string\",\n  \"version\": \"551ba368f3e7803cce51503ee3e58ef0-26028-1701804863304-945c\",\n  \"created_at\": 1701292639,\n  \"subject\": \"Jim's pranks are getting out of hand\",\n  \"blurb\": \"It's high time we discuss the pranking culture in the office\",\n  \"author\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"visitor\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": \"string\"\n  },\n  \"recipients\": [\n    {\n      \"_links\": {\n        \"related\": {\n          \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n        }\n      },\n      \"name\": \"Phyllis Lapin-Vance\",\n      \"handle\": \"purpleboss@limitlesspaper.com\",\n      \"role\": \"cc\"\n    },\n    {\n      \"_links\": {\n        \"related\": {\n          \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n        }\n      },\n      \"name\": \"Phyllis Lapin-Vance\",\n      \"handle\": \"purpleboss@limitlesspaper.com\",\n      \"role\": \"cc\"\n    }\n  ],\n  \"body\": \"<p>Hi there,</p><p>I wanted to let you know that I'm suggesting an update to <a href='https://dundermifflin.com/privacy/pranks'>Dunder Mifflin's Pranking Policy</a> to provide non-humorous employees greater control over their well-being in the office.</p>\",\n  \"text\": \"Hi there,\\\\n\\\\nI wanted to let you know that I'm suggesting an update to Dunder Mifflin's Pranking Policy (https://dundermifflin.com/privacy/pranks) to provide non-humorous employees greater control over their well-being in the office.\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"signature\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n      \"related\": {\n        \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n      }\n    },\n    \"id\": \"sig_6rrv2\",\n    \"name\": \"Finer Things Club signature\",\n    \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n    \"sender_info\": \"string\",\n    \"is_private\": true,\n    \"is_visible_for_all_teammate_channels\": true,\n    \"is_default\": false,\n    \"channel_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"metadata\": {\n    \"intercom_url\": \"http://intercom.com\",\n    \"duration\": 189,\n    \"have_been_answered\": false,\n    \"external_id\": \"dkd84992kduo903\",\n    \"twitter_url\": \"https://twitter.com\",\n    \"is_retweet\": true,\n    \"have_been_retweeted\": true,\n    \"have_been_favorited\": false,\n    \"thread_ref\": \"t0930k9000-394\",\n    \"headers\": {},\n    \"chat_visitor_url\": \"https://yourCompany.com/products\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4424df43-bbcb-4fc6-863a-3a0f8a65fc6e",
+    "name": "Channel Accounts Drafts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

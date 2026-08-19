@@ -1,0 +1,417 @@
+{
+  "item": [
+    {
+      "id": "37e672ec-cfa2-4080-8655-0fb562d4bdcb",
+      "name": "Application Message Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12e3c65c-8178-4b0c-91e8-c8ffa6803e11",
+          "name": "Sync application message template",
+          "request": {
+            "name": "Sync application message template",
+            "description": {
+              "content": "Import an application message template from an external service (such as WhatsApp or Facebook). The message template becomes available for use by the channel specified if configured as described in [this topic](https://dev.frontapp.com/update/docs/application-channel-message-templates).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "application_message_templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cha_123",
+                  "key": "channel_id",
+                  "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blurb\": \"<string>\",\n  \"is_disabled\": \"<boolean>\",\n  \"status_name\": \"<string>\",\n  \"variable_mappings\": [\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"template_preview\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3700acc1-1455-4f3b-a3bb-3d43dd976b3a",
+              "name": "An application message template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "application_message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blurb\": \"<string>\",\n  \"is_disabled\": \"<boolean>\",\n  \"status_name\": \"<string>\",\n  \"variable_mappings\": [\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"template_preview\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"template_id\": 2482.666464223806\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7d0f2f1-9c09-4dab-8476-5a98eeafe2c6",
+              "name": "Channel is not an application channel or does not support application message templates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "application_message_templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blurb\": \"<string>\",\n  \"is_disabled\": \"<boolean>\",\n  \"status_name\": \"<string>\",\n  \"variable_mappings\": [\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"template_preview\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00b2e34b-9347-4d5e-afad-3b5f6a5afd22",
+          "name": "Update application message template",
+          "request": {
+            "name": "Update application message template",
+            "description": {
+              "content": "Update an application message template that already exists in Front.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "application_message_templates",
+                ":external_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cha_123",
+                  "key": "channel_id",
+                  "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "ext_123",
+                  "key": "external_id",
+                  "description": "(Required) The external ID of the application message template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"blurb\": \"<string>\",\n  \"is_disabled\": \"<boolean>\",\n  \"status_name\": \"<string>\",\n  \"variable_mappings\": [\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"template_preview\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45ac8115-78ff-4049-a4cd-100f23686f21",
+              "name": "An application message template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "application_message_templates",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ext_123",
+                      "key": "external_id",
+                      "description": "(Required) The external ID of the application message template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"blurb\": \"<string>\",\n  \"is_disabled\": \"<boolean>\",\n  \"status_name\": \"<string>\",\n  \"variable_mappings\": [\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"template_preview\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"template_id\": 2482.666464223806\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3042746-9330-4252-9c10-670bad36c6b1",
+              "name": "Channel is not an application channel or does not support application message templates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "application_message_templates",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cha_123",
+                      "key": "channel_id",
+                      "description": "(Required) The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ext_123",
+                      "key": "external_id",
+                      "description": "(Required) The external ID of the application message template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"blurb\": \"<string>\",\n  \"is_disabled\": \"<boolean>\",\n  \"status_name\": \"<string>\",\n  \"variable_mappings\": [\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"uid\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"template_preview\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f44c6025-b10b-486d-888c-4f253f38e841",
+    "name": "Channel Accounts Application Message Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Shifts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shifts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shifts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/shifts"
+          },
+          "docs": "List the shifts.\n\nRequired scope: `shifts:read`"
+        },
+        {
+          "info": {
+            "name": "Create shift",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/shifts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a shift in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team shift](https://dev.frontapp.com/reference/create-team-shift) endpoint instead.\n\nRequired scope: `shifts:write`"
+        },
+        {
+          "info": {
+            "name": "Get shift",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/shifts/:shift_id",
+            "params": [
+              {
+                "name": "shift_id",
+                "value": "",
+                "type": "path",
+                "description": "The Shift ID"
+              }
+            ]
+          },
+          "docs": "Fetch a shift.\n\nRequired scope: `shifts:read`"
+        },
+        {
+          "info": {
+            "name": "Update shift",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/shifts/:shift_id",
+            "params": [
+              {
+                "name": "shift_id",
+                "value": "",
+                "type": "path",
+                "description": "The Shift ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a shift.\n\nRequired scope: `shifts:write`"
+        },
+        {
+          "info": {
+            "name": "List shift's teammates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/shifts/:shift_id/teammates",
+            "params": [
+              {
+                "name": "shift_id",
+                "value": "",
+                "type": "path",
+                "description": "The Shift ID"
+              }
+            ]
+          },
+          "docs": "List the teammates assigned to a shift.\n\nRequired scope: `teammates:read`"
+        },
+        {
+          "info": {
+            "name": "Add teammates to shift",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/shifts/:shift_id/teammates",
+            "params": [
+              {
+                "name": "shift_id",
+                "value": "",
+                "type": "path",
+                "description": "The Shift ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add teammates to a shift. The selected teammates must be in the team that owns the shift.\n\nRequired scope: `shifts:write`"
+        },
+        {
+          "info": {
+            "name": "Remove teammates from shift",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/shifts/:shift_id/teammates",
+            "params": [
+              {
+                "name": "shift_id",
+                "value": "",
+                "type": "path",
+                "description": "The Shift ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove teammates from a shift.\n\nRequired scope: `shifts:write`"
+        },
+        {
+          "info": {
+            "name": "List Teammate Shifts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/shifts",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ]
+          },
+          "docs": "Lists all the shifts for the teammate.\n\nRequired scope: `shifts:read`"
+        },
+        {
+          "info": {
+            "name": "List team Shifts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teams/:team_id/shifts",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              }
+            ]
+          },
+          "docs": "List the shifts for a team (workspace).\n\nRequired scope: `shifts:read`"
+        },
+        {
+          "info": {
+            "name": "Create team shift",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teams/:team_id/shifts",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The Team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a shift for a team (workspace).\n\nRequired scope: `shifts:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

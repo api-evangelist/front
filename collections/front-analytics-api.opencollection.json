@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Analytics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new analytics export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/analytics/exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new analytics export of messages or events (activities) over a specific time span.\nThe export will be executed asynchronously. The response will include a link that can be used to retrieve the export status & result. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.\n\n\nRequired scope: `analytics:read`"
+        },
+        {
+          "info": {
+            "name": "Fetch an analytics export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/analytics/exports/:export_id",
+            "params": [
+              {
+                "name": "export_id",
+                "value": "",
+                "type": "path",
+                "description": "The export ID."
+              }
+            ]
+          },
+          "docs": "Fetch an analytics exports. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.\n\nRequired scope: `analytics:read`"
+        },
+        {
+          "info": {
+            "name": "Create a new analytics report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/analytics/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new analytics report for a set of metrics over a specific time span. Different filters (e.g. Inbox v Tag v Teammates) will be joined with AND logic, but the IDs within a filter will be joined with OR logic (e.g. Inbox A or Inbox B, Tag A or Tag B).\nThe report will be executed asynchronously. The response will include a link that can be used to retrieve the\nreport status & result. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metr"
+        },
+        {
+          "info": {
+            "name": "Fetch an analytics report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/analytics/reports/:report_uid",
+            "params": [
+              {
+                "name": "report_uid",
+                "value": "",
+                "type": "path",
+                "description": "The report UID."
+              }
+            ]
+          },
+          "docs": "Fetch an analytics report. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.\n\nRequired scope: `analytics:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,259 @@
+{
+  "item": [
+    {
+      "id": "959bf414-493d-4bed-afe1-2b90e77f39ae",
+      "name": "Statuses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6853a21-4195-4ccf-8a4c-20d8cdf33cdc",
+          "name": "List company ticket statuses",
+          "request": {
+            "name": "List company ticket statuses",
+            "description": {
+              "content": "List the ticket statuses available for your company.\n\nRequired scope: `statuses:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "company",
+                "statuses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5c7d8b7-4b2d-4241-bf0d-9e91cc1fdc60",
+              "name": "Array of ticket statuses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "company",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/company/statuses\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/company/statuses/sts_5z\"\n      },\n      \"id\": \"sts_5z\",\n      \"name\": \"Open\",\n      \"category\": \"open\",\n      \"description\": \"New or currently being worked on\",\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/company/statuses/sts_5z\"\n      },\n      \"id\": \"sts_5z\",\n      \"name\": \"Open\",\n      \"category\": \"open\",\n      \"description\": \"New or currently being worked on\",\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "926ca89e-e35d-427f-88ae-bda219d736eb",
+              "name": "Ticketing is not enabled, therefore, there are no ticket statuses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "company",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24628f6e-31e6-4d22-ada7-c1a06798fce8",
+          "name": "Get ticket status",
+          "request": {
+            "name": "Get ticket status",
+            "description": {
+              "content": "Fetch a ticket status.\n\nRequired scope: `statuses:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "company",
+                "statuses",
+                ":status_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "sts_5z",
+                  "key": "status_id",
+                  "description": "(Required) The ticket status ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7885dbc0-60ef-4290-ba8d-6ec727463714",
+              "name": "A ticket status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "company",
+                    "statuses",
+                    ":status_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "sts_5z",
+                      "key": "status_id",
+                      "description": "(Required) The ticket status ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/company/statuses/sts_5z\"\n  },\n  \"id\": \"sts_5z\",\n  \"name\": \"Open\",\n  \"category\": \"open\",\n  \"description\": \"New or currently being worked on\",\n  \"created_at\": 1682538996.583,\n  \"updated_at\": 1699575875.186\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5fe5181a-91fc-40d4-ad09-bbefadf4e2f1",
+    "name": "Channel Accounts Statuses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

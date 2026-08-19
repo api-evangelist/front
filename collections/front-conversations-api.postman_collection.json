@@ -1,0 +1,3048 @@
+{
+  "item": [
+    {
+      "id": "92380e83-2192-4a00-8708-1572ec247910",
+      "name": "Conversations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ee69287-9b5d-446e-92a8-f40ee92d5489",
+          "name": "List conversations",
+          "request": {
+            "name": "List conversations",
+            "description": {
+              "content": "List the conversations in the company in reverse chronological order (most recently updated first). The order will respect your company's [bump settings](https://help.front.com/t/y729th/customize-when-conversations-bump-up), which determine when conversations bump to the top. For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).\n\n\nRequired scope: `conversations:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the conversations. Only supports `date`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6ca30c5-a324-42b7-a60e-cdc07c05c4ae",
+              "name": "Array of conversations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/conversations?page_token=ce787da6f075740cf187d926f5e9f612bc7875763a8dd37d5\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"API\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": \"string\"\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"integration\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": \"string\"\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7f83fc1-a191-4c00-a922-784c20469c23",
+          "name": "Create discussion conversation",
+          "request": {
+            "name": "Create discussion conversation",
+            "description": {
+              "content": "Create a new [conversation](https://dev.frontapp.com/reference/conversations#creating-a-new-conversation) that only supports comments (known as discussions in Front). If you want to create a conversation that supports messages, use the [Create message](https://dev.frontapp.com/reference/post_channels-channel-id-messages) endpoint. If you want to add a comment to an existing conversation, use the [Add comment](https://dev.frontapp.com/reference/post_conversations-conversation-id-comments) endpoint.\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"comment\": {\n    \"body\": \"<string>\",\n    \"author_id\": \"<string>\",\n    \"attachments\": [\n      \"<binary>\",\n      \"<binary>\"\n    ]\n  },\n  \"inbox_id\": \"<string>\",\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72634e64-5af5-480f-a17e-2415788d887e",
+              "name": "A conversation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"comment\": {\n    \"body\": \"<string>\",\n    \"author_id\": \"<string>\",\n    \"attachments\": [\n      \"<binary>\",\n      \"<binary>\"\n    ]\n  },\n  \"inbox_id\": \"<string>\",\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n    \"related\": {\n      \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n      \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n      \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n      \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n      \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n      \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n    }\n  },\n  \"id\": \"cnv_yo1kg5q\",\n  \"subject\": \"How to prank Dwight Schrute\",\n  \"status\": \"assigned\",\n  \"ticket_ids\": [\n    \"TICKET-1\"\n  ],\n  \"assignee\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"API\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": 6891.121313946257\n  },\n  \"recipient\": {\n    \"_links\": {\n      \"related\": {\n        \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n      }\n    },\n    \"name\": \"Phyllis Lapin-Vance\",\n    \"handle\": \"purpleboss@limitlesspaper.com\",\n    \"role\": \"cc\"\n  },\n  \"tags\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    }\n  ],\n  \"links\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n      },\n      \"id\": \"top_b2wpa\",\n      \"name\": \"JIRA-SCRAN-4567\",\n      \"type\": \"app_2f76b9ac738de158\",\n      \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n      },\n      \"id\": \"top_b2wpa\",\n      \"name\": \"JIRA-SCRAN-4567\",\n      \"type\": \"app_2f76b9ac738de158\",\n      \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    }\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"is_private\": true,\n  \"scheduled_reminders\": [\n    {\n      \"_links\": {\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n        }\n      },\n      \"created_at\": 1701806790.536,\n      \"scheduled_at\": 1701874800,\n      \"updated_at\": 1701806790.536\n    },\n    {\n      \"_links\": {\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n        }\n      },\n      \"created_at\": 1701806790.536,\n      \"scheduled_at\": 1701874800,\n      \"updated_at\": 1701806790.536\n    }\n  ],\n  \"metadata\": {\n    \"external_conversation_ids\": [\n      \"JS3949\",\n      \"JS9403\"\n    ]\n  },\n  \"status_id\": \"sts_5x\",\n  \"status_category\": \"resolved\",\n  \"created_at\": 1701292649.333,\n  \"updated_at\": 1701292649.333,\n  \"waiting_since\": 1701292649.333\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2520db8-865e-43c7-b8fa-6862e59ea130",
+          "name": "Search conversations",
+          "request": {
+            "name": "Search conversations",
+            "description": {
+              "content": "Search for conversations. Response will include a count of total matches and an array of conversations in descending order by last activity.\nSee the [search syntax documentation](https://dev.frontapp.com/docs/search-1) for usage examples.\n**Note:** This endpoint is subject to [proportional rate limiting](https://dev.frontapp.com/docs/rate-limiting#additional-proportional-limiting) at 40% of your company's rate limit.\n\n\nRequired scope: `conversations:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                "search",
+                ":query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "inbox:inb_123 tag:tag_345",
+                  "key": "query",
+                  "description": "(Required) Search query string. See [Search](https://dev.frontapp.com/docs/search-1) topic for usage details."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fcfbe88d-6af6-490b-9963-5618a8c21f17",
+              "name": "Array of conversation search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    "search",
+                    ":query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "inbox:inb_123 tag:tag_345",
+                      "key": "query",
+                      "description": "(Required) Search query string. See [Search](https://dev.frontapp.com/docs/search-1) topic for usage details."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/conversations/search/:query:?page_token=d4d5f065c89f1284ea262fa6b19456239b0\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations/search/:query:\"\n  },\n  \"_total\": 212,\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"rule\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": false\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"rule\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": 6950\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8a01e57-d2a6-41d0-9680-03ee967afe79",
+          "name": "Get conversation",
+          "request": {
+            "name": "Get conversation",
+            "description": {
+              "content": "Fetch a conversation.\n\n\nRequired scope: `conversations:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8ce91ac-fc75-4487-8504-5a89c890baad",
+              "name": "A conversation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n    \"related\": {\n      \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n      \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n      \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n      \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n      \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n      \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n    }\n  },\n  \"id\": \"cnv_yo1kg5q\",\n  \"subject\": \"How to prank Dwight Schrute\",\n  \"status\": \"assigned\",\n  \"ticket_ids\": [\n    \"TICKET-1\"\n  ],\n  \"assignee\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"API\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": 6891.121313946257\n  },\n  \"recipient\": {\n    \"_links\": {\n      \"related\": {\n        \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n      }\n    },\n    \"name\": \"Phyllis Lapin-Vance\",\n    \"handle\": \"purpleboss@limitlesspaper.com\",\n    \"role\": \"cc\"\n  },\n  \"tags\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n        \"related\": {\n          \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n          \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n          \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n        }\n      },\n      \"id\": \"tag_2oxhvy\",\n      \"name\": \"Warehouse task\",\n      \"description\": \"Sitting on your biscuit, never having to risk it\",\n      \"highlight\": null,\n      \"is_private\": false,\n      \"is_visible_in_conversation_lists\": true,\n      \"created_at\": 1682538996.583,\n      \"updated_at\": 1699575875.186\n    }\n  ],\n  \"links\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n      },\n      \"id\": \"top_b2wpa\",\n      \"name\": \"JIRA-SCRAN-4567\",\n      \"type\": \"app_2f76b9ac738de158\",\n      \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n      },\n      \"id\": \"top_b2wpa\",\n      \"name\": \"JIRA-SCRAN-4567\",\n      \"type\": \"app_2f76b9ac738de158\",\n      \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    }\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"is_private\": true,\n  \"scheduled_reminders\": [\n    {\n      \"_links\": {\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n        }\n      },\n      \"created_at\": 1701806790.536,\n      \"scheduled_at\": 1701874800,\n      \"updated_at\": 1701806790.536\n    },\n    {\n      \"_links\": {\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n        }\n      },\n      \"created_at\": 1701806790.536,\n      \"scheduled_at\": 1701874800,\n      \"updated_at\": 1701806790.536\n    }\n  ],\n  \"metadata\": {\n    \"external_conversation_ids\": [\n      \"JS3949\",\n      \"JS9403\"\n    ]\n  },\n  \"status_id\": \"sts_5x\",\n  \"status_category\": \"resolved\",\n  \"created_at\": 1701292649.333,\n  \"updated_at\": 1701292649.333,\n  \"waiting_since\": 1701292649.333\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51f27539-fdc6-4268-898a-c21d06b070a9",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d4f6345-b45d-473c-8f20-9183d99e1439",
+          "name": "Update conversation",
+          "request": {
+            "name": "Update conversation",
+            "description": {
+              "content": "Update a conversation.\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assignee_id\": \"<string>\",\n  \"inbox_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"status_id\": \"<string>\",\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "106138d9-5b48-40c6-a1e1-fb774c410655",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assignee_id\": \"<string>\",\n  \"inbox_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"status_id\": \"sts_123\",\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "83bf945e-0c21-491f-8d3c-2d2e3385cc5e",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assignee_id\": \"<string>\",\n  \"inbox_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"status_id\": \"sts_123\",\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36b31866-df94-4d4d-9e76-c47b33af8558",
+              "name": "Invalid input, such as invalid custom fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assignee_id\": \"<string>\",\n  \"inbox_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"status_id\": \"sts_123\",\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a758430-2392-474e-8a89-af9acfcaa05e",
+          "name": "Delete conversation",
+          "request": {
+            "name": "Delete conversation",
+            "description": {
+              "content": "Permanently delete a conversation. The conversation must have status \"trashed\"\n(in the trash) before it can be permanently deleted. This action cannot be undone.\n\n\nRequired scope: `conversations:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d238fdb-7006-460d-8c7d-819a54093fe6",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0472e34d-82ac-42f0-9b75-7f70f83b4b64",
+              "name": "Conversation must have status \"trashed\" before it can be permanently deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c32fc467-a016-48b2-9c25-aac8ca722bdb",
+              "name": "Token lacks the required `conversations:delete` scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ff1d5d7-85b7-4642-a4ae-84aa8c040f25",
+              "name": "Conversation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3decf2fc-8bdd-4192-8c9f-060073b3cbd8",
+          "name": "Update conversation assignee",
+          "request": {
+            "name": "Update conversation assignee",
+            "description": {
+              "content": "Assign or unassign a conversation.\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "assignee"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assignee_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1fcb6f05-ce8a-40c1-95af-581172d92764",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "assignee"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assignee_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "507f68ad-8a31-41fe-9fce-aca3cbf809ee",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "assignee"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assignee_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ad1ae8f-29d1-4ae1-96ed-0ee079f68ca6",
+          "name": "List conversation events",
+          "request": {
+            "name": "List conversation events",
+            "description": {
+              "content": "List the events that occured for a conversation in reverse chronological order (newest first). The order will respect your company's [bump settings](https://help.front.com/t/y729th/customize-when-conversations-bump-up), which determine when conversations bump to the top.\n\nRequired scope: `events:*:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52e2acf8-d93c-45b7-a22e-8a037dd18bf5",
+              "name": "Array of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/events?page_token=2d018a5809eb90d349bc08c52cb1f4987bef\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/events\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/events/evt_4ckcra8e\"\n      },\n      \"id\": \"evt_4ckcra8e\",\n      \"type\": \"inbound\",\n      \"emitted_at\": 1703102616,\n      \"source\": {\n        \"_meta\": {\n          \"type\": \"string\"\n        },\n        \"data\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n            \"related\": {\n              \"owner\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"rul_58xhq\",\n          \"name\": \"Scranton new account workflow\",\n          \"actions\": [\n            \"string\",\n            \"string\"\n          ],\n          \"is_private\": false\n        }\n      },\n      \"target\": {\n        \"_meta\": {\n          \"type\": \"string\"\n        },\n        \"data\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n            \"related\": {\n              \"inboxes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conversations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"botSource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"tea_6r55a\",\n          \"email\": \"michael.scott@dundermifflin.com\",\n          \"username\": \"PrisonMike\",\n          \"first_name\": \"Michael\",\n          \"last_name\": \"Scott\",\n          \"is_admin\": true,\n          \"is_available\": false,\n          \"is_blocked\": false,\n          \"type\": \"CSAT\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          },\n          \"license_type\": 8218.381715103613\n        }\n      },\n      \"conversation\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n          \"related\": {\n            \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n            \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n            \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n            \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n            \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n          }\n        },\n        \"id\": \"cnv_yo1kg5q\",\n        \"subject\": \"How to prank Dwight Schrute\",\n        \"status\": \"assigned\",\n        \"ticket_ids\": [\n          \"TICKET-1\"\n        ],\n        \"assignee\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n            \"related\": {\n              \"inboxes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conversations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"botSource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"tea_6r55a\",\n          \"email\": \"michael.scott@dundermifflin.com\",\n          \"username\": \"PrisonMike\",\n          \"first_name\": \"Michael\",\n          \"last_name\": \"Scott\",\n          \"is_admin\": true,\n          \"is_available\": false,\n          \"is_blocked\": false,\n          \"type\": \"user\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          },\n          \"license_type\": false\n        },\n        \"recipient\": {\n          \"_links\": {\n            \"related\": {\n              \"contact\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        },\n        \"tags\": [\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"tag_2oxhvy\",\n            \"name\": \"Warehouse task\",\n            \"description\": \"Sitting on your biscuit, never having to risk it\",\n            \"highlight\": null,\n            \"is_private\": false,\n            \"is_visible_in_conversation_lists\": true,\n            \"created_at\": 1682538996.583,\n            \"updated_at\": 1699575875.186\n          },\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"tag_2oxhvy\",\n            \"name\": \"Warehouse task\",\n            \"description\": \"Sitting on your biscuit, never having to risk it\",\n            \"highlight\": null,\n            \"is_private\": false,\n            \"is_visible_in_conversation_lists\": true,\n            \"created_at\": 1682538996.583,\n            \"updated_at\": 1699575875.186\n          }\n        ],\n        \"links\": [\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"top_b2wpa\",\n            \"name\": \"JIRA-SCRAN-4567\",\n            \"type\": \"app_2f76b9ac738de158\",\n            \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n            \"custom_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"top_b2wpa\",\n            \"name\": \"JIRA-SCRAN-4567\",\n            \"type\": \"app_2f76b9ac738de158\",\n            \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n            \"custom_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"is_private\": true,\n        \"scheduled_reminders\": [\n          {\n            \"_links\": {\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"created_at\": 1701806790.536,\n            \"scheduled_at\": 1701874800,\n            \"updated_at\": 1701806790.536\n          },\n          {\n            \"_links\": {\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"created_at\": 1701806790.536,\n            \"scheduled_at\": 1701874800,\n            \"updated_at\": 1701806790.536\n          }\n        ],\n        \"metadata\": {\n          \"external_conversation_ids\": [\n            \"JS3949\",\n            \"JS9403\"\n          ]\n        },\n        \"status_id\": \"sts_5x\",\n        \"status_category\": \"resolved\",\n        \"created_at\": 1701292649.333,\n        \"updated_at\": 1701292649.333,\n        \"waiting_since\": 1701292649.333\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/events/evt_4ckcra8e\"\n      },\n      \"id\": \"evt_4ckcra8e\",\n      \"type\": \"inbound\",\n      \"emitted_at\": 1703102616,\n      \"source\": {\n        \"_meta\": {\n          \"type\": \"string\"\n        },\n        \"data\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n            \"related\": {\n              \"owner\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"rul_58xhq\",\n          \"name\": \"Scranton new account workflow\",\n          \"actions\": [\n            \"string\",\n            \"string\"\n          ],\n          \"is_private\": false\n        }\n      },\n      \"target\": {\n        \"_meta\": {\n          \"type\": \"string\"\n        },\n        \"data\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n            \"related\": {\n              \"inboxes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conversations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"botSource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"tea_6r55a\",\n          \"email\": \"michael.scott@dundermifflin.com\",\n          \"username\": \"PrisonMike\",\n          \"first_name\": \"Michael\",\n          \"last_name\": \"Scott\",\n          \"is_admin\": true,\n          \"is_available\": false,\n          \"is_blocked\": false,\n          \"type\": \"macro\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          },\n          \"license_type\": false\n        }\n      },\n      \"conversation\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n          \"related\": {\n            \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n            \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n            \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n            \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n            \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n          }\n        },\n        \"id\": \"cnv_yo1kg5q\",\n        \"subject\": \"How to prank Dwight Schrute\",\n        \"status\": \"assigned\",\n        \"ticket_ids\": [\n          \"TICKET-1\"\n        ],\n        \"assignee\": {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n            \"related\": {\n              \"inboxes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"conversations\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"botSource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"id\": \"tea_6r55a\",\n          \"email\": \"michael.scott@dundermifflin.com\",\n          \"username\": \"PrisonMike\",\n          \"first_name\": \"Michael\",\n          \"last_name\": \"Scott\",\n          \"is_admin\": true,\n          \"is_available\": false,\n          \"is_blocked\": false,\n          \"type\": \"CSAT\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          },\n          \"license_type\": false\n        },\n        \"recipient\": {\n          \"_links\": {\n            \"related\": {\n              \"contact\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        },\n        \"tags\": [\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"tag_2oxhvy\",\n            \"name\": \"Warehouse task\",\n            \"description\": \"Sitting on your biscuit, never having to risk it\",\n            \"highlight\": null,\n            \"is_private\": false,\n            \"is_visible_in_conversation_lists\": true,\n            \"created_at\": 1682538996.583,\n            \"updated_at\": 1699575875.186\n          },\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"tag_2oxhvy\",\n            \"name\": \"Warehouse task\",\n            \"description\": \"Sitting on your biscuit, never having to risk it\",\n            \"highlight\": null,\n            \"is_private\": false,\n            \"is_visible_in_conversation_lists\": true,\n            \"created_at\": 1682538996.583,\n            \"updated_at\": 1699575875.186\n          }\n        ],\n        \"links\": [\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"top_b2wpa\",\n            \"name\": \"JIRA-SCRAN-4567\",\n            \"type\": \"app_2f76b9ac738de158\",\n            \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n            \"custom_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"_links\": {\n              \"self\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"id\": \"top_b2wpa\",\n            \"name\": \"JIRA-SCRAN-4567\",\n            \"type\": \"app_2f76b9ac738de158\",\n            \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n            \"custom_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"is_private\": true,\n        \"scheduled_reminders\": [\n          {\n            \"_links\": {\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"created_at\": 1701806790.536,\n            \"scheduled_at\": 1701874800,\n            \"updated_at\": 1701806790.536\n          },\n          {\n            \"_links\": {\n              \"related\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"created_at\": 1701806790.536,\n            \"scheduled_at\": 1701874800,\n            \"updated_at\": 1701806790.536\n          }\n        ],\n        \"metadata\": {\n          \"external_conversation_ids\": [\n            \"JS3949\",\n            \"JS9403\"\n          ]\n        },\n        \"status_id\": \"sts_5x\",\n        \"status_category\": \"resolved\",\n        \"created_at\": 1701292649.333,\n        \"updated_at\": 1701292649.333,\n        \"waiting_since\": 1701292649.333\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cf55fdc-66a4-4e36-bcfc-3b179fd48c8e",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e16973a-6d3d-4ba8-83cd-94dfb677b42f",
+          "name": "List conversation followers",
+          "request": {
+            "name": "List conversation followers",
+            "description": {
+              "content": "List the teammates following a conversation.\n\nRequired scope: `teammates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "followers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15ca9247-86b0-4204-8ff4-0c578d3add60",
+              "name": "Array of teammates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/teammates\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"API\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": \"string\"\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"API\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": 8223\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22e86772-d66d-44bc-80a4-63c5f3aca048",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "496219a2-3119-4978-9f4f-8cc1e2b197be",
+          "name": "Add conversation followers",
+          "request": {
+            "name": "Add conversation followers",
+            "description": {
+              "content": "Adds teammates to the list of followers of a conversation.\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "followers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ignore_errors",
+                  "value": "false",
+                  "description": "Whether to ignore invalid teammate IDs and continue adding valid ones."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5ec3ed5-476c-425c-8288-9e5c0d299461",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ignore_errors",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c89659d0-b21d-4f8c-984c-49b8e83fab22",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ignore_errors",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70cceb5d-f01c-43cb-9b2b-107d8f600b8b",
+          "name": "Delete conversation followers",
+          "request": {
+            "name": "Delete conversation followers",
+            "description": {
+              "content": "Removes teammates from the list of followers of a conversation.\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "followers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e99e41f3-5f42-4392-92e5-4321276fd0bd",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eefeb0f3-0bc9-4952-a1d9-f6eb3fffba91",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "196cebe1-199d-4e2e-b1e1-1f2f11dc5018",
+          "name": "List conversation inboxes",
+          "request": {
+            "name": "List conversation inboxes",
+            "description": {
+              "content": "List the inboxes in which a conversation is listed.\n\nRequired scope: `inboxes:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fabf08f-fc02-4a0f-9519-72a97b05b2f8",
+              "name": "Array of Inboxes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/inboxes\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24484d32-3f5c-4933-81dc-4f76deddddb1",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2cbe9d5-777f-40ca-b05f-a9319aa45cca",
+          "name": "Add conversation link",
+          "request": {
+            "name": "Add conversation link",
+            "description": {
+              "content": "Adds one or more links to a conversation\nFor more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"link_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"link_external_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e2f777ea-8109-4c17-ade5-cb4681b45bf4",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"link_external_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f55f4ab8-2911-4588-8560-9286237430c4",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"link_external_urls\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98559aa0-d16d-4878-a099-5646cb845cbf",
+          "name": "Remove conversation links",
+          "request": {
+            "name": "Remove conversation links",
+            "description": {
+              "content": "Removes one or more links to a conversation.\nFor more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.\n\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"link_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbd3201d-00df-45b9-a8b9-31b3d285c460",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "58d05d63-09be-4520-8b0d-84f3173dd7b8",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1887555-adaa-4648-bada-b6a4fb701f62",
+          "name": "List conversation messages",
+          "request": {
+            "name": "List conversation messages",
+            "description": {
+              "content": "List the messages in a conversation in reverse chronological order (newest first).\n\nRequired scope: `messages:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the messages. Only supports `created_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0edda746-5903-4da8-b30a-ede22dc42d29",
+              "name": "Array of messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages?page_token=klsljs8023j09suidfjlsjiei00043lllwww998303dkef0g\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq\",\n        \"related\": {\n          \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n          \"message_replied_to\": \"https://yourCompany.api.frontapp.com/messages/msg_2y67qldq\",\n          \"message_seen\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq/seen\"\n        }\n      },\n      \"id\": \"msg_1q15qmtq\",\n      \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\",\n      \"type\": \"email\",\n      \"is_inbound\": false,\n      \"draft_mode\": \"shared\",\n      \"error_type\": \"string\",\n      \"version\": \"551ba368f3e7803cce51503ee3e58ef0-26028-1701804863304-945c\",\n      \"created_at\": 1701292639,\n      \"subject\": \"Jim's pranks are getting out of hand\",\n      \"blurb\": \"It's high time we discuss the pranking culture in the office\",\n      \"author\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"CSAT\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": \"string\"\n      },\n      \"recipients\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        }\n      ],\n      \"body\": \"<p>Hi there,</p><p>I wanted to let you know that I'm suggesting an update to <a href='https://dundermifflin.com/privacy/pranks'>Dunder Mifflin's Pranking Policy</a> to provide non-humorous employees greater control over their well-being in the office.</p>\",\n      \"text\": \"Hi there,\\\\n\\\\nI wanted to let you know that I'm suggesting an update to Dunder Mifflin's Pranking Policy (https://dundermifflin.com/privacy/pranks) to provide non-humorous employees greater control over their well-being in the office.\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"signature\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n          \"related\": {\n            \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n          }\n        },\n        \"id\": \"sig_6rrv2\",\n        \"name\": \"Finer Things Club signature\",\n        \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n        \"sender_info\": \"string\",\n        \"is_private\": true,\n        \"is_visible_for_all_teammate_channels\": true,\n        \"is_default\": false,\n        \"channel_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"metadata\": {\n        \"intercom_url\": \"http://intercom.com\",\n        \"duration\": 189,\n        \"have_been_answered\": false,\n        \"external_id\": \"dkd84992kduo903\",\n        \"twitter_url\": \"https://twitter.com\",\n        \"is_retweet\": true,\n        \"have_been_retweeted\": true,\n        \"have_been_favorited\": false,\n        \"thread_ref\": \"t0930k9000-394\",\n        \"headers\": {},\n        \"chat_visitor_url\": \"https://yourCompany.com/products\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq\",\n        \"related\": {\n          \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n          \"message_replied_to\": \"https://yourCompany.api.frontapp.com/messages/msg_2y67qldq\",\n          \"message_seen\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq/seen\"\n        }\n      },\n      \"id\": \"msg_1q15qmtq\",\n      \"message_uid\": \"1eab543f84a0785f7b6b8967cck18f4d\",\n      \"type\": \"email\",\n      \"is_inbound\": false,\n      \"draft_mode\": \"shared\",\n      \"error_type\": \"string\",\n      \"version\": \"551ba368f3e7803cce51503ee3e58ef0-26028-1701804863304-945c\",\n      \"created_at\": 1701292639,\n      \"subject\": \"Jim's pranks are getting out of hand\",\n      \"blurb\": \"It's high time we discuss the pranking culture in the office\",\n      \"author\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"macro\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": false\n      },\n      \"recipients\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n            }\n          },\n          \"name\": \"Phyllis Lapin-Vance\",\n          \"handle\": \"purpleboss@limitlesspaper.com\",\n          \"role\": \"cc\"\n        }\n      ],\n      \"body\": \"<p>Hi there,</p><p>I wanted to let you know that I'm suggesting an update to <a href='https://dundermifflin.com/privacy/pranks'>Dunder Mifflin's Pranking Policy</a> to provide non-humorous employees greater control over their well-being in the office.</p>\",\n      \"text\": \"Hi there,\\\\n\\\\nI wanted to let you know that I'm suggesting an update to Dunder Mifflin's Pranking Policy (https://dundermifflin.com/privacy/pranks) to provide non-humorous employees greater control over their well-being in the office.\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"signature\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/signatures/sig_6rrv2\",\n          \"related\": {\n            \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n          }\n        },\n        \"id\": \"sig_6rrv2\",\n        \"name\": \"Finer Things Club signature\",\n        \"body\": \"<div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>\",\n        \"sender_info\": \"string\",\n        \"is_private\": true,\n        \"is_visible_for_all_teammate_channels\": true,\n        \"is_default\": false,\n        \"channel_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"metadata\": {\n        \"intercom_url\": \"http://intercom.com\",\n        \"duration\": 189,\n        \"have_been_answered\": false,\n        \"external_id\": \"dkd84992kduo903\",\n        \"twitter_url\": \"https://twitter.com\",\n        \"is_retweet\": true,\n        \"have_been_retweeted\": true,\n        \"have_been_favorited\": false,\n        \"thread_ref\": \"t0930k9000-394\",\n        \"headers\": {},\n        \"chat_visitor_url\": \"https://yourCompany.com/products\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a43415e1-5d9c-47c3-bfc4-5430e263f7e6",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37750a3d-c7d6-4b07-9d7a-8bc8e1e9a8e7",
+          "name": "Update conversation reminders",
+          "request": {
+            "name": "Update conversation reminders",
+            "description": {
+              "content": "Snooze or unsnooze a conversation for the provided user.\nFor private conversations, reminders can only be created and edited through the API for teammates that own the conversation.\nFor shared conversations, reminders created and edited through the API are shared for all teammates within the shared inbox(es) that the conversation belongs to.\n\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "reminders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teammate_id\": \"<string>\",\n  \"scheduled_at\": \"<number>\",\n  \"status_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ad43ae2-becf-44cb-bbfb-3f84d315d111",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_id\": \"<string>\",\n  \"scheduled_at\": \"<number>\",\n  \"status_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "172bfde5-c606-497b-9451-0a67b6fa7418",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_id\": \"<string>\",\n  \"scheduled_at\": \"<number>\",\n  \"status_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37697f39-bbf3-4006-834e-f4c6c7462b9f",
+          "name": "Add conversation tag",
+          "request": {
+            "name": "Add conversation tag",
+            "description": {
+              "content": "Adds one or more tags to a conversation\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6063d4b0-3018-4944-b864-5e2c1df6a5e5",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b69361fa-d0a8-49a0-b502-23c1ab71df14",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dde7941f-c681-488d-9a7b-3ac556ce23e9",
+          "name": "Remove conversation tag",
+          "request": {
+            "name": "Remove conversation tag",
+            "description": {
+              "content": "Removes one or more tags to a conversation\n\nRequired scope: `conversations:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1e99bfe-0757-4097-978d-0d5f61a37741",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8141c824-434f-484e-88b0-3d1cdc787dd5",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8dfde5c4-a403-4088-8a91-800bbce48160",
+    "name": "Channel Accounts Conversations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

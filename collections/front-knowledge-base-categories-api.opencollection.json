@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Knowledge Base Categories API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Knowledge Base Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a knowledge base category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_base_categories/:category_id",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the category to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches a knowledge base category.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Delete a knowledge base category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/knowledge_base_categories/:category_id",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the category to delete"
+              }
+            ]
+          },
+          "docs": "Deletes a knowledge base category.\n\n> ⚠️ Warning\n>\n> When a category is deleted, all articles in the category are also deleted.\n\n\nRequired scope: `knowledge_bases:delete`"
+        },
+        {
+          "info": {
+            "name": "Get knowledge base category content in default locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_base_categories/:category_id/content",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the category to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches a knowledge base category with content in the default locale.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Update knowledge base category in default locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/knowledge_base_categories/:category_id/content",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the category to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a knowledge base category in the default locale. Will republish the knowledge base if the knowledge base is currently published.\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "Get knowledge base category with content in specified locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_base_categories/:category_id/locales/:locale/content",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the category to fetch"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches a knowledge base category with content for a given locale.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Update knowledge base category in specified locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/knowledge_base_categories/:category_id/locales/:locale/content",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the category to update"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a knowledge base category for a given locale. Will republish the knowledge base if the knowledge base is currently published.\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "List categories in a knowledge base",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/categories",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "List categories in a knowledge base.\n\nRequired scope: `knowledge_bases:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

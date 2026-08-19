@@ -1,0 +1,503 @@
+{
+  "item": [
+    {
+      "id": "2da6aefa-1791-4f9e-bc60-cc3e8f1cfc57",
+      "name": "Attachments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "18c41418-977f-452a-bf7b-f0b754663d4a",
+          "name": "Download attachment for a comment",
+          "request": {
+            "name": "Download attachment for a comment",
+            "description": {
+              "content": "Download an attachment file for a given comment ID\n\nRequired scope: `attachments:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments",
+                ":comment_id",
+                "download",
+                ":attachment_link_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "com_1v3ef",
+                  "key": "comment_id",
+                  "description": "(Required) The Comment ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "fil_55c8c149",
+                  "key": "attachment_link_id",
+                  "description": "(Required) The Attachment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd757c88-0680-4177-9d0e-0ad6bcf0f7c6",
+              "name": "The binary content of the attachment file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments",
+                    ":comment_id",
+                    "download",
+                    ":attachment_link_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "com_1v3ef",
+                      "key": "comment_id",
+                      "description": "(Required) The Comment ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "fil_55c8c149",
+                      "key": "attachment_link_id",
+                      "description": "(Required) The Attachment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The size of the attachment file in bytes",
+                  "key": "Content-Length",
+                  "value": "1024"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43033478-1be9-45a5-9b0a-c7da198879f4",
+          "name": "Download attachment",
+          "request": {
+            "name": "Download attachment",
+            "description": {
+              "content": "Download an attachment file.\n\nRequired scope: `attachments:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "download",
+                ":attachment_link_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "fil_55c8c149",
+                  "key": "attachment_link_id",
+                  "description": "(Required) The Attachment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a93fc913-4fff-4541-8e90-c84132bd6b6f",
+              "name": "The binary content of the attachment file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "download",
+                    ":attachment_link_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "fil_55c8c149",
+                      "key": "attachment_link_id",
+                      "description": "(Required) The Attachment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The size of the attachment file in bytes",
+                  "key": "Content-Length",
+                  "value": "1024"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28c1400a-d90e-4df4-bfe2-f5ae8d508e86",
+          "name": "Download attachment for a message template",
+          "request": {
+            "name": "Download attachment for a message template",
+            "description": {
+              "content": "Download an attachment file for a given message template ID\n\nRequired scope: `attachments:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_templates",
+                ":message_template_id",
+                "download",
+                ":attachment_link_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsp_1v3ef",
+                  "key": "message_template_id",
+                  "description": "(Required) The Message Template ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "fil_55c8c149",
+                  "key": "attachment_link_id",
+                  "description": "(Required) The Attachment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e2f8620-8342-42df-8aee-9fb10cbe1a8b",
+              "name": "The binary content of the attachment file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_templates",
+                    ":message_template_id",
+                    "download",
+                    ":attachment_link_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsp_1v3ef",
+                      "key": "message_template_id",
+                      "description": "(Required) The Message Template ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "fil_55c8c149",
+                      "key": "attachment_link_id",
+                      "description": "(Required) The Attachment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The size of the attachment file in bytes",
+                  "key": "Content-Length",
+                  "value": "1024"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebb002ab-b997-4070-a5d4-0046591298fb",
+          "name": "Download attachment for a message",
+          "request": {
+            "name": "Download attachment for a message",
+            "description": {
+              "content": "Download an attachment file for a given message id. Should be used by partner channels.\n\nRequired scope: `attachments:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":message_id",
+                "download",
+                ":attachment_link_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "msg_12345",
+                  "key": "message_id",
+                  "description": "(Required) The Message ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "fil_55c8c149",
+                  "key": "attachment_link_id",
+                  "description": "(Required) The Attachment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddc8ad9f-3c01-474e-88d8-a00cc86b480f",
+              "name": "The binary content of the attachment file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":message_id",
+                    "download",
+                    ":attachment_link_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "msg_12345",
+                      "key": "message_id",
+                      "description": "(Required) The Message ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "fil_55c8c149",
+                      "key": "attachment_link_id",
+                      "description": "(Required) The Attachment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The size of the attachment file in bytes",
+                  "key": "Content-Length",
+                  "value": "1024"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1129541b-baf8-4d3a-abf5-bafb43dba3e6",
+    "name": "Channel Accounts Attachments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

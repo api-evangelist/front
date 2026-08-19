@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Applications API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Trigger application event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/applications/:application_uid/events",
+            "params": [
+              {
+                "name": "application_uid",
+                "value": "",
+                "type": "path",
+                "description": "The application UID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers an event on behalf of an application. These events can trigger Front workflows, like rules.\nFor more information, see the [developer docs](https://dev.frontapp.com/docs/application-triggers#/).\n\n\nRequired scope: `feature:app_trigger`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

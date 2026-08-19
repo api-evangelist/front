@@ -1,0 +1,439 @@
+{
+  "item": [
+    {
+      "id": "ce8793eb-aae9-4217-bc79-265769bb8fa8",
+      "name": "Analytics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50cfb5b9-7648-4ace-a313-d695ad349f79",
+          "name": "Create a new analytics export",
+          "request": {
+            "name": "Create a new analytics export",
+            "description": {
+              "content": "Create a new analytics export of messages or events (activities) over a specific time span.\nThe export will be executed asynchronously. The response will include a link that can be used to retrieve the export status & result. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.\n\n\nRequired scope: `analytics:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"columns\": [\n    \"Message ID\",\n    \"Segment ID\",\n    \"Conversation ID\",\n    \"Ticket IDs\",\n    \"Segment\",\n    \"Direction\",\n    \"Status\",\n    \"Inbox\",\n    \"Inbox API ID\",\n    \"Inbox at activity time\",\n    \"Inbox API IDs at activity time\",\n    \"Message date\",\n    \"Autoreply\",\n    \"Reaction time\",\n    \"Total reply time\",\n    \"Handle time\",\n    \"Response time\",\n    \"Attributed to\",\n    \"Assignee\",\n    \"Author\",\n    \"Contact name\",\n    \"Contact handle\",\n    \"Account names\",\n    \"From\",\n    \"To\",\n    \"Cc\",\n    \"Bcc\",\n    \"Extract\",\n    \"Tags\",\n    \"Tag API IDs\",\n    \"Message API ID\",\n    \"Conversation API ID\",\n    \"New Conversation\",\n    \"First response\",\n    \"Business hours\",\n    \"Subject\",\n    \"Segment start\",\n    \"Segment end\",\n    \"Segment closed\",\n    \"Last segment activity\",\n    \"Segment cumulative teammates\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f53ba12f-6008-4a8a-9499-7ce86c04cfbb",
+              "name": "An analytics export.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"columns\": [\n    \"Message ID\",\n    \"Segment ID\",\n    \"Conversation ID\",\n    \"Ticket IDs\",\n    \"Segment\",\n    \"Direction\",\n    \"Status\",\n    \"Inbox\",\n    \"Inbox API ID\",\n    \"Inbox at activity time\",\n    \"Inbox API IDs at activity time\",\n    \"Message date\",\n    \"Autoreply\",\n    \"Reaction time\",\n    \"Total reply time\",\n    \"Handle time\",\n    \"Response time\",\n    \"Attributed to\",\n    \"Assignee\",\n    \"Author\",\n    \"Contact name\",\n    \"Contact handle\",\n    \"Account names\",\n    \"From\",\n    \"To\",\n    \"Cc\",\n    \"Bcc\",\n    \"Extract\",\n    \"Tags\",\n    \"Tag API IDs\",\n    \"Message API ID\",\n    \"Conversation API ID\",\n    \"New Conversation\",\n    \"First response\",\n    \"Business hours\",\n    \"Subject\",\n    \"Segment start\",\n    \"Segment end\",\n    \"Segment closed\",\n    \"Last segment activity\",\n    \"Segment cumulative teammates\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/analytics/exports/exp_o9y1a\"\n  },\n  \"id\": \"exp_o9y1a\",\n  \"status\": \"running\",\n  \"progress\": 20,\n  \"filters\": {\n    \"tag_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"url\": \"https://api.frontapp.com/analytics/exports/exp_o9y1a/download\",\n  \"filename\": \"export-messages-yourCompany-2023-07-19-212d-e55df0.csv\",\n  \"size\": 26639,\n  \"created_at\": 1703103649.159\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b905019-1ae3-419f-960b-3dc288804b91",
+          "name": "Fetch an analytics export",
+          "request": {
+            "name": "Fetch an analytics export",
+            "description": {
+              "content": "Fetch an analytics exports. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.\n\nRequired scope: `analytics:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "exports",
+                ":export_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "exp_123",
+                  "key": "export_id",
+                  "description": "(Required) The export ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "297024f9-3334-4755-96ac-051fcd041d3e",
+              "name": "An analytics export.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "exports",
+                    ":export_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "exp_123",
+                      "key": "export_id",
+                      "description": "(Required) The export ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/analytics/exports/exp_o9y1a\"\n  },\n  \"id\": \"exp_o9y1a\",\n  \"status\": \"running\",\n  \"progress\": 20,\n  \"filters\": {\n    \"tag_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"url\": \"https://api.frontapp.com/analytics/exports/exp_o9y1a/download\",\n  \"filename\": \"export-messages-yourCompany-2023-07-19-212d-e55df0.csv\",\n  \"size\": 26639,\n  \"created_at\": 1703103649.159\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b621f882-5c98-4b2b-ace9-362e50f93e74",
+          "name": "Create a new analytics report",
+          "request": {
+            "name": "Create a new analytics report",
+            "description": {
+              "content": "Create a new analytics report for a set of metrics over a specific time span. Different filters (e.g. Inbox v Tag v Teammates) will be joined with AND logic, but the IDs within a filter will be joined with OR logic (e.g. Inbox A or Inbox B, Tag A or Tag B).\nThe report will be executed asynchronously. The response will include a link that can be used to retrieve the\nreport status & result. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.\n\n\nRequired scope: `analytics:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start\": \"<number>\",\n  \"end\": \"<number>\",\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timezone\": \"<string>\",\n  \"filters\": {\n    \"tag_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b5fd4c5-94f9-431c-a2ef-61d71967f720",
+              "name": "An analytics report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start\": \"<number>\",\n  \"end\": \"<number>\",\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timezone\": \"<string>\",\n  \"filters\": {\n    \"tag_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/analytics/reports/b45efa66237cc453252d9019449c7a64f5cfdb491b6c2c1d6df33c1050d60e33\"\n  },\n  \"uid\": \"b45efa66237cc453252d9019449c7a64f5cfdb491b6c2c1d6df33c1050d60e33\",\n  \"status\": \"done\",\n  \"progress\": 100,\n  \"metrics\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"number\",\n      \"value\": 4312\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"number\",\n      \"value\": 6681\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75a3261f-df4a-49a3-86c0-09626aeb98d9",
+          "name": "Fetch an analytics report",
+          "request": {
+            "name": "Fetch an analytics report",
+            "description": {
+              "content": "Fetch an analytics report. Refer to the [Analytics](https://dev.frontapp.com/reference/analytics) topic for details about specific metrics.\n\nRequired scope: `analytics:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "reports",
+                ":report_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "723ec32796f12c6f05f6b124d8ef76191a38cec990e0f65d549206c51373f1a0",
+                  "key": "report_uid",
+                  "description": "(Required) The report UID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f484dc23-28b4-4321-aa35-a23e62a6ab50",
+              "name": "An analytics report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "reports",
+                    ":report_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "723ec32796f12c6f05f6b124d8ef76191a38cec990e0f65d549206c51373f1a0",
+                      "key": "report_uid",
+                      "description": "(Required) The report UID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/analytics/reports/b45efa66237cc453252d9019449c7a64f5cfdb491b6c2c1d6df33c1050d60e33\"\n  },\n  \"uid\": \"b45efa66237cc453252d9019449c7a64f5cfdb491b6c2c1d6df33c1050d60e33\",\n  \"status\": \"done\",\n  \"progress\": 100,\n  \"metrics\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"number\",\n      \"value\": 9301\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"number\",\n      \"value\": 2224\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b60059a5-9654-462e-aba7-0a05eba9f95b",
+    "name": "Channel Accounts Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

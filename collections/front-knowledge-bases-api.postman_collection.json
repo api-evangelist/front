@@ -1,0 +1,1296 @@
+{
+  "item": [
+    {
+      "id": "0551f47c-aa4f-4c74-85b5-8a957aba9a6e",
+      "name": "Knowledge Bases",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11081350-0423-4eb1-b3de-baf415400e77",
+          "name": "List knowledge bases",
+          "request": {
+            "name": "List knowledge bases",
+            "description": {
+              "content": "List the knowledge bases of the company.\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54c04be7-28d9-4d12-a0d2-0974f63c365c",
+              "name": "Array of knowledge bases",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n        \"related\": {\n          \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles\",\n          \"categories\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories\"\n        }\n      },\n      \"id\": \"knb_12\",\n      \"type\": \"internal\",\n      \"locales\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": 1622672452.363,\n      \"updated_at\": 1654309308.278\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n        \"related\": {\n          \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles\",\n          \"categories\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories\"\n        }\n      },\n      \"id\": \"knb_12\",\n      \"type\": \"internal\",\n      \"locales\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": 1622672452.363,\n      \"updated_at\": 1654309308.278\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0f7fd80-64c5-49f9-82d0-6958012364da",
+          "name": "Create a knowledge base",
+          "request": {
+            "name": "Create a knowledge base",
+            "description": {
+              "content": "Creates a knowledge base.\n\nRequired scope: `knowledge_bases:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"external\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a88bde7b-8878-4da5-abba-1abaa6595582",
+              "name": "A knowledge base with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"internal\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n    \"related\": {\n      \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles\",\n      \"categories\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories\"\n    }\n  },\n  \"id\": \"knb_12\",\n  \"name\": \"Company Help Center\",\n  \"status\": \"unpublished\",\n  \"type\": \"internal\",\n  \"locale\": \"en\",\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08ddef55-6879-488a-825e-ebee70134d8a",
+          "name": "Get a knowledge base",
+          "request": {
+            "name": "Get a knowledge base",
+            "description": {
+              "content": "Fetches a knowledge base.\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base to fetch"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6f74163-ec9e-4c40-aff0-fafd1405b722",
+              "name": "A knowledge base",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n    \"related\": {\n      \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles\",\n      \"categories\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories\"\n    }\n  },\n  \"id\": \"knb_12\",\n  \"type\": \"internal\",\n  \"locales\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b6ed38e-4346-4fed-b099-379f5c278008",
+          "name": "Create article in a knowledge base in default locale",
+          "request": {
+            "name": "Create article in a knowledge base in default locale",
+            "description": {
+              "content": "Creates an article in a knowledge base in the default locale.\n\nRequired scope: `knowledge_bases:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id",
+                "articles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base to create the article in"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category_id\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"draft\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd741e31-0b4c-4c20-9862-e7763ee2c7f4",
+              "name": "A knowledge base article with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id",
+                    "articles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base to create the article in"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"category_id\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"draft\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n      \"last_editor\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n    }\n  },\n  \"id\": \"kba_12\",\n  \"slug\": \"/articles/5\",\n  \"name\": \"Billing 101\",\n  \"status\": \"published\",\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"content\": \"<h1>How to process a return</h1><p>To process a return...</p>\",\n  \"locale\": \"en\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"last_edited_at\": 1622672452.363,\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "051040c8-26fb-421b-b3d8-2b08761db4e9",
+          "name": "Create knowledge base category in default locale",
+          "request": {
+            "name": "Create knowledge base category in default locale",
+            "description": {
+              "content": "Creates a knowledge base category in the default locale.\n\nRequired scope: `knowledge_bases:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base to create the category in"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent_category_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1d721330-da67-4704-967d-d3b806cf3be6",
+              "name": "A knowledge base category with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base to create the category in"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"parent_category_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"parent_category\": \"https://yourCompany.api.frontapp.com/knowledge_base_catgories/kbc_10\",\n      \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12/articles\"\n    }\n  },\n  \"id\": \"kbc_12\",\n  \"name\": \"Getting started\",\n  \"description\": \"How to get started in Front\",\n  \"is_hidden\": false,\n  \"locale\": \"en\",\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b53b34ca-f999-41e0-80c9-ef0a05383a92",
+          "name": "Get a knowledge base with content in default locale",
+          "request": {
+            "name": "Get a knowledge base with content in default locale",
+            "description": {
+              "content": "Fetches a knowledge base with its content in the default locale.\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base to fetch"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e769f28-efc8-4654-9464-57045a40fd8e",
+              "name": "A knowledge base with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n    \"related\": {\n      \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles\",\n      \"categories\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories\"\n    }\n  },\n  \"id\": \"knb_12\",\n  \"name\": \"Company Help Center\",\n  \"status\": \"unpublished\",\n  \"type\": \"internal\",\n  \"locale\": \"en\",\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b3b725c-c6a8-4179-9ba4-f52106f81d76",
+          "name": "Update knowledge base in default locale",
+          "request": {
+            "name": "Update knowledge base in default locale",
+            "description": {
+              "content": "Updates a knowledge base in the default locale. Will republish the knowledge base if the knowledge base is currently published.\n\nRequired scope: `knowledge_bases:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f89337b0-b2de-460a-bc63-00df233f0ae8",
+              "name": "A knowledge base with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n    \"related\": {\n      \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles\",\n      \"categories\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories\"\n    }\n  },\n  \"id\": \"knb_12\",\n  \"name\": \"Company Help Center\",\n  \"status\": \"unpublished\",\n  \"type\": \"internal\",\n  \"locale\": \"en\",\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03e3bf98-277f-41e3-b30b-ceadc4242f67",
+          "name": "Create article in a knowledge base in specified locale",
+          "request": {
+            "name": "Create article in a knowledge base in specified locale",
+            "description": {
+              "content": "Create an article for a given locale in a knowledge base.\n\nRequired scope: `knowledge_bases:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id",
+                "locales",
+                ":locale",
+                "articles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base to create the article in"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "locale",
+                  "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the article's content"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category_id\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"draft\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78af4268-1895-4df8-8cef-52f9d2f4a30f",
+              "name": "A knowledge base article with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id",
+                    "locales",
+                    ":locale",
+                    "articles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base to create the article in"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "en",
+                      "key": "locale",
+                      "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the article's content"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"category_id\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"draft\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n      \"last_editor\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n    }\n  },\n  \"id\": \"kba_12\",\n  \"slug\": \"/articles/5\",\n  \"name\": \"Billing 101\",\n  \"status\": \"published\",\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"content\": \"<h1>How to process a return</h1><p>To process a return...</p>\",\n  \"locale\": \"en\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"last_edited_at\": 1622672452.363,\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8a8eff5-6359-42ae-99d1-3aa786e1d238",
+          "name": "Create knowledge base category in specified locale",
+          "request": {
+            "name": "Create knowledge base category in specified locale",
+            "description": {
+              "content": "Creates a knowledge base category for a given locale.\n\nRequired scope: `knowledge_bases:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id",
+                "locales",
+                ":locale",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base to create the category in"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "locale",
+                  "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the category's content"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent_category_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d3e7fa5f-4bcc-4cc8-842d-0933b8e8d735",
+              "name": "A knowledge base category with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id",
+                    "locales",
+                    ":locale",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base to create the category in"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "en",
+                      "key": "locale",
+                      "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the category's content"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"parent_category_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"parent_category\": \"https://yourCompany.api.frontapp.com/knowledge_base_catgories/kbc_10\",\n      \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_base_categories/kbc_12/articles\"\n    }\n  },\n  \"id\": \"kbc_12\",\n  \"name\": \"Getting started\",\n  \"description\": \"How to get started in Front\",\n  \"is_hidden\": false,\n  \"locale\": \"en\",\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f19f4d27-407b-4e14-8378-5af840cda2a5",
+          "name": "Get a knowledge base with content in specified locale",
+          "request": {
+            "name": "Get a knowledge base with content in specified locale",
+            "description": {
+              "content": "Fetches a knowledge base with its content for a given locale.\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id",
+                "locales",
+                ":locale",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base to fetch"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "locale",
+                  "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51f40b4a-91ee-4a2c-aeff-79e99166cfbf",
+              "name": "A knowledge base with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id",
+                    "locales",
+                    ":locale",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base to fetch"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "en",
+                      "key": "locale",
+                      "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n    \"related\": {\n      \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles\",\n      \"categories\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories\"\n    }\n  },\n  \"id\": \"knb_12\",\n  \"name\": \"Company Help Center\",\n  \"status\": \"unpublished\",\n  \"type\": \"internal\",\n  \"locale\": \"en\",\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62489ef8-86f9-4b1b-8ed1-454728527aa8",
+          "name": "Update knowledge base in specified locale",
+          "request": {
+            "name": "Update knowledge base in specified locale",
+            "description": {
+              "content": "Updates a knowledge base for a given locale. Will republish the knowledge base if the knowledge base is currently published.\n\nRequired scope: `knowledge_bases:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id",
+                "locales",
+                ":locale",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base to update"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "locale",
+                  "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8d5c3ba-041e-4239-b4cd-d4f0a9a78516",
+              "name": "A knowledge base with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id",
+                    "locales",
+                    ":locale",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base to update"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "en",
+                      "key": "locale",
+                      "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n    \"related\": {\n      \"articles\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles\",\n      \"categories\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories\"\n    }\n  },\n  \"id\": \"knb_12\",\n  \"name\": \"Company Help Center\",\n  \"status\": \"unpublished\",\n  \"type\": \"internal\",\n  \"locale\": \"en\",\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6dada9fd-7579-4df5-bdb6-445212383da8",
+    "name": "Channel Accounts Knowledge Bases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

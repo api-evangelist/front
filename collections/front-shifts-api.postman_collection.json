@@ -1,0 +1,1058 @@
+{
+  "item": [
+    {
+      "id": "8e107ea3-333d-4775-8224-4bf8ba482598",
+      "name": "Shifts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e5815bb-fe6d-4724-949e-a1beef6fa242",
+          "name": "List Shifts",
+          "request": {
+            "name": "List Shifts",
+            "description": {
+              "content": "List the shifts.\n\nRequired scope: `shifts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shifts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77f4e234-8e17-4194-b5ef-61ac69bd883d",
+              "name": "Array of Shifts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/shifts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_4kxji\"\n        }\n      },\n      \"id\": \"shf_1bri\",\n      \"name\": \"Scranton Business Park shifts\",\n      \"color\": \"green\",\n      \"timezone\": \"America/New_York\",\n      \"times\": {\n        \"mon\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"tue\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"wed\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"thu\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"fri\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sat\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sun\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        }\n      },\n      \"created_at\": 1606943265.298,\n      \"updated_at\": 1701878404.43\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_4kxji\"\n        }\n      },\n      \"id\": \"shf_1bri\",\n      \"name\": \"Scranton Business Park shifts\",\n      \"color\": \"green\",\n      \"timezone\": \"America/New_York\",\n      \"times\": {\n        \"mon\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"tue\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"wed\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"thu\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"fri\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sat\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sun\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        }\n      },\n      \"created_at\": 1606943265.298,\n      \"updated_at\": 1701878404.43\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ea68da4-314b-46f1-9eb0-e9acbbe80f9e",
+          "name": "Create shift",
+          "request": {
+            "name": "Create shift",
+            "description": {
+              "content": "Create a shift in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team shift](https://dev.frontapp.com/reference/create-team-shift) endpoint instead.\n\nRequired scope: `shifts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shifts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"times\": {\n    \"mon\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"tue\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"wed\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"thu\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"fri\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"sat\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"sun\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    }\n  },\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fec7defa-d304-4177-90f9-e76e81a2f23c",
+              "name": "A shift",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"times\": {\n    \"mon\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"tue\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"wed\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"thu\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"fri\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sat\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sun\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    }\n  },\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri\",\n    \"related\": {\n      \"teammates\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_4kxji\"\n    }\n  },\n  \"id\": \"shf_1bri\",\n  \"name\": \"Scranton Business Park shifts\",\n  \"color\": \"green\",\n  \"timezone\": \"America/New_York\",\n  \"times\": {\n    \"mon\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"tue\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"wed\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"thu\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"fri\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sat\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sun\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    }\n  },\n  \"created_at\": 1606943265.298,\n  \"updated_at\": 1701878404.43\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76d802c8-a82d-4353-8b99-09975e3c2f68",
+          "name": "Get shift",
+          "request": {
+            "name": "Get shift",
+            "description": {
+              "content": "Fetch a shift.\n\nRequired scope: `shifts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shifts",
+                ":shift_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "shf_123",
+                  "key": "shift_id",
+                  "description": "(Required) The Shift ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2501ae3-5cdc-4573-9004-66321340010d",
+              "name": "A shift",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shifts",
+                    ":shift_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "shf_123",
+                      "key": "shift_id",
+                      "description": "(Required) The Shift ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri\",\n    \"related\": {\n      \"teammates\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_4kxji\"\n    }\n  },\n  \"id\": \"shf_1bri\",\n  \"name\": \"Scranton Business Park shifts\",\n  \"color\": \"green\",\n  \"timezone\": \"America/New_York\",\n  \"times\": {\n    \"mon\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"tue\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"wed\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"thu\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"fri\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sat\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sun\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    }\n  },\n  \"created_at\": 1606943265.298,\n  \"updated_at\": 1701878404.43\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54c5bd19-1cd5-4421-adc3-f13ff3be230f",
+          "name": "Update shift",
+          "request": {
+            "name": "Update shift",
+            "description": {
+              "content": "Update a shift.\n\nRequired scope: `shifts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shifts",
+                ":shift_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "shf_123",
+                  "key": "shift_id",
+                  "description": "(Required) The Shift ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"times\": {\n    \"mon\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"tue\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"wed\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"thu\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"fri\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"sat\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"sun\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    }\n  },\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91bfc6de-8e18-4a6f-aaef-47fa2f2b6c59",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shifts",
+                    ":shift_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "shf_123",
+                      "key": "shift_id",
+                      "description": "(Required) The Shift ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"times\": {\n    \"mon\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"tue\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"wed\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"thu\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"fri\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sat\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sun\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    }\n  },\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e1a3246-6313-4dcd-8d97-449b8e068563",
+          "name": "List shift's teammates",
+          "request": {
+            "name": "List shift's teammates",
+            "description": {
+              "content": "List the teammates assigned to a shift.\n\nRequired scope: `teammates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shifts",
+                ":shift_id",
+                "teammates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "shf_123",
+                  "key": "shift_id",
+                  "description": "(Required) The Shift ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aef0ec4a-68a4-44bb-ad4e-c265f6ac9acd",
+              "name": "Array of teammates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shifts",
+                    ":shift_id",
+                    "teammates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "shf_123",
+                      "key": "shift_id",
+                      "description": "(Required) The Shift ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/teammates\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"API\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": 7447.670588449351\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"user\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77b02837-652e-44ef-b7e7-bb47cc001d8d",
+          "name": "Add teammates to shift",
+          "request": {
+            "name": "Add teammates to shift",
+            "description": {
+              "content": "Add teammates to a shift. The selected teammates must be in the team that owns the shift.\n\nRequired scope: `shifts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shifts",
+                ":shift_id",
+                "teammates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "shf_123",
+                  "key": "shift_id",
+                  "description": "(Required) The Shift ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c9cf8bd-8ea9-4145-872a-bf3b4be7eb02",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shifts",
+                    ":shift_id",
+                    "teammates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "shf_123",
+                      "key": "shift_id",
+                      "description": "(Required) The Shift ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dca45cb3-2d4e-4c0c-a41e-2a58c421c1d8",
+          "name": "Remove teammates from shift",
+          "request": {
+            "name": "Remove teammates from shift",
+            "description": {
+              "content": "Remove teammates from a shift.\n\nRequired scope: `shifts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shifts",
+                ":shift_id",
+                "teammates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "shf_123",
+                  "key": "shift_id",
+                  "description": "(Required) The Shift ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "01484417-487b-4dd7-905f-d9e91917723c",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shifts",
+                    ":shift_id",
+                    "teammates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "shf_123",
+                      "key": "shift_id",
+                      "description": "(Required) The Shift ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "980eca6c-86ef-46d1-a2f8-fbfc6847797d",
+          "name": "List Teammate Shifts",
+          "request": {
+            "name": "List Teammate Shifts",
+            "description": {
+              "content": "Lists all the shifts for the teammate.\n\nRequired scope: `shifts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "shifts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48686633-800d-4eb3-ba20-1fcac9cd8cb2",
+              "name": "Array of Shifts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/shifts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_4kxji\"\n        }\n      },\n      \"id\": \"shf_1bri\",\n      \"name\": \"Scranton Business Park shifts\",\n      \"color\": \"green\",\n      \"timezone\": \"America/New_York\",\n      \"times\": {\n        \"mon\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"tue\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"wed\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"thu\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"fri\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sat\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sun\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        }\n      },\n      \"created_at\": 1606943265.298,\n      \"updated_at\": 1701878404.43\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_4kxji\"\n        }\n      },\n      \"id\": \"shf_1bri\",\n      \"name\": \"Scranton Business Park shifts\",\n      \"color\": \"green\",\n      \"timezone\": \"America/New_York\",\n      \"times\": {\n        \"mon\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"tue\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"wed\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"thu\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"fri\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sat\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sun\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        }\n      },\n      \"created_at\": 1606943265.298,\n      \"updated_at\": 1701878404.43\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2996d10b-1b9f-4b44-be8c-8c1f86f19ba0",
+          "name": "List team Shifts",
+          "request": {
+            "name": "List team Shifts",
+            "description": {
+              "content": "List the shifts for a team (workspace).\n\nRequired scope: `shifts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "shifts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da937888-d84d-4211-868c-bfe18733bc0c",
+              "name": "Array of Shifts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/shifts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_4kxji\"\n        }\n      },\n      \"id\": \"shf_1bri\",\n      \"name\": \"Scranton Business Park shifts\",\n      \"color\": \"green\",\n      \"timezone\": \"America/New_York\",\n      \"times\": {\n        \"mon\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"tue\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"wed\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"thu\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"fri\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sat\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sun\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        }\n      },\n      \"created_at\": 1606943265.298,\n      \"updated_at\": 1701878404.43\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_4kxji\"\n        }\n      },\n      \"id\": \"shf_1bri\",\n      \"name\": \"Scranton Business Park shifts\",\n      \"color\": \"green\",\n      \"timezone\": \"America/New_York\",\n      \"times\": {\n        \"mon\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"tue\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"wed\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"thu\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"fri\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sat\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        },\n        \"sun\": {\n          \"start\": \"09:00\",\n          \"end\": \"17:00\"\n        }\n      },\n      \"created_at\": 1606943265.298,\n      \"updated_at\": 1701878404.43\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eef5cc29-f3f8-432e-b03a-97f990827238",
+          "name": "Create team shift",
+          "request": {
+            "name": "Create team shift",
+            "description": {
+              "content": "Create a shift for a team (workspace).\n\nRequired scope: `shifts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "shifts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The Team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"times\": {\n    \"mon\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"tue\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"wed\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"thu\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"fri\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"sat\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    },\n    \"sun\": {\n      \"start\": \"<string>\",\n      \"end\": \"<string>\"\n    }\n  },\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f291a6fa-3f20-4134-8139-4058c906268c",
+              "name": "A shift",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "shifts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The Team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"times\": {\n    \"mon\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"tue\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"wed\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"thu\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"fri\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sat\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sun\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    }\n  },\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri\",\n    \"related\": {\n      \"teammates\": \"https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates\",\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_4kxji\"\n    }\n  },\n  \"id\": \"shf_1bri\",\n  \"name\": \"Scranton Business Park shifts\",\n  \"color\": \"green\",\n  \"timezone\": \"America/New_York\",\n  \"times\": {\n    \"mon\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"tue\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"wed\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"thu\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"fri\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sat\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    },\n    \"sun\": {\n      \"start\": \"09:00\",\n      \"end\": \"17:00\"\n    }\n  },\n  \"created_at\": 1606943265.298,\n  \"updated_at\": 1701878404.43\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "15b6087b-2a88-4cb1-8712-aba6eca37280",
+    "name": "Channel Accounts Shifts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,796 @@
+{
+  "item": [
+    {
+      "id": "4ac38b71-3293-4711-b285-e984030b9e7c",
+      "name": "Comments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd9a0c48-aec4-499d-81e4-4e105ee25e98",
+          "name": "Get comment",
+          "request": {
+            "name": "Get comment",
+            "description": {
+              "content": "Fetches a comment.\n\nRequired scope: `comments:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments",
+                ":comment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "com_123",
+                  "key": "comment_id",
+                  "description": "(Required) The Comment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8492ef9e-f102-4ac2-8752-90f58760a13f",
+              "name": "A comment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments",
+                    ":comment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "com_123",
+                      "key": "comment_id",
+                      "description": "(Required) The Comment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\",\n    \"related\": {\n      \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i\",\n      \"mentions\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions\",\n      \"comment_replied_to\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\"\n    }\n  },\n  \"id\": \"com_1ywg3f2\",\n  \"author\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"user\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": 3360\n  },\n  \"body\": \"Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_pinned\": true,\n  \"posted_at\": 1698943401.378\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec6519a6-9226-40b4-b9ec-9c33c5efd137",
+          "name": "Update comment",
+          "request": {
+            "name": "Update comment",
+            "description": {
+              "content": "Update a comment in a [conversation](https://dev.frontapp.com/reference/conversations).\n\nRequired scope: `comments:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments",
+                ":comment_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "com_123",
+                  "key": "comment_id",
+                  "description": "(Required) The Comment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<string>\",\n  \"is_pinned\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c66df03a-5b83-41c9-955b-cd3c1e2311de",
+              "name": "A comment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments",
+                    ":comment_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "com_123",
+                      "key": "comment_id",
+                      "description": "(Required) The Comment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"is_pinned\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\",\n    \"related\": {\n      \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i\",\n      \"mentions\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions\",\n      \"comment_replied_to\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\"\n    }\n  },\n  \"id\": \"com_1ywg3f2\",\n  \"author\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"visitor\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": 1086.0934977579395\n  },\n  \"body\": \"Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_pinned\": true,\n  \"posted_at\": 1698943401.378\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "806c52cc-1b40-41ec-8e34-11d2634fce6e",
+          "name": "List comment mentions",
+          "request": {
+            "name": "List comment mentions",
+            "description": {
+              "content": "List the teammates mentioned in a comment.\n\nRequired scope: `teammates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments",
+                ":comment_id",
+                "mentions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "com_123",
+                  "key": "comment_id",
+                  "description": "(Required) The Comment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d29a87ad-6638-44ca-be78-243e00f2e413",
+              "name": "Array of teammates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments",
+                    ":comment_id",
+                    "mentions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "com_123",
+                      "key": "comment_id",
+                      "description": "(Required) The Comment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/teammates\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"CSAT\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": \"string\"\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"user\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": 9193.460624201854\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed7dab49-994b-49a1-9dde-d330bfa162b1",
+          "name": "Add comment reply",
+          "request": {
+            "name": "Add comment reply",
+            "description": {
+              "content": "Add a reply to a comment on a [conversation](https://dev.frontapp.com/reference/conversations). Comment replies visually indicate which comment is being responded to, helping users follow the conversation.\n\nRequired scope: `comments:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comments",
+                ":comment_id",
+                "replies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "com_123",
+                  "key": "comment_id",
+                  "description": "(Required) The comment ID to reply to"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"is_pinned\": \"<boolean>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb87575f-a30b-4898-afcf-e9f22786d89d",
+              "name": "A comment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comments",
+                    ":comment_id",
+                    "replies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "com_123",
+                      "key": "comment_id",
+                      "description": "(Required) The comment ID to reply to"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"is_pinned\": \"<boolean>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\",\n    \"related\": {\n      \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i\",\n      \"mentions\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions\",\n      \"comment_replied_to\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\"\n    }\n  },\n  \"id\": \"com_1ywg3f2\",\n  \"author\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"visitor\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": 1086.0934977579395\n  },\n  \"body\": \"Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_pinned\": true,\n  \"posted_at\": 1698943401.378\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f499392f-b9c7-4649-b737-da260e107484",
+          "name": "List conversation comments",
+          "request": {
+            "name": "List conversation comments",
+            "description": {
+              "content": "List the comments in a conversation in reverse chronological order (newest first).\n\nRequired scope: `comments:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3571ffae-3531-4e7a-8f54-94b08c9a860f",
+              "name": "Array of Comments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/comments\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\",\n        \"related\": {\n          \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i\",\n          \"mentions\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions\",\n          \"comment_replied_to\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\"\n        }\n      },\n      \"id\": \"com_1ywg3f2\",\n      \"author\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"macro\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": 7477.879681200593\n      },\n      \"body\": \"Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"is_pinned\": true,\n      \"posted_at\": 1698943401.378\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\",\n        \"related\": {\n          \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i\",\n          \"mentions\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions\",\n          \"comment_replied_to\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\"\n        }\n      },\n      \"id\": \"com_1ywg3f2\",\n      \"author\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"integration\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": true\n      },\n      \"body\": \"Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.\",\n      \"attachments\": [\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        },\n        {\n          \"id\": \"fil_3q8a7mby\",\n          \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n          \"filename\": \"Andy_Anger_Management_Certificate.png\",\n          \"content_type\": \"image/png\",\n          \"size\": 4405,\n          \"metadata\": {\n            \"is_inline\": true,\n            \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n          }\n        }\n      ],\n      \"is_pinned\": true,\n      \"posted_at\": 1698943401.378\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8eb9456a-9166-4e30-8c28-c4c93f608a17",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75a9bd35-7fcc-48c9-866a-f7426eacbb74",
+          "name": "Add comment",
+          "request": {
+            "name": "Add comment",
+            "description": {
+              "content": "Add a comment to a [conversation](https://dev.frontapp.com/reference/conversations). If you want to create a new comment-only conversation, use the [Create discussion conversation](https://dev.frontapp.com/reference/create-conversation) endpoint.\n\nRequired scope: `comments:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversation_id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cnv_123",
+                  "key": "conversation_id",
+                  "description": "(Required) The conversation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"is_pinned\": \"<boolean>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4dce75c9-6c97-4cf7-920f-1e50183e543d",
+              "name": "A comment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"is_pinned\": \"<boolean>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\",\n    \"related\": {\n      \"conversation\": \"https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i\",\n      \"mentions\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions\",\n      \"comment_replied_to\": \"https://yourCompany.api.frontapp.com/comments/com_1ywg3f2\"\n    }\n  },\n  \"id\": \"com_1ywg3f2\",\n  \"author\": {\n    \"_links\": {\n      \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n      \"related\": {\n        \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n        \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n        \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n      }\n    },\n    \"id\": \"tea_6r55a\",\n    \"email\": \"michael.scott@dundermifflin.com\",\n    \"username\": \"PrisonMike\",\n    \"first_name\": \"Michael\",\n    \"last_name\": \"Scott\",\n    \"is_admin\": true,\n    \"is_available\": false,\n    \"is_blocked\": false,\n    \"type\": \"visitor\",\n    \"custom_fields\": {\n      \"city\": \"London, UK\",\n      \"isVIP\": true,\n      \"renewal_date\": 1525417200,\n      \"sla_time\": 90,\n      \"owner\": \"leela@planet-express.com\",\n      \"replyTo\": \"inb_55c8c149\",\n      \"Job Title\": \"firefighter\"\n    },\n    \"license_type\": 1086.0934977579395\n  },\n  \"body\": \"Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"is_pinned\": true,\n  \"posted_at\": 1698943401.378\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a90d15cb-393c-402a-9d20-ac29e8f62617",
+              "name": "If the conversation has been merged, the response redirects you to the merged conversation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversation_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cnv_123",
+                      "key": "conversation_id",
+                      "description": "(Required) The conversation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"author_id\": \"<string>\",\n  \"is_pinned\": \"<boolean>\",\n  \"attachments\": [\n    \"<binary>\",\n    \"<binary>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6f4791af-29e7-4658-b4c5-7ba5b429f371",
+    "name": "Channel Accounts Comments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

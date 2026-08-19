@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Messages API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update external message status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api2.frontapp.com/channels/:channel_id/conversations/:conv_ext_id/messages/:message_ext_id/status",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              },
+              {
+                "name": "conv_ext_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation's external ID."
+              },
+              {
+                "name": "message_ext_id",
+                "value": "",
+                "type": "path",
+                "description": "The message's external ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status of an outbound message by external ID. This endpoint is used by external systems (like SMS providers or custom channels)\nto notify Front when a message's delivery status has changed.\n\n**Available status changes:**\n- `failed`: Mark a message as failed. When marked as failed, the conversation is reopened so the team can take action.\n\n**Note:** This endpoint is only available for outbound messages.\n"
+        },
+        {
+          "info": {
+            "name": "Sync inbound message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/inbound_messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import a message that was received by the channel."
+        },
+        {
+          "info": {
+            "name": "Sync outbound message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/outbound_messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import a message that was sent from the channel."
+        },
+        {
+          "info": {
+            "name": "Receive custom messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/incoming_messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The channel ID. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Receive a custom message in Front. This endpoint is available for custom channels **ONLY**.\n\nRequired scope: `messages:write`"
+        },
+        {
+          "info": {
+            "name": "Create message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The sending channel ID. Alternatively, you can supply the sending channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a new message from a channel. This is one of the ways to create a new [conversation](https://dev.frontapp.com/reference/conversations#creating-a-new-conversation). The new conversation will support both messages and comments (discussions).\n\nRequired scope: `messages:send`"
+        },
+        {
+          "info": {
+            "name": "Create message reply",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/conversations/:conversation_id/messages",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reply to a conversation by sending a message and appending it to the conversation.\n\nRequired scope: `messages:send`"
+        },
+        {
+          "info": {
+            "name": "Import message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/inboxes/:inbox_id/imported_messages",
+            "params": [
+              {
+                "name": "inbox_id",
+                "value": "",
+                "type": "path",
+                "description": "The Inbox ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to import conversations into Front without sending data through a channel. Typical use cases include importing historical conversations or creating new conversations from non-standard sources, such as web form submissions that can't use the default Form channel (for example, forms that don't have static URLs or form providers that send email notifications after submission). Avoid using this endpoint for conversations that can be handled by a dedicated Front channel—instead, use"
+        },
+        {
+          "info": {
+            "name": "Get message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/messages/:message_id",
+            "params": [
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The message ID"
+              }
+            ]
+          },
+          "docs": "Fetch a message.\n\n> ℹ️ The HTTP Header `Accept` can be used to request the message in a different format.\n> By default, Front will return the documented JSON response. By requesting `message/rfc822`, the response will contain the message in the EML format (for email messages only).\n\n\nRequired scope: `messages:read`"
+        },
+        {
+          "info": {
+            "name": "Get message seen status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/messages/:message_id/seen",
+            "params": [
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The message ID"
+              }
+            ]
+          },
+          "docs": "Get the seen receipts for the given message. If no seen-by information is available, there will be a single entry for the first time the message was seen by any recipient. If seen-by information is available, there will be an entry for each recipient who has seen the message.\n\nRequired scope: `messages:read`"
+        },
+        {
+          "info": {
+            "name": "Mark message seen",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/messages/:message_id/seen",
+            "params": [
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The message ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mark an outbound message from Front as seen. Note, the message seen route should only be called in response to an actual end-user's message-seen action. In accordance with this behavior, the route is rate limited to 10 requests per message per hour.\n\nRequired scope: `messages:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

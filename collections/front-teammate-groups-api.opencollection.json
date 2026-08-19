@@ -1,0 +1,306 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Teammate groups API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teammate groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List teammate groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammate_groups"
+          },
+          "docs": "List the teammate groups in the company.\n\nRequired scope: `teammate_groups:read`"
+        },
+        {
+          "info": {
+            "name": "Create teammate group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teammate_groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new teammate group.\n\nRequired scope: `teammate_groups:write`"
+        },
+        {
+          "info": {
+            "name": "Get teammate group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ]
+          },
+          "docs": "Fetch a teammate group.\n\nRequired scope: `teammate_groups:read`"
+        },
+        {
+          "info": {
+            "name": "Update a teammate group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a teammate group. Note - You cannot modify a teammate group that is managed by SCIM.\n\nRequired scope: `teammate_groups:write`"
+        },
+        {
+          "info": {
+            "name": "Delete teammate group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ]
+          },
+          "docs": "Deletes a teammate group. Note - You cannot delete a teammate group that is managed by SCIM.\n\nRequired scope: `teammate_groups:delete`"
+        },
+        {
+          "info": {
+            "name": "List teammate group team inboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id/inboxes",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ]
+          },
+          "docs": "List inboxes that the teammate group has access to via its associated teams.\n\nRequired scope: `inboxes:read`"
+        },
+        {
+          "info": {
+            "name": "Add teammate group team inboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id/inboxes",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Links non-public inboxes to the teammate group. The inbox must be part of a team that has been added to the teammate group.\n\nRequired scope: `teammate_groups:write`"
+        },
+        {
+          "info": {
+            "name": "Remove teammate group team inboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id/inboxes",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unlinks non-public inboxes from the teammate group.\n\nRequired scope: `teammate_groups:write`"
+        },
+        {
+          "info": {
+            "name": "List teammate group teammates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id/teammates",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ]
+          },
+          "docs": "List teammate group teammates.\n\nRequired scope: `teammates:read`"
+        },
+        {
+          "info": {
+            "name": "Add teammate group teammates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id/teammates",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add teammate group teammates. Note - You cannot modify a teammate group that is managed by SCIM.\n\nRequired scope: `teammate_groups:write`"
+        },
+        {
+          "info": {
+            "name": "Remove teammate group teammates",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id/teammates",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove teammate group teammates. Note - You cannot modify a teammate group that is managed by SCIM.\n\nRequired scope: `teammate_groups:write`"
+        },
+        {
+          "info": {
+            "name": "List teammate group teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id/teams",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ]
+          },
+          "docs": "List teams added to the teammate group. Any teams added to the teammate group will automatically link public inboxes.\n\nRequired scope: `teams:read`"
+        },
+        {
+          "info": {
+            "name": "Add teammate group teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id/teams",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds teams to the teammate group. Any teams added to the teammate group will automatically link public inboxes. Non-public inboxes can be added to the teammate group separately.\n\nRequired scope: `teammate_groups:write`"
+        },
+        {
+          "info": {
+            "name": "Remove teammate group teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/teammate_groups/:teammate_group_id/teams",
+            "params": [
+              {
+                "name": "teammate_group_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate group ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove teams from the teammate group. Unlinks to any associated team inboxes.\n\nRequired scope: `teammate_groups:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

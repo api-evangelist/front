@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Token Identity API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Token Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "API Token details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/me"
+          },
+          "docs": "Fetch the details of the API token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

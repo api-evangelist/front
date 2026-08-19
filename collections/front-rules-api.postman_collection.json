@@ -1,0 +1,491 @@
+{
+  "item": [
+    {
+      "id": "b85fda0f-2248-4cdd-a81c-7c4fb916b290",
+      "name": "Rules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc1f6af1-81d0-47d3-9af8-57faa999f701",
+          "name": "List all company rules",
+          "request": {
+            "name": "List all company rules",
+            "description": {
+              "content": "List the company rules.\n\nRequired scope: `rules:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "company",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e11efe9-b15f-4050-a918-0ecb033494c0",
+              "name": "Array of Rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "company",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/rules\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n        \"related\": {\n          \"owner\": null\n        }\n      },\n      \"id\": \"rul_58xhq\",\n      \"name\": \"Scranton new account workflow\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n        \"related\": {\n          \"owner\": null\n        }\n      },\n      \"id\": \"rul_58xhq\",\n      \"name\": \"Scranton new account workflow\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5665724-5830-445e-965c-b49986c08421",
+          "name": "List rules",
+          "request": {
+            "name": "List rules",
+            "description": {
+              "content": "List the rules of the company.\n\nRequired scope: `rules:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "576c98d0-1bfb-40ca-b0a2-a67483661282",
+              "name": "Array of Rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/rules\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n        \"related\": {\n          \"owner\": null\n        }\n      },\n      \"id\": \"rul_58xhq\",\n      \"name\": \"Scranton new account workflow\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n        \"related\": {\n          \"owner\": null\n        }\n      },\n      \"id\": \"rul_58xhq\",\n      \"name\": \"Scranton new account workflow\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76fe63e9-d935-4566-962a-a2c7cd10684d",
+          "name": "Get rule",
+          "request": {
+            "name": "Get rule",
+            "description": {
+              "content": "Fetch a rule.\n\nRequired scope: `rules:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rules",
+                ":rule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rul_123",
+                  "key": "rule_id",
+                  "description": "(Required) The Rule ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1417850c-7179-4607-ae9c-8e94b2b312d1",
+              "name": "A rule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rules",
+                    ":rule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rul_123",
+                      "key": "rule_id",
+                      "description": "(Required) The Rule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n    \"related\": {\n      \"owner\": null\n    }\n  },\n  \"id\": \"rul_58xhq\",\n  \"name\": \"Scranton new account workflow\",\n  \"actions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"is_private\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f736efee-b2bb-4057-b081-067ca8a944d0",
+          "name": "List teammate rules",
+          "request": {
+            "name": "List teammate rules",
+            "description": {
+              "content": "List the rules of a teammate.\n\nRequired scope: `rules:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d3a65c4-912d-46c5-8c8c-6881ee633634",
+              "name": "Array of Rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/rules\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n        \"related\": {\n          \"owner\": null\n        }\n      },\n      \"id\": \"rul_58xhq\",\n      \"name\": \"Scranton new account workflow\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n        \"related\": {\n          \"owner\": null\n        }\n      },\n      \"id\": \"rul_58xhq\",\n      \"name\": \"Scranton new account workflow\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1965709c-f8a8-4703-8f1f-6e90864d344c",
+          "name": "List team rules",
+          "request": {
+            "name": "List team rules",
+            "description": {
+              "content": "List the rules of a team (workspace).\n\nRequired scope: `rules:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1084ecae-675b-478a-a5f6-3dc70acaf029",
+              "name": "Array of Rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/rules\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n        \"related\": {\n          \"owner\": null\n        }\n      },\n      \"id\": \"rul_58xhq\",\n      \"name\": \"Scranton new account workflow\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/rules/rul_58xhq\",\n        \"related\": {\n          \"owner\": null\n        }\n      },\n      \"id\": \"rul_58xhq\",\n      \"name\": \"Scranton new account workflow\",\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_private\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4249940c-4097-4be7-9e47-fb177ab9c55e",
+    "name": "Channel Accounts Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

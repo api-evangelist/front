@@ -1,0 +1,1244 @@
+{
+  "item": [
+    {
+      "id": "4a4a591b-51d8-481e-815c-cffed6857bee",
+      "name": "Message Template Folders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e33b319a-83c5-45c0-9366-02f6a3cb1499",
+          "name": "List folders",
+          "request": {
+            "name": "List folders",
+            "description": {
+              "content": "List the message template folders.\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_template_folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the message template folders. Either `created_at` or `updated_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d25f7cb3-fbf8-449b-b190-dad0a66d0499",
+              "name": "Array of message template folders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_template_folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/message_template_folders?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be4366aa-ba99-4c6c-9879-5100de68fc53",
+          "name": "Create folder",
+          "request": {
+            "name": "Create folder",
+            "description": {
+              "content": "Create a new message template folder in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team folder](https://dev.frontapp.com/reference/create-team-folder) endpoint instead.\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_template_folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent_folder_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "395fae5e-b492-4a15-9596-d6ce47f39303",
+              "name": "A message template folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_template_folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"PTO templates\",\n  \"parent_folder_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n      \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n      \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n    }\n  },\n  \"id\": \"rsf_g2\",\n  \"name\": \"Complaints to Toby (or about Toby)\",\n  \"created_at\": 1680300342.904,\n  \"updated_at\": 1688668654.501\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90f6eb64-0a12-4655-bed6-b05b9cfdd56f",
+          "name": "Get folder",
+          "request": {
+            "name": "Get folder",
+            "description": {
+              "content": "Fetch a message template folder.\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_template_folders",
+                ":message_template_folder_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsf_123",
+                  "key": "message_template_folder_id",
+                  "description": "(Required) The message template folder ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed1e53c1-70eb-4562-952e-c92ad759f7e1",
+              "name": "A message template folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_template_folders",
+                    ":message_template_folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsf_123",
+                      "key": "message_template_folder_id",
+                      "description": "(Required) The message template folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n      \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n      \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n    }\n  },\n  \"id\": \"rsf_g2\",\n  \"name\": \"Complaints to Toby (or about Toby)\",\n  \"created_at\": 1680300342.904,\n  \"updated_at\": 1688668654.501\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f31c6067-4fdd-4da9-9f46-0d22d0e53b7d",
+          "name": "Update folder",
+          "request": {
+            "name": "Update folder",
+            "description": {
+              "content": "Update message template folder\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_template_folders",
+                ":message_template_folder_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsf_123",
+                  "key": "message_template_folder_id",
+                  "description": "(Required) The message template folder ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent_folder_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76b68b95-762e-4a31-be65-1da8d15b502c",
+              "name": "A message template folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_template_folders",
+                    ":message_template_folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsf_123",
+                      "key": "message_template_folder_id",
+                      "description": "(Required) The message template folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"parent_folder_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n      \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n      \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n    }\n  },\n  \"id\": \"rsf_g2\",\n  \"name\": \"Complaints to Toby (or about Toby)\",\n  \"created_at\": 1680300342.904,\n  \"updated_at\": 1688668654.501\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55dd81b2-401e-4d78-9ff0-5068cdd1fe4f",
+          "name": "Delete folder",
+          "request": {
+            "name": "Delete folder",
+            "description": {
+              "content": "Delete a message template folder and child folders/templates\n\nRequired scope: `message_templates:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_template_folders",
+                ":message_template_folder_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsf_123",
+                  "key": "message_template_folder_id",
+                  "description": "(Required) The message template folder id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98545df4-90b6-44f5-b89c-4d8138f1d023",
+              "name": "A message template folder accepted for deletion",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_template_folders",
+                    ":message_template_folder_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsf_123",
+                      "key": "message_template_folder_id",
+                      "description": "(Required) The message template folder id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"accepted\",\n  \"message_template_folder_id\": \"rsf_g2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d67f5607-bf62-473c-9b87-d316ca77c756",
+          "name": "Get child folders",
+          "request": {
+            "name": "Get child folders",
+            "description": {
+              "content": "Fetch the child message templates folders of a message template folder.\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_template_folders",
+                ":message_template_folder_id",
+                "message_template_folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsf_123",
+                  "key": "message_template_folder_id",
+                  "description": "(Required) The message template folder ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "748fbb7e-895a-4bc6-8182-56dcff582192",
+              "name": "Array of message template folders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_template_folders",
+                    ":message_template_folder_id",
+                    "message_template_folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsf_123",
+                      "key": "message_template_folder_id",
+                      "description": "(Required) The message template folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/message_template_folders?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "477bbef0-739d-4dcb-b82a-bd6a5b0ef04a",
+          "name": "Create child folder",
+          "request": {
+            "name": "Create child folder",
+            "description": {
+              "content": "Create a new message template folder as a child of the given folder\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "message_template_folders",
+                ":message_template_folder_id",
+                "message_template_folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "rsf_123",
+                  "key": "message_template_folder_id",
+                  "description": "(Required) The parent message template folder ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7cc7c4e5-e98b-4d05-ae12-8ce78d5fd029",
+              "name": "A message template folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "message_template_folders",
+                    ":message_template_folder_id",
+                    "message_template_folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "rsf_123",
+                      "key": "message_template_folder_id",
+                      "description": "(Required) The parent message template folder ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"PTO templates\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n      \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n      \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n    }\n  },\n  \"id\": \"rsf_g2\",\n  \"name\": \"Complaints to Toby (or about Toby)\",\n  \"created_at\": 1680300342.904,\n  \"updated_at\": 1688668654.501\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8320ce6c-86df-4bcc-b3af-202a9fd39862",
+          "name": "List teammate folders",
+          "request": {
+            "name": "List teammate folders",
+            "description": {
+              "content": "List the message template folders belonging to the requested teammate.\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "message_template_folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the message template folders. Either `created_at` or `updated_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "171000ed-03f9-40d1-a05c-891273192e79",
+              "name": "Array of message template folders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "message_template_folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/message_template_folders?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0854023-e03f-406c-a84f-45c60f098f5e",
+          "name": "Create teammate folder",
+          "request": {
+            "name": "Create teammate folder",
+            "description": {
+              "content": "Create a new message template folder belonging to the requested teammate.\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "message_template_folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent_folder_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5655543-5f8a-444e-abe7-8412ef389a8b",
+              "name": "A message template folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "message_template_folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"PTO templates\",\n  \"parent_folder_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n      \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n      \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n    }\n  },\n  \"id\": \"rsf_g2\",\n  \"name\": \"Complaints to Toby (or about Toby)\",\n  \"created_at\": 1680300342.904,\n  \"updated_at\": 1688668654.501\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f21f0aa-d42d-4f90-914e-ab7dadfcc4ea",
+          "name": "List team folders",
+          "request": {
+            "name": "List team folders",
+            "description": {
+              "content": "List the message template folders belonging to the requested team (workspace).\n\nRequired scope: `message_templates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "message_template_folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the message template folders. Either `created_at` or `updated_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_55c8c149",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a833dda3-5749-43f3-8c4d-a9c943d371bf",
+              "name": "Array of message template folders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "message_template_folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_55c8c149",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/message_template_folders?page_token=9fa92a7f385fd7be43f7153055b30e6d\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n        \"related\": {\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n          \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n          \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n          \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n        }\n      },\n      \"id\": \"rsf_g2\",\n      \"name\": \"Complaints to Toby (or about Toby)\",\n      \"created_at\": 1680300342.904,\n      \"updated_at\": 1688668654.501\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0416f6a-6046-4f56-b3fe-d4ac958aabe6",
+          "name": "Create team folder",
+          "request": {
+            "name": "Create team folder",
+            "description": {
+              "content": "Create a new message template folder belonging to the requested team (workspace).\n\nRequired scope: `message_templates:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "message_template_folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_55c8c149",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent_folder_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edee2d48-8dff-4e69-a8bc-bafebf5924b2",
+              "name": "A message template folder",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "message_template_folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_55c8c149",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"PTO templates\",\n  \"parent_folder_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2\",\n    \"related\": {\n      \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_s47\",\n      \"parent_folder\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1\",\n      \"child_folders\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders\",\n      \"child_answers\": \"https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates\"\n    }\n  },\n  \"id\": \"rsf_g2\",\n  \"name\": \"Complaints to Toby (or about Toby)\",\n  \"created_at\": 1680300342.904,\n  \"updated_at\": 1688668654.501\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ecd77596-864c-48df-8ee1-10109fd87133",
+    "name": "Channel Accounts Message Template Folders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

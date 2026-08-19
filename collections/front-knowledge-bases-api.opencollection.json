@@ -1,0 +1,269 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Knowledge Bases API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Knowledge Bases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List knowledge bases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_bases"
+          },
+          "docs": "List the knowledge bases of the company.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Create a knowledge base",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/knowledge_bases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a knowledge base.\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "Get a knowledge base",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches a knowledge base.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Create article in a knowledge base in default locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/articles",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base to create the article in"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an article in a knowledge base in the default locale.\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "Create knowledge base category in default locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/categories",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base to create the category in"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a knowledge base category in the default locale.\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "Get a knowledge base with content in default locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/content",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches a knowledge base with its content in the default locale.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Update knowledge base in default locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/content",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a knowledge base in the default locale. Will republish the knowledge base if the knowledge base is currently published.\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "Create article in a knowledge base in specified locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/locales/:locale/articles",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base to create the article in"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the article's content"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an article for a given locale in a knowledge base.\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "Create knowledge base category in specified locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/locales/:locale/categories",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base to create the category in"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the category's content"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a knowledge base category for a given locale.\n\nRequired scope: `knowledge_bases:write`"
+        },
+        {
+          "info": {
+            "name": "Get a knowledge base with content in specified locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/locales/:locale/content",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base to fetch"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch"
+              }
+            ]
+          },
+          "docs": "Fetches a knowledge base with its content for a given locale.\n\nRequired scope: `knowledge_bases:read`"
+        },
+        {
+          "info": {
+            "name": "Update knowledge base in specified locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/knowledge_bases/:knowledge_base_id/locales/:locale/content",
+            "params": [
+              {
+                "name": "knowledge_base_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the knowledge base to update"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "path",
+                "description": "The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a knowledge base for a given locale. Will republish the knowledge base if the knowledge base is currently published.\n\nRequired scope: `knowledge_bases:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

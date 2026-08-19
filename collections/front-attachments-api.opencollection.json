@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Attachments API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attachments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download attachment for a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/comments/:comment_id/download/:attachment_link_id",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "The Comment ID"
+              },
+              {
+                "name": "attachment_link_id",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID"
+              }
+            ]
+          },
+          "docs": "Download an attachment file for a given comment ID\n\nRequired scope: `attachments:read`"
+        },
+        {
+          "info": {
+            "name": "Download attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/download/:attachment_link_id",
+            "params": [
+              {
+                "name": "attachment_link_id",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID"
+              }
+            ]
+          },
+          "docs": "Download an attachment file.\n\nRequired scope: `attachments:read`"
+        },
+        {
+          "info": {
+            "name": "Download attachment for a message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/message_templates/:message_template_id/download/:attachment_link_id",
+            "params": [
+              {
+                "name": "message_template_id",
+                "value": "",
+                "type": "path",
+                "description": "The Message Template ID"
+              },
+              {
+                "name": "attachment_link_id",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID"
+              }
+            ]
+          },
+          "docs": "Download an attachment file for a given message template ID\n\nRequired scope: `attachments:read`"
+        },
+        {
+          "info": {
+            "name": "Download attachment for a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/messages/:message_id/download/:attachment_link_id",
+            "params": [
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The Message ID"
+              },
+              {
+                "name": "attachment_link_id",
+                "value": "",
+                "type": "path",
+                "description": "The Attachment ID"
+              }
+            ]
+          },
+          "docs": "Download an attachment file for a given message id. Should be used by partner channels.\n\nRequired scope: `attachments:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

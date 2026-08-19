@@ -1,0 +1,1469 @@
+{
+  "item": [
+    {
+      "id": "04995a3c-61a0-4bfe-8902-88a7b069aac9",
+      "name": "Teammate groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0757ecc1-674c-4679-b2d4-da7c9cc01f63",
+          "name": "List teammate groups",
+          "request": {
+            "name": "List teammate groups",
+            "description": {
+              "content": "List the teammate groups in the company.\n\nRequired scope: `teammate_groups:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce202c8d-023c-4efe-98c4-e0dc67fea746",
+              "name": "Array of teammate groups",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/teammate_groups\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/teammates\",\n          \"teams\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/teams\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/inboxes\"\n        }\n      },\n      \"id\": \"cir_123\",\n      \"name\": \"Sales team\",\n      \"description\": \"Best sales team ever\",\n      \"is_managed_by_scim\": false,\n      \"permissions\": {\n        \"contacts\": {\n          \"access\": \"contact_lists\",\n          \"contact_list_ids\": [\n            \"grp_1\",\n            \"grp_2\"\n          ]\n        }\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/teammates\",\n          \"teams\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/teams\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/inboxes\"\n        }\n      },\n      \"id\": \"cir_123\",\n      \"name\": \"Sales team\",\n      \"description\": \"Best sales team ever\",\n      \"is_managed_by_scim\": false,\n      \"permissions\": {\n        \"contacts\": {\n          \"access\": \"contact_lists\",\n          \"contact_list_ids\": [\n            \"grp_1\",\n            \"grp_2\"\n          ]\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1158dd2a-58b6-4fe3-a843-65a2a13c74fd",
+          "name": "Create teammate group",
+          "request": {
+            "name": "Create teammate group",
+            "description": {
+              "content": "Create a new teammate group.\n\nRequired scope: `teammate_groups:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": {\n    \"contacts\": {\n      \"access\": \"<string>\",\n      \"contact_group_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"contact_list_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d04f3242-07c9-4cda-bb5e-aaffe99055d7",
+              "name": "A teammate group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": {\n    \"contacts\": {\n      \"access\": \"<string>\",\n      \"contact_group_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"contact_list_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123\",\n    \"related\": {\n      \"teammates\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/teammates\",\n      \"teams\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/teams\",\n      \"inboxes\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/inboxes\"\n    }\n  },\n  \"id\": \"cir_123\",\n  \"name\": \"Sales team\",\n  \"description\": \"Best sales team ever\",\n  \"is_managed_by_scim\": false,\n  \"permissions\": {\n    \"contacts\": {\n      \"access\": \"contact_lists\",\n      \"contact_list_ids\": [\n        \"grp_1\",\n        \"grp_2\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "290e254d-3691-45d2-98a3-a058197d6b80",
+          "name": "Get teammate group",
+          "request": {
+            "name": "Get teammate group",
+            "description": {
+              "content": "Fetch a teammate group.\n\nRequired scope: `teammate_groups:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46339230-ffe3-42a6-b51c-1920ca61dfc2",
+              "name": "A teammate group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123\",\n    \"related\": {\n      \"teammates\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/teammates\",\n      \"teams\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/teams\",\n      \"inboxes\": \"https://yourCompany.api.frontapp.com/teammate_groups/cir_123/inboxes\"\n    }\n  },\n  \"id\": \"cir_123\",\n  \"name\": \"Sales team\",\n  \"description\": \"Best sales team ever\",\n  \"is_managed_by_scim\": false,\n  \"permissions\": {\n    \"contacts\": {\n      \"access\": \"contact_lists\",\n      \"contact_list_ids\": [\n        \"grp_1\",\n        \"grp_2\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26271bd1-a164-4536-be43-caf1e0478ad1",
+          "name": "Update a teammate group",
+          "request": {
+            "name": "Update a teammate group",
+            "description": {
+              "content": "Updates a teammate group. Note - You cannot modify a teammate group that is managed by SCIM.\n\nRequired scope: `teammate_groups:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": {\n    \"contacts\": {\n      \"access\": \"<string>\",\n      \"contact_group_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"contact_list_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "573bbac4-cef1-454d-b6fc-21fd3af9b750",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": {\n    \"contacts\": {\n      \"access\": \"<string>\",\n      \"contact_group_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"contact_list_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99fb5d09-9878-4e19-ad69-7f3c7f23e2ad",
+          "name": "Delete teammate group",
+          "request": {
+            "name": "Delete teammate group",
+            "description": {
+              "content": "Deletes a teammate group. Note - You cannot delete a teammate group that is managed by SCIM.\n\nRequired scope: `teammate_groups:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6ba3d1c-fb25-4f58-b78f-7f0f2989e0ed",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "022cb0dd-22c1-41bb-9f17-eab522ee13b9",
+          "name": "List teammate group team inboxes",
+          "request": {
+            "name": "List teammate group team inboxes",
+            "description": {
+              "content": "List inboxes that the teammate group has access to via its associated teams.\n\nRequired scope: `inboxes:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id",
+                "inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf781123-b33a-4f5d-9181-e3e4f89cca49",
+              "name": "Array of Inboxes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id",
+                    "inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/inboxes\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6\",\n        \"related\": {\n          \"teammates\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations\",\n          \"channels\": \"https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teams/tim_k30\"\n        }\n      },\n      \"id\": \"inb_1ix6\",\n      \"name\": \"The Dundies\",\n      \"is_private\": false,\n      \"is_public\": true,\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1725b428-49f2-4a4b-a3e3-7493aeab0eff",
+          "name": "Add teammate group team inboxes",
+          "request": {
+            "name": "Add teammate group team inboxes",
+            "description": {
+              "content": "Links non-public inboxes to the teammate group. The inbox must be part of a team that has been added to the teammate group.\n\nRequired scope: `teammate_groups:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id",
+                "inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ed18a4d-657f-4ff6-aefc-3ed4f4599622",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id",
+                    "inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31f00222-fe11-4963-b281-15d07403976d",
+          "name": "Remove teammate group team inboxes",
+          "request": {
+            "name": "Remove teammate group team inboxes",
+            "description": {
+              "content": "Unlinks non-public inboxes from the teammate group.\n\nRequired scope: `teammate_groups:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id",
+                "inboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b4c0bd5-3eff-4d0a-b801-d869c2bb7db9",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id",
+                    "inboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inbox_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbedff98-d056-482d-b1da-ec895c98d941",
+          "name": "List teammate group teammates",
+          "request": {
+            "name": "List teammate group teammates",
+            "description": {
+              "content": "List teammate group teammates.\n\nRequired scope: `teammates:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id",
+                "teammates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2945a8ed-7882-44ab-96de-9d36b581dd4a",
+              "name": "Array of teammates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id",
+                    "teammates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/teammates\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"CSAT\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": 2650.0863895747393\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n        \"related\": {\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n          \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n        }\n      },\n      \"id\": \"tea_6r55a\",\n      \"email\": \"michael.scott@dundermifflin.com\",\n      \"username\": \"PrisonMike\",\n      \"first_name\": \"Michael\",\n      \"last_name\": \"Scott\",\n      \"is_admin\": true,\n      \"is_available\": false,\n      \"is_blocked\": false,\n      \"type\": \"user\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"license_type\": 5375\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a9b458c-260a-404a-bd9a-30a301e30bce",
+          "name": "Add teammate group teammates",
+          "request": {
+            "name": "Add teammate group teammates",
+            "description": {
+              "content": "Add teammate group teammates. Note - You cannot modify a teammate group that is managed by SCIM.\n\nRequired scope: `teammate_groups:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id",
+                "teammates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06e928d3-8d55-4a61-a08c-ff30ace75f52",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id",
+                    "teammates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f7f1de0-1754-4acf-a6f2-499a37f179a4",
+          "name": "Remove teammate group teammates",
+          "request": {
+            "name": "Remove teammate group teammates",
+            "description": {
+              "content": "Remove teammate group teammates. Note - You cannot modify a teammate group that is managed by SCIM.\n\nRequired scope: `teammate_groups:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id",
+                "teammates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "792ecfcd-1073-4fd6-b6c2-4898bfd9191f",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id",
+                    "teammates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"teammate_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "301a0c68-f510-429b-bf31-ca9f50a69c39",
+          "name": "List teammate group teams",
+          "request": {
+            "name": "List teammate group teams",
+            "description": {
+              "content": "List teams added to the teammate group. Any teams added to the teammate group will automatically link public inboxes.\n\nRequired scope: `teams:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id",
+                "teams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f646b31f-d985-4d9f-9e46-7c607c5a5df6",
+              "name": "Array of teams",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id",
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/teams\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teams/tim_aqsa\"\n      },\n      \"id\": \"tim_aqsa\",\n      \"name\": \"Stanley's crossword puzzle team\"\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/teams/tim_aqsa\"\n      },\n      \"id\": \"tim_aqsa\",\n      \"name\": \"Stanley's crossword puzzle team\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "003f2ec2-fbd5-4257-99c1-a2feb0845734",
+          "name": "Add teammate group teams",
+          "request": {
+            "name": "Add teammate group teams",
+            "description": {
+              "content": "Adds teams to the teammate group. Any teams added to the teammate group will automatically link public inboxes. Non-public inboxes can be added to the teammate group separately.\n\nRequired scope: `teammate_groups:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id",
+                "teams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"team_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df4d8100-37f3-4d43-9a24-f7a606a2cf26",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id",
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"team_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5161f243-e1ec-4c9d-aa50-efd6d5b4ffbb",
+          "name": "Remove teammate group teams",
+          "request": {
+            "name": "Remove teammate group teams",
+            "description": {
+              "content": "Remove teams from the teammate group. Unlinks to any associated team inboxes.\n\nRequired scope: `teammate_groups:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammate_groups",
+                ":teammate_group_id",
+                "teams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "cir_123",
+                  "key": "teammate_group_id",
+                  "description": "(Required) The teammate group ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"team_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed011c6a-0f6c-412a-9ff1-4961df49709a",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammate_groups",
+                    ":teammate_group_id",
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "cir_123",
+                      "key": "teammate_group_id",
+                      "description": "(Required) The teammate group ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"team_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b28acd85-3c28-46d7-b4a4-22ee87f8fd2f",
+    "name": "Channel Accounts Teammate groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

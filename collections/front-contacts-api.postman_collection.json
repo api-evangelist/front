@@ -1,0 +1,1346 @@
+{
+  "item": [
+    {
+      "id": "7b27a7eb-ff30-4138-9f69-cead0215a4b2",
+      "name": "Contacts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0a8e653-151e-4bd2-950c-a3228bfd0e43",
+          "name": "List contacts",
+          "request": {
+            "name": "List contacts",
+            "description": {
+              "content": "List the contacts of the company.\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `updated_after` and `updated_before`, whose value should be a timestamp in seconds with up to 3 decimal places."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the contacts. Either `created_at` or `updated_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "613e4ccb-8311-47b9-8032-902ee40adfa1",
+              "name": "Array of contacts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9afa9bd-70ec-45f0-94fe-49c4d1ca229b",
+          "name": "Create contact",
+          "request": {
+            "name": "Create contact",
+            "description": {
+              "content": "Create a new contact at the company level.\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"handles\": [\n    {\n      \"handle\": \"<string>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"handle\": \"<string>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatar\": \"<binary>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1d0827f-38e4-4020-8918-e249192b60cf",
+              "name": "A contact",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handles\": [\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    },\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatar\": \"<binary>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n    \"related\": {\n      \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n      \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n      \"owner\": \"string\"\n    }\n  },\n  \"id\": \"crd_3cgz4ge\",\n  \"name\": \"Dwight Schrute\",\n  \"description\": \"Assistant to the regional manager\",\n  \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n  \"links\": [\n    \"string\",\n    \"string\"\n  ],\n  \"groups\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"lists\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"handles\": [\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    },\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    }\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"is_private\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "859d9192-b7cf-4b77-8c22-e28243f045a7",
+          "name": "Merge contacts",
+          "request": {
+            "name": "Merge contacts",
+            "description": {
+              "content": "Merges the contacts specified into a single contact, deleting the merged-in contacts.\nIf a target contact ID is supplied, the other contacts will be merged into that one.\nOtherwise, some contact in the contact ID list will be treated as the target contact.\nMerge conflicts will be resolved in the following ways:\n  * name will prioritize manually-updated and non-private contact names\n  * descriptions will be concatenated and separated by newlines in order from\n    oldest to newest with the (optional) target contact's description first\n  * all handles, groups, links, and notes will be preserved\n  * other conflicts will use the most recently updated contact's value\n\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"target_contact_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35fb95f4-a843-479e-b603-75e8034e34c5",
+              "name": "A contact",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"target_contact_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n    \"related\": {\n      \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n      \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n      \"owner\": \"string\"\n    }\n  },\n  \"id\": \"crd_3cgz4ge\",\n  \"name\": \"Dwight Schrute\",\n  \"description\": \"Assistant to the regional manager\",\n  \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n  \"links\": [\n    \"string\",\n    \"string\"\n  ],\n  \"groups\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"lists\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"handles\": [\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    },\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    }\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"is_private\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d20bb81d-9160-4947-8a23-b90c8720b2a6",
+          "name": "Get contact",
+          "request": {
+            "name": "Get contact",
+            "description": {
+              "content": "Fetch a contact.\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                ":contact_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "crd_123",
+                  "key": "contact_id",
+                  "description": "(Required) The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f537869-496b-450c-914f-bb53fdda9c0b",
+              "name": "A contact",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":contact_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "crd_123",
+                      "key": "contact_id",
+                      "description": "(Required) The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n    \"related\": {\n      \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n      \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n      \"owner\": \"string\"\n    }\n  },\n  \"id\": \"crd_3cgz4ge\",\n  \"name\": \"Dwight Schrute\",\n  \"description\": \"Assistant to the regional manager\",\n  \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n  \"links\": [\n    \"string\",\n    \"string\"\n  ],\n  \"groups\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"lists\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"handles\": [\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    },\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    }\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"is_private\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18e7eb62-c16b-4918-b298-589e407512ed",
+          "name": "Update a contact",
+          "request": {
+            "name": "Update a contact",
+            "description": {
+              "content": "Updates a contact.\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                ":contact_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "crd_123",
+                  "key": "contact_id",
+                  "description": "(Required) The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatar\": \"<binary>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1ca25eca-b914-4ffd-bba1-4beda6a40c52",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":contact_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "crd_123",
+                      "key": "contact_id",
+                      "description": "(Required) The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatar\": \"<binary>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d904c92-148d-410f-b896-b6420ff80365",
+          "name": "Delete a contact",
+          "request": {
+            "name": "Delete a contact",
+            "description": {
+              "content": "Delete a contact.\n\nRequired scope: `contacts:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                ":contact_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "crd_123",
+                  "key": "contact_id",
+                  "description": "(Required) The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "646080d1-b474-4b9f-b29e-9ffbf89dc294",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":contact_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "crd_123",
+                      "key": "contact_id",
+                      "description": "(Required) The contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd907ab5-fa2c-42b8-baa6-e3158c84d17e",
+          "name": "List contact conversations",
+          "request": {
+            "name": "List contact conversations",
+            "description": {
+              "content": "List the conversations for a contact in reverse chronological order (newest first). For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).\n\n\nRequired scope: `conversations:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                ":contact_id",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "crd_123",
+                  "key": "contact_id",
+                  "description": "(Required) The Contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65120a62-ed23-4dce-b301-08f74ae58615",
+              "name": "Array of conversations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":contact_id",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "crd_123",
+                      "key": "contact_id",
+                      "description": "(Required) The Contact ID. Alternatively, you can supply the contact's source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/conversations?page_token=ce787da6f075740cf187d926f5e9f612bc7875763a8dd37d5\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/conversations\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"user\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": 2223\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q\",\n        \"related\": {\n          \"events\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/events\",\n          \"followers\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/followers\",\n          \"messages\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/messages\",\n          \"comments\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/comments\",\n          \"inboxes\": \"https://yourCompany.api.frontapp.com/conversations/cnv_yo1kg5q/inboxes\",\n          \"last_message\": \"https://yourCompany.api.frontapp.com/messages/msg_1q15qmtq?referer=conversation\"\n        }\n      },\n      \"id\": \"cnv_yo1kg5q\",\n      \"subject\": \"How to prank Dwight Schrute\",\n      \"status\": \"assigned\",\n      \"ticket_ids\": [\n        \"TICKET-1\"\n      ],\n      \"assignee\": {\n        \"_links\": {\n          \"self\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\",\n          \"related\": {\n            \"inboxes\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes\",\n            \"conversations\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations\",\n            \"botSource\": \"https://yourCompany.api.frontapp.com/rules/rul_6r55a\"\n          }\n        },\n        \"id\": \"tea_6r55a\",\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"username\": \"PrisonMike\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"is_admin\": true,\n        \"is_available\": false,\n        \"is_blocked\": false,\n        \"type\": \"integration\",\n        \"custom_fields\": {\n          \"city\": \"London, UK\",\n          \"isVIP\": true,\n          \"renewal_date\": 1525417200,\n          \"sla_time\": 90,\n          \"owner\": \"leela@planet-express.com\",\n          \"replyTo\": \"inb_55c8c149\",\n          \"Job Title\": \"firefighter\"\n        },\n        \"license_type\": 1928\n      },\n      \"recipient\": {\n        \"_links\": {\n          \"related\": {\n            \"contact\": \"https://yourCompany.api.frontapp.com/contacts/crd_2njtoem\"\n          }\n        },\n        \"name\": \"Phyllis Lapin-Vance\",\n        \"handle\": \"purpleboss@limitlesspaper.com\",\n        \"role\": \"cc\"\n      },\n      \"tags\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy\",\n            \"related\": {\n              \"conversations\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6jydq\",\n              \"parent_tag\": \"https://yourCompany.api.frontapp.com/tags/tag_3h07ym\",\n              \"children\": \"https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children\"\n            }\n          },\n          \"id\": \"tag_2oxhvy\",\n          \"name\": \"Warehouse task\",\n          \"description\": \"Sitting on your biscuit, never having to risk it\",\n          \"highlight\": null,\n          \"is_private\": false,\n          \"is_visible_in_conversation_lists\": true,\n          \"created_at\": 1682538996.583,\n          \"updated_at\": 1699575875.186\n        }\n      ],\n      \"links\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/links/top_b2wpa\"\n          },\n          \"id\": \"top_b2wpa\",\n          \"name\": \"JIRA-SCRAN-4567\",\n          \"type\": \"app_2f76b9ac738de158\",\n          \"external_url\": \"https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567\",\n          \"custom_fields\": {\n            \"city\": \"London, UK\",\n            \"isVIP\": true,\n            \"renewal_date\": 1525417200,\n            \"sla_time\": 90,\n            \"owner\": \"leela@planet-express.com\",\n            \"replyTo\": \"inb_55c8c149\",\n            \"Job Title\": \"firefighter\"\n          }\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true,\n      \"scheduled_reminders\": [\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        },\n        {\n          \"_links\": {\n            \"related\": {\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n            }\n          },\n          \"created_at\": 1701806790.536,\n          \"scheduled_at\": 1701874800,\n          \"updated_at\": 1701806790.536\n        }\n      ],\n      \"metadata\": {\n        \"external_conversation_ids\": [\n          \"JS3949\",\n          \"JS9403\"\n        ]\n      },\n      \"status_id\": \"sts_5x\",\n      \"status_category\": \"resolved\",\n      \"created_at\": 1701292649.333,\n      \"updated_at\": 1701292649.333,\n      \"waiting_since\": 1701292649.333\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00d9107d-49f6-4234-9552-8208582fabe8",
+          "name": "List teammate contacts",
+          "request": {
+            "name": "List teammate contacts",
+            "description": {
+              "content": "List the contacts of a teammate.\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `updated_after` and `updated_before`, whose value should be a timestamp in seconds with up to 3 decimal places."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the contacts. Either `created_at` or `updated_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea4363de-f6be-4133-b569-35e64374f960",
+              "name": "Array of contacts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb9d0d4d-975c-4dc8-b15f-210d74a2ae6a",
+          "name": "Create teammate contact",
+          "request": {
+            "name": "Create teammate contact",
+            "description": {
+              "content": "Create a contact for a teammate.\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teammates",
+                ":teammate_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tea_123",
+                  "key": "teammate_id",
+                  "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"handles\": [\n    {\n      \"handle\": \"<string>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"handle\": \"<string>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatar\": \"<binary>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74cc551c-1480-4a23-9952-f090d3debd6b",
+              "name": "A contact",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teammates",
+                    ":teammate_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tea_123",
+                      "key": "teammate_id",
+                      "description": "(Required) The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handles\": [\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    },\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatar\": \"<binary>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n    \"related\": {\n      \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n      \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n      \"owner\": \"string\"\n    }\n  },\n  \"id\": \"crd_3cgz4ge\",\n  \"name\": \"Dwight Schrute\",\n  \"description\": \"Assistant to the regional manager\",\n  \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n  \"links\": [\n    \"string\",\n    \"string\"\n  ],\n  \"groups\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"lists\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"handles\": [\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    },\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    }\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"is_private\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da284bb8-fa32-4beb-9db4-7c746b1e2e66",
+          "name": "List team contacts",
+          "request": {
+            "name": "List team contacts",
+            "description": {
+              "content": "List the contacts of a team (workspace).\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `updated_after` and `updated_before`, whose value should be a timestamp in seconds with up to 3 decimal places."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the contacts. Either `created_at` or `updated_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f697bf0f-c4a5-493e-975c-0a1b23f1d91c",
+              "name": "Array of contacts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a88da1b-8383-4a42-afa2-b66127fea094",
+          "name": "Create team contact",
+          "request": {
+            "name": "Create team contact",
+            "description": {
+              "content": "Create a contact for a team (workspace).\n\nRequired scope: `contacts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":team_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tim_123",
+                  "key": "team_id",
+                  "description": "(Required) The team ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"handles\": [\n    {\n      \"handle\": \"<string>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"handle\": \"<string>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatar\": \"<binary>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f648e28b-634c-402f-aa93-153549c4543a",
+              "name": "A contact",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":team_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tim_123",
+                      "key": "team_id",
+                      "description": "(Required) The team ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"handles\": [\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    },\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatar\": \"<binary>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n    \"related\": {\n      \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n      \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n      \"owner\": \"string\"\n    }\n  },\n  \"id\": \"crd_3cgz4ge\",\n  \"name\": \"Dwight Schrute\",\n  \"description\": \"Assistant to the regional manager\",\n  \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n  \"links\": [\n    \"string\",\n    \"string\"\n  ],\n  \"groups\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"lists\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n          \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n        }\n      },\n      \"id\": \"grp_3j342\",\n      \"name\": \"Party Planning Committee\",\n      \"is_private\": false\n    }\n  ],\n  \"handles\": [\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    },\n    {\n      \"handle\": \"dwight@limitlesspaper.com\",\n      \"source\": \"email\"\n    }\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"is_private\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "44eafc0d-9709-435c-a07d-3de2e574c5ee",
+    "name": "Channel Accounts Contacts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

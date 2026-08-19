@@ -1,0 +1,274 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Inboxes API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inboxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List inboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/inboxes"
+          },
+          "docs": "List the inboxes of the company.\n\nRequired scope: `inboxes:read`"
+        },
+        {
+          "info": {
+            "name": "Create inbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/inboxes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an inbox in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team inbox](https://dev.frontapp.com/reference/create-team-inbox) endpoint instead.\n\nRequired scope: `inboxes:write`"
+        },
+        {
+          "info": {
+            "name": "Get inbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/inboxes/:inbox_id",
+            "params": [
+              {
+                "name": "inbox_id",
+                "value": "",
+                "type": "path",
+                "description": "The Inbox ID"
+              }
+            ]
+          },
+          "docs": "Fetch an inbox.\n\nRequired scope: `inboxes:read`"
+        },
+        {
+          "info": {
+            "name": "List inbox channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/inboxes/:inbox_id/channels",
+            "params": [
+              {
+                "name": "inbox_id",
+                "value": "",
+                "type": "path",
+                "description": "The Inbox ID"
+              }
+            ]
+          },
+          "docs": "List the channels in an inbox.\n\nRequired scope: `channels:read`"
+        },
+        {
+          "info": {
+            "name": "List inbox conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/inboxes/:inbox_id/conversations",
+            "params": [
+              {
+                "name": "inbox_id",
+                "value": "",
+                "type": "path",
+                "description": "The Inbox ID"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "List the conversations in an inbox. For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).\n\n\nRequired scope: `conversations:read`"
+        },
+        {
+          "info": {
+            "name": "List inbox access",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/inboxes/:inbox_id/teammates",
+            "params": [
+              {
+                "name": "inbox_id",
+                "value": "",
+                "type": "path",
+                "description": "The Inbox ID"
+              }
+            ]
+          },
+          "docs": "List the teammates with access to an inbox.\n\nRequired scope: `teammates:read`"
+        },
+        {
+          "info": {
+            "name": "Add inbox access",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/inboxes/:inbox_id/teammates",
+            "params": [
+              {
+                "name": "inbox_id",
+                "value": "",
+                "type": "path",
+                "description": "The Inbox ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Give access to one or more teammates to an inbox.\n\nRequired scope: `inboxes:write`"
+        },
+        {
+          "info": {
+            "name": "Removes inbox access",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/inboxes/:inbox_id/teammates",
+            "params": [
+              {
+                "name": "inbox_id",
+                "value": "",
+                "type": "path",
+                "description": "The Inbox ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove access of one or more teammates from an inbox.\n\nRequired scope: `inboxes:write`"
+        },
+        {
+          "info": {
+            "name": "List teammate private inboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/private_inboxes",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID"
+              }
+            ]
+          },
+          "docs": "List the private inboxes of a teammate.\n\nRequired scope: `inboxes:read`"
+        },
+        {
+          "info": {
+            "name": "Create teammate private inbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/private_inboxes",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a private inbox for a teammate.\n\nRequired scope: `inboxes:write`"
+        },
+        {
+          "info": {
+            "name": "List team inboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teams/:team_id/inboxes",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              }
+            ]
+          },
+          "docs": "List the inboxes belonging to a team (workspace).\n\nRequired scope: `inboxes:read`"
+        },
+        {
+          "info": {
+            "name": "Create team inbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teams/:team_id/inboxes",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an inbox for a team (workspace).\n\nRequired scope: `inboxes:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

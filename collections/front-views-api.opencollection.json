@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Views API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Views",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List team views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teams/:team_id/views",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "List the views of a team.\n\nRequired scope: `views:read`"
+        },
+        {
+          "info": {
+            "name": "Create team view",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teams/:team_id/views",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new view for a team.\n\nRequired scope: `views:write`"
+        },
+        {
+          "info": {
+            "name": "List views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/views",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "List the views accessible to the authenticated token.\n\nRequired scope: `views:read`"
+        },
+        {
+          "info": {
+            "name": "Get view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/views/:view_id",
+            "params": [
+              {
+                "name": "view_id",
+                "value": "",
+                "type": "path",
+                "description": "The view ID"
+              }
+            ]
+          },
+          "docs": "Fetch a view.\n\nRequired scope: `views:read`"
+        },
+        {
+          "info": {
+            "name": "Update view",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/views/:view_id",
+            "params": [
+              {
+                "name": "view_id",
+                "value": "",
+                "type": "path",
+                "description": "The view ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a view.\n\nRequired scope: `views:write`"
+        },
+        {
+          "info": {
+            "name": "Add view to teammate sidebars",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/views/:view_id/teammates",
+            "params": [
+              {
+                "name": "view_id",
+                "value": "",
+                "type": "path",
+                "description": "The view ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Makes this view visible in specified teammates' sidebar navigation.\n\nRequired scope: `views:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

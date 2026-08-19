@@ -1,0 +1,929 @@
+{
+  "item": [
+    {
+      "id": "c328e6f1-caab-4db8-99bc-3fce73a3f621",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6ca00cb2-25a5-4faf-b062-1b9e95787f2d",
+          "name": "List Accounts",
+          "request": {
+            "name": "List Accounts",
+            "description": {
+              "content": "List the accounts of the company.\n\nRequired scope: `accounts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the accounts. Either `created_at` or `updated_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd0512ee-cb21-42b2-9491-731be6879914",
+              "name": "Array of accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/accounts?page_token=abae846b73ddd80f67fff73c491c41b8b0e74972f3a1079c3c8800416e06cf46\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/accounts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/accounts/acc_76\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/accounts/acc_76/contacts\"\n        }\n      },\n      \"id\": \"acc_76\",\n      \"name\": \"Dunder Mifflin, Inc.\",\n      \"logo_url\": \"https://yourCompany.api.frontapp.com/accounts/acc_aq/logo-1654309308278\",\n      \"description\": \"Limitless Paper in a Paperless World\",\n      \"domains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"external_id\": \"string\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"created_at\": 1622672452.363,\n      \"updated_at\": 1654309308.278\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/accounts/acc_76\",\n        \"related\": {\n          \"contacts\": \"https://yourCompany.api.frontapp.com/accounts/acc_76/contacts\"\n        }\n      },\n      \"id\": \"acc_76\",\n      \"name\": \"Dunder Mifflin, Inc.\",\n      \"logo_url\": \"https://yourCompany.api.frontapp.com/accounts/acc_aq/logo-1654309308278\",\n      \"description\": \"Limitless Paper in a Paperless World\",\n      \"domains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"external_id\": \"string\",\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"created_at\": 1622672452.363,\n      \"updated_at\": 1654309308.278\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "662ea3cb-fe88-4b05-a849-f0184e2b5499",
+          "name": "Create account",
+          "request": {
+            "name": "Create account",
+            "description": {
+              "content": "Create a new account.\n\nRequired scope: `accounts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"external_id\": \"<string>\",\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9efa7206-d1c3-4a37-9892-309b52626a05",
+              "name": "An Account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"external_id\": \"<string>\",\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/accounts/acc_76\",\n    \"related\": {\n      \"contacts\": \"https://yourCompany.api.frontapp.com/accounts/acc_76/contacts\"\n    }\n  },\n  \"id\": \"acc_76\",\n  \"name\": \"Dunder Mifflin, Inc.\",\n  \"logo_url\": \"https://yourCompany.api.frontapp.com/accounts/acc_aq/logo-1654309308278\",\n  \"description\": \"Limitless Paper in a Paperless World\",\n  \"domains\": [\n    \"string\",\n    \"string\"\n  ],\n  \"external_id\": \"string\",\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "910b418f-8639-4f3e-997a-e2821c89384e",
+          "name": "Fetch an account",
+          "request": {
+            "name": "Fetch an account",
+            "description": {
+              "content": "Fetches an account\n\nRequired scope: `accounts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "acc_123",
+                  "key": "account_id",
+                  "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca76b94f-f8e8-4b60-bfb3-2272de83eb97",
+              "name": "An Account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "acc_123",
+                      "key": "account_id",
+                      "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/accounts/acc_76\",\n    \"related\": {\n      \"contacts\": \"https://yourCompany.api.frontapp.com/accounts/acc_76/contacts\"\n    }\n  },\n  \"id\": \"acc_76\",\n  \"name\": \"Dunder Mifflin, Inc.\",\n  \"logo_url\": \"https://yourCompany.api.frontapp.com/accounts/acc_aq/logo-1654309308278\",\n  \"description\": \"Limitless Paper in a Paperless World\",\n  \"domains\": [\n    \"string\",\n    \"string\"\n  ],\n  \"external_id\": \"string\",\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6dcc937-c6f9-4209-a879-856ba829fe76",
+          "name": "Update account",
+          "request": {
+            "name": "Update account",
+            "description": {
+              "content": "Updates an account.\n\nRequired scope: `accounts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "acc_123",
+                  "key": "account_id",
+                  "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a62f942-18ff-4624-b00c-bb96a3d7c6a0",
+              "name": "An Account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "acc_123",
+                      "key": "account_id",
+                      "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/accounts/acc_76\",\n    \"related\": {\n      \"contacts\": \"https://yourCompany.api.frontapp.com/accounts/acc_76/contacts\"\n    }\n  },\n  \"id\": \"acc_76\",\n  \"name\": \"Dunder Mifflin, Inc.\",\n  \"logo_url\": \"https://yourCompany.api.frontapp.com/accounts/acc_aq/logo-1654309308278\",\n  \"description\": \"Limitless Paper in a Paperless World\",\n  \"domains\": [\n    \"string\",\n    \"string\"\n  ],\n  \"external_id\": \"string\",\n  \"custom_fields\": {\n    \"city\": \"London, UK\",\n    \"isVIP\": true,\n    \"renewal_date\": 1525417200,\n    \"sla_time\": 90,\n    \"owner\": \"leela@planet-express.com\",\n    \"replyTo\": \"inb_55c8c149\",\n    \"Job Title\": \"firefighter\"\n  },\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8b5a04f-be15-46ca-811a-0496267969e7",
+          "name": "Delete an account",
+          "request": {
+            "name": "Delete an account",
+            "description": {
+              "content": "Deletes an account\n\nRequired scope: `accounts:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "acc_123",
+                  "key": "account_id",
+                  "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcb196a9-23bb-4de1-851f-0d6b95217dd9",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "acc_123",
+                      "key": "account_id",
+                      "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3869f0e6-4294-4153-8e37-e633d75c3c35",
+          "name": "List account contacts",
+          "request": {
+            "name": "List account contacts",
+            "description": {
+              "content": "Lists the contacts associated with an Account\n\nRequired scope: `contacts:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Field used to sort the contacts. Either `created_at` or `updated_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Order by which results should be sorted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "acc_123",
+                  "key": "account_id",
+                  "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46b807db-074b-466d-82c2-f97f51b88e6d",
+              "name": "Array of contacts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "acc_123",
+                      "key": "account_id",
+                      "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/contacts\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge\\\"\",\n        \"related\": {\n          \"notes\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes\",\n          \"conversations\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations\",\n          \"owner\": \"string\"\n        }\n      },\n      \"id\": \"crd_3cgz4ge\",\n      \"name\": \"Dwight Schrute\",\n      \"description\": \"Assistant to the regional manager\",\n      \"avatar_url\": \"https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707\",\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"groups\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"lists\": [\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        },\n        {\n          \"_links\": {\n            \"self\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342\",\n            \"related\": {\n              \"contacts\": \"https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts\",\n              \"owner\": \"https://yourCompany.api.frontapp.com/teammates/tea_e35u\"\n            }\n          },\n          \"id\": \"grp_3j342\",\n          \"name\": \"Party Planning Committee\",\n          \"is_private\": false\n        }\n      ],\n      \"handles\": [\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        },\n        {\n          \"handle\": \"dwight@limitlesspaper.com\",\n          \"source\": \"email\"\n        }\n      ],\n      \"custom_fields\": {\n        \"city\": \"London, UK\",\n        \"isVIP\": true,\n        \"renewal_date\": 1525417200,\n        \"sla_time\": 90,\n        \"owner\": \"leela@planet-express.com\",\n        \"replyTo\": \"inb_55c8c149\",\n        \"Job Title\": \"firefighter\"\n      },\n      \"is_private\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f8dd202-252a-48f2-acb9-6625b0a039fe",
+          "name": "Add contact to Account",
+          "request": {
+            "name": "Add contact to Account",
+            "description": {
+              "content": "Adds a list of contacts to an Account\n\nRequired scope: `accounts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "acc_123",
+                  "key": "account_id",
+                  "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57d084f7-15c5-4cd2-9932-17e9d09fe005",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "acc_123",
+                      "key": "account_id",
+                      "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95d51a3d-5553-48cc-826e-ac8861611793",
+          "name": "Remove contact from Account",
+          "request": {
+            "name": "Remove contact from Account",
+            "description": {
+              "content": "Removes a list of contacts from an Account\n\nRequired scope: `accounts:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "acc_123",
+                  "key": "account_id",
+                  "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6af924d9-249f-4e06-bb28-e339a5ab4917",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "acc_123",
+                      "key": "account_id",
+                      "description": "(Required) The Account ID. Alternatively, you can supply the account domain or external ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "569895f8-2f59-4a9f-95cc-fca91659c1bc",
+    "name": "Channel Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}

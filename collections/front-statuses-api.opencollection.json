@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Statuses API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statuses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List company ticket statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/company/statuses"
+          },
+          "docs": "List the ticket statuses available for your company.\n\nRequired scope: `statuses:read`"
+        },
+        {
+          "info": {
+            "name": "Get ticket status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/company/statuses/:status_id",
+            "params": [
+              {
+                "name": "status_id",
+                "value": "",
+                "type": "path",
+                "description": "The ticket status ID"
+              }
+            ]
+          },
+          "docs": "Fetch a ticket status.\n\nRequired scope: `statuses:read`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

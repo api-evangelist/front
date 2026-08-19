@@ -1,0 +1,230 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Contact Lists API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contact Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List contact lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/contact_lists"
+          },
+          "docs": "List contact lists.\n\nRequired scope: `contacts:read`"
+        },
+        {
+          "info": {
+            "name": "Create contact list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/contact_lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new contact list in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team contact list](https://dev.frontapp.com/reference/create-team-contact-list) endpoint instead.\n\nRequired scope: `contacts:write`"
+        },
+        {
+          "info": {
+            "name": "Delete contact list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/contact_lists/:contact_list_id",
+            "params": [
+              {
+                "name": "contact_list_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact list ID"
+              }
+            ]
+          },
+          "docs": "Delete a contact lists.\n\nRequired scope: `contacts:delete`"
+        },
+        {
+          "info": {
+            "name": "List contacts in contact list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/contact_lists/:contact_list_id/contacts",
+            "params": [
+              {
+                "name": "contact_list_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact list ID"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+              }
+            ]
+          },
+          "docs": "List the contacts belonging to the requested contact list.\n\nRequired scope: `contacts:read`"
+        },
+        {
+          "info": {
+            "name": "Add contacts to contact list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/contact_lists/:contact_list_id/contacts",
+            "params": [
+              {
+                "name": "contact_list_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact list ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add contacts to the requested contact list.\n\nRequired scope: `contacts:write`"
+        },
+        {
+          "info": {
+            "name": "Remove contacts from contact list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api2.frontapp.com/contact_lists/:contact_list_id/contacts",
+            "params": [
+              {
+                "name": "contact_list_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact list ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove contacts from the requested contact list.\n\nRequired scope: `contacts:write`"
+        },
+        {
+          "info": {
+            "name": "List teammate contact lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/contact_lists",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ]
+          },
+          "docs": "List the contact lists belonging to the requested teammate.\n\nRequired scope: `contacts:read`"
+        },
+        {
+          "info": {
+            "name": "Create teammate contact list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teammates/:teammate_id/contact_lists",
+            "params": [
+              {
+                "name": "teammate_id",
+                "value": "",
+                "type": "path",
+                "description": "The teammate ID. Alternatively, you can supply an email as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new contact list for the requested teammate.\n\nRequired scope: `contacts:write`"
+        },
+        {
+          "info": {
+            "name": "List team contact lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api2.frontapp.com/teams/:team_id/contact_lists",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              }
+            ]
+          },
+          "docs": "List contact lists belonging to the requested team (workspace).\n\nRequired scope: `contacts:read`"
+        },
+        {
+          "info": {
+            "name": "Create team contact list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/teams/:team_id/contact_lists",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new contact list for the requested team (workspace).\n\nRequired scope: `contacts:write`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Channel Accounts Calls API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a call in Front."
+        },
+        {
+          "info": {
+            "name": "Update call status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls/:external_call_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              },
+              {
+                "name": "external_call_id",
+                "value": "",
+                "type": "path",
+                "description": "The external call ID from the provider system (same as `external_call_id` on create)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the call status of a call in Front."
+        },
+        {
+          "info": {
+            "name": "Add call recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls/:external_call_id/recording",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              },
+              {
+                "name": "external_call_id",
+                "value": "",
+                "type": "path",
+                "description": "The external call ID from the provider system."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "attachments",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "recording_type",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Adds a recording to a call in Front. Send `multipart/form-data` with exactly one file in the `attachments` field, `Content-Type: audio/*`, and required `recording_type` (`call` or `voicemail`).\n"
+        },
+        {
+          "info": {
+            "name": "Add call summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls/:external_call_id/summary",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              },
+              {
+                "name": "external_call_id",
+                "value": "",
+                "type": "path",
+                "description": "The external call ID from the provider system."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a summary to a call in Front."
+        },
+        {
+          "info": {
+            "name": "Add call transcript",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api2.frontapp.com/channels/:channel_id/calls/:external_call_id/transcript",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The Channel ID."
+              },
+              {
+                "name": "external_call_id",
+                "value": "",
+                "type": "path",
+                "description": "The external call ID from the provider system."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a transcript to a call in Front."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

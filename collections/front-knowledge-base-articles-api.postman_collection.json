@@ -1,0 +1,1071 @@
+{
+  "item": [
+    {
+      "id": "17919827-5fcd-4d3a-9a5f-55c7f1c1633f",
+      "name": "Knowledge Base Articles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ffd9147f-b988-4a4c-bf1e-3e59869b449b",
+          "name": "Get a knowledge base article",
+          "request": {
+            "name": "Get a knowledge base article",
+            "description": {
+              "content": "Fetches a knowledge base article.\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_base_articles",
+                ":article_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "kba_123",
+                  "key": "article_id",
+                  "description": "(Required) The ID of the article to fetch"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc2155b5-d0dc-4226-a932-f0bf4684ec77",
+              "name": "A knowledge base article",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_base_articles",
+                    ":article_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "kba_123",
+                      "key": "article_id",
+                      "description": "(Required) The ID of the article to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n      \"content\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12/content\"\n    }\n  },\n  \"id\": \"kba_12\",\n  \"slug\": \"/articles/5\",\n  \"locales\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee02203f-6301-45b6-bfa5-1eaf5d5f6910",
+          "name": "Delete an article",
+          "request": {
+            "name": "Delete an article",
+            "description": {
+              "content": "Deletes an article and all its content and translations.\n\nRequired scope: `knowledge_bases:delete`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_base_articles",
+                ":article_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "kba_123",
+                  "key": "article_id",
+                  "description": "(Required) The ID of the article to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ebbbc05-baba-4deb-af3e-2a5102666b78",
+              "name": "A knowledge base article",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_base_articles",
+                    ":article_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "kba_123",
+                      "key": "article_id",
+                      "description": "(Required) The ID of the article to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n      \"content\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12/content\"\n    }\n  },\n  \"id\": \"kba_12\",\n  \"slug\": \"/articles/5\",\n  \"locales\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "612789db-4414-461f-acf7-141f7083e74c",
+          "name": "Get knowledge base article with content in default locale",
+          "request": {
+            "name": "Get knowledge base article with content in default locale",
+            "description": {
+              "content": "Fetches a knowledge base article with content in the default locale.\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_base_articles",
+                ":article_id",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "kba_123",
+                  "key": "article_id",
+                  "description": "(Required) The ID of the article to fetch"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5032c63d-d82c-4540-956f-9d144d91a59c",
+              "name": "A knowledge base article with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_base_articles",
+                    ":article_id",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "kba_123",
+                      "key": "article_id",
+                      "description": "(Required) The ID of the article to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n      \"last_editor\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n    }\n  },\n  \"id\": \"kba_12\",\n  \"slug\": \"/articles/5\",\n  \"name\": \"Billing 101\",\n  \"status\": \"published\",\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"content\": \"<h1>How to process a return</h1><p>To process a return...</p>\",\n  \"locale\": \"en\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"last_edited_at\": 1622672452.363,\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff35bbb4-9fbd-4d9f-ae9a-b4e79dca1fc6",
+          "name": "Update article content in default locale.",
+          "request": {
+            "name": "Update article content in default locale.",
+            "description": {
+              "content": "Updates an article's content in the default locale\n\nRequired scope: `knowledge_bases:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_base_articles",
+                ":article_id",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "kba_123",
+                  "key": "article_id",
+                  "description": "(Required) The ID of the article to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"author_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"draft\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "daf0fac2-a304-4dff-abdd-dd1376db7d23",
+              "name": "A knowledge base article with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_base_articles",
+                    ":article_id",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "kba_123",
+                      "key": "article_id",
+                      "description": "(Required) The ID of the article to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"author_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"draft\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n      \"last_editor\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n    }\n  },\n  \"id\": \"kba_12\",\n  \"slug\": \"/articles/5\",\n  \"name\": \"Billing 101\",\n  \"status\": \"published\",\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"content\": \"<h1>How to process a return</h1><p>To process a return...</p>\",\n  \"locale\": \"en\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"last_edited_at\": 1622672452.363,\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43343e49-e68c-4a84-939f-444aa5fd9793",
+          "name": "Download attachment from an article",
+          "request": {
+            "name": "Download attachment from an article",
+            "description": {
+              "content": "Downloads the attachment from an article.\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_base_articles",
+                ":article_id",
+                "download",
+                ":attachment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "kba_123",
+                  "key": "article_id",
+                  "description": "(Required) The ID of the article"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attachment_id",
+                  "description": "(Required) The ID of the file to download"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d64f1ff-f4a9-405b-8cab-4584ff66048e",
+              "name": "The binary content of the attachment file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_base_articles",
+                    ":article_id",
+                    "download",
+                    ":attachment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "kba_123",
+                      "key": "article_id",
+                      "description": "(Required) The ID of the article"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attachment_id",
+                      "description": "(Required) The ID of the file to download"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The size of the attachment file in bytes",
+                  "key": "Content-Length",
+                  "value": "1024"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab9e7c83-aab1-46d6-aad2-f9ce67cfbe82",
+          "name": "Get knowledge base article with content in specified locale",
+          "request": {
+            "name": "Get knowledge base article with content in specified locale",
+            "description": {
+              "content": "Fetches a knowledge base article with content for a given locale.\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_base_articles",
+                ":article_id",
+                "locales",
+                ":locale",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "kba_123",
+                  "key": "article_id",
+                  "description": "(Required) The ID of the article to fetch"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "locale",
+                  "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08f8f239-7baf-470a-98d6-7dd5130e5560",
+              "name": "A knowledge base article with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_base_articles",
+                    ":article_id",
+                    "locales",
+                    ":locale",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "kba_123",
+                      "key": "article_id",
+                      "description": "(Required) The ID of the article to fetch"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "en",
+                      "key": "locale",
+                      "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the content to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n      \"last_editor\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n    }\n  },\n  \"id\": \"kba_12\",\n  \"slug\": \"/articles/5\",\n  \"name\": \"Billing 101\",\n  \"status\": \"published\",\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"content\": \"<h1>How to process a return</h1><p>To process a return...</p>\",\n  \"locale\": \"en\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"last_edited_at\": 1622672452.363,\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18b9fc9c-3ee8-4d85-baf2-d15f5c83ecb9",
+          "name": "Update article content in specified locale",
+          "request": {
+            "name": "Update article content in specified locale",
+            "description": {
+              "content": "Updates an article's content for a given locale.\n\nRequired scope: `knowledge_bases:write`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_base_articles",
+                ":article_id",
+                "locales",
+                ":locale",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "kba_123",
+                  "key": "article_id",
+                  "description": "(Required) The ID of the article to update"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "locale",
+                  "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"author_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"draft\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c715752f-c0b0-4051-b280-78454ba7a8d2",
+              "name": "A knowledge base article with content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_base_articles",
+                    ":article_id",
+                    "locales",
+                    ":locale",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "kba_123",
+                      "key": "article_id",
+                      "description": "(Required) The ID of the article to update"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "en",
+                      "key": "locale",
+                      "description": "(Required) The [locale](https://dev.frontapp.com/reference/knowledge-bases#locales) of the updated content"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"author_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"draft\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n    \"related\": {\n      \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n      \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n      \"last_editor\": \"https://yourCompany.api.frontapp.com/teammates/tea_6r55a\"\n    }\n  },\n  \"id\": \"kba_12\",\n  \"slug\": \"/articles/5\",\n  \"name\": \"Billing 101\",\n  \"status\": \"published\",\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"content\": \"<h1>How to process a return</h1><p>To process a return...</p>\",\n  \"locale\": \"en\",\n  \"attachments\": [\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    },\n    {\n      \"id\": \"fil_3q8a7mby\",\n      \"url\": \"https://yourCompany.api.frontapp.com/download/fil_3q8a7mby\",\n      \"filename\": \"Andy_Anger_Management_Certificate.png\",\n      \"content_type\": \"image/png\",\n      \"size\": 4405,\n      \"metadata\": {\n        \"is_inline\": true,\n        \"cid\": \"526b45586d0e6b1c484afab63d1ef0be\"\n      }\n    }\n  ],\n  \"last_edited_at\": 1622672452.363,\n  \"created_at\": 1622672452.363,\n  \"updated_at\": 1654309308.278\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd078c17-5384-4740-95bd-d538b532c5db",
+          "name": "List articles in a category",
+          "request": {
+            "name": "List articles in a category",
+            "description": {
+              "content": "List articles in a category.\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_base_categories",
+                ":category_id",
+                "articles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "kbc_123",
+                  "key": "category_id",
+                  "description": "(Required) The ID of the category"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6cf36e2-7ad4-4a30-8619-b7a9f149bfa8",
+              "name": "Array of knowledge base articles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_base_categories",
+                    ":category_id",
+                    "articles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "kbc_123",
+                      "key": "category_id",
+                      "description": "(Required) The ID of the category"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles?page_token=134287aba8eaa55cf366400c63300a75bab0c\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n        \"related\": {\n          \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n          \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n          \"content\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12/content\"\n        }\n      },\n      \"id\": \"kba_12\",\n      \"slug\": \"/articles/5\",\n      \"locales\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": 1622672452.363,\n      \"updated_at\": 1654309308.278\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n        \"related\": {\n          \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n          \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n          \"content\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12/content\"\n        }\n      },\n      \"id\": \"kba_12\",\n      \"slug\": \"/articles/5\",\n      \"locales\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": 1622672452.363,\n      \"updated_at\": 1654309308.278\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56bd7be0-82f1-4172-94e9-fac2e8be761b",
+          "name": "List articles in a knowledge base",
+          "request": {
+            "name": "List articles in a knowledge base",
+            "description": {
+              "content": "List articles in a knowledge base\n\nRequired scope: `knowledge_bases:read`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "knowledge_bases",
+                ":knowledge_base_id",
+                "articles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results per [page](https://dev.frontapp.com/docs/pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "knb_123",
+                  "key": "knowledge_base_id",
+                  "description": "(Required) The ID of the knowledge base"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2f7fb0e-18de-4ab5-945c-0176cf95e750",
+              "name": "Array of knowledge base articles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "knowledge_bases",
+                    ":knowledge_base_id",
+                    "articles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "https://yourCompany.api.frontapp.com/endpoint?limit=25"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "92f32bcd7625333caf4e0f8fc26d920c812f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "knb_123",
+                      "key": "knowledge_base_id",
+                      "description": "(Required) The ID of the knowledge base"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_pagination\": {\n    \"next\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles?page_token=134287aba8eaa55cf366400c63300a75bab0c\"\n  },\n  \"_links\": {\n    \"self\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles\"\n  },\n  \"_results\": [\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n        \"related\": {\n          \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n          \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n          \"content\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12/content\"\n        }\n      },\n      \"id\": \"kba_12\",\n      \"slug\": \"/articles/5\",\n      \"locales\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": 1622672452.363,\n      \"updated_at\": 1654309308.278\n    },\n    {\n      \"_links\": {\n        \"self\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12\",\n        \"related\": {\n          \"knowledge_base\": \"https://yourCompany.api.frontapp.com/knowledge_bases/knb_12\",\n          \"category\": \"https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12\",\n          \"content\": \"https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12/content\"\n        }\n      },\n      \"id\": \"kba_12\",\n      \"slug\": \"/articles/5\",\n      \"locales\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": 1622672452.363,\n      \"updated_at\": 1654309308.278\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api2.frontapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5d3e540c-f61a-4b03-b3a0-7ee1b3826d6e",
+    "name": "Channel Accounts Knowledge Base Articles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Front Platform",
+      "type": "text/plain"
+    }
+  }
+}
