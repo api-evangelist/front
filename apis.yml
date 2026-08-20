@@ -21,6 +21,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/front.png
 tags:
+  - Customer-Support
+  - Email
+  - Inbox
+  - Customer Operations
+  - Collaboration
+  - Omnichannel
+tags_raw:
   - Customer Support
   - Email
   - Inbox
@@ -66,6 +73,8 @@ apis:
   name: Front Accounts API
   description: The Accounts API from Front — 3 operation(s) for accounts.
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -235,6 +244,8 @@ apis:
   name: Front Applications API
   description: The Applications API from Front — 1 operation(s) for applications.
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -963,6 +974,8 @@ apis:
   name: Front Events API
   description: The Events API from Front — 2 operation(s) for events.
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -1413,6 +1426,8 @@ apis:
   name: Front Messages API
   description: The Messages API from Front — 9 operation(s) for messages.
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -1637,6 +1652,8 @@ apis:
   name: Front Statuses API
   description: The Statuses API from Front — 2 operation(s) for statuses.
   tags:
+  - Status
+  tags_raw:
   - Statuses
   properties:
   - type: OpenAPI
@@ -1861,6 +1878,8 @@ apis:
   name: Front Teams API
   description: The Teams API from Front — 3 operation(s) for teams.
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
