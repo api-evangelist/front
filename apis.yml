@@ -6,6 +6,18 @@ description: >-
   Front is a customer operations platform unifying shared inboxes, chat, SMS, social, and CRM workflows. Front exposes a
   Core API (conversations, messages, channels, contacts, teammates, analytics), a Channels API for custom messaging
   integrations, a Plugin SDK for embedded UI apps, a Chat Widget, and Connectors for low-code automations.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
