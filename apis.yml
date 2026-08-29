@@ -2113,6 +2113,9 @@ apis:
   - type: Documentation
     url: https://dev.frontapp.com/reference/links
 common:
+  - type: CapabilityMap
+    url: capabilities/front-capability-edges.yml
+    name: Front Business Capability Map
   - type: AgenticAccess
     url: agentic-access/front-agentic-access.yml
   - type: TrustCenter

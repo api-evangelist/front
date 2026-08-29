@@ -1,0 +1,117 @@
+slug: front
+provider: Front
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 11
+edges:
+- tag: Contacts
+  spec_file: front-contacts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.85
+  evidence: POST /contacts/merge  merge-contacts  Merge contacts; ContactHandle, ContactResponse
+  reason: CRUD plus merge/dedup of contact records with handles — classic customer/contact master data
+    and identity resolution.
+- tag: Conversations
+  spec_file: front-conversations-api-openapi.yml
+  capability_id: BC-430.10
+  capability_id_l1: BC-430
+  capability_name: Customer Inquiry Management
+  confidence: 0.85
+  evidence: PUT /conversations/{conversation_id}/assignee  update-conversation-assignee; GET /inboxes
+    ... list-conversation-inboxes
+  reason: Front is a shared-inbox customer operations platform; conversations are inbound customer contacts
+    routed, assigned and resolved by teammates — Customer Inquiry Management.
+- tag: Knowledge Base Articles
+  spec_file: front-knowledge-base-articles-api-openapi.yml
+  capability_id: BC-430.40
+  capability_id_l1: BC-430
+  capability_name: Self-Service Management
+  confidence: 0.8
+  evidence: PATCH /knowledge_base_articles/{article_id}/content  update-article-content-in-default-locale
+  reason: Authoring and localisation of customer-facing help-centre articles — knowledge base for self-service
+    support (could also read as BC-830 Knowledge Management, but the vendor context is customer support).
+- tag: Knowledge Bases
+  spec_file: front-knowledge-bases-api-openapi.yml
+  capability_id: BC-430.40
+  capability_id_l1: BC-430
+  capability_name: Self-Service Management
+  confidence: 0.8
+  evidence: POST /knowledge_bases  create-a-knowledge-base; create-article-in-a-knowledge-base-in-specified-locale
+  reason: Creation and content management of knowledge bases used for customer self-service support content.
+- tag: Messages
+  spec_file: front-messages-api-openapi.yml
+  capability_id: BC-430.10
+  capability_id_l1: BC-430
+  capability_name: Customer Inquiry Management
+  confidence: 0.8
+  evidence: POST /channels/{channel_id}/inbound_messages sync-inbound-message; POST /conversations/{conversation_id}/messages
+    create-message-reply
+  reason: Operations send, receive and reply to customer messages across channels and track seen status
+    — inbound contact handling and resolution in a customer operations platform.
+- tag: Accounts
+  spec_file: front-accounts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.75
+  evidence: 'GET /accounts/{account_id}/contacts  list-account-contacts; POST /accounts/{account_id}/contacts  add-contact-to-account;
+    schemas: Account, AccountPatch, ContactResponse'
+  reason: Accounts here are CRM company records that group contacts, with full CRUD and contact association
+    — customer master data maintenance rather than any technical account/login concept.
+- tag: Contact Handles
+  spec_file: front-contact-handles-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.75
+  evidence: 'POST /contacts/{contact_id}/handles  add-contact-handle; schemas: ContactHandle, DeleteContactHandle'
+  reason: Handles are the contact's identifiers (email, phone, social) attached to a customer record —
+    maintenance of customer identity/contact master data.
+- tag: Knowledge Base Categories
+  spec_file: front-knowledge-base-categories-api-openapi.yml
+  capability_id: BC-430.40
+  capability_id_l1: BC-430
+  capability_name: Self-Service Management
+  confidence: 0.75
+  evidence: GET /knowledge_bases/{knowledge_base_id}/categories  list-categories-in-a-knowledge-base
+  reason: Taxonomy/category structure of the customer help centre supporting self-service knowledge base
+    delivery.
+- tag: Calls
+  spec_file: front-calls-api-openapi.yml
+  capability_id: BC-430.30
+  capability_id_l1: BC-430
+  capability_name: Contact Centre Operations Management
+  confidence: 0.7
+  evidence: POST /channels/{channel_id}/calls  create-call; PATCH .../calls/{external_call_id}  update-call  Update
+    call status; POST .../recording  add-call-recording; POST .../transcript  add-call-transcript
+  reason: Inbound/outbound voice calls with status, recording, summary and transcript on customer channels
+    is telephony handling within contact-centre operations.
+- tag: Contact Notes
+  spec_file: front-contact-notes-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.7
+  evidence: GET /contacts/{contact_id}/notes  list-notes  List notes; schema CreateContactNote
+  reason: Notes attached to contact records in Front's contact directory — enrichment of the customer/contact
+    master record. Maps to Customer Data Management, though it is a thin annotation surface.
+- tag: Inboxes
+  spec_file: front-inboxes-api-openapi.yml
+  capability_id: BC-430.30
+  capability_id_l1: BC-430
+  capability_name: Contact Centre Operations Management
+  confidence: 0.7
+  evidence: POST /inboxes/{inbox_id}/teammates  add-inbox-access  Add inbox access; GET /teams/{team_id}/inboxes
+  reason: Configuration of shared team inboxes and teammate access that structures how customer contacts
+    are received and worked — contact-channel operations setup. Some ambiguity vs. generic access administration.
