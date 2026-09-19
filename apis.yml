@@ -54,6 +54,9 @@ apis:
 - aid: front:front-plugin-sdk
   name: Front Plugin SDK
   tags:
+  - Plugins
+  - Embedded UI
+  tags_raw:
   - Plugin
   - Embedded UI
   properties:
