@@ -1,177 +1,91 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Front
-providerId: front
-created: '2026-05-08'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-08, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-08'
-reconciled: true
-tags:
-  - Customer Support
-  - Customer Operations
-  - Plans
-description: >-
-  Front sells per-seat-per-month plans across Starter, Professional, and
-  Enterprise tiers, plus AI add-ons (Copilot, Smart QA, Smart CSAT) and
-  Autopilot. Annual commitment earns 24% off vs monthly.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://front.com/pricing
 sources:
-  - https://front.com/pricing
+- https://front.com/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: per-seat
+published: true
+note: Annual billing shown (Save 24%). Seat-based tiers plus AI and API add-ons; API rate limit increase
+  priced separately.
+plan_count: 10
+currency: USD
 plans:
-  - id: front-starter
-    name: Starter
-    type: per-seat
-    description: >-
-      Essential single-channel support with shared inbox, ticketing, basic
-      AI Topics, and up to 10 automation rules. Capped at 10 seats.
-    entries:
-      - label: Per Seat / Month
-        name: front_starter_seat
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '25'
-        currency: USD
-        userMultiplied: true
-    elements:
-      - name: Up to 10 seats
-      - name: Shared inbox and ticketing
-      - name: Basic AI Topics
-      - name: Up to 10 automation rules
-  - id: front-professional
-    name: Professional
-    type: per-seat
-    description: >-
-      Enhanced automation and reporting for omnichannel support — email,
-      SMS, social — macros, and up to 20 automation rules. Up to 50 seats.
-    entries:
-      - label: Per Seat / Month
-        name: front_pro_seat
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '65'
-        currency: USD
-        userMultiplied: true
-  - id: front-enterprise
-    name: Enterprise
-    type: per-seat
-    description: >-
-      Advanced AI tools (Copilot, Smart QA, Smart CSAT included),
-      unlimited rules, multi-language knowledge base, and enterprise
-      security.
-    entries:
-      - label: Per Seat / Month
-        name: front_enterprise_seat
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '105'
-        currency: USD
-        userMultiplied: true
-  - id: front-copilot-addon
-    name: Copilot AI Add-On
-    type: addon
-    description: AI assistant for drafting replies (included in Enterprise).
-    entries:
-      - label: Per Seat / Month
-        name: front_copilot
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '20'
-        currency: USD
-        userMultiplied: true
-  - id: front-smart-qa-addon
-    name: Smart QA Add-On
-    type: addon
-    description: AI quality assurance scoring (included in Enterprise).
-    entries:
-      - label: Per Seat / Month
-        name: front_smart_qa
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '20'
-        currency: USD
-        userMultiplied: true
-  - id: front-smart-csat-addon
-    name: Smart CSAT Add-On
-    type: addon
-    description: AI-driven sentiment-based CSAT (included in Enterprise).
-    entries:
-      - label: Per Seat / Month
-        name: front_smart_csat
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '10'
-        currency: USD
-        userMultiplied: true
-  - id: front-smart-bundle
-    name: Smart QA + Smart CSAT Bundle
-    type: addon
-    description: Discounted bundle of Smart QA and Smart CSAT.
-    entries:
-      - label: Per Seat / Month
-        name: front_smart_bundle
-        type: flat
-        metric: seats
-        timeFrame: monthly
-        unit: 1
-        price: '25'
-        currency: USD
-        userMultiplied: true
-  - id: front-autopilot
-    name: Autopilot
-    type: addon
-    description: AI agent that resolves conversations autonomously. Custom-quoted.
-    entries:
-      - label: Custom Quote
-        name: front_autopilot
-        type: flat
-        metric: addon
-        timeFrame: monthly
-        unit: 1
-        price: contact-sales
-        currency: USD
-        userMultiplied: false
-  - id: front-rate-limit-increase
-    name: API Rate Limit Increase
-    type: addon
-    description: Add +100 API requests/minute headroom for $200/month each.
-    entries:
-      - label: Per +100 RPM / Month
-        name: front_rate_limit_increase
-        type: flat
-        metric: rpm-increment
-        timeFrame: monthly
-        unit: 1
-        price: '200'
-        currency: USD
-        userMultiplied: false
-  - id: front-whatsapp
-    name: Native WhatsApp Channel
-    type: addon
-    description: Meta-billed WhatsApp Business pricing plus 20% Front admin fee.
-    entries:
-      - label: Pass-through + 20%
-        name: front_whatsapp
-        type: percent
-        metric: meta_passthrough
-        timeFrame: monthly
-        unit: 1
-        price: meta-passthrough-plus-20-percent
-        currency: USD
-        userMultiplied: false
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Starter
+  price_text: $25 /seat/mo, up to 10 seats
+  price: 25
+  currency: USD
+  period: month
+  unit: seat
+  included_quota: Shared inbox and ticketing, AI Topics and up to 10 automation rules, basic analytics,
+    no-code public knowledge base; single channel type; 1 workspace
+- name: Professional
+  price_text: $65 /seat/mo, up to 50 seats
+  price: 65
+  currency: USD
+  period: month
+  unit: seat
+  included_quota: Everything in Starter plus omnichannel, macros and up to 20 automation rules, advanced
+    analytics, multiple workspaces, SSO, SCIM
+- name: Enterprise
+  price_text: $105 /seat/mo
+  price: 105
+  currency: USD
+  period: month
+  unit: seat
+  included_quota: Everything in Professional plus smart rules, unlimited rules and macros, multi-language
+    knowledge base, custom roles, AI Copilot, QA, and CSAT included
+- name: Autopilot (AI add-on)
+  price_text: Starting at $0.05 /conversation
+  price: 0.05
+  currency: USD
+  period: per-use
+  unit: conversation
+- name: Copilot (AI add-on)
+  price_text: $20 / seat / month as an add-on, or included in Enterprise
+  price: 20
+  currency: USD
+  period: month
+  unit: seat
+- name: Smart QA (AI add-on)
+  price_text: $20 / seat / month as an add-on, or included in Enterprise
+  price: 20
+  currency: USD
+  period: month
+  unit: seat
+- name: Smart CSAT (AI add-on)
+  price_text: $10 / seat / month as an add-on, or included in Enterprise
+  price: 10
+  currency: USD
+  period: month
+  unit: seat
+- name: Smart QA + Smart CSAT bundle
+  price_text: $25 / seat / mo
+  price: 25
+  currency: USD
+  period: month
+  unit: seat
+- name: Native WhatsApp Channel
+  price_text: Meta-billed WhatsApp costs + 20% admin fee
+  period: month
+  included_quota: Available on Professional and Enterprise
+- name: API Rate Limit Increase
+  price_text: $200 per 100 API requests/min per month
+  price: 200
+  currency: USD
+  period: month
+  unit: 100 API requests/min
+  included_quota: Available on all plans
+rate_limit_statements:
+- Increase your API rate limit to support the most complex workflows $200 per 100 API requests/min per
+  month
+- Up to 200 total Compose actions per teammate per day
+- Up to 200 total requests per teammate per day
+- Up to 200 total manually-triggered summaries per teammate per day
+- On Starter, you can connect up to 10 channels per license, with Professional up to 30 per license, and
+  with Enterprise up to 50 per license
