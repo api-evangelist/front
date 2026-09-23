@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Knowledge Base Articles API
+  title: Core Knowledge Base Articles API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -81,7 +81,7 @@ paths:
       x-required-scopes:
       - knowledge_bases:read
     patch:
-      summary: Update article content in default locale.
+      summary: Update article content in default locale
       operationId: update-article-content-in-default-locale
       description: 'Updates an article''s content in the default locale
 
@@ -257,119 +257,7 @@ paths:
       x-required-scopes:
       - knowledge_bases:read
 components:
-  responses:
-    attachment:
-      description: The binary content of the attachment file
-      content:
-        '*/*':
-          schema:
-            type: string
-            format: binary
-      headers:
-        Content-Type:
-          description: The MIME type of the attachment file
-          schema:
-            type: string
-            example: application/pdf
-        Content-Length:
-          description: The size of the attachment file in bytes
-          schema:
-            type: string
-            example: '1024'
-    knowledgeBaseArticle:
-      description: A knowledge base article with content
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseArticleResponse'
-    listOfKnowledgeBaseArticles:
-      description: Array of knowledge base articles
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type: string
-                    nullable: true
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles?page_token=134287aba8eaa55cf366400c63300a75bab0c
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
-    knowledgeBaseArticleSlim:
-      description: A knowledge base article
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
   schemas:
-    KnowledgeBaseArticleSlimResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - slug
-      - locales
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12
-            related:
-              type: object
-              properties:
-                knowledge_base:
-                  type: string
-                  description: Link to the article's knowledge base
-                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
-                category:
-                  type: string
-                  nullable: true
-                  description: Link to the article's category
-                  example: https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12
-                content:
-                  type: string
-                  description: Link to the article's content
-                  example: https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12/content
-        id:
-          type: string
-          description: Unique identifier of the knowledge base article
-          example: kba_12
-        slug:
-          type: string
-          description: URL slug of the article. Construct the full URL using the template of protocol/knowledge base domain/locale/slug, such as https://yourDomain.com/en/articles/5
-          example: /articles/5
-        locales:
-          type: array
-          description: List of the locales the article supports
-          items:
-            type: string
-            example:
-            - en
-            - es
-        created_at:
-          type: number
-          description: Timestamp when the article was created
-          example: 1622672452.363
-        updated_at:
-          type: number
-          description: Timestamp when the article was updated
-          example: 1654309308.278
     KnowledgeBaseArticlePatch:
       type: object
       properties:
@@ -389,48 +277,6 @@ components:
           - published
           description: Article status
           default: draft
-    Attachment:
-      type: object
-      required:
-      - id
-      - url
-      - filename
-      - content_type
-      - size
-      - metadata
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the attachment.
-          example: fil_3q8a7mby
-        filename:
-          type: string
-          description: Name of the attached file
-          example: Andy_Anger_Management_Certificate.png
-        url:
-          type: string
-          description: URL to download the attached file
-          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
-        content_type:
-          type: string
-          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
-          example: image/png
-        size:
-          type: integer
-          description: Size (in byte) of the attached file
-          example: 4405
-        metadata:
-          description: Attachment metadata
-          type: object
-          properties:
-            is_inline:
-              type: boolean
-              description: Whether or not the attachment is part of the message body
-              example: true
-            cid:
-              type: string
-              description: Unique identifier used to link an attachment to where it is used in the message body
-              example: 526b45586d0e6b1c484afab63d1ef0be
     KnowledgeBaseArticleResponse:
       type: object
       required:
@@ -515,14 +361,163 @@ components:
           type: number
           description: Timestamp when the article was updated
           example: 1654309308.278
+    KnowledgeBaseArticleSlimResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - slug
+      - locales
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12
+            related:
+              type: object
+              properties:
+                knowledge_base:
+                  type: string
+                  description: Link to the article's knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+                category:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to the article's category
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_category/kbc_12
+                content:
+                  type: string
+                  description: Link to the article's content
+                  example: https://yourCompany.api.frontapp.com/knowledge_base_articles/kba_12/content
+        id:
+          type: string
+          description: Unique identifier of the knowledge base article
+          example: kba_12
+        slug:
+          type: string
+          description: URL slug of the article. Construct the full URL using the template of protocol/knowledge base domain/locale/slug, such as https://yourDomain.com/en/articles/5
+          example: /articles/5
+        locales:
+          type: array
+          description: List of the locales the article supports
+          items:
+            type: string
+            example:
+            - en
+            - es
+        created_at:
+          type: number
+          description: Timestamp when the article was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the article was updated
+          example: 1654309308.278
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+  responses:
+    knowledgeBaseArticle:
+      description: A knowledge base article with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseArticleResponse'
+    listOfKnowledgeBaseArticles:
+      description: Array of knowledge base articles
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles?page_token=134287aba8eaa55cf366400c63300a75bab0c
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
+    attachment:
+      description: The binary content of the attachment file
+      content:
+        '*/*':
+          schema:
+            type: string
+            format: binary
+      headers:
+        Content-Type:
+          description: The MIME type of the attachment file
+          schema:
+            type: string
+            example: application/pdf
+        Content-Length:
+          description: The size of the attachment file in bytes
+          schema:
+            type: string
+            example: '1024'
+    knowledgeBaseArticleSlim:
+      description: A knowledge base article
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
   parameters:
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
     limit:
       name: limit
       in: query
@@ -531,6 +526,13 @@ components:
         type: integer
         maximum: 100
         example: 25
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
   securitySchemes:
     http:
       type: http

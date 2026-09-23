@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Calls API
+  title: Channel Calls API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -76,9 +76,7 @@ paths:
     post:
       summary: Add call recording
       operationId: add-call-recording
-      description: 'Adds a recording to a call in Front. Send `multipart/form-data` with exactly one file in the `attachments` field, `Content-Type: audio/*`, and required `recording_type` (`call` or `voicemail`).
-
-        '
+      description: 'Adds a recording to a call in Front. Send `multipart/form-data` with exactly one file in the `attachments` field, `Content-Type: audio/*`, and required `recording_type` (`call` or `voicemail`).'
       tags:
       - Calls
       parameters:
@@ -188,6 +186,56 @@ paths:
       - channels:write
 components:
   schemas:
+    CreateCallInbound:
+      type: object
+      required:
+      - external_call_id
+      - initial_status
+      - direction
+      - from
+      - parent_external_call_id
+      properties:
+        external_call_id:
+          type: string
+          description: Stable identifier for this call in the provider system.
+        initial_status:
+          type: string
+          enum:
+          - queued
+          - ringing
+        direction:
+          type: string
+          enum:
+          - inbound
+          description: Inbound calls must include `from` (external party who initiated). The channel is treated as the receiving side (e.g. agent or queue).
+        from:
+          $ref: '#/components/schemas/CallParty'
+          description: External party who initiated the inbound call.
+        started_at:
+          type: number
+          description: Optional Unix timestamp (ms) when the call started.
+        parent_external_call_id:
+          type: string
+          description: External ID of the parent call (e.g. where the call was transferred from). This will be used to thread the call into an existing conversation with a matching parent call ID.
+        agent_email_address:
+          type: string
+          description: Optional email of the teammate associated with the call.
+    CreateCall:
+      discriminator:
+        propertyName: direction
+        mapping:
+          inbound: '#/components/schemas/CreateCallInbound'
+          outbound: '#/components/schemas/CreateCallOutbound'
+      oneOf:
+      - $ref: '#/components/schemas/CreateCallInbound'
+      - $ref: '#/components/schemas/CreateCallOutbound'
+      properties:
+        direction:
+          type: string
+          enum:
+          - inbound
+          - outbound
+          description: Use `inbound` with required `from` (external party); use `outbound` with required `to` (callee).
     AddCallSummary:
       type: object
       required:
@@ -229,22 +277,6 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/TranscriptLine'
-    CreateCall:
-      discriminator:
-        propertyName: direction
-        mapping:
-          inbound: '#/components/schemas/CreateCallInbound'
-          outbound: '#/components/schemas/CreateCallOutbound'
-      oneOf:
-      - $ref: '#/components/schemas/CreateCallInbound'
-      - $ref: '#/components/schemas/CreateCallOutbound'
-      properties:
-        direction:
-          type: string
-          enum:
-          - inbound
-          - outbound
-          description: Use `inbound` with required `from` (external party); use `outbound` with required `to` (callee).
     CallParty:
       type: object
       required:
@@ -256,60 +288,6 @@ components:
         name:
           type: string
           description: Optional display name for the party.
-    CreateCallInbound:
-      type: object
-      required:
-      - external_call_id
-      - initial_status
-      - direction
-      - from
-      - parent_external_call_id
-      properties:
-        external_call_id:
-          type: string
-          description: Stable identifier for this call in the provider system.
-        initial_status:
-          type: string
-          enum:
-          - queued
-          - ringing
-        direction:
-          type: string
-          enum:
-          - inbound
-          description: Inbound calls must include `from` (external party who initiated). The channel is treated as the receiving side (e.g. agent or queue).
-        from:
-          $ref: '#/components/schemas/CallParty'
-          description: External party who initiated the inbound call.
-        started_at:
-          type: number
-          description: Optional Unix timestamp (ms) when the call started.
-        parent_external_call_id:
-          type: string
-          description: External ID of the parent call (e.g. where the call was transferred from). This will be used to thread the call into an existing conversation with a matching parent call ID.
-        agent_email_address:
-          type: string
-          description: Optional email of the teammate associated with the call.
-    TranscriptLine:
-      type: object
-      required:
-      - speaker_name
-      - content
-      - start_time_seconds
-      - speaker_type
-      properties:
-        speaker_name:
-          type: string
-        content:
-          type: string
-        start_time_seconds:
-          type: number
-        speaker_type:
-          type: string
-          enum:
-          - internal
-          - external
-          description: internal for agent or system-side speech; external for the other party.
     CreateCallOutbound:
       type: object
       required:
@@ -344,6 +322,26 @@ components:
         agent_email_address:
           type: string
           description: Optional email of the teammate associated with the call.
+    TranscriptLine:
+      type: object
+      required:
+      - speaker_name
+      - content
+      - start_time_seconds
+      - speaker_type
+      properties:
+        speaker_name:
+          type: string
+        content:
+          type: string
+        start_time_seconds:
+          type: number
+        speaker_type:
+          type: string
+          enum:
+          - internal
+          - external
+          description: internal for agent or system-side speech; external for the other party.
   securitySchemes:
     http:
       type: http

@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Contacts API
+  title: Core Contacts API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -56,7 +56,26 @@ paths:
     post:
       summary: Merge contacts
       operationId: merge-contacts
-      description: "Merges the contacts specified into a single contact, deleting the merged-in contacts.\nIf a target contact ID is supplied, the other contacts will be merged into that one.\nOtherwise, some contact in the contact ID list will be treated as the target contact.\nMerge conflicts will be resolved in the following ways:\n  * name will prioritize manually-updated and non-private contact names\n  * descriptions will be concatenated and separated by newlines in order from\n    oldest to newest with the (optional) target contact's description first\n  * all handles, groups, links, and notes will be preserved\n  * other conflicts will use the most recently updated contact's value\n\n\nRequired scope: `contacts:write`"
+      description: 'Merges the contacts specified into a single contact, deleting the merged-in contacts.
+
+        If a target contact ID is supplied, the other contacts will be merged into that one.
+
+        Otherwise, some contact in the contact ID list will be treated as the target contact.
+
+        Merge conflicts will be resolved in the following ways:
+
+        * name will prioritize manually-updated and non-private contact names
+
+        * descriptions will be concatenated and separated by newlines in order from
+
+        oldest to newest with the (optional) target contact''s description first
+
+        * all handles, groups, links, and notes will be preserved
+
+        * other conflicts will use the most recently updated contact''s value
+
+
+        Required scope: `contacts:write`'
       tags:
       - Contacts
       requestBody:
@@ -145,8 +164,7 @@ paths:
     get:
       summary: List contact conversations
       operationId: list-contact-conversations
-      description: 'List the conversations for a contact in reverse chronological order (newest first). For more advanced filtering, see the [search endpoint](https://dev.frontapp.com/reference/conversations#search-conversations).
-
+      description: 'List the conversations for a contact in reverse chronological order (newest first). For more advanced filtering, see the search endpoint.
 
 
         Required scope: `conversations:read`'
@@ -280,6 +298,103 @@ paths:
       - contacts:write
 components:
   schemas:
+    TeammateResponse:
+      type: object
+      description: A teammate is a user in Front.
+      required:
+      - _links
+      - id
+      - email
+      - username
+      - first_name
+      - last_name
+      - license_type
+      - is_admin
+      - is_available
+      - is_blocked
+      - type
+      - custom_fields
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+            related:
+              type: object
+              properties:
+                inboxes:
+                  type: string
+                  description: Link to teammate's inboxes
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes
+                conversations:
+                  type: string
+                  description: Link to teammate's conversations
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations
+                botSource:
+                  type: string
+                  description: Link to the source resource of the bot (e.g. rule)
+                  example: https://yourCompany.api.frontapp.com/rules/rul_6r55a
+        id:
+          type: string
+          description: Unique identifier of the teammate
+          example: tea_6r55a
+        email:
+          type: string
+          description: Email address of the teammate
+          example: michael.scott@dundermifflin.com
+        username:
+          type: string
+          description: Username of the teammate (used for "@" mentions)
+          example: PrisonMike
+        first_name:
+          type: string
+          description: First name of the teammate
+          example: Michael
+        last_name:
+          type: string
+          description: Last name of the teammate
+          example: Scott
+        is_admin:
+          type: boolean
+          description: Whether or not the teammate is an admin in your company
+          example: true
+        is_available:
+          type: boolean
+          description: Whether or not the teammate is available
+          example: false
+        is_blocked:
+          type: boolean
+          description: Whether or not the teammate account has been blocked
+          example: false
+        type:
+          type: string
+          description: "Type of the teammate, normal teammates are denoted as \"user\", while visitors are denoted as \"visitor\".\nBot users are denoted by their parent resource type.\nThe following bot types are available:\n  * rule: acting on behalf of a Rule, author of comments and drafts\n  * macro: acting on behalf of a Macro, author of comments and drafts\n  * API: acting on behalf of OAuth clients\n  * integration: acting on behalf of an Integration\n  * CSAT: used for authoring CSAT response comments\n"
+          enum:
+          - user
+          - visitor
+          - rule
+          - macro
+          - API
+          - integration
+          - CSAT
+        custom_fields:
+          description: Custom fields for this teammate
+          $ref: '#/components/schemas/CustomFieldParameter'
+    CreateContact:
+      required:
+      - handles
+      allOf:
+      - $ref: '#/components/schemas/Contact'
+      - type: object
+        properties:
+          handles:
+            type: array
+            description: List of the handles for this contact. Each handle object should include `handle` and `source` fields.
+            items:
+              $ref: '#/components/schemas/ContactHandle'
     TagResponse:
       type: object
       description: A tag is a label that can be used to classify conversations.
@@ -307,18 +422,21 @@ components:
                   description: Link to tag conversations
                   example: https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/conversations
                 owner:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to tag owner
                   example: https://yourCompany.api.frontapp.com/teammates/tea_6jydq
                 parent_tag:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to parent tag
                   example: https://yourCompany.api.frontapp.com/tags/tag_3h07ym
                 children:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to tag children
                   example: https://yourCompany.api.frontapp.com/tags/tag_2oxhvy/children
         id:
@@ -330,13 +448,15 @@ components:
           description: Name of the tag
           example: Warehouse task
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Description of the tag
           example: Sitting on your biscuit, never having to risk it
         highlight:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Highlight color or emoji of the tag. Null if the tag does not have a highlight.
           example: null
         is_private:
@@ -355,72 +475,16 @@ components:
           type: number
           description: Timestamp of the last tag update
           example: 1699575875.186
-    ContactHandle:
+    LinkResponse:
       type: object
+      description: A link used to connect a Front conversation to an external resource.
       required:
-      - handle
-      - source
-      properties:
-        handle:
-          type: string
-          description: Handle used to reach the contact.
-          example: dwight@limitlesspaper.com
-        source:
-          type: string
-          enum:
-          - twitter
-          - email
-          - phone
-          - facebook
-          - intercom
-          - front_chat
-          - custom
-          description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
-          example: email
-    Contact:
-      properties:
-        name:
-          type: string
-          description: Contact name
-        description:
-          type: string
-          description: Contact description
-        avatar:
-          type: string
-          description: 'Binary data of avatar. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
-          format: binary
-        links:
-          type: array
-          description: List of all the links of the contact
-          items:
-            type: string
-        group_names:
-          type: array
-          description: List of all the group names the contact belongs to. It will automatically create missing groups. ⚠️ Deprecated. Use `list_names` instead.
-          items:
-            type: string
-        list_names:
-          type: array
-          description: List of all the contact list names the contact belongs to. It will automatically create missing groups
-          items:
-            type: string
-        custom_fields:
-          description: Custom fields for this contact. If you want to keep all custom fields the same when updating this resource, do not include any custom fields in the update. If you want to update custom fields, make sure to include all custom fields, not just the fields you want to add or update. If you send only the custom fields you want to update, the other custom fields will be erased. You can retrieve the existing custom fields before making the update to note the current fields.
-          $ref: '#/components/schemas/CustomFieldParameter'
-    MergeContacts:
-      required:
-      - contact_ids
-      properties:
-        target_contact_id:
-          type: string
-          description: Optional contact ID to merge the other contacts into.
-        contact_ids:
-          type: array
-          description: Array of all the contact IDs of the contacts to be merged.  If a target contact id is provided and that contact id is not in this array, the length of this array must be between 1 and 49.  If no target contact id is provided or it is contained in this array, the length must be between 2 and 50.
-          items:
-            type: string
-    ContactListResponses:
-      type: object
+      - _links
+      - id
+      - name
+      - type
+      - external_url
+      - custom_fields
       properties:
         _links:
           type: object
@@ -428,102 +492,26 @@ components:
             self:
               type: string
               description: Link to resource
-              example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342
-            related:
-              type: object
-              properties:
-                contacts:
-                  type: string
-                  description: Link to contact list contacts
-                  example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts
-                owner:
-                  type: string
-                  description: Link to list owner
-                  example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
+              example: https://yourCompany.api.frontapp.com/links/top_b2wpa
         id:
           type: string
-          description: Unique identifier of the list
-          example: grp_3j342
+          description: Unique identifier of the link
+          example: top_b2wpa
         name:
           type: string
-          description: Name of the list
-          example: Party Planning Committee
-        is_private:
-          type: boolean
-          description: Whether or not the contact is individual
-          example: false
-    ContactResponse:
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge"
-            related:
-              type: object
-              properties:
-                notes:
-                  type: string
-                  description: Link to contact notes
-                  example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes
-                conversations:
-                  type: string
-                  description: Link to contact conversations
-                  example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations
-                owner:
-                  type: string
-                  description: Link to contact owner
-                  example: null
-        id:
+          description: Display name of the link
+          example: JIRA-SCRAN-4567
+        type:
           type: string
-          description: Unique identifier of the contact
-          example: crd_3cgz4ge
-        name:
+          description: Type of the link. Typically associated with the underlying link provider (if known)
+          example: app_2f76b9ac738de158
+        external_url:
           type: string
-          description: Contact name
-          example: Dwight Schrute
-        description:
-          type: string
-          description: Contact description
-          example: Assistant to the regional manager
-        avatar_url:
-          type: string
-          description: URL of the contact's avatar
-          example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707
-        links:
-          type: array
-          description: List of all the links of the contact
-          items:
-            type: string
-            example:
-            - https://shrutefarms.com
-            - https://eatyourbeets.com
-        groups:
-          type: array
-          deprecated: true
-          description: List of the groups the contact belongs to. ⚠️ Deprecated. use `lists` instead.
-          items:
-            $ref: '#/components/schemas/ContactListResponses'
-        lists:
-          type: array
-          description: List of the contact lists the contact belongs to.
-          items:
-            $ref: '#/components/schemas/ContactListResponses'
-        handles:
-          type: array
-          description: List of the handles and sources with which the contact is reachable.
-          items:
-            $ref: '#/components/schemas/ContactHandle'
+          description: Underlying identifying external URL of the link
+          example: https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567
         custom_fields:
-          description: Custom fields for this contact.
+          description: Custom fields for this link
           $ref: '#/components/schemas/CustomFieldParameter'
-        is_private:
-          type: boolean
-          description: Whether or not the contact is individual
-          example: true
     ConversationResponse:
       type: object
       required:
@@ -612,11 +600,9 @@ components:
           example:
           - TICKET-1
         assignee:
-          nullable: true
           $ref: '#/components/schemas/TeammateResponse'
           description: Partial representation of the teammate assigned to the conversation
         recipient:
-          nullable: true
           $ref: '#/components/schemas/RecipientResponse'
           description: Main recipient of the conversation
         tags:
@@ -665,16 +651,31 @@ components:
               - JS9403
               items:
                 type: string
-    LinkResponse:
-      type: object
-      description: A link used to connect a Front conversation to an external resource.
+    MergeContacts:
       required:
-      - _links
-      - id
-      - name
-      - type
-      - external_url
-      - custom_fields
+      - contact_ids
+      properties:
+        target_contact_id:
+          type: string
+          description: Optional contact ID to merge the other contacts into.
+        contact_ids:
+          type: array
+          description: Array of all the contact IDs of the contacts to be merged.  If a target contact id is provided and that contact id is not in this array, the length of this array must be between 1 and 49.  If no target contact id is provided or it is contained in this array, the length must be between 2 and 50.
+          items:
+            type: string
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    ContactResponse:
+      type: object
       properties:
         _links:
           type: object
@@ -682,38 +683,99 @@ components:
             self:
               type: string
               description: Link to resource
-              example: https://yourCompany.api.frontapp.com/links/top_b2wpa
+              example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge"
+            related:
+              type: object
+              properties:
+                notes:
+                  type: string
+                  description: Link to contact notes
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/notes
+                conversations:
+                  type: string
+                  description: Link to contact conversations
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/conversations
+                owner:
+                  type: string
+                  description: Link to contact owner
+                  example: null
         id:
           type: string
-          description: Unique identifier of the link
-          example: top_b2wpa
+          description: Unique identifier of the contact
+          example: crd_3cgz4ge
         name:
           type: string
-          description: Display name of the link
-          example: JIRA-SCRAN-4567
-        type:
+          description: Contact name
+          example: Dwight Schrute
+        description:
           type: string
-          description: Type of the link. Typically associated with the underlying link provider (if known)
-          example: app_2f76b9ac738de158
-        external_url:
+          description: Contact description
+          example: Assistant to the regional manager
+        avatar_url:
           type: string
-          description: Underlying identifying external URL of the link
-          example: https://dundermifflin.atlassian.net/browse/PB-SCRAN-4567
+          description: URL of the contact's avatar
+          example: https://yourCompany.api.frontapp.com/contacts/crd_3cgz4ge/avatar-1673436467707
+        links:
+          type: array
+          description: List of all the links of the contact
+          items:
+            type: string
+            example:
+            - https://shrutefarms.com
+            - https://eatyourbeets.com
+        groups:
+          type: array
+          deprecated: true
+          description: List of the groups the contact belongs to. ⚠️ Deprecated. use `lists` instead.
+          items:
+            $ref: '#/components/schemas/ContactListResponses'
+        lists:
+          type: array
+          description: List of the contact lists the contact belongs to.
+          items:
+            $ref: '#/components/schemas/ContactListResponses'
+        handles:
+          type: array
+          description: List of the handles and sources with which the contact is reachable.
+          items:
+            $ref: '#/components/schemas/ContactHandle'
         custom_fields:
-          description: Custom fields for this link
+          description: Custom fields for this contact.
           $ref: '#/components/schemas/CustomFieldParameter'
-    CreateContact:
-      required:
-      - handles
-      allOf:
-      - $ref: '#/components/schemas/Contact'
-      - type: object
-        properties:
-          handles:
-            type: array
-            description: List of the handles for this contact. Each handle object should include `handle` and `source` fields.
-            items:
-              $ref: '#/components/schemas/ContactHandle'
+        is_private:
+          type: boolean
+          description: Whether or not the contact is individual
+          example: true
+    Contact:
+      properties:
+        name:
+          type: string
+          description: Contact name
+        description:
+          type: string
+          description: Contact description
+        avatar:
+          type: string
+          description: 'Binary data of avatar. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
+          format: binary
+        links:
+          type: array
+          description: List of all the links of the contact
+          items:
+            type: string
+        group_names:
+          type: array
+          description: List of all the group names the contact belongs to. It will automatically create missing groups. ⚠️ Deprecated. Use `list_names` instead.
+          items:
+            type: string
+        list_names:
+          type: array
+          description: List of all the contact list names the contact belongs to. It will automatically create missing groups
+          items:
+            type: string
+        custom_fields:
+          description: Custom fields for this contact. If you want to keep all custom fields the same when updating this resource, do not include any custom fields in the update. If you want to update custom fields, make sure to include all custom fields, not just the fields you want to add or update. If you send only the custom fields you want to update, the other custom fields will be erased. You can retrieve the existing custom fields before making the update to note the current fields.
+          $ref: '#/components/schemas/CustomFieldParameter'
     RecipientResponse:
       type: object
       required:
@@ -729,13 +791,15 @@ components:
               type: object
               properties:
                 contact:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to recipient contact
                   example: https://yourCompany.api.frontapp.com/contacts/crd_2njtoem
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Name of the recipient.
           example: Phyllis Lapin-Vance
         handle:
@@ -752,102 +816,6 @@ components:
           - bcc
           - reply-to
           example: cc
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
-    TeammateResponse:
-      type: object
-      description: A teammate is a user in Front.
-      required:
-      - _links
-      - id
-      - email
-      - username
-      - first_name
-      - last_name
-      - license_type
-      - is_admin
-      - is_available
-      - is_blocked
-      - type
-      - custom_fields
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
-            related:
-              type: object
-              properties:
-                inboxes:
-                  type: string
-                  description: Link to teammate's inboxes
-                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/inboxes
-                conversations:
-                  type: string
-                  description: Link to teammate's conversations
-                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a/conversations
-                botSource:
-                  type: string
-                  description: Link to the source resource of the bot (e.g. rule)
-                  example: https://yourCompany.api.frontapp.com/rules/rul_6r55a
-        id:
-          type: string
-          description: Unique identifier of the teammate
-          example: tea_6r55a
-        email:
-          type: string
-          description: Email address of the teammate
-          example: michael.scott@dundermifflin.com
-        username:
-          type: string
-          description: Username of the teammate (used for "@" mentions)
-          example: PrisonMike
-        first_name:
-          type: string
-          description: First name of the teammate
-          example: Michael
-        last_name:
-          type: string
-          description: Last name of the teammate
-          example: Scott
-        is_admin:
-          type: boolean
-          description: Whether or not the teammate is an admin in your company
-          example: true
-        is_available:
-          type: boolean
-          description: Whether or not the teammate is available
-          example: false
-        is_blocked:
-          type: boolean
-          description: Whether or not the teammate account has been blocked
-          example: false
-        type:
-          type: string
-          description: "Type of the teammate, normal teammates are denoted as \"user\", while visitors are denoted as \"visitor\".\nBot users are denoted by their parent resource type.\nThe following bot types are available:\n  * rule: acting on behalf of a Rule, author of comments and drafts\n  * macro: acting on behalf of a Macro, author of comments and drafts\n  * API: acting on behalf of OAuth clients\n  * integration: acting on behalf of an Integration\n  * CSAT: used for authoring CSAT response comments\n"
-          enum:
-          - user
-          - visitor
-          - rule
-          - macro
-          - API
-          - integration
-          - CSAT
-        custom_fields:
-          description: Custom fields for this teammate
-          $ref: '#/components/schemas/CustomFieldParameter'
     Reminder:
       type: object
       required:
@@ -875,6 +843,105 @@ components:
           type: number
           description: Timestamp at which the conversation reminder has been updated
           example: 1701806790.536
+    ContactHandle:
+      type: object
+      required:
+      - handle
+      - source
+      properties:
+        handle:
+          type: string
+          description: Handle used to reach the contact.
+          example: dwight@limitlesspaper.com
+        source:
+          type: string
+          enum:
+          - twitter
+          - email
+          - phone
+          - facebook
+          - intercom
+          - front_chat
+          - custom
+          description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
+          example: email
+    ContactListResponses:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342
+            related:
+              type: object
+              properties:
+                contacts:
+                  type: string
+                  description: Link to contact list contacts
+                  example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts
+                owner:
+                  type: string
+                  description: Link to list owner
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
+        id:
+          type: string
+          description: Unique identifier of the list
+          example: grp_3j342
+        name:
+          type: string
+          description: Name of the list
+          example: Party Planning Committee
+        is_private:
+          type: boolean
+          description: Whether or not the contact is individual
+          example: false
+  parameters:
+    cardQuery:
+      name: q
+      in: query
+      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `updated_after` and `updated_before`, whose value should be a timestamp in seconds with up to 3 decimal places.'
+      schema:
+        type: string
+    conversationQuery:
+      name: q
+      in: query
+      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative.'
+      schema:
+        type: string
+    sortOrder:
+      name: sort_order
+      in: query
+      description: Order by which results should be sorted
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        example: asc
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+    sortByCards:
+      name: sort_by
+      in: query
+      description: Field used to sort the contacts. Either `created_at` or `updated_at`.
+      schema:
+        type: string
   responses:
     contact:
       description: A contact
@@ -882,32 +949,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ContactResponse'
-    listOfConversations:
-      description: Array of conversations
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type: string
-                    nullable: true
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/conversations?page_token=ce787da6f075740cf187d926f5e9f612bc7875763a8dd37d5
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/conversations
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ConversationResponse'
     listOfContacts:
       description: Array of contacts
       content:
@@ -919,8 +960,9 @@ components:
                 type: object
                 properties:
                   next:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
                     example: https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed
               _links:
@@ -934,50 +976,33 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/ContactResponse'
-  parameters:
-    conversationQuery:
-      name: q
-      in: query
-      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative.'
-      schema:
-        type: string
-    sortByCards:
-      name: sort_by
-      in: query
-      description: Field used to sort the contacts. Either `created_at` or `updated_at`.
-      schema:
-        type: string
-    cardQuery:
-      name: q
-      in: query
-      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `updated_after` and `updated_before`, whose value should be a timestamp in seconds with up to 3 decimal places.'
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: integer
-        maximum: 100
-        example: 25
-    sortOrder:
-      name: sort_order
-      in: query
-      description: Order by which results should be sorted
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        example: asc
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+    listOfConversations:
+      description: Array of conversations
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/conversations?page_token=ce787da6f075740cf187d926f5e9f612bc7875763a8dd37d5
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/conversations
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConversationResponse'
   securitySchemes:
     http:
       type: http

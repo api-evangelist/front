@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Contact Lists API
+  title: Core Contact Lists API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -30,7 +30,7 @@ paths:
     post:
       summary: Create contact list
       operationId: create-contact-list
-      description: 'Create a new contact list in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team contact list](https://dev.frontapp.com/reference/create-team-contact-list) endpoint instead.
+      description: 'Create a new contact list in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the Create team contact list endpoint instead.
 
 
         Required scope: `contacts:write`'
@@ -279,8 +279,9 @@ components:
                 type: object
                 properties:
                   next:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
                     example: https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed
               _links:
@@ -326,6 +327,18 @@ components:
           - custom
           description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
           example: email
+    RemoveContactsFromList:
+      required:
+      - contact_ids
+      properties:
+        contact_ids:
+          type: array
+          description: List of IDs of the contacts to remove from the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          maxItems: 50
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    ResourceID:
+      type: string
     ContactListResponses:
       type: object
       properties:
@@ -359,6 +372,25 @@ components:
           type: boolean
           description: Whether or not the contact is individual
           example: false
+    CreateContactList:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the contact list
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
     ContactResponse:
       type: object
       properties:
@@ -431,37 +463,6 @@ components:
           type: boolean
           description: Whether or not the contact is individual
           example: true
-    RemoveContactsFromList:
-      required:
-      - contact_ids
-      properties:
-        contact_ids:
-          type: array
-          description: List of IDs of the contacts to remove from the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
-          maxItems: 50
-          items:
-            $ref: '#/components/schemas/ResourceID'
-    ResourceID:
-      type: string
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
-    CreateContactList:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the contact list
   parameters:
     limit:
       name: limit

@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Knowledge Bases API
+  title: Core Knowledge Bases API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -328,183 +328,50 @@ paths:
       x-required-scopes:
       - knowledge_bases:write
 components:
+  responses:
+    knowledgeBaseCategory:
+      description: A knowledge base category with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseCategoryResponse'
+    knowledgeBaseSlim:
+      description: A knowledge base
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseSlimResponse'
+    knowledgeBase:
+      description: A knowledge base with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseResponse'
+    knowledgeBaseArticle:
+      description: A knowledge base article with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseArticleResponse'
+    listOfKnowledgeBases:
+      description: Array of knowledge bases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KnowledgeBaseSlimResponse'
   schemas:
-    KnowledgeBaseSlimResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - type
-      - locales
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
-            related:
-              type: object
-              properties:
-                articles:
-                  type: string
-                  description: Link to articles associated to the knowledge base
-                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles
-                categories:
-                  type: string
-                  description: Link to categories associated to the knowledge base
-                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories
-        id:
-          type: string
-          description: Unique identifier of the knowledge base
-          example: knb_12
-        type:
-          type: string
-          enum:
-          - internal
-          - external
-          description: Type of the KB
-          example: internal
-        locales:
-          type: array
-          description: List of the KB's possible locales
-          items:
-            type: string
-            example:
-            - en
-            - es
-        created_at:
-          type: number
-          description: Timestamp when the knowledge base was created
-          example: 1622672452.363
-        updated_at:
-          type: number
-          description: Timestamp when the knowledge base was updated
-          example: 1654309308.278
-    KnowledgeBaseCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the knowledge base
-        type:
-          type: string
-          enum:
-          - internal
-          - external
-          description: Determines if the knowledge base is publicly available or private only to your company
-          default: external
-          example: internal
-    KnowledgeBasePatch:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the knowledge base
-    KnowledgeBaseCategoryCreate:
-      type: object
-      required:
-      - name
-      properties:
-        parent_category_id:
-          type: string
-          description: ID of the parent category
-        name:
-          type: string
-          description: Name of the knowledge base category
-        description:
-          type: string
-          description: Description of the knowledge base category
-    KnowledgeBaseArticleCreate:
-      type: object
-      properties:
-        category_id:
-          type: string
-          description: ID of the category this article belongs to
-        author_id:
-          type: string
-          description: Teammate ID of the article author
-        subject:
-          type: string
-          description: Subject of the article
-        content:
-          type: string
-          description: HTML content of the article
-        status:
-          type: string
-          enum:
-          - draft
-          - published
-          default: draft
-          description: Article status
-    KnowledgeBaseResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      - status
-      - type
-      - locale
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
-            related:
-              type: object
-              properties:
-                articles:
-                  type: string
-                  description: Link to articles associated to the knowledge base
-                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles
-                categories:
-                  type: string
-                  description: Link to categories associated to the knowledge base
-                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories
-        id:
-          type: string
-          description: Unique identifier of the knowledge base
-          example: knb_12
-        name:
-          type: string
-          description: Knowledge base name
-          example: Company Help Center
-        status:
-          type: string
-          enum:
-          - published
-          - unpublished
-          description: Status of the KB
-          example: unpublished
-        type:
-          type: string
-          enum:
-          - internal
-          - external
-          description: Type of the KB
-          example: internal
-        locale:
-          type: string
-          enum:
-          - fr
-          - en
-          description: Locale of this requested KB
-          example: en
-        created_at:
-          type: number
-          description: Timestamp when the knowledge base was created
-          example: 1622672452.363
-        updated_at:
-          type: number
-          description: Timestamp when the knowledge base was updated
-          example: 1654309308.278
     KnowledgeBaseCategoryResponse:
       type: object
       required:
@@ -530,8 +397,9 @@ components:
                   description: Link to the category's knowledge base
                   example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
                 parent_category:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to the category's parent
                   example: https://yourCompany.api.frontapp.com/knowledge_base_catgories/kbc_10
                 articles:
@@ -543,13 +411,15 @@ components:
           description: Unique identifier of the knowledge base category
           example: kbc_12
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Category name
           example: Getting started
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Description of the category
           example: How to get started in Front
         is_hidden:
@@ -571,48 +441,6 @@ components:
           type: number
           description: Timestamp when the category was updated
           example: 1654309308.278
-    Attachment:
-      type: object
-      required:
-      - id
-      - url
-      - filename
-      - content_type
-      - size
-      - metadata
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the attachment.
-          example: fil_3q8a7mby
-        filename:
-          type: string
-          description: Name of the attached file
-          example: Andy_Anger_Management_Certificate.png
-        url:
-          type: string
-          description: URL to download the attached file
-          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
-        content_type:
-          type: string
-          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
-          example: image/png
-        size:
-          type: integer
-          description: Size (in byte) of the attached file
-          example: 4405
-        metadata:
-          description: Attachment metadata
-          type: object
-          properties:
-            is_inline:
-              type: boolean
-              description: Whether or not the attachment is part of the message body
-              example: true
-            cid:
-              type: string
-              description: Unique identifier used to link an attachment to where it is used in the message body
-              example: 526b45586d0e6b1c484afab63d1ef0be
     KnowledgeBaseArticleResponse:
       type: object
       required:
@@ -697,49 +525,224 @@ components:
           type: number
           description: Timestamp when the article was updated
           example: 1654309308.278
-  responses:
-    knowledgeBase:
-      description: A knowledge base with content
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseResponse'
-    knowledgeBaseArticle:
-      description: A knowledge base article with content
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseArticleResponse'
-    listOfKnowledgeBases:
-      description: Array of knowledge bases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/knowledge_bases
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KnowledgeBaseSlimResponse'
-    knowledgeBaseSlim:
-      description: A knowledge base
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseSlimResponse'
-    knowledgeBaseCategory:
-      description: A knowledge base category with content
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseCategoryResponse'
+    KnowledgeBaseResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - status
+      - type
+      - locale
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+            related:
+              type: object
+              properties:
+                articles:
+                  type: string
+                  description: Link to articles associated to the knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles
+                categories:
+                  type: string
+                  description: Link to categories associated to the knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories
+        id:
+          type: string
+          description: Unique identifier of the knowledge base
+          example: knb_12
+        name:
+          type: string
+          description: Knowledge base name
+          example: Company Help Center
+        status:
+          type: string
+          enum:
+          - published
+          - unpublished
+          description: Status of the KB
+          example: unpublished
+        type:
+          type: string
+          enum:
+          - internal
+          - external
+          description: Type of the KB
+          example: internal
+        locale:
+          type: string
+          enum:
+          - fr
+          - en
+          description: Locale of this requested KB
+          example: en
+        created_at:
+          type: number
+          description: Timestamp when the knowledge base was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the knowledge base was updated
+          example: 1654309308.278
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+    KnowledgeBaseSlimResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - type
+      - locales
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
+            related:
+              type: object
+              properties:
+                articles:
+                  type: string
+                  description: Link to articles associated to the knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/articles
+                categories:
+                  type: string
+                  description: Link to categories associated to the knowledge base
+                  example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12/categories
+        id:
+          type: string
+          description: Unique identifier of the knowledge base
+          example: knb_12
+        type:
+          type: string
+          enum:
+          - internal
+          - external
+          description: Type of the KB
+          example: internal
+        locales:
+          type: array
+          description: List of the KB's possible locales
+          items:
+            type: string
+            example:
+            - en
+            - es
+        created_at:
+          type: number
+          description: Timestamp when the knowledge base was created
+          example: 1622672452.363
+        updated_at:
+          type: number
+          description: Timestamp when the knowledge base was updated
+          example: 1654309308.278
+    KnowledgeBaseArticleCreate:
+      type: object
+      properties:
+        category_id:
+          type: string
+          description: ID of the category this article belongs to
+        author_id:
+          type: string
+          description: Teammate ID of the article author
+        subject:
+          type: string
+          description: Subject of the article
+        content:
+          type: string
+          description: HTML content of the article
+        status:
+          type: string
+          enum:
+          - draft
+          - published
+          default: draft
+          description: Article status
+    KnowledgeBasePatch:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the knowledge base
+    KnowledgeBaseCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the knowledge base
+        type:
+          type: string
+          enum:
+          - internal
+          - external
+          description: Determines if the knowledge base is publicly available or private only to your company
+          default: external
+          example: internal
+    KnowledgeBaseCategoryCreate:
+      type: object
+      required:
+      - name
+      properties:
+        parent_category_id:
+          type: string
+          description: ID of the parent category
+        name:
+          type: string
+          description: Name of the knowledge base category
+        description:
+          type: string
+          description: Description of the knowledge base category
   securitySchemes:
     http:
       type: http

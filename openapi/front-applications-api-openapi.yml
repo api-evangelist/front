@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Applications API
+  title: Core Applications API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -18,8 +18,7 @@ paths:
       operationId: trigger-app-event
       description: 'Triggers an event on behalf of an application. These events can trigger Front workflows, like rules.
 
-        For more information, see the [developer docs](https://dev.frontapp.com/docs/application-triggers#/).
-
+        For more information, see the developer docs.
 
 
         Required scope: `feature:app_trigger`'

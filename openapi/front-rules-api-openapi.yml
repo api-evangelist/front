@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Rules API
+  title: Core Rules API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -112,6 +112,54 @@ paths:
       x-required-scopes:
       - rules:read
 components:
+  schemas:
+    RuleResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - actions
+      - is_private
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/rules/rul_58xhq
+            related:
+              type: object
+              properties:
+                owner:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to rule owner
+                  example: null
+        id:
+          type: string
+          description: Unique identifier of the rule
+          example: rul_58xhq
+        name:
+          type: string
+          description: Name of the rule
+          example: Scranton new account workflow
+        actions:
+          type: array
+          description: List of the rule's actions description
+          items:
+            type: string
+            example:
+            - Assign to Pam
+            - Unassign from Michael
+            - Tag with Scranton is the Best Branch
+            - Tag with Michael is the Best Boss
+        is_private:
+          type: boolean
+          description: Whether or not the rule is individual
+          example: false
   responses:
     rule:
       description: A rule
@@ -137,53 +185,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/RuleResponse'
-  schemas:
-    RuleResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      - actions
-      - is_private
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/rules/rul_58xhq
-            related:
-              type: object
-              properties:
-                owner:
-                  type: string
-                  description: Link to rule owner
-                  example: null
-                  nullable: true
-        id:
-          type: string
-          description: Unique identifier of the rule
-          example: rul_58xhq
-        name:
-          type: string
-          description: Name of the rule
-          example: Scranton new account workflow
-        actions:
-          type: array
-          description: List of the rule's actions description
-          items:
-            type: string
-            example:
-            - Assign to Pam
-            - Unassign from Michael
-            - Tag with Scranton is the Best Branch
-            - Tag with Michael is the Best Boss
-        is_private:
-          type: boolean
-          description: Whether or not the rule is individual
-          example: false
   securitySchemes:
     http:
       type: http

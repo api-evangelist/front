@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Custom Fields API
+  title: Core Custom Fields API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -72,7 +72,6 @@ paths:
         > This endpoint has been deprecated. Please use the fully compatible `GET /contacts/custom_fields` endpoint instead.
 
 
-
         Required scope: `custom_fields:read`'
       tags:
       - Custom Fields
@@ -102,8 +101,7 @@ paths:
       operationId: list-link-custom-fields
       description: 'Lists the custom fields that can be attached to a Link.
 
-        For more information on links, see the [Links](https://dev.frontapp.com/reference/links) topic.
-
+        For more information on links, see the Links topic.
 
 
         Required scope: `custom_fields:read`'
@@ -130,6 +128,25 @@ paths:
       x-required-scopes:
       - custom_fields:read
 components:
+  responses:
+    listOfCustomFields:
+      description: Array of Custom Fields
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/custom_fields
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomFieldResponse'
   schemas:
     CustomFieldResponse:
       type: object
@@ -185,25 +202,6 @@ components:
                 type: string
                 description: Human readable label for the value
                 example: Customer plan
-  responses:
-    listOfCustomFields:
-      description: Array of Custom Fields
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/custom_fields
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CustomFieldResponse'
   securitySchemes:
     http:
       type: http

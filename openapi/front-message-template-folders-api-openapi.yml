@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Message Template Folders API
+  title: Core Message Template Folders API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -33,7 +33,7 @@ paths:
     post:
       summary: Create folder
       operationId: create-folder
-      description: 'Create a new message template folder in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the [Create team folder](https://dev.frontapp.com/reference/create-team-folder) endpoint instead.
+      description: 'Create a new message template folder in the oldest active workspace that the token has access to. If you need to specify the workspace, we recommend using the Create team folder endpoint instead.
 
 
         Required scope: `message_templates:write`'
@@ -281,72 +281,41 @@ paths:
       x-required-scopes:
       - message_templates:write
 components:
-  parameters:
-    sortOrder:
-      name: sort_order
-      in: query
-      description: Order by which results should be sorted
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        example: asc
-    sortByCannedAnswerFolders:
-      name: sort_by
-      in: query
-      description: Field used to sort the message template folders. Either `created_at` or `updated_at`.
-      schema:
-        type: string
-  responses:
-    listOfCannedAnswerFolders:
-      description: Array of message template folders
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type: string
-                    nullable: true
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/message_template_folders?page_token=9fa92a7f385fd7be43f7153055b30e6d
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/message_template_folders
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MessageTemplateFolderResponse'
-    acceptedCannedAnswerFolderDeletion:
-      description: A message template folder accepted for deletion
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                default: accepted
-                example: accepted
-              message_template_folder_id:
-                type: string
-                description: id of the message template to be deleted
-                example: rsf_g2
-    cannedAnswerFolder:
-      description: A message template folder
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MessageTemplateFolderResponse'
   schemas:
+    UpdateMessageTemplateFolder:
+      type: object
+      description: A message template folder that is used to store message templates or other folders.
+      properties:
+        name:
+          type: string
+          description: Name of the message template folder
+        parent_folder_id:
+          type: string
+          description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
+    CreateMessageTemplateFolder:
+      type: object
+      description: A message template folder that is used to store message templates or other folders.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the message template folder
+          example: PTO templates
+        parent_folder_id:
+          type: string
+          description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
+          example: null
+    CreateMessageTemplateFolderAsChild:
+      type: object
+      description: A message template folder that is used to store message templates or other folders.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the message template folder
+          example: PTO templates
     MessageTemplateFolderResponse:
       type: object
       required:
@@ -365,23 +334,27 @@ components:
               type: object
               properties:
                 owner:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to resource's owner. Null if the current folder does not have an owner.
                   example: https://yourCompany.api.frontapp.com/teams/tim_s47
                 parent_folder:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to parent folder. Null if the current folder does not have a parent.
                   example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1
                 child_folders:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to child folders. Null if the current folder does not have children.
                   example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders
                 child_answers:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to message templates contained within this folder or children folders. Null if the current folder does not have any message templates.
                   example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates
         id:
@@ -400,40 +373,72 @@ components:
           type: number
           description: Timestamp at which the message template folder was updated.
           example: 1688668654.501
-    UpdateMessageTemplateFolder:
-      type: object
-      description: A message template folder that is used to store message templates or other folders.
-      properties:
-        name:
-          type: string
-          description: Name of the message template folder
-        parent_folder_id:
-          type: string
-          description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
-    CreateMessageTemplateFolderAsChild:
-      type: object
-      description: A message template folder that is used to store message templates or other folders.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the message template folder
-          example: PTO templates
-    CreateMessageTemplateFolder:
-      type: object
-      description: A message template folder that is used to store message templates or other folders.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the message template folder
-          example: PTO templates
-        parent_folder_id:
-          type: string
-          description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
-          example: null
+  parameters:
+    sortByCannedAnswerFolders:
+      name: sort_by
+      in: query
+      description: Field used to sort the message template folders. Either `created_at` or `updated_at`.
+      schema:
+        type: string
+    sortOrder:
+      name: sort_order
+      in: query
+      description: Order by which results should be sorted
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        example: asc
+  responses:
+    listOfCannedAnswerFolders:
+      description: Array of message template folders
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/message_template_folders?page_token=9fa92a7f385fd7be43f7153055b30e6d
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/message_template_folders
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageTemplateFolderResponse'
+    cannedAnswerFolder:
+      description: A message template folder
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MessageTemplateFolderResponse'
+    acceptedCannedAnswerFolderDeletion:
+      description: A message template folder accepted for deletion
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                default: accepted
+                example: accepted
+              message_template_folder_id:
+                type: string
+                description: id of the message template to be deleted
+                example: rsf_g2
   securitySchemes:
     http:
       type: http

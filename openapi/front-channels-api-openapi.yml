@@ -1,10 +1,11 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
+  title: Front Channels API
   version: 1.0.0
-  title: Channel Accounts Channels API
   contact:
     name: Front Platform
     url: https://community.front.com
+  description: 'Operations tagged Channels across 2 of this provider''s published API definitions: front-channel-api-openapi.json, front-core-api-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api2.frontapp.com
 security:
@@ -60,6 +61,8 @@ paths:
           $ref: '#/components/responses/channel'
       x-required-scopes:
       - channels:read
+    servers:
+    - url: https://api2.frontapp.com
   /channels:
     get:
       summary: List channels
@@ -75,11 +78,13 @@ paths:
           $ref: '#/components/responses/listOfChannels'
       x-required-scopes:
       - channels:read
+    servers:
+    - url: https://api2.frontapp.com
   /channels/{channel_id}/validate:
     post:
       summary: Validate channel
       operationId: validate-channel
-      description: 'Asynchronously validate an SMTP channel (this endpoint is irrelevant to other channel types). When you create an SMTP channel via the API, [create a channel](https://dev.frontapp.com/reference/post_inboxes-inbox-id-channels) with type smtp and the send_as set to the needed email address. You then [configure the email provider](https://help.front.com/en/articles/2081), after which you use this endpoint to asynchronously validate the SMTP settings.
+      description: 'Asynchronously validate an SMTP channel (this endpoint is irrelevant to other channel types). When you create an SMTP channel via the API, create a channel with type smtp and the send_as set to the needed email address. You then configure the email provider, after which you use this endpoint to asynchronously validate the SMTP settings.
 
 
         Required scope: `channels:write`'
@@ -98,6 +103,8 @@ paths:
           $ref: '#/components/responses/accepted'
       x-required-scopes:
       - channels:write
+    servers:
+    - url: https://api2.frontapp.com
   /inboxes/{inbox_id}/channels:
     post:
       summary: Create a channel
@@ -127,6 +134,8 @@ paths:
           description: No content
       x-required-scopes:
       - channels:write
+    servers:
+    - url: https://api2.frontapp.com
   /teammates/{teammate_id}/channels:
     get:
       summary: List teammate channels
@@ -150,6 +159,8 @@ paths:
           $ref: '#/components/responses/listOfChannels'
       x-required-scopes:
       - channels:read
+    servers:
+    - url: https://api2.frontapp.com
   /teams/{team_id}/channels:
     get:
       summary: List team channels
@@ -173,44 +184,18 @@ paths:
           $ref: '#/components/responses/listOfChannels'
       x-required-scopes:
       - channels:read
+    servers:
+    - url: https://api2.frontapp.com
 components:
-  responses:
-    channel:
-      description: A channel
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ChannelResponse'
-    listOfChannels:
-      description: Array of Channels
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/channels
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ChannelResponse'
-    accepted:
-      description: Request accepted
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                default: accepted
-                example: accepted
   schemas:
+    UpdateChannel:
+      properties:
+        status:
+          type: string
+          description: Status of the channel
+          enum:
+          - offline
+          - ok
     CreateChannel:
       required:
       - type
@@ -254,14 +239,6 @@ components:
         send_as:
           type: string
           description: Sending address of your channel. Required for SMTP and Twilio channels.
-    UpdateChannel:
-      properties:
-        status:
-          type: string
-          description: Status of the channel
-          enum:
-          - offline
-          - ok
     ChannelResponse:
       type: object
       required:
@@ -283,8 +260,9 @@ components:
               type: object
               properties:
                 inbox:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to channel inbox
                   example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6
                 owner:
@@ -360,11 +338,85 @@ components:
           default: false
           description: Whether or not the channel configuration is valid
           example: true
+    UpdateChannel_2:
+      properties:
+        name:
+          type: string
+          description: Name of the channel
+          example: Your channel name
+        inbox_id:
+          type: string
+          description: ID of the inbox to move this channel to. Will also move corresponding conversations.
+        settings:
+          type: object
+          description: 'Settings to replace.
+
+            For custom channels, all settings may be replaced.
+
+            For all other channels, only `undo_send_time` and `all_teammates_can_reply` may be replaced.
+
+            '
+          properties:
+            undo_send_time:
+              type: integer
+              description: The time (measured in seconds) that users have to undo a send operation in the channel.
+              enum:
+              - 0
+              - 5
+              - 10
+              - 15
+              - 30
+              - 60
+            all_teammates_can_reply:
+              type: boolean
+              description: Whether teammates without inbox access can reply on this channel. Only allowed for shared channels.
+            webhook_url:
+              type: string
+              description: The webhook URL outbound messages should be sent to. Only allowed for "custom" type channels.
+  responses:
+    listOfChannels:
+      description: Array of Channels
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/channels
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChannelResponse'
+    accepted:
+      description: Request accepted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                default: accepted
+                example: accepted
+    channel:
+      description: A channel
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ChannelResponse'
   securitySchemes:
     http:
       type: http
       scheme: bearer
       bearerFormat: JWT
+x-refined-from:
+- front-channel-api-openapi.json
+- front-core-api-openapi.json
 x-api-id: front
 x-explorer-enabled: false
 x-proxy-enabled: true

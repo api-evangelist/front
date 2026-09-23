@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Statuses API
+  title: Core Statuses API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -105,8 +105,9 @@ components:
           description: The name of the ticket status. Default statuses match the category name. Custom statuses have a unique name.
           example: Open
         category:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Category of the ticket status.
           enum:
           - open
@@ -114,8 +115,9 @@ components:
           - resolved
           example: open
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Description of the ticket status
           example: New or currently being worked on
         created_at:

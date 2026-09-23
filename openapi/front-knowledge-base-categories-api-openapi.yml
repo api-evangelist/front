@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Knowledge Base Categories API
+  title: Core Knowledge Base Categories API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -46,7 +46,6 @@ paths:
         >
 
         > When a category is deleted, all articles in the category are also deleted.
-
 
 
         Required scope: `knowledge_bases:delete`'
@@ -205,16 +204,47 @@ paths:
       x-required-scopes:
       - knowledge_bases:read
 components:
+  responses:
+    knowledgeBaseCategorySlim:
+      description: A knowledge base category
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseCategorySlimResponse'
+    knowledgeBaseCategory:
+      description: A knowledge base category with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseCategoryResponse'
+    listOfKnowledgeBaseCategories:
+      description: Array of knowledge base categories
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/categories?page_token=134287aba8eaa55cf366400c63300a75bab0c
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/categories
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KnowledgeBaseCategorySlimResponse'
   schemas:
-    KnowledgeBaseCategoryPatch:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the knowledge base category
-        description:
-          type: string
-          description: Description of the knowledge base category
     KnowledgeBaseCategorySlimResponse:
       type: object
       required:
@@ -239,8 +269,9 @@ components:
                   description: Link to the category's knowledge base
                   example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
                 parent_category:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to the category's parent
                   example: https://yourCompany.api.frontapp.com/knowledge_base_catgories/kbc_10
                 articles:
@@ -275,6 +306,15 @@ components:
           type: number
           description: Timestamp when the category was updated
           example: 1654309308.278
+    KnowledgeBaseCategoryPatch:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the knowledge base category
+        description:
+          type: string
+          description: Description of the knowledge base category
     KnowledgeBaseCategoryResponse:
       type: object
       required:
@@ -300,8 +340,9 @@ components:
                   description: Link to the category's knowledge base
                   example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_12
                 parent_category:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to the category's parent
                   example: https://yourCompany.api.frontapp.com/knowledge_base_catgories/kbc_10
                 articles:
@@ -313,13 +354,15 @@ components:
           description: Unique identifier of the knowledge base category
           example: kbc_12
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Category name
           example: Getting started
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Description of the category
           example: How to get started in Front
         is_hidden:
@@ -341,53 +384,7 @@ components:
           type: number
           description: Timestamp when the category was updated
           example: 1654309308.278
-  responses:
-    knowledgeBaseCategorySlim:
-      description: A knowledge base category
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseCategorySlimResponse'
-    listOfKnowledgeBaseCategories:
-      description: Array of knowledge base categories
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type: string
-                    nullable: true
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/categories?page_token=134287aba8eaa55cf366400c63300a75bab0c
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/categories
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KnowledgeBaseCategorySlimResponse'
-    knowledgeBaseCategory:
-      description: A knowledge base category with content
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseCategoryResponse'
   parameters:
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
     limit:
       name: limit
       in: query
@@ -396,6 +393,13 @@ components:
         type: integer
         maximum: 100
         example: 25
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
   securitySchemes:
     http:
       type: http

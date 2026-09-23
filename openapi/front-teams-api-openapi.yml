@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Teams API
+  title: Core Teams API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -109,6 +109,75 @@ paths:
       - teams:write
 components:
   schemas:
+    TeamResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - inboxes
+      - members
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/teams/tim_aqsa
+        id:
+          type: string
+          description: Unique identifier of the team
+          example: tim_aqsa
+        name:
+          type: string
+          description: Name of the team
+          example: Stanley's crossword puzzle team
+        inboxes:
+          type: array
+          description: List of the inboxes in the team
+          items:
+            $ref: '#/components/schemas/InboxResponse'
+        members:
+          type: array
+          description: List of the teammates that have access to the team
+          items:
+            $ref: '#/components/schemas/TeammateResponse'
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    TeamPreviewResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/teams/tim_aqsa
+        id:
+          type: string
+          description: Unique identifier of the team
+          example: tim_aqsa
+        name:
+          type: string
+          description: Name of the team
+          example: Stanley's crossword puzzle team
+    ResourceID:
+      type: string
     TeammateResponse:
       type: object
       description: A teammate is a user in Front.
@@ -194,6 +263,15 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
+    TeammateIds:
+      type: object
+      required:
+      - teammate_ids
+      properties:
+        teammate_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
     InboxResponse:
       type: object
       properties:
@@ -242,84 +320,6 @@ components:
         custom_fields:
           description: Custom fields for this inbox
           $ref: '#/components/schemas/CustomFieldParameter'
-    TeammateIds:
-      type: object
-      required:
-      - teammate_ids
-      properties:
-        teammate_ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceID'
-    ResourceID:
-      type: string
-    TeamResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      - inboxes
-      - members
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/teams/tim_aqsa
-        id:
-          type: string
-          description: Unique identifier of the team
-          example: tim_aqsa
-        name:
-          type: string
-          description: Name of the team
-          example: Stanley's crossword puzzle team
-        inboxes:
-          type: array
-          description: List of the inboxes in the team
-          items:
-            $ref: '#/components/schemas/InboxResponse'
-        members:
-          type: array
-          description: List of the teammates that have access to the team
-          items:
-            $ref: '#/components/schemas/TeammateResponse'
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
-    TeamPreviewResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/teams/tim_aqsa
-        id:
-          type: string
-          description: Unique identifier of the team
-          example: tim_aqsa
-        name:
-          type: string
-          description: Name of the team
-          example: Stanley's crossword puzzle team
   responses:
     listOfTeams:
       description: Array of teams

@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Channel Accounts Contact Notes API
+  title: Core Contact Notes API
   contact:
     name: Front Platform
     url: https://community.front.com
@@ -63,43 +63,7 @@ paths:
       x-required-scopes:
       - contacts:write
 components:
-  responses:
-    contactNote:
-      description: A contact note
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ContactNoteResponses'
-    listOfContactNotes:
-      description: Array of contact notes
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/contacts/crd_2okzojy/notes
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContactNoteResponses'
   schemas:
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
     ContactNoteResponses:
       type: object
       required:
@@ -119,8 +83,9 @@ components:
                   description: Link to the teammate who wrote the note
                   example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
                 owner:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Link to the owner of the note
                   example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
         author:
@@ -135,18 +100,6 @@ components:
           type: number
           description: The timestamp when the note was created
           example: 1701806790.536
-    CreateContactNote:
-      type: object
-      required:
-      - author_id
-      - body
-      properties:
-        author_id:
-          type: string
-          description: ID of teammate creating the note
-        body:
-          type: string
-          description: Content of the note
     TeammateResponse:
       type: object
       description: A teammate is a user in Front.
@@ -232,6 +185,54 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    CreateContactNote:
+      type: object
+      required:
+      - author_id
+      - body
+      properties:
+        author_id:
+          type: string
+          description: ID of teammate creating the note
+        body:
+          type: string
+          description: Content of the note
+  responses:
+    listOfContactNotes:
+      description: Array of contact notes
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/contacts/crd_2okzojy/notes
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactNoteResponses'
+    contactNote:
+      description: A contact note
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContactNoteResponses'
   securitySchemes:
     http:
       type: http
