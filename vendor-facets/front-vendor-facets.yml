@@ -1,0 +1,149 @@
+# Vendor facets — Front. Shared-inbox customer-operations platform with a knowledge base / help
+# center that can be public or login-controlled and, on Professional and up, run on the provider's
+# own domain. Headline: one 2-point pointer check (support_channel, ~45% catalog pass rate, not
+# saturated); getting-started and auth only where the provider writes those articles. No community
+# product and no llms.txt observed.
+vendor: front
+name: Front
+website: https://front.com
+areas:
+- support
+registry_keys: []
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: capability
+summary: >-
+  Front earns a provider one check: a declared, public help center is a support channel, 2 points in developer
+  ergonomics. Its knowledge-base articles can hold a getting-started guide and an authentication page
+  only when the provider writes and declares them. A login-controlled help center is still a support channel
+  but cannot serve as public documentation. No llms.txt on Front's own help center, no community forum,
+  and no registry fingerprint, so the profile is capability-only.
+features:
+- id: help-center
+  name: Help center and knowledge base
+  description: >-
+    Hosted knowledge base with a customer portal, chat widget and contact form; public or private site
+    visibility; multiple help centers on Professional and up.
+  source: https://help.front.com/en/articles/3093440
+  tier: all
+- id: help-center-custom-domain
+  name: Help center custom domain
+  description: >-
+    Up to two custom (non-apex) domains per help center by CNAME, one primary and one redirect; latest
+    Professional plan and above.
+  source: https://help.front.com/en/articles/252608
+  tier: paid
+maps:
+- feature: help-center
+  check: support_channel
+  layer: composite
+  credit: 1.0
+  provider_must: Declare the help center in apis.yml common[] as HelpCenter or Support.
+  catalog_pass_rate: 0.45
+  facet: developer_ergonomics
+  points: 2
+  baseline_pass_rate: 0.69
+- feature: help-center
+  check: getting_started_present
+  layer: composite
+  conditional: true
+  condition: >-
+    Only if the provider writes a getting-started guide for its API as a public help-center article and
+    declares it as GettingStarted.
+  provider_must: Write the guide, keep it public, and declare its URL as GettingStarted.
+  catalog_pass_rate: 0.206
+  facet: developer_ergonomics
+  points: 5
+  baseline_pass_rate: 0.636
+- feature: help-center
+  check: authentication_documented
+  layer: composite
+  conditional: true
+  condition: >-
+    Only if the provider documents its API authentication in a public help-center article and declares
+    it as Authentication.
+  provider_must: Write the page, keep it public, and declare its URL as Authentication.
+  catalog_pass_rate: 0.368
+  facet: developer_ergonomics
+  points: 5
+  baseline_pass_rate: 0.94
+  saturated: true
+  saturated_note: >-
+    94% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+earns_nothing:
+- feature: help-center-custom-domain
+  why: No check reads the host of a support pointer.
+out_of_reach:
+  checks:
+  - llms_txt_published
+  - status_page_present
+  - change_log_present
+  - contract_present
+  - api_reference_present
+  - sdk_count_1
+  note: >-
+    No llms.txt seen (help.front.com/llms.txt returned 404 on 2026-09-25); no status, changelog, contract
+    or SDK tooling for the provider's API.
+surface:
+  developer_ergonomics:
+    reachable: 12.0
+    total: 42
+  agent_readiness:
+    reachable: 0
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- https://help.front.com/en/articles/252608
+- https://help.front.com/en/articles/3093440
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 0
+    in_baseline: 0
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5216
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  status: 'not measurable: 0 detected customers clear the baseline (need 20)'
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 3995
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 0.0
+    p75: 0.9
+    p90: 1.0
+    max: 1.0
+    mean_among_movers: 0.9
+  agent_readiness_lift:
+    median: 0.0
+    p75: 0.0
+    p90: 0.0
+    max: 0.0
+    mean_among_movers: 0.0
+  facet_lift_median_among_movers:
+    developer_ergonomics: 4.8
+  composite_band_moves:
+    thin -> developing: 217
+    emerging -> thin: 66
+    developing -> strong: 34
+    strong -> exemplar: 8
+    minimal -> emerging: 1
+  agent_readiness_band_moves: {}
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written
