@@ -151,108 +151,125 @@ paths:
       x-required-scopes:
       - drafts:write
 components:
-  responses:
-    listOfMessages:
-      description: Array of messages
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages?page_token=klsljs8023j09suidfjlsjiei00043lllwww998303dkef0g
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MessageResponse'
-    message:
-      description: A message
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MessageResponse'
   schemas:
-    EditDraft:
+    CreateDraft:
       required:
       - body
-      - channel_id
-      allOf:
-      - $ref: '#/components/schemas/ReplyDraft'
-      - type: object
-        properties:
-          version:
+      properties:
+        author_id:
+          type: string
+          description: ID of the teammate on behalf of whom the draft will be created. Alternatively, you can supply the author ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1). If omitted, will post as the API Token or Application making the request.
+        to:
+          type: array
+          description: List of recipient handles who will receive the message once the draft is sent
+          items:
             type: string
-            description: Version of the draft
-          mode:
-            description: Mode of the draft to update. Can only be 'shared' (draft is visible to all teammates with access to the conversation).
+        cc:
+          type: array
+          description: List of recipient handles who will receive a copy of the message once the draft is sent
+          items:
             type: string
-            enum:
-            - shared
-    ReplyDraft:
-      required:
-      - body
-      - channel_id
-      allOf:
-      - $ref: '#/components/schemas/CreateDraft'
-      - type: object
-        properties:
-          channel_id:
+        bcc:
+          type: array
+          description: List of the recipient handles who will receive a blind copy of the message once the draft is sent
+          items:
             type: string
-            description: ID of the channel from which the draft will be sent. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
-    RecipientResponse:
+        subject:
+          type: string
+          description: Subject of the draft.
+        body:
+          type: string
+          description: Body of the draft
+        quote_body:
+          type: string
+          description: Body for the quote that the message is referencing. Only available on email channels.
+        attachments:
+          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1). Max 25 MB.'
+          type: array
+          items:
+            type: string
+            format: binary
+        mode:
+          description: Mode of the draft to create. Can be 'private' (draft is visible to the author only) or 'shared' (draft is visible to all teammates with access to the conversation).
+          type: string
+          enum:
+          - private
+          - shared
+          default: private
+        signature_id:
+          description: ID of the signature to attach to this draft. If null, no signature is attached.
+          type: string
+        should_add_default_signature:
+          type: boolean
+          description: Whether or not Front should try to resolve a signature for the message. Is ignored if signature_id is included. Default false;
+    SignatureResponse:
       type: object
       required:
       - _links
+      - id
       - name
-      - handle
-      - role
+      - body
+      - sender_info
+      - is_private
+      - is_visible_for_all_teammate_channels
+      - is_default
+      - channel_ids
       properties:
         _links:
           type: object
           properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/signatures/sig_6rrv2
             related:
               type: object
               properties:
-                contact:
-                  type:
-                  - string
-                  - 'null'
-                  description: Link to recipient contact
-                  example: https://yourCompany.api.frontapp.com/contacts/crd_2njtoem
+                owner:
+                  type: string
+                  description: Link to signature's owner (either a team or teammate)
+                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
+        id:
+          type: string
+          description: Unique identifier of the signature
+          example: sig_6rrv2
         name:
           type:
           - string
           - 'null'
-          description: Name of the recipient.
-          example: Phyllis Lapin-Vance
-        handle:
+          description: Name of the signature
+          example: Finer Things Club signature
+        body:
           type: string
-          description: Handle of the contact. Can be any string used to uniquely identify the contact
-          example: purpleboss@limitlesspaper.com
-        role:
-          type: string
-          description: Role of the recipient
-          enum:
-          - from
-          - to
-          - cc
-          - bcc
-          - reply-to
-          example: cc
+          description: Body of the signature
+          example: <div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>
+        sender_info:
+          type:
+          - string
+          - 'null'
+          description: Sender info of the signature
+          example:
+            '[object Object]': null
+        is_visible_for_all_teammate_channels:
+          type: boolean
+          description: Whether or not the signature is available in teammate channels.
+          example: true
+        is_default:
+          type: boolean
+          description: Whether the signature is the default signature for the team or teammate.
+          example: false
+        is_private:
+          type: boolean
+          description: Whether the signature is private to the teammate.
+          example: true
+        channel_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            description: List of channels the signature is available in. If belonging to a teammate, represents all channels this can be used in. If belonging to a team, represents all team channels this can be used in. If null, there are no restrictions.
+            example: null
     TeammateResponse:
       type: object
       description: A teammate is a user in Front.
@@ -338,173 +355,22 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
-    Attachment:
-      type: object
-      required:
-      - id
-      - url
-      - filename
-      - content_type
-      - size
-      - metadata
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the attachment.
-          example: fil_3q8a7mby
-        filename:
-          type: string
-          description: Name of the attached file
-          example: Andy_Anger_Management_Certificate.png
-        url:
-          type: string
-          description: URL to download the attached file
-          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
-        content_type:
-          type: string
-          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
-          example: image/png
-        size:
-          type: integer
-          description: Size (in byte) of the attached file
-          example: 4405
-        metadata:
-          description: Attachment metadata
-          type: object
-          properties:
-            is_inline:
-              type: boolean
-              description: Whether or not the attachment is part of the message body
-              example: true
-            cid:
-              type: string
-              description: Unique identifier used to link an attachment to where it is used in the message body
-              example: 526b45586d0e6b1c484afab63d1ef0be
-    SignatureResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      - body
-      - sender_info
-      - is_private
-      - is_visible_for_all_teammate_channels
-      - is_default
-      - channel_ids
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/signatures/sig_6rrv2
-            related:
-              type: object
-              properties:
-                owner:
-                  type: string
-                  description: Link to signature's owner (either a team or teammate)
-                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
-        id:
-          type: string
-          description: Unique identifier of the signature
-          example: sig_6rrv2
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the signature
-          example: Finer Things Club signature
-        body:
-          type: string
-          description: Body of the signature
-          example: <div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>
-        sender_info:
-          type:
-          - string
-          - 'null'
-          description: Sender info of the signature
-          example:
-            '[object Object]': null
-        is_visible_for_all_teammate_channels:
-          type: boolean
-          description: Whether or not the signature is available in teammate channels.
-          example: true
-        is_default:
-          type: boolean
-          description: Whether the signature is the default signature for the team or teammate.
-          example: false
-        is_private:
-          type: boolean
-          description: Whether the signature is private to the teammate.
-          example: true
-        channel_ids:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            description: List of channels the signature is available in. If belonging to a teammate, represents all channels this can be used in. If belonging to a team, represents all team channels this can be used in. If null, there are no restrictions.
-            example: null
-    DeleteDraft:
-      required:
-      - version
-      properties:
-        version:
-          type: string
-          description: Version of the draft
-    CreateDraft:
+    EditDraft:
       required:
       - body
-      properties:
-        author_id:
-          type: string
-          description: ID of the teammate on behalf of whom the draft will be created. Alternatively, you can supply the author ID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1). If omitted, will post as the API Token or Application making the request.
-        to:
-          type: array
-          description: List of recipient handles who will receive the message once the draft is sent
-          items:
+      - channel_id
+      allOf:
+      - $ref: '#/components/schemas/ReplyDraft'
+      - type: object
+        properties:
+          version:
             type: string
-        cc:
-          type: array
-          description: List of recipient handles who will receive a copy of the message once the draft is sent
-          items:
+            description: Version of the draft
+          mode:
+            description: Mode of the draft to update. Can only be 'shared' (draft is visible to all teammates with access to the conversation).
             type: string
-        bcc:
-          type: array
-          description: List of the recipient handles who will receive a blind copy of the message once the draft is sent
-          items:
-            type: string
-        subject:
-          type: string
-          description: Subject of the draft.
-        body:
-          type: string
-          description: Body of the draft
-        quote_body:
-          type: string
-          description: Body for the quote that the message is referencing. Only available on email channels.
-        attachments:
-          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1). Max 25 MB.'
-          type: array
-          items:
-            type: string
-            format: binary
-        mode:
-          description: Mode of the draft to create. Can be 'private' (draft is visible to the author only) or 'shared' (draft is visible to all teammates with access to the conversation).
-          type: string
-          enum:
-          - private
-          - shared
-          default: private
-        signature_id:
-          description: ID of the signature to attach to this draft. If null, no signature is attached.
-          type: string
-        should_add_default_signature:
-          type: boolean
-          description: Whether or not Front should try to resolve a signature for the message. Is ignored if signature_id is included. Default false;
+            enum:
+            - shared
     CustomFieldParameter:
       type: object
       description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
@@ -671,6 +537,140 @@ components:
               type: string
               description: For `front_chat` messages only. Source URL from the chat widget when sending a message.
               example: https://yourCompany.com/products
+    RecipientResponse:
+      type: object
+      required:
+      - _links
+      - name
+      - handle
+      - role
+      properties:
+        _links:
+          type: object
+          properties:
+            related:
+              type: object
+              properties:
+                contact:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to recipient contact
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_2njtoem
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the recipient.
+          example: Phyllis Lapin-Vance
+        handle:
+          type: string
+          description: Handle of the contact. Can be any string used to uniquely identify the contact
+          example: purpleboss@limitlesspaper.com
+        role:
+          type: string
+          description: Role of the recipient
+          enum:
+          - from
+          - to
+          - cc
+          - bcc
+          - reply-to
+          example: cc
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+    DeleteDraft:
+      required:
+      - version
+      properties:
+        version:
+          type: string
+          description: Version of the draft
+    ReplyDraft:
+      required:
+      - body
+      - channel_id
+      allOf:
+      - $ref: '#/components/schemas/CreateDraft'
+      - type: object
+        properties:
+          channel_id:
+            type: string
+            description: ID of the channel from which the draft will be sent. Alternatively, you can supply the channel address as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+  responses:
+    message:
+      description: A message
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MessageResponse'
+    listOfMessages:
+      description: Array of messages
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages?page_token=klsljs8023j09suidfjlsjiei00043lllwww998303dkef0g
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/messages
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageResponse'
   securitySchemes:
     http:
       type: http

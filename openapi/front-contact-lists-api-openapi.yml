@@ -249,62 +249,9 @@ paths:
       x-required-scopes:
       - contacts:write
 components:
-  responses:
-    listOfContactLists:
-      description: Array of contact lists
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/contact_lists
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContactListResponses'
-    listOfContacts:
-      description: Array of contacts
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/contacts
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContactResponse'
   schemas:
-    AddContactsToList:
-      required:
-      - contact_ids
-      properties:
-        contact_ids:
-          type: array
-          description: List of IDs of the contacts to add in the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
-          items:
-            $ref: '#/components/schemas/ResourceID'
+    ResourceID:
+      type: string
     ContactHandle:
       type: object
       required:
@@ -327,51 +274,6 @@ components:
           - custom
           description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
           example: email
-    RemoveContactsFromList:
-      required:
-      - contact_ids
-      properties:
-        contact_ids:
-          type: array
-          description: List of IDs of the contacts to remove from the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
-          maxItems: 50
-          items:
-            $ref: '#/components/schemas/ResourceID'
-    ResourceID:
-      type: string
-    ContactListResponses:
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342
-            related:
-              type: object
-              properties:
-                contacts:
-                  type: string
-                  description: Link to contact list contacts
-                  example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts
-                owner:
-                  type: string
-                  description: Link to list owner
-                  example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
-        id:
-          type: string
-          description: Unique identifier of the list
-          example: grp_3j342
-        name:
-          type: string
-          description: Name of the list
-          example: Party Planning Committee
-        is_private:
-          type: boolean
-          description: Whether or not the contact is individual
-          example: false
     CreateContactList:
       type: object
       required:
@@ -463,7 +365,66 @@ components:
           type: boolean
           description: Whether or not the contact is individual
           example: true
+    ContactListResponses:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342
+            related:
+              type: object
+              properties:
+                contacts:
+                  type: string
+                  description: Link to contact list contacts
+                  example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts
+                owner:
+                  type: string
+                  description: Link to list owner
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
+        id:
+          type: string
+          description: Unique identifier of the list
+          example: grp_3j342
+        name:
+          type: string
+          description: Name of the list
+          example: Party Planning Committee
+        is_private:
+          type: boolean
+          description: Whether or not the contact is individual
+          example: false
+    AddContactsToList:
+      required:
+      - contact_ids
+      properties:
+        contact_ids:
+          type: array
+          description: List of IDs of the contacts to add in the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    RemoveContactsFromList:
+      required:
+      - contact_ids
+      properties:
+        contact_ids:
+          type: array
+          description: List of IDs of the contacts to remove from the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          maxItems: 50
+          items:
+            $ref: '#/components/schemas/ResourceID'
   parameters:
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
     limit:
       name: limit
       in: query
@@ -472,13 +433,52 @@ components:
         type: integer
         maximum: 100
         example: 25
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+  responses:
+    listOfContactLists:
+      description: Array of contact lists
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/contact_lists
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactListResponses'
+    listOfContacts:
+      description: Array of contacts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/contacts
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactResponse'
   securitySchemes:
     http:
       type: http

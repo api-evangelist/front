@@ -186,6 +186,42 @@ paths:
       - channels:write
 components:
   schemas:
+    CreateCall:
+      discriminator:
+        propertyName: direction
+        mapping:
+          inbound: '#/components/schemas/CreateCallInbound'
+          outbound: '#/components/schemas/CreateCallOutbound'
+      oneOf:
+      - $ref: '#/components/schemas/CreateCallInbound'
+      - $ref: '#/components/schemas/CreateCallOutbound'
+      properties:
+        direction:
+          type: string
+          enum:
+          - inbound
+          - outbound
+          description: Use `inbound` with required `from` (external party); use `outbound` with required `to` (callee).
+    TranscriptLine:
+      type: object
+      required:
+      - speaker_name
+      - content
+      - start_time_seconds
+      - speaker_type
+      properties:
+        speaker_name:
+          type: string
+        content:
+          type: string
+        start_time_seconds:
+          type: number
+        speaker_type:
+          type: string
+          enum:
+          - internal
+          - external
+          description: internal for agent or system-side speech; external for the other party.
     CreateCallInbound:
       type: object
       required:
@@ -220,74 +256,6 @@ components:
         agent_email_address:
           type: string
           description: Optional email of the teammate associated with the call.
-    CreateCall:
-      discriminator:
-        propertyName: direction
-        mapping:
-          inbound: '#/components/schemas/CreateCallInbound'
-          outbound: '#/components/schemas/CreateCallOutbound'
-      oneOf:
-      - $ref: '#/components/schemas/CreateCallInbound'
-      - $ref: '#/components/schemas/CreateCallOutbound'
-      properties:
-        direction:
-          type: string
-          enum:
-          - inbound
-          - outbound
-          description: Use `inbound` with required `from` (external party); use `outbound` with required `to` (callee).
-    AddCallSummary:
-      type: object
-      required:
-      - content
-      properties:
-        content:
-          type: string
-          minLength: 1
-          description: Summary text for the call.
-    UpdateCall:
-      type: object
-      required:
-      - call_status
-      properties:
-        occurred_at:
-          type: number
-          description: Optional Unix timestamp (ms) when this status change occurred.
-        call_status:
-          type: string
-          enum:
-          - queued
-          - ringing
-          - connected
-          - hold
-          - hangup
-          - abandoned
-          - missed
-          - transferred
-        agent_email_address:
-          type: string
-          description: Optional; include when the status update relates to a specific teammate.
-    AddCallTranscript:
-      type: object
-      required:
-      - lines
-      properties:
-        lines:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/TranscriptLine'
-    CallParty:
-      type: object
-      required:
-      - handle
-      properties:
-        handle:
-          type: string
-          description: Party identifier compatible with the application channel contact type.
-        name:
-          type: string
-          description: Optional display name for the party.
     CreateCallOutbound:
       type: object
       required:
@@ -322,26 +290,58 @@ components:
         agent_email_address:
           type: string
           description: Optional email of the teammate associated with the call.
-    TranscriptLine:
+    UpdateCall:
       type: object
       required:
-      - speaker_name
-      - content
-      - start_time_seconds
-      - speaker_type
+      - call_status
       properties:
-        speaker_name:
-          type: string
-        content:
-          type: string
-        start_time_seconds:
+        occurred_at:
           type: number
-        speaker_type:
+          description: Optional Unix timestamp (ms) when this status change occurred.
+        call_status:
           type: string
           enum:
-          - internal
-          - external
-          description: internal for agent or system-side speech; external for the other party.
+          - queued
+          - ringing
+          - connected
+          - hold
+          - hangup
+          - abandoned
+          - missed
+          - transferred
+        agent_email_address:
+          type: string
+          description: Optional; include when the status update relates to a specific teammate.
+    AddCallSummary:
+      type: object
+      required:
+      - content
+      properties:
+        content:
+          type: string
+          minLength: 1
+          description: Summary text for the call.
+    AddCallTranscript:
+      type: object
+      required:
+      - lines
+      properties:
+        lines:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TranscriptLine'
+    CallParty:
+      type: object
+      required:
+      - handle
+      properties:
+        handle:
+          type: string
+          description: Party identifier compatible with the application channel contact type.
+        name:
+          type: string
+          description: Optional display name for the party.
   securitySchemes:
     http:
       type: http

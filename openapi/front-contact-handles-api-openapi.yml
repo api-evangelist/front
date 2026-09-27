@@ -69,15 +69,6 @@ paths:
       - contacts:write
 components:
   schemas:
-    DeleteContactHandle:
-      allOf:
-      - $ref: '#/components/schemas/ContactHandle'
-      - type: object
-        properties:
-          force:
-            type: boolean
-            description: Force the deletetion of the contact if the handle is the last one
-            default: false
     ContactHandle:
       type: object
       required:
@@ -100,6 +91,15 @@ components:
           - custom
           description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
           example: email
+    DeleteContactHandle:
+      allOf:
+      - $ref: '#/components/schemas/ContactHandle'
+      - type: object
+        properties:
+          force:
+            type: boolean
+            description: Force the deletetion of the contact if the handle is the last one
+            default: false
   securitySchemes:
     http:
       type: http

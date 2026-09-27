@@ -387,6 +387,63 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
+    ResourceID:
+      type: string
+    Reminder:
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          type: object
+          properties:
+            related:
+              type: object
+              properties:
+                owner:
+                  type: string
+                  description: Link to conversation owner
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+        created_at:
+          type: number
+          description: Timestamp at which the conversation reminder has been created
+          example: 1701806790.536
+        scheduled_at:
+          type: number
+          description: Timestamp that the conversation reminder has been scheduled for
+          example: 1701874800
+        updated_at:
+          type: number
+          description: Timestamp at which the conversation reminder has been updated
+          example: 1701806790.536
+    TeammateIds:
+      type: object
+      required:
+      - teammate_ids
+      properties:
+        teammate_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    CreateInbox:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The name of the inbox
+        teammate_ids:
+          type: array
+          description: An array of teammate IDs that should have access to the inbox. Alternatively, you can supply teammate emails as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            $ref: '#/components/schemas/ResourceID'
+        is_public:
+          type: boolean
+          description: Whether the inbox is public or not
+        custom_fields:
+          description: Custom fields for this inbox
+          $ref: '#/components/schemas/CustomFieldParameter'
     TagResponse:
       type: object
       description: A tag is a label that can be used to classify conversations.
@@ -504,8 +561,116 @@ components:
         custom_fields:
           description: Custom fields for this link
           $ref: '#/components/schemas/CustomFieldParameter'
-    ResourceID:
-      type: string
+    RecipientResponse:
+      type: object
+      required:
+      - _links
+      - name
+      - handle
+      - role
+      properties:
+        _links:
+          type: object
+          properties:
+            related:
+              type: object
+              properties:
+                contact:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to recipient contact
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_2njtoem
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the recipient.
+          example: Phyllis Lapin-Vance
+        handle:
+          type: string
+          description: Handle of the contact. Can be any string used to uniquely identify the contact
+          example: purpleboss@limitlesspaper.com
+        role:
+          type: string
+          description: Role of the recipient
+          enum:
+          - from
+          - to
+          - cc
+          - bcc
+          - reply-to
+          example: cc
+    CreatePrivateInbox:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The name of the inbox
+        custom_fields:
+          description: Custom fields for this inbox
+          $ref: '#/components/schemas/CustomFieldParameter'
+    InboxResponse:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6
+            related:
+              type: object
+              properties:
+                teammates:
+                  type: string
+                  description: Link to inbox teammates
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates
+                conversations:
+                  type: string
+                  description: Link to inbox conversations
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations
+                channels:
+                  type: string
+                  description: Link to inbox channels
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels
+                owner:
+                  type: string
+                  description: Link to inbox owner
+                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
+        id:
+          type: string
+          description: Unique identifier for the inbox
+          example: inb_1ix6
+        name:
+          type: string
+          description: Name of the inbox
+          example: The Dundies
+        is_private:
+          type: boolean
+          description: Whether or not the inbox is individual
+          example: false
+        is_public:
+          type: boolean
+          description: Whether or not the inbox is available to all members of a team by default
+          example: true
+        custom_fields:
+          description: Custom fields for this inbox
+          $ref: '#/components/schemas/CustomFieldParameter'
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
     ConversationResponse:
       type: object
       required:
@@ -645,37 +810,6 @@ components:
               - JS9403
               items:
                 type: string
-    TeammateIds:
-      type: object
-      required:
-      - teammate_ids
-      properties:
-        teammate_ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceID'
-    CreatePrivateInbox:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The name of the inbox
-        custom_fields:
-          description: Custom fields for this inbox
-          $ref: '#/components/schemas/CustomFieldParameter'
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
     CreateTeamInbox:
       type: object
       required:
@@ -695,73 +829,6 @@ components:
         custom_fields:
           description: Custom fields for this inbox
           $ref: '#/components/schemas/CustomFieldParameter'
-    RecipientResponse:
-      type: object
-      required:
-      - _links
-      - name
-      - handle
-      - role
-      properties:
-        _links:
-          type: object
-          properties:
-            related:
-              type: object
-              properties:
-                contact:
-                  type:
-                  - string
-                  - 'null'
-                  description: Link to recipient contact
-                  example: https://yourCompany.api.frontapp.com/contacts/crd_2njtoem
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the recipient.
-          example: Phyllis Lapin-Vance
-        handle:
-          type: string
-          description: Handle of the contact. Can be any string used to uniquely identify the contact
-          example: purpleboss@limitlesspaper.com
-        role:
-          type: string
-          description: Role of the recipient
-          enum:
-          - from
-          - to
-          - cc
-          - bcc
-          - reply-to
-          example: cc
-    Reminder:
-      type: object
-      required:
-      - _links
-      properties:
-        _links:
-          type: object
-          properties:
-            related:
-              type: object
-              properties:
-                owner:
-                  type: string
-                  description: Link to conversation owner
-                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
-        created_at:
-          type: number
-          description: Timestamp at which the conversation reminder has been created
-          example: 1701806790.536
-        scheduled_at:
-          type: number
-          description: Timestamp that the conversation reminder has been scheduled for
-          example: 1701874800
-        updated_at:
-          type: number
-          description: Timestamp at which the conversation reminder has been updated
-          example: 1701806790.536
     ChannelResponse:
       type: object
       required:
@@ -861,80 +928,14 @@ components:
           default: false
           description: Whether or not the channel configuration is valid
           example: true
-    CreateInbox:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The name of the inbox
-        teammate_ids:
-          type: array
-          description: An array of teammate IDs that should have access to the inbox. Alternatively, you can supply teammate emails as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
-          items:
-            $ref: '#/components/schemas/ResourceID'
-        is_public:
-          type: boolean
-          description: Whether the inbox is public or not
-        custom_fields:
-          description: Custom fields for this inbox
-          $ref: '#/components/schemas/CustomFieldParameter'
-    InboxResponse:
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6
-            related:
-              type: object
-              properties:
-                teammates:
-                  type: string
-                  description: Link to inbox teammates
-                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates
-                conversations:
-                  type: string
-                  description: Link to inbox conversations
-                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations
-                channels:
-                  type: string
-                  description: Link to inbox channels
-                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels
-                owner:
-                  type: string
-                  description: Link to inbox owner
-                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
-        id:
-          type: string
-          description: Unique identifier for the inbox
-          example: inb_1ix6
-        name:
-          type: string
-          description: Name of the inbox
-          example: The Dundies
-        is_private:
-          type: boolean
-          description: Whether or not the inbox is individual
-          example: false
-        is_public:
-          type: boolean
-          description: Whether or not the inbox is available to all members of a team by default
-          example: true
-        custom_fields:
-          description: Custom fields for this inbox
-          $ref: '#/components/schemas/CustomFieldParameter'
   parameters:
-    conversationQuery:
-      name: q
+    pageToken:
+      name: page_token
       in: query
-      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative.'
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
       schema:
         type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
     limit:
       name: limit
       in: query
@@ -943,56 +944,13 @@ components:
         type: integer
         maximum: 100
         example: 25
-    pageToken:
-      name: page_token
+    conversationQuery:
+      name: q
       in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with a property `statuses`, whose value should be a list of conversation statuses (`assigned`, `unassigned`, `archived`, or `trashed`). If ticketing is enabled, this endpoint accepts either `status_categories` (`open`, `waiting`, `resolved`) or `status_ids` as an alternative.'
       schema:
         type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
   responses:
-    listOfChannels:
-      description: Array of Channels
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/channels
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ChannelResponse'
-    inbox:
-      description: An inbox
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InboxResponse'
-    listOfInboxes:
-      description: Array of Inboxes
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/inboxes
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/InboxResponse'
     listOfConversations:
       description: Array of conversations
       content:
@@ -1020,6 +978,48 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/ConversationResponse'
+    inbox:
+      description: An inbox
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InboxResponse'
+    listOfChannels:
+      description: Array of Channels
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/channels
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChannelResponse'
+    listOfInboxes:
+      description: Array of Inboxes
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/inboxes
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InboxResponse'
     listOfTeammates:
       description: Array of teammates
       content:

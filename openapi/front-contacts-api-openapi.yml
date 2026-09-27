@@ -383,6 +383,97 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
+    ContactHandle:
+      type: object
+      required:
+      - handle
+      - source
+      properties:
+        handle:
+          type: string
+          description: Handle used to reach the contact.
+          example: dwight@limitlesspaper.com
+        source:
+          type: string
+          enum:
+          - twitter
+          - email
+          - phone
+          - facebook
+          - intercom
+          - front_chat
+          - custom
+          description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
+          example: email
+    MergeContacts:
+      required:
+      - contact_ids
+      properties:
+        target_contact_id:
+          type: string
+          description: Optional contact ID to merge the other contacts into.
+        contact_ids:
+          type: array
+          description: Array of all the contact IDs of the contacts to be merged.  If a target contact id is provided and that contact id is not in this array, the length of this array must be between 1 and 49.  If no target contact id is provided or it is contained in this array, the length must be between 2 and 50.
+          items:
+            type: string
+    Reminder:
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          type: object
+          properties:
+            related:
+              type: object
+              properties:
+                owner:
+                  type: string
+                  description: Link to conversation owner
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
+        created_at:
+          type: number
+          description: Timestamp at which the conversation reminder has been created
+          example: 1701806790.536
+        scheduled_at:
+          type: number
+          description: Timestamp that the conversation reminder has been scheduled for
+          example: 1701874800
+        updated_at:
+          type: number
+          description: Timestamp at which the conversation reminder has been updated
+          example: 1701806790.536
+    Contact:
+      properties:
+        name:
+          type: string
+          description: Contact name
+        description:
+          type: string
+          description: Contact description
+        avatar:
+          type: string
+          description: 'Binary data of avatar. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
+          format: binary
+        links:
+          type: array
+          description: List of all the links of the contact
+          items:
+            type: string
+        group_names:
+          type: array
+          description: List of all the group names the contact belongs to. It will automatically create missing groups. ⚠️ Deprecated. Use `list_names` instead.
+          items:
+            type: string
+        list_names:
+          type: array
+          description: List of all the contact list names the contact belongs to. It will automatically create missing groups
+          items:
+            type: string
+        custom_fields:
+          description: Custom fields for this contact. If you want to keep all custom fields the same when updating this resource, do not include any custom fields in the update. If you want to update custom fields, make sure to include all custom fields, not just the fields you want to add or update. If you send only the custom fields you want to update, the other custom fields will be erased. You can retrieve the existing custom fields before making the update to note the current fields.
+          $ref: '#/components/schemas/CustomFieldParameter'
     CreateContact:
       required:
       - handles
@@ -512,6 +603,90 @@ components:
         custom_fields:
           description: Custom fields for this link
           $ref: '#/components/schemas/CustomFieldParameter'
+    RecipientResponse:
+      type: object
+      required:
+      - _links
+      - name
+      - handle
+      - role
+      properties:
+        _links:
+          type: object
+          properties:
+            related:
+              type: object
+              properties:
+                contact:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to recipient contact
+                  example: https://yourCompany.api.frontapp.com/contacts/crd_2njtoem
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the recipient.
+          example: Phyllis Lapin-Vance
+        handle:
+          type: string
+          description: Handle of the contact. Can be any string used to uniquely identify the contact
+          example: purpleboss@limitlesspaper.com
+        role:
+          type: string
+          description: Role of the recipient
+          enum:
+          - from
+          - to
+          - cc
+          - bcc
+          - reply-to
+          example: cc
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    ContactListResponses:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342
+            related:
+              type: object
+              properties:
+                contacts:
+                  type: string
+                  description: Link to contact list contacts
+                  example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts
+                owner:
+                  type: string
+                  description: Link to list owner
+                  example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
+        id:
+          type: string
+          description: Unique identifier of the list
+          example: grp_3j342
+        name:
+          type: string
+          description: Name of the list
+          example: Party Planning Committee
+        is_private:
+          type: boolean
+          description: Whether or not the contact is individual
+          example: false
     ConversationResponse:
       type: object
       required:
@@ -651,29 +826,6 @@ components:
               - JS9403
               items:
                 type: string
-    MergeContacts:
-      required:
-      - contact_ids
-      properties:
-        target_contact_id:
-          type: string
-          description: Optional contact ID to merge the other contacts into.
-        contact_ids:
-          type: array
-          description: Array of all the contact IDs of the contacts to be merged.  If a target contact id is provided and that contact id is not in this array, the length of this array must be between 1 and 49.  If no target contact id is provided or it is contained in this array, the length must be between 2 and 50.
-          items:
-            type: string
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
     ContactResponse:
       type: object
       properties:
@@ -746,165 +898,22 @@ components:
           type: boolean
           description: Whether or not the contact is individual
           example: true
-    Contact:
-      properties:
-        name:
-          type: string
-          description: Contact name
-        description:
-          type: string
-          description: Contact description
-        avatar:
-          type: string
-          description: 'Binary data of avatar. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
-          format: binary
-        links:
-          type: array
-          description: List of all the links of the contact
-          items:
-            type: string
-        group_names:
-          type: array
-          description: List of all the group names the contact belongs to. It will automatically create missing groups. ⚠️ Deprecated. Use `list_names` instead.
-          items:
-            type: string
-        list_names:
-          type: array
-          description: List of all the contact list names the contact belongs to. It will automatically create missing groups
-          items:
-            type: string
-        custom_fields:
-          description: Custom fields for this contact. If you want to keep all custom fields the same when updating this resource, do not include any custom fields in the update. If you want to update custom fields, make sure to include all custom fields, not just the fields you want to add or update. If you send only the custom fields you want to update, the other custom fields will be erased. You can retrieve the existing custom fields before making the update to note the current fields.
-          $ref: '#/components/schemas/CustomFieldParameter'
-    RecipientResponse:
-      type: object
-      required:
-      - _links
-      - name
-      - handle
-      - role
-      properties:
-        _links:
-          type: object
-          properties:
-            related:
-              type: object
-              properties:
-                contact:
-                  type:
-                  - string
-                  - 'null'
-                  description: Link to recipient contact
-                  example: https://yourCompany.api.frontapp.com/contacts/crd_2njtoem
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the recipient.
-          example: Phyllis Lapin-Vance
-        handle:
-          type: string
-          description: Handle of the contact. Can be any string used to uniquely identify the contact
-          example: purpleboss@limitlesspaper.com
-        role:
-          type: string
-          description: Role of the recipient
-          enum:
-          - from
-          - to
-          - cc
-          - bcc
-          - reply-to
-          example: cc
-    Reminder:
-      type: object
-      required:
-      - _links
-      properties:
-        _links:
-          type: object
-          properties:
-            related:
-              type: object
-              properties:
-                owner:
-                  type: string
-                  description: Link to conversation owner
-                  example: https://yourCompany.api.frontapp.com/teammates/tea_6r55a
-        created_at:
-          type: number
-          description: Timestamp at which the conversation reminder has been created
-          example: 1701806790.536
-        scheduled_at:
-          type: number
-          description: Timestamp that the conversation reminder has been scheduled for
-          example: 1701874800
-        updated_at:
-          type: number
-          description: Timestamp at which the conversation reminder has been updated
-          example: 1701806790.536
-    ContactHandle:
-      type: object
-      required:
-      - handle
-      - source
-      properties:
-        handle:
-          type: string
-          description: Handle used to reach the contact.
-          example: dwight@limitlesspaper.com
-        source:
-          type: string
-          enum:
-          - twitter
-          - email
-          - phone
-          - facebook
-          - intercom
-          - front_chat
-          - custom
-          description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
-          example: email
-    ContactListResponses:
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342
-            related:
-              type: object
-              properties:
-                contacts:
-                  type: string
-                  description: Link to contact list contacts
-                  example: https://yourCompany.api.frontapp.com/contact_lists/grp_3j342/contacts
-                owner:
-                  type: string
-                  description: Link to list owner
-                  example: https://yourCompany.api.frontapp.com/teammates/tea_e35u
-        id:
-          type: string
-          description: Unique identifier of the list
-          example: grp_3j342
-        name:
-          type: string
-          description: Name of the list
-          example: Party Planning Committee
-        is_private:
-          type: boolean
-          description: Whether or not the contact is individual
-          example: false
   parameters:
-    cardQuery:
-      name: q
+    pageToken:
+      name: page_token
       in: query
-      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `updated_after` and `updated_before`, whose value should be a timestamp in seconds with up to 3 decimal places.'
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
       schema:
         type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
     conversationQuery:
       name: q
       in: query
@@ -921,61 +930,19 @@ components:
         - asc
         - desc
         example: asc
-    limit:
-      name: limit
-      in: query
-      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: integer
-        maximum: 100
-        example: 25
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
     sortByCards:
       name: sort_by
       in: query
       description: Field used to sort the contacts. Either `created_at` or `updated_at`.
       schema:
         type: string
+    cardQuery:
+      name: q
+      in: query
+      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `updated_after` and `updated_before`, whose value should be a timestamp in seconds with up to 3 decimal places.'
+      schema:
+        type: string
   responses:
-    contact:
-      description: A contact
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ContactResponse'
-    listOfContacts:
-      description: Array of contacts
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/contacts
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ContactResponse'
     listOfConversations:
       description: Array of conversations
       content:
@@ -1003,6 +970,39 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/ConversationResponse'
+    listOfContacts:
+      description: Array of contacts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/contacts?page_token=e0b5767cb0f1100743d46f67fcd765caac2ed
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/contacts
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactResponse'
+    contact:
+      description: A contact
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContactResponse'
   securitySchemes:
     http:
       type: http

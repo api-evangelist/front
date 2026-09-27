@@ -275,68 +275,212 @@ paths:
       x-required-scopes:
       - message_templates:write
 components:
-  responses:
-    listOfCannedAnswers:
-      description: Array of message templates
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/message_templates?page_token=9fa92a7f385fd7be43f7153055b30e6d
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/message_templates
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MessageTemplateResponse'
-    listOfCannedAnswerFolders:
-      description: Array of message template folders
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/message_template_folders?page_token=9fa92a7f385fd7be43f7153055b30e6d
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/message_template_folders
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MessageTemplateFolderResponse'
-    cannedAnswer:
-      description: A message template
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MessageTemplateResponse'
+  parameters:
+    sortOrder:
+      name: sort_order
+      in: query
+      description: Order by which results should be sorted
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        example: asc
+    sortByCannedAnswers:
+      name: sort_by
+      in: query
+      description: Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`.
+      schema:
+        type: string
   schemas:
+    CreateMessageTemplateAsChild:
+      type: object
+      description: A message template that is used for pre-written responses
+      required:
+      - name
+      - body
+      properties:
+        name:
+          type: string
+          description: Name of the message template
+          example: Out of Office
+        subject:
+          type: string
+          description: Subject of the message template.
+          example: Out of Office
+        body:
+          type: string
+          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
+          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
+
+            '
+        inbox_ids:
+          type: array
+          description: The specific inboxes this template is available in. If unspecified or null, then it will be available in all inboxes. Array should be non-empty.
+          items:
+            type: string
+          example: null
+    CreateSharedMessageTemplate:
+      type: object
+      description: A message template that is used for pre-written responses
+      required:
+      - name
+      - body
+      properties:
+        name:
+          type: string
+          description: Name of the message template
+          example: Out of Office
+        subject:
+          type: string
+          description: Subject of the message template.
+          example: Out of Office
+        body:
+          type: string
+          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
+          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
+
+            '
+        folder_id:
+          type: string
+          description: ID of the message template folder to place this message template in
+          example: null
+        inbox_ids:
+          type: array
+          description: The specific inboxes this template is available in. If unspecified or null, then it will be available in all inboxes. Array should be non-empty.
+          items:
+            type: string
+          example: null
+        attachments:
+          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
+          type: array
+          items:
+            type: string
+            format: binary
+    MessageTemplateFolderResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2
+            related:
+              type: object
+              properties:
+                owner:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to resource's owner. Null if the current folder does not have an owner.
+                  example: https://yourCompany.api.frontapp.com/teams/tim_s47
+                parent_folder:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to parent folder. Null if the current folder does not have a parent.
+                  example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1
+                child_folders:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to child folders. Null if the current folder does not have children.
+                  example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders
+                child_answers:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to message templates contained within this folder or children folders. Null if the current folder does not have any message templates.
+                  example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates
+        id:
+          type: string
+          description: Unique identifier of the message template folder
+          example: rsf_g2
+        name:
+          type: string
+          description: Name of the message template folder
+          example: Complaints to Toby (or about Toby)
+        created_at:
+          type: number
+          description: Timestamp at which the message template folder was created.
+          example: 1680300342.904
+        updated_at:
+          type: number
+          description: Timestamp at which the message template folder was updated.
+          example: 1688668654.501
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+    CreatePrivateMessageTemplate:
+      type: object
+      description: A message template that is used for pre-written responses
+      required:
+      - name
+      - body
+      properties:
+        name:
+          type: string
+          description: Name of the message template
+          example: Out of Office
+        subject:
+          type: string
+          description: Subject of the message template.
+          example: Out of Office
+        body:
+          type: string
+          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
+          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
+
+            '
+        folder_id:
+          type: string
+          description: ID of the message template folder to place this message template in
+          example: null
     MessageTemplateResponse:
       type: object
       required:
@@ -408,211 +552,67 @@ components:
           items:
             type: string
             example: null
-    Attachment:
-      type: object
-      required:
-      - id
-      - url
-      - filename
-      - content_type
-      - size
-      - metadata
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the attachment.
-          example: fil_3q8a7mby
-        filename:
-          type: string
-          description: Name of the attached file
-          example: Andy_Anger_Management_Certificate.png
-        url:
-          type: string
-          description: URL to download the attached file
-          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
-        content_type:
-          type: string
-          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
-          example: image/png
-        size:
-          type: integer
-          description: Size (in byte) of the attached file
-          example: 4405
-        metadata:
-          description: Attachment metadata
-          type: object
-          properties:
-            is_inline:
-              type: boolean
-              description: Whether or not the attachment is part of the message body
-              example: true
-            cid:
-              type: string
-              description: Unique identifier used to link an attachment to where it is used in the message body
-              example: 526b45586d0e6b1c484afab63d1ef0be
-    CreateSharedMessageTemplate:
-      type: object
-      description: A message template that is used for pre-written responses
-      required:
-      - name
-      - body
-      properties:
-        name:
-          type: string
-          description: Name of the message template
-          example: Out of Office
-        subject:
-          type: string
-          description: Subject of the message template.
-          example: Out of Office
-        body:
-          type: string
-          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
-          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
-
-            '
-        folder_id:
-          type: string
-          description: ID of the message template folder to place this message template in
-          example: null
-        inbox_ids:
-          type: array
-          description: The specific inboxes this template is available in. If unspecified or null, then it will be available in all inboxes. Array should be non-empty.
-          items:
-            type: string
-          example: null
-        attachments:
-          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
-          type: array
-          items:
-            type: string
-            format: binary
-    CreateMessageTemplateAsChild:
-      type: object
-      description: A message template that is used for pre-written responses
-      required:
-      - name
-      - body
-      properties:
-        name:
-          type: string
-          description: Name of the message template
-          example: Out of Office
-        subject:
-          type: string
-          description: Subject of the message template.
-          example: Out of Office
-        body:
-          type: string
-          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
-          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
-
-            '
-        inbox_ids:
-          type: array
-          description: The specific inboxes this template is available in. If unspecified or null, then it will be available in all inboxes. Array should be non-empty.
-          items:
-            type: string
-          example: null
-    CreatePrivateMessageTemplate:
-      type: object
-      description: A message template that is used for pre-written responses
-      required:
-      - name
-      - body
-      properties:
-        name:
-          type: string
-          description: Name of the message template
-          example: Out of Office
-        subject:
-          type: string
-          description: Subject of the message template.
-          example: Out of Office
-        body:
-          type: string
-          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
-          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
-
-            '
-        folder_id:
-          type: string
-          description: ID of the message template folder to place this message template in
-          example: null
-    MessageTemplateFolderResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2
-            related:
-              type: object
-              properties:
-                owner:
-                  type:
-                  - string
-                  - 'null'
-                  description: Link to resource's owner. Null if the current folder does not have an owner.
-                  example: https://yourCompany.api.frontapp.com/teams/tim_s47
-                parent_folder:
-                  type:
-                  - string
-                  - 'null'
-                  description: Link to parent folder. Null if the current folder does not have a parent.
-                  example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g1
-                child_folders:
-                  type:
-                  - string
-                  - 'null'
-                  description: Link to child folders. Null if the current folder does not have children.
-                  example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_template_folders
-                child_answers:
-                  type:
-                  - string
-                  - 'null'
-                  description: Link to message templates contained within this folder or children folders. Null if the current folder does not have any message templates.
-                  example: https://yourCompany.api.frontapp.com/message_template_folders/rsf_g2/message_templates
-        id:
-          type: string
-          description: Unique identifier of the message template folder
-          example: rsf_g2
-        name:
-          type: string
-          description: Name of the message template folder
-          example: Complaints to Toby (or about Toby)
-        created_at:
-          type: number
-          description: Timestamp at which the message template folder was created.
-          example: 1680300342.904
-        updated_at:
-          type: number
-          description: Timestamp at which the message template folder was updated.
-          example: 1688668654.501
-  parameters:
-    sortOrder:
-      name: sort_order
-      in: query
-      description: Order by which results should be sorted
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        example: asc
-    sortByCannedAnswers:
-      name: sort_by
-      in: query
-      description: Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`.
-      schema:
-        type: string
+  responses:
+    cannedAnswer:
+      description: A message template
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MessageTemplateResponse'
+    listOfCannedAnswers:
+      description: Array of message templates
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/message_templates?page_token=9fa92a7f385fd7be43f7153055b30e6d
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/message_templates
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageTemplateResponse'
+    listOfCannedAnswerFolders:
+      description: Array of message template folders
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/message_template_folders?page_token=9fa92a7f385fd7be43f7153055b30e6d
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/message_template_folders
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageTemplateFolderResponse'
   securitySchemes:
     http:
       type: http

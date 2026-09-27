@@ -166,40 +166,6 @@ paths:
       x-required-scopes:
       - time_off:delete
 components:
-  responses:
-    time_off:
-      description: A time off
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TimeOffResponse'
-    listOfTimeOffs:
-      description: Array of time offs
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs?page_token=9fa92a7f385fd7be43f7153055b30e6d
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TimeOffResponse'
   schemas:
     ResourceID:
       type: string
@@ -339,6 +305,13 @@ components:
               items:
                 $ref: '#/components/schemas/ResourceID'
   parameters:
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
     timeOffQuery:
       name: q
       in: query
@@ -353,13 +326,40 @@ components:
         type: integer
         maximum: 100
         example: 25
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+  responses:
+    listOfTimeOffs:
+      description: Array of time offs
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs?page_token=9fa92a7f385fd7be43f7153055b30e6d
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeOffResponse'
+    time_off:
+      description: A time off
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TimeOffResponse'
   securitySchemes:
     http:
       type: http

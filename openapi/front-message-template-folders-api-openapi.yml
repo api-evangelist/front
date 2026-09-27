@@ -292,30 +292,6 @@ components:
         parent_folder_id:
           type: string
           description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
-    CreateMessageTemplateFolder:
-      type: object
-      description: A message template folder that is used to store message templates or other folders.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the message template folder
-          example: PTO templates
-        parent_folder_id:
-          type: string
-          description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
-          example: null
-    CreateMessageTemplateFolderAsChild:
-      type: object
-      description: A message template folder that is used to store message templates or other folders.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the message template folder
-          example: PTO templates
     MessageTemplateFolderResponse:
       type: object
       required:
@@ -373,13 +349,31 @@ components:
           type: number
           description: Timestamp at which the message template folder was updated.
           example: 1688668654.501
+    CreateMessageTemplateFolderAsChild:
+      type: object
+      description: A message template folder that is used to store message templates or other folders.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the message template folder
+          example: PTO templates
+    CreateMessageTemplateFolder:
+      type: object
+      description: A message template folder that is used to store message templates or other folders.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the message template folder
+          example: PTO templates
+        parent_folder_id:
+          type: string
+          description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
+          example: null
   parameters:
-    sortByCannedAnswerFolders:
-      name: sort_by
-      in: query
-      description: Field used to sort the message template folders. Either `created_at` or `updated_at`.
-      schema:
-        type: string
     sortOrder:
       name: sort_order
       in: query
@@ -390,7 +384,19 @@ components:
         - asc
         - desc
         example: asc
+    sortByCannedAnswerFolders:
+      name: sort_by
+      in: query
+      description: Field used to sort the message template folders. Either `created_at` or `updated_at`.
+      schema:
+        type: string
   responses:
+    cannedAnswerFolder:
+      description: A message template folder
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MessageTemplateFolderResponse'
     listOfCannedAnswerFolders:
       description: Array of message template folders
       content:
@@ -418,12 +424,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/MessageTemplateFolderResponse'
-    cannedAnswerFolder:
-      description: A message template folder
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MessageTemplateFolderResponse'
     acceptedCannedAnswerFolderDeletion:
       description: A message template folder accepted for deletion
       content:
