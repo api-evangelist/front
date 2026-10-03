@@ -332,6 +332,69 @@ paths:
     servers:
     - url: https://api2.frontapp.com
 components:
+  responses:
+    acceptedMessage:
+      description: An accepted message
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                default: accepted
+              message_uid:
+                type: string
+                description: Message unique identifier
+    acceptedMessage_2:
+      description: An accepted response acknowledging your request to create a message
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                default: accepted
+                description: The status of the incoming message. Should return 'accepted' if successful.
+                example: accepted
+              message_uid:
+                type: string
+                description: Message unique identifier. Use the message UID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1) to check whether the [message is created successfully](https://dev.frontapp.com/reference/messages#creating-a-new-message).
+                example: 1eab543f84a0785f7b6b8967cck18f4d
+    message:
+      description: A message
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MessageResponse'
+    listOfSeenReceipts:
+      description: Array of seen receipts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen?page_token=jk7893fgeet644abnn39
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SeenReceiptResponse'
   schemas:
     OutboundMessage:
       required:
@@ -450,6 +513,150 @@ components:
           items:
             type: string
             format: binary
+    OutboundReplyMessage:
+      required:
+      - body
+      properties:
+        to:
+          type: array
+          description: List of the recipient handles who will receive this message
+          items:
+            type: string
+        cc:
+          type: array
+          description: List of the recipient handles who will receive a copy of this message
+          items:
+            type: string
+        bcc:
+          type: array
+          description: List of the recipient handles who will receive a copy of this message
+          items:
+            type: string
+        sender_name:
+          type: string
+          description: Name used for the sender info of the message
+        subject:
+          type: string
+          description: Subject of the message for email message
+        author_id:
+          type: string
+          description: ID of the teammate on behalf of whom the answer is sent
+        channel_id:
+          type: string
+          description: Channel ID the message is sent from
+        body:
+          type: string
+          description: Body of the message
+        text:
+          type: string
+          description: Text version of the body for email messages
+        quote_body:
+          type: string
+          description: Body for the quote that the message is referencing. Only available on email channels.
+        options:
+          type: object
+          properties:
+            tag_ids:
+              type: array
+              description: List of tag IDs to add to the conversation
+              items:
+                type: string
+            archive:
+              type: boolean
+              default: true
+              description: Archive the conversation right when sending the message. `true` by default
+        attachments:
+          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
+          type: array
+          items:
+            type: string
+            format: binary
+        signature_id:
+          type: string
+          description: ID of the signature to attach to this draft. Only supported for email channels; using this on other channel types returns a 403 forbidden error. If null, no signature is attached.
+        should_add_default_signature:
+          type: boolean
+          description: Whether or not Front should try to resolve a signature for the message. Only applies to email channels and is ignored if signature_id is included or if author_id is omitted. Default false;
+    SeenReceiptResponse:
+      type: object
+      required:
+      - _links
+      - first_seen_at
+      - seen_by
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to self
+              example: https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen
+            related:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Link to message associated with the seen record
+                  example: https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym
+        first_seen_at:
+          type: string
+          description: Timestamp when message was seen
+          example: 1701298738269
+        seen_by:
+          $ref: '#/components/schemas/ContactHandle'
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
     SignatureResponse:
       type: object
       required:
@@ -518,33 +725,168 @@ components:
             type: string
             description: List of channels the signature is available in. If belonging to a teammate, represents all channels this can be used in. If belonging to a team, represents all team channels this can be used in. If null, there are no restrictions.
             example: null
-    SeenReceiptResponse:
-      type: object
+    ImportMessage:
       required:
-      - _links
-      - first_seen_at
-      - seen_by
+      - sender
+      - to
+      - body
+      - external_id
+      - created_at
+      - metadata
       properties:
-        _links:
+        sender:
+          type: object
+          description: Data of the sender
+          required:
+          - handle
+          properties:
+            author_id:
+              type: string
+              description: ID of the teammate who is the author of the message. Ignored if the message is inbound.
+            name:
+              type: string
+              description: Name of the sender
+            handle:
+              type: string
+              description: Handle of the sender. It can be any string used to uniquely identify the sender. **Important:** When sending a phone number, include a country code preceded by a plus (+) sign. For example, +33 for France. If you do not send a country code or include a plus sign, Front will normalize your phone number to the USA (+1).
+        to:
+          type: array
+          description: List of the recipient handles who will receive this message
+          items:
+            type: string
+        cc:
+          type: array
+          description: List of the recipient handles who will receive a copy of this message
+          items:
+            type: string
+        bcc:
+          type: array
+          description: List of the recipient handles who will receive a blind copy of this message
+          items:
+            type: string
+        subject:
+          type: string
+          description: Subject of the message
+        body:
+          type: string
+          description: Body of the message
+        body_format:
+          type: string
+          description: Format of the message body. Can be `markdown` (default) or `html`, and can only be specified for `email` type.
+          enum:
+          - html
+          - markdown
+          default: markdown
+        external_id:
+          type: string
+          description: External identifier of the message. Front won't import two messages with the same external ID.
+        created_at:
+          type: integer
+          description: Date at which the message as been sent or received.
+        type:
+          type: string
+          description: Type of the message to import. Default is `email`.
+          enum:
+          - email
+          - sms
+          - intercom
+          - custom
+          default: email
+        assignee_id:
+          type: string
+          description: ID of the teammate who will be assigned to the conversation.
+        tags:
+          type: array
+          description: List of tag names to add to the conversation
+          items:
+            type: string
+        conversation_id:
+          type: string
+          description: If supplied, Front will thread this message into conversation with the given ID. Note that including this parameter nullifies the `thread_ref` parameter _completely_.
+        metadata:
+          type: object
+          required:
+          - is_inbound
+          properties:
+            thread_ref:
+              type: string
+              description: Reference which will be used to thread messages. If omitted, Front threads by sender instead. This reference is unique to importing historical messages. If you supply a reference generated by another endpoint, the message will not thread into the same conversation.
+            is_inbound:
+              type: boolean
+              description: Determines if message is received (inbound) or sent (outbound) by you.
+            is_archived:
+              type: boolean
+              description: Determines if message is archived after import.
+              default: true
+            should_skip_rules:
+              type: boolean
+              description: Determines if rules should be skipped. `true` by default.
+              default: true
+        attachments:
+          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
+          type: array
+          items:
+            type: string
+            format: binary
+    OutboundMessage_2:
+      required:
+      - to
+      - body
+      properties:
+        to:
+          type: array
+          description: List of the recipient handles who will receive this message. One of `to`, `cc`, or `bcc` is required.
+          items:
+            type: string
+        cc:
+          type: array
+          description: List of the recipient handles who will receive a copy of this message. One of `to`, `cc`, or `bcc` is required.
+          items:
+            type: string
+        bcc:
+          type: array
+          description: List of the recipient handles who will receive a blind copy of this message. One of `to`, `cc`, or `bcc` is required.
+          items:
+            type: string
+        sender_name:
+          type: string
+          description: Name used for the sender info of the message
+        subject:
+          type: string
+          description: Subject of the message for email message
+        author_id:
+          type: string
+          description: ID of the teammate on behalf of whom the answer is sent
+        body:
+          type: string
+          description: Body of the message
+        text:
+          type: string
+          description: Text version of the body for email messages
+        options:
           type: object
           properties:
-            self:
-              type: string
-              description: Link to self
-              example: https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen
-            related:
-              type: object
-              properties:
-                message:
-                  type: string
-                  description: Link to message associated with the seen record
-                  example: https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym
-        first_seen_at:
+            tag_ids:
+              type: array
+              description: List of tag IDs to add to the conversation
+              items:
+                type: string
+            archive:
+              type: boolean
+              default: true
+              description: Archive the conversation right when sending the message
+        attachments:
+          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1). Max 25 MB.'
+          type: array
+          items:
+            type: string
+            format: binary
+        signature_id:
           type: string
-          description: Timestamp when message was seen
-          example: 1701298738269
-        seen_by:
-          $ref: '#/components/schemas/ContactHandle'
+          description: ID of the signature to attach to this draft. Only supported for email channels; using this on other channel types returns a 403 forbidden error. If null, no signature is attached.
+        should_add_default_signature:
+          type: boolean
+          description: Whether or not Front should try to resolve a signature for the message. Only applies to email channels and is ignored if signature_id is included or if author_id is omitted. Default false.
     ContactHandle:
       type: object
       required:
@@ -567,6 +909,54 @@ components:
           - custom
           description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
           example: email
+    CustomMessage:
+      required:
+      - sender
+      - body
+      properties:
+        sender:
+          type: object
+          description: Data of the sender
+          required:
+          - handle
+          properties:
+            contact_id:
+              type: string
+              description: ID of the contact in Front corresponding to the sender
+            name:
+              type: string
+              description: Name of the sender
+            handle:
+              type: string
+              description: Handle of the sender. It can be any string used to uniquely identify the sender. **Important:** When sending a phone number, include a country code preceded by a plus (+) sign. For example, +33 for France. If you do not send a country code or include a plus sign, Front will normalize your phone number to the USA (+1).
+        subject:
+          type: string
+          description: Subject of the message
+        body:
+          type: string
+          description: Body of the message
+        body_format:
+          type: string
+          description: Format of the message body. Can be `markdown` (default) or `html`.
+          enum:
+          - html
+          - markdown
+          default: markdown
+        metadata:
+          type: object
+          properties:
+            thread_ref:
+              type: string
+              description: Reference which will be used to thread messages. If omitted, Front threads by sender instead. This reference is unique to custom channels. If you supply a reference generated by another endpoint, the message will not thread into the same conversation.
+            headers:
+              type: object
+              description: Custom object where any internal information can be stored
+        attachments:
+          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
+          type: array
+          items:
+            type: string
+            format: binary
     TeammateResponse:
       type: object
       description: A teammate is a user in Front.
@@ -652,76 +1042,6 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
-    OutboundMessage_2:
-      required:
-      - to
-      - body
-      properties:
-        to:
-          type: array
-          description: List of the recipient handles who will receive this message. One of `to`, `cc`, or `bcc` is required.
-          items:
-            type: string
-        cc:
-          type: array
-          description: List of the recipient handles who will receive a copy of this message. One of `to`, `cc`, or `bcc` is required.
-          items:
-            type: string
-        bcc:
-          type: array
-          description: List of the recipient handles who will receive a blind copy of this message. One of `to`, `cc`, or `bcc` is required.
-          items:
-            type: string
-        sender_name:
-          type: string
-          description: Name used for the sender info of the message
-        subject:
-          type: string
-          description: Subject of the message for email message
-        author_id:
-          type: string
-          description: ID of the teammate on behalf of whom the answer is sent
-        body:
-          type: string
-          description: Body of the message
-        text:
-          type: string
-          description: Text version of the body for email messages
-        options:
-          type: object
-          properties:
-            tag_ids:
-              type: array
-              description: List of tag IDs to add to the conversation
-              items:
-                type: string
-            archive:
-              type: boolean
-              default: true
-              description: Archive the conversation right when sending the message
-        attachments:
-          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1). Max 25 MB.'
-          type: array
-          items:
-            type: string
-            format: binary
-        signature_id:
-          type: string
-          description: ID of the signature to attach to this draft. Only supported for email channels; using this on other channel types returns a 403 forbidden error. If null, no signature is attached.
-        should_add_default_signature:
-          type: boolean
-          description: Whether or not Front should try to resolve a signature for the message. Only applies to email channels and is ignored if signature_id is included or if author_id is omitted. Default false.
     MessageResponse:
       type: object
       properties:
@@ -877,54 +1197,6 @@ components:
               type: string
               description: For `front_chat` messages only. Source URL from the chat widget when sending a message.
               example: https://yourCompany.com/products
-    CustomMessage:
-      required:
-      - sender
-      - body
-      properties:
-        sender:
-          type: object
-          description: Data of the sender
-          required:
-          - handle
-          properties:
-            contact_id:
-              type: string
-              description: ID of the contact in Front corresponding to the sender
-            name:
-              type: string
-              description: Name of the sender
-            handle:
-              type: string
-              description: Handle of the sender. It can be any string used to uniquely identify the sender. **Important:** When sending a phone number, include a country code preceded by a plus (+) sign. For example, +33 for France. If you do not send a country code or include a plus sign, Front will normalize your phone number to the USA (+1).
-        subject:
-          type: string
-          description: Subject of the message
-        body:
-          type: string
-          description: Body of the message
-        body_format:
-          type: string
-          description: Format of the message body. Can be `markdown` (default) or `html`.
-          enum:
-          - html
-          - markdown
-          default: markdown
-        metadata:
-          type: object
-          properties:
-            thread_ref:
-              type: string
-              description: Reference which will be used to thread messages. If omitted, Front threads by sender instead. This reference is unique to custom channels. If you supply a reference generated by another endpoint, the message will not thread into the same conversation.
-            headers:
-              type: object
-              description: Custom object where any internal information can be stored
-        attachments:
-          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
-          type: array
-          items:
-            type: string
-            format: binary
     RecipientResponse:
       type: object
       required:
@@ -965,278 +1237,6 @@ components:
           - bcc
           - reply-to
           example: cc
-    Attachment:
-      type: object
-      required:
-      - id
-      - url
-      - filename
-      - content_type
-      - size
-      - metadata
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the attachment.
-          example: fil_3q8a7mby
-        filename:
-          type: string
-          description: Name of the attached file
-          example: Andy_Anger_Management_Certificate.png
-        url:
-          type: string
-          description: URL to download the attached file
-          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
-        content_type:
-          type: string
-          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
-          example: image/png
-        size:
-          type: integer
-          description: Size (in byte) of the attached file
-          example: 4405
-        metadata:
-          description: Attachment metadata
-          type: object
-          properties:
-            is_inline:
-              type: boolean
-              description: Whether or not the attachment is part of the message body
-              example: true
-            cid:
-              type: string
-              description: Unique identifier used to link an attachment to where it is used in the message body
-              example: 526b45586d0e6b1c484afab63d1ef0be
-    ImportMessage:
-      required:
-      - sender
-      - to
-      - body
-      - external_id
-      - created_at
-      - metadata
-      properties:
-        sender:
-          type: object
-          description: Data of the sender
-          required:
-          - handle
-          properties:
-            author_id:
-              type: string
-              description: ID of the teammate who is the author of the message. Ignored if the message is inbound.
-            name:
-              type: string
-              description: Name of the sender
-            handle:
-              type: string
-              description: Handle of the sender. It can be any string used to uniquely identify the sender. **Important:** When sending a phone number, include a country code preceded by a plus (+) sign. For example, +33 for France. If you do not send a country code or include a plus sign, Front will normalize your phone number to the USA (+1).
-        to:
-          type: array
-          description: List of the recipient handles who will receive this message
-          items:
-            type: string
-        cc:
-          type: array
-          description: List of the recipient handles who will receive a copy of this message
-          items:
-            type: string
-        bcc:
-          type: array
-          description: List of the recipient handles who will receive a blind copy of this message
-          items:
-            type: string
-        subject:
-          type: string
-          description: Subject of the message
-        body:
-          type: string
-          description: Body of the message
-        body_format:
-          type: string
-          description: Format of the message body. Can be `markdown` (default) or `html`, and can only be specified for `email` type.
-          enum:
-          - html
-          - markdown
-          default: markdown
-        external_id:
-          type: string
-          description: External identifier of the message. Front won't import two messages with the same external ID.
-        created_at:
-          type: integer
-          description: Date at which the message as been sent or received.
-        type:
-          type: string
-          description: Type of the message to import. Default is `email`.
-          enum:
-          - email
-          - sms
-          - intercom
-          - custom
-          default: email
-        assignee_id:
-          type: string
-          description: ID of the teammate who will be assigned to the conversation.
-        tags:
-          type: array
-          description: List of tag names to add to the conversation
-          items:
-            type: string
-        conversation_id:
-          type: string
-          description: If supplied, Front will thread this message into conversation with the given ID. Note that including this parameter nullifies the `thread_ref` parameter _completely_.
-        metadata:
-          type: object
-          required:
-          - is_inbound
-          properties:
-            thread_ref:
-              type: string
-              description: Reference which will be used to thread messages. If omitted, Front threads by sender instead. This reference is unique to importing historical messages. If you supply a reference generated by another endpoint, the message will not thread into the same conversation.
-            is_inbound:
-              type: boolean
-              description: Determines if message is received (inbound) or sent (outbound) by you.
-            is_archived:
-              type: boolean
-              description: Determines if message is archived after import.
-              default: true
-            should_skip_rules:
-              type: boolean
-              description: Determines if rules should be skipped. `true` by default.
-              default: true
-        attachments:
-          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
-          type: array
-          items:
-            type: string
-            format: binary
-    OutboundReplyMessage:
-      required:
-      - body
-      properties:
-        to:
-          type: array
-          description: List of the recipient handles who will receive this message
-          items:
-            type: string
-        cc:
-          type: array
-          description: List of the recipient handles who will receive a copy of this message
-          items:
-            type: string
-        bcc:
-          type: array
-          description: List of the recipient handles who will receive a copy of this message
-          items:
-            type: string
-        sender_name:
-          type: string
-          description: Name used for the sender info of the message
-        subject:
-          type: string
-          description: Subject of the message for email message
-        author_id:
-          type: string
-          description: ID of the teammate on behalf of whom the answer is sent
-        channel_id:
-          type: string
-          description: Channel ID the message is sent from
-        body:
-          type: string
-          description: Body of the message
-        text:
-          type: string
-          description: Text version of the body for email messages
-        quote_body:
-          type: string
-          description: Body for the quote that the message is referencing. Only available on email channels.
-        options:
-          type: object
-          properties:
-            tag_ids:
-              type: array
-              description: List of tag IDs to add to the conversation
-              items:
-                type: string
-            archive:
-              type: boolean
-              default: true
-              description: Archive the conversation right when sending the message. `true` by default
-        attachments:
-          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
-          type: array
-          items:
-            type: string
-            format: binary
-        signature_id:
-          type: string
-          description: ID of the signature to attach to this draft. Only supported for email channels; using this on other channel types returns a 403 forbidden error. If null, no signature is attached.
-        should_add_default_signature:
-          type: boolean
-          description: Whether or not Front should try to resolve a signature for the message. Only applies to email channels and is ignored if signature_id is included or if author_id is omitted. Default false;
-  responses:
-    acceptedMessage:
-      description: An accepted message
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                default: accepted
-              message_uid:
-                type: string
-                description: Message unique identifier
-    acceptedMessage_2:
-      description: An accepted response acknowledging your request to create a message
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                default: accepted
-                description: The status of the incoming message. Should return 'accepted' if successful.
-                example: accepted
-              message_uid:
-                type: string
-                description: Message unique identifier. Use the message UID as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1) to check whether the [message is created successfully](https://dev.frontapp.com/reference/messages#creating-a-new-message).
-                example: 1eab543f84a0785f7b6b8967cck18f4d
-    message:
-      description: A message
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MessageResponse'
-    listOfSeenReceipts:
-      description: Array of seen receipts
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen?page_token=jk7893fgeet644abnn39
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/messages/msg_1p4lvjym/seen
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SeenReceiptResponse'
   securitySchemes:
     http:
       type: http

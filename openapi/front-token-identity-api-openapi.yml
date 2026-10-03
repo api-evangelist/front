@@ -23,6 +23,13 @@ paths:
         '200':
           $ref: '#/components/responses/identity'
 components:
+  responses:
+    identity:
+      description: API Token details
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IdentityResponse'
   schemas:
     IdentityResponse:
       type: object
@@ -46,13 +53,6 @@ components:
           type: string
           description: Name of company
           example: Dunder Mifflin Paper Company, Inc.
-  responses:
-    identity:
-      description: API Token details
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/IdentityResponse'
   securitySchemes:
     http:
       type: http

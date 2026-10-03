@@ -282,16 +282,6 @@ paths:
       - message_templates:write
 components:
   schemas:
-    UpdateMessageTemplateFolder:
-      type: object
-      description: A message template folder that is used to store message templates or other folders.
-      properties:
-        name:
-          type: string
-          description: Name of the message template folder
-        parent_folder_id:
-          type: string
-          description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
     MessageTemplateFolderResponse:
       type: object
       required:
@@ -349,16 +339,6 @@ components:
           type: number
           description: Timestamp at which the message template folder was updated.
           example: 1688668654.501
-    CreateMessageTemplateFolderAsChild:
-      type: object
-      description: A message template folder that is used to store message templates or other folders.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the message template folder
-          example: PTO templates
     CreateMessageTemplateFolder:
       type: object
       description: A message template folder that is used to store message templates or other folders.
@@ -373,6 +353,26 @@ components:
           type: string
           description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
           example: null
+    UpdateMessageTemplateFolder:
+      type: object
+      description: A message template folder that is used to store message templates or other folders.
+      properties:
+        name:
+          type: string
+          description: Name of the message template folder
+        parent_folder_id:
+          type: string
+          description: ID of the parent folder to be placed into. Goes into the root folder if unspecified or if null.
+    CreateMessageTemplateFolderAsChild:
+      type: object
+      description: A message template folder that is used to store message templates or other folders.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the message template folder
+          example: PTO templates
   parameters:
     sortOrder:
       name: sort_order

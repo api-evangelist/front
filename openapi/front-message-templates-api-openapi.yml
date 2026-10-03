@@ -275,88 +275,7 @@ paths:
       x-required-scopes:
       - message_templates:write
 components:
-  parameters:
-    sortOrder:
-      name: sort_order
-      in: query
-      description: Order by which results should be sorted
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        example: asc
-    sortByCannedAnswers:
-      name: sort_by
-      in: query
-      description: Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`.
-      schema:
-        type: string
   schemas:
-    CreateMessageTemplateAsChild:
-      type: object
-      description: A message template that is used for pre-written responses
-      required:
-      - name
-      - body
-      properties:
-        name:
-          type: string
-          description: Name of the message template
-          example: Out of Office
-        subject:
-          type: string
-          description: Subject of the message template.
-          example: Out of Office
-        body:
-          type: string
-          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
-          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
-
-            '
-        inbox_ids:
-          type: array
-          description: The specific inboxes this template is available in. If unspecified or null, then it will be available in all inboxes. Array should be non-empty.
-          items:
-            type: string
-          example: null
-    CreateSharedMessageTemplate:
-      type: object
-      description: A message template that is used for pre-written responses
-      required:
-      - name
-      - body
-      properties:
-        name:
-          type: string
-          description: Name of the message template
-          example: Out of Office
-        subject:
-          type: string
-          description: Subject of the message template.
-          example: Out of Office
-        body:
-          type: string
-          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
-          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
-
-            '
-        folder_id:
-          type: string
-          description: ID of the message template folder to place this message template in
-          example: null
-        inbox_ids:
-          type: array
-          description: The specific inboxes this template is available in. If unspecified or null, then it will be available in all inboxes. Array should be non-empty.
-          items:
-            type: string
-          example: null
-        attachments:
-          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
-          type: array
-          items:
-            type: string
-            format: binary
     MessageTemplateFolderResponse:
       type: object
       required:
@@ -481,6 +400,70 @@ components:
           type: string
           description: ID of the message template folder to place this message template in
           example: null
+    CreateSharedMessageTemplate:
+      type: object
+      description: A message template that is used for pre-written responses
+      required:
+      - name
+      - body
+      properties:
+        name:
+          type: string
+          description: Name of the message template
+          example: Out of Office
+        subject:
+          type: string
+          description: Subject of the message template.
+          example: Out of Office
+        body:
+          type: string
+          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
+          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
+
+            '
+        folder_id:
+          type: string
+          description: ID of the message template folder to place this message template in
+          example: null
+        inbox_ids:
+          type: array
+          description: The specific inboxes this template is available in. If unspecified or null, then it will be available in all inboxes. Array should be non-empty.
+          items:
+            type: string
+          example: null
+        attachments:
+          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
+          type: array
+          items:
+            type: string
+            format: binary
+    CreateMessageTemplateAsChild:
+      type: object
+      description: A message template that is used for pre-written responses
+      required:
+      - name
+      - body
+      properties:
+        name:
+          type: string
+          description: Name of the message template
+          example: Out of Office
+        subject:
+          type: string
+          description: Subject of the message template.
+          example: Out of Office
+        body:
+          type: string
+          description: Body of the message template. You can supply HTML with inline CSS to structure and style your template.
+          example: '<p>Sorry, I''m OOO until <span style="color: green;">October 25th</span>.</p>
+
+            '
+        inbox_ids:
+          type: array
+          description: The specific inboxes this template is available in. If unspecified or null, then it will be available in all inboxes. Array should be non-empty.
+          items:
+            type: string
+          example: null
     MessageTemplateResponse:
       type: object
       required:
@@ -553,12 +536,6 @@ components:
             type: string
             example: null
   responses:
-    cannedAnswer:
-      description: A message template
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MessageTemplateResponse'
     listOfCannedAnswers:
       description: Array of message templates
       content:
@@ -586,6 +563,12 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/MessageTemplateResponse'
+    cannedAnswer:
+      description: A message template
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MessageTemplateResponse'
     listOfCannedAnswerFolders:
       description: Array of message template folders
       content:
@@ -613,6 +596,23 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/MessageTemplateFolderResponse'
+  parameters:
+    sortOrder:
+      name: sort_order
+      in: query
+      description: Order by which results should be sorted
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        example: asc
+    sortByCannedAnswers:
+      name: sort_by
+      in: query
+      description: Field used to sort the message templates. Either `created_at`, `updated_at`, or `sort_order`.
+      schema:
+        type: string
   securitySchemes:
     http:
       type: http

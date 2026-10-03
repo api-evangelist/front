@@ -112,6 +112,31 @@ paths:
       x-required-scopes:
       - rules:read
 components:
+  responses:
+    rule:
+      description: A rule
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RuleResponse'
+    listOfRules:
+      description: Array of Rules
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/rules
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RuleResponse'
   schemas:
     RuleResponse:
       type: object
@@ -160,31 +185,6 @@ components:
           type: boolean
           description: Whether or not the rule is individual
           example: false
-  responses:
-    rule:
-      description: A rule
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RuleResponse'
-    listOfRules:
-      description: Array of Rules
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/rules
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RuleResponse'
   securitySchemes:
     http:
       type: http

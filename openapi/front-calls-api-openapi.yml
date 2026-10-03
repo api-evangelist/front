@@ -186,6 +186,26 @@ paths:
       - channels:write
 components:
   schemas:
+    CallParty:
+      type: object
+      required:
+      - handle
+      properties:
+        handle:
+          type: string
+          description: Party identifier compatible with the application channel contact type.
+        name:
+          type: string
+          description: Optional display name for the party.
+    AddCallSummary:
+      type: object
+      required:
+      - content
+      properties:
+        content:
+          type: string
+          minLength: 1
+          description: Summary text for the call.
     CreateCall:
       discriminator:
         propertyName: direction
@@ -312,15 +332,6 @@ components:
         agent_email_address:
           type: string
           description: Optional; include when the status update relates to a specific teammate.
-    AddCallSummary:
-      type: object
-      required:
-      - content
-      properties:
-        content:
-          type: string
-          minLength: 1
-          description: Summary text for the call.
     AddCallTranscript:
       type: object
       required:
@@ -331,17 +342,6 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/TranscriptLine'
-    CallParty:
-      type: object
-      required:
-      - handle
-      properties:
-        handle:
-          type: string
-          description: Party identifier compatible with the application channel contact type.
-        name:
-          type: string
-          description: Optional display name for the party.
   securitySchemes:
     http:
       type: http

@@ -250,30 +250,6 @@ paths:
       - contacts:write
 components:
   schemas:
-    ResourceID:
-      type: string
-    ContactHandle:
-      type: object
-      required:
-      - handle
-      - source
-      properties:
-        handle:
-          type: string
-          description: Handle used to reach the contact.
-          example: dwight@limitlesspaper.com
-        source:
-          type: string
-          enum:
-          - twitter
-          - email
-          - phone
-          - facebook
-          - intercom
-          - front_chat
-          - custom
-          description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
-          example: email
     CreateContactList:
       type: object
       required:
@@ -365,6 +341,39 @@ components:
           type: boolean
           description: Whether or not the contact is individual
           example: true
+    ContactHandle:
+      type: object
+      required:
+      - handle
+      - source
+      properties:
+        handle:
+          type: string
+          description: Handle used to reach the contact.
+          example: dwight@limitlesspaper.com
+        source:
+          type: string
+          enum:
+          - twitter
+          - email
+          - phone
+          - facebook
+          - intercom
+          - front_chat
+          - custom
+          description: Source of the handle. Can be `email`, `phone`, `twitter`, `facebook`, `intercom`, `front_chat`, or `custom`.
+          example: email
+    AddContactsToList:
+      required:
+      - contact_ids
+      properties:
+        contact_ids:
+          type: array
+          description: List of IDs of the contacts to add in the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    ResourceID:
+      type: string
     ContactListResponses:
       type: object
       properties:
@@ -398,15 +407,6 @@ components:
           type: boolean
           description: Whether or not the contact is individual
           example: false
-    AddContactsToList:
-      required:
-      - contact_ids
-      properties:
-        contact_ids:
-          type: array
-          description: List of IDs of the contacts to add in the requested contact list. Alternatively, you can supply the contact source and handle as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
-          items:
-            $ref: '#/components/schemas/ResourceID'
     RemoveContactsFromList:
       required:
       - contact_ids
@@ -417,22 +417,6 @@ components:
           maxItems: 50
           items:
             $ref: '#/components/schemas/ResourceID'
-  parameters:
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
-    limit:
-      name: limit
-      in: query
-      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: integer
-        maximum: 100
-        example: 25
   responses:
     listOfContactLists:
       description: Array of contact lists
@@ -479,6 +463,22 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/ContactResponse'
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
   securitySchemes:
     http:
       type: http

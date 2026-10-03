@@ -166,9 +166,95 @@ paths:
       x-required-scopes:
       - time_off:delete
 components:
+  responses:
+    time_off:
+      description: A time off
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TimeOffResponse'
+    listOfTimeOffs:
+      description: Array of time offs
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs?page_token=9fa92a7f385fd7be43f7153055b30e6d
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeOffResponse'
+  parameters:
+    timeOffQuery:
+      name: q
+      in: query
+      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `active_from` and `active_until`, whose value should be a timestamp in seconds with up to 3 decimal places.'
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
   schemas:
     ResourceID:
       type: string
+    UpdateTimeOff:
+      properties:
+        name:
+          type: string
+          description: Name of the time off
+        start_at:
+          type: number
+          description: Timestamp when the time off starts (in seconds)
+        end_at:
+          type:
+          - number
+          - 'null'
+          description: Timestamp when the time off ends (in seconds), or null to clear it
+        auto_responder:
+          type: object
+          properties:
+            body:
+              type: string
+              description: The auto-reply message body
+            is_enabled:
+              type: boolean
+              description: Whether the auto-responder is enabled
+            is_contacts_only:
+              type: boolean
+              description: Whether the auto-responder only replies to known contacts
+            channel_ids:
+              type: array
+              description: List of channel IDs the auto-responder applies to
+              items:
+                $ref: '#/components/schemas/ResourceID'
     TimeOffResponse:
       type: object
       required:
@@ -241,36 +327,6 @@ components:
               type: string
               description: The auto-reply message body
               example: Thanks for reaching out, I will reply when I am back.
-    UpdateTimeOff:
-      properties:
-        name:
-          type: string
-          description: Name of the time off
-        start_at:
-          type: number
-          description: Timestamp when the time off starts (in seconds)
-        end_at:
-          type:
-          - number
-          - 'null'
-          description: Timestamp when the time off ends (in seconds), or null to clear it
-        auto_responder:
-          type: object
-          properties:
-            body:
-              type: string
-              description: The auto-reply message body
-            is_enabled:
-              type: boolean
-              description: Whether the auto-responder is enabled
-            is_contacts_only:
-              type: boolean
-              description: Whether the auto-responder only replies to known contacts
-            channel_ids:
-              type: array
-              description: List of channel IDs the auto-responder applies to
-              items:
-                $ref: '#/components/schemas/ResourceID'
     CreateTimeOff:
       required:
       - name
@@ -304,62 +360,6 @@ components:
               description: List of channel IDs the auto-responder applies to
               items:
                 $ref: '#/components/schemas/ResourceID'
-  parameters:
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
-    timeOffQuery:
-      name: q
-      in: query
-      description: '[Search query object](https://dev.frontapp.com/docs/query-object-q) with the optional properties `active_from` and `active_until`, whose value should be a timestamp in seconds with up to 3 decimal places.'
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: integer
-        maximum: 100
-        example: 25
-  responses:
-    listOfTimeOffs:
-      description: Array of time offs
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs?page_token=9fa92a7f385fd7be43f7153055b30e6d
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/teams/tim_abc123/time_offs
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TimeOffResponse'
-    time_off:
-      description: A time off
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TimeOffResponse'
   securitySchemes:
     http:
       type: http

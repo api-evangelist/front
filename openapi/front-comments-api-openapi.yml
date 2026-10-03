@@ -170,6 +170,136 @@ paths:
       - comments:write
 components:
   schemas:
+    CommentResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - author
+      - body
+      - attachments
+      - is_pinned
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2
+            related:
+              type: object
+              properties:
+                conversation:
+                  type: string
+                  description: Link to comment's conversation
+                  example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i
+                mentions:
+                  type: string
+                  description: Link to comment mentions
+                  example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions
+                comment_replied_to:
+                  type:
+                  - string
+                  - 'null'
+                  description: Link to the comment that is being replied to.
+                  example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2
+        id:
+          type: string
+          description: Unique identifier of the comment
+          example: com_1ywg3f2
+        author:
+          description: Teammate who wrote the comment
+          $ref: '#/components/schemas/TeammateResponse'
+        body:
+          type: string
+          description: Content of the comment
+          example: Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.
+        posted_at:
+          type: number
+          description: The timestamp when the comment was posted
+          example: 1698943401.378
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+          description: List of files attached to the comment
+        is_pinned:
+          type: boolean
+          description: Whether or not the comment is pinned in its conversation
+          example: true
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    Attachment:
+      type: object
+      required:
+      - id
+      - url
+      - filename
+      - content_type
+      - size
+      - metadata
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the attachment.
+          example: fil_3q8a7mby
+        filename:
+          type: string
+          description: Name of the attached file
+          example: Andy_Anger_Management_Certificate.png
+        url:
+          type: string
+          description: URL to download the attached file
+          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
+        content_type:
+          type: string
+          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
+          example: image/png
+        size:
+          type: integer
+          description: Size (in byte) of the attached file
+          example: 4405
+        metadata:
+          description: Attachment metadata
+          type: object
+          properties:
+            is_inline:
+              type: boolean
+              description: Whether or not the attachment is part of the message body
+              example: true
+            cid:
+              type: string
+              description: Unique identifier used to link an attachment to where it is used in the message body
+              example: 526b45586d0e6b1c484afab63d1ef0be
+    CreateComment:
+      required:
+      - body
+      properties:
+        author_id:
+          type: string
+          description: ID of the teammate creating the comment. Alternatively, you can supply the author as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1). If omitted, will post as the API Token or OAuth client of the requester.
+        body:
+          type: string
+          description: Content of the comment. Can include markdown formatting.
+        is_pinned:
+          type: boolean
+          description: Whether or not the comment is pinned in its conversation.
+        attachments:
+          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
+          type: array
+          items:
+            type: string
+            format: binary
     TeammateResponse:
       type: object
       description: A teammate is a user in Front.
@@ -255,136 +385,6 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
-    CommentResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - author
-      - body
-      - attachments
-      - is_pinned
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2
-            related:
-              type: object
-              properties:
-                conversation:
-                  type: string
-                  description: Link to comment's conversation
-                  example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i
-                mentions:
-                  type: string
-                  description: Link to comment mentions
-                  example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2/mentions
-                comment_replied_to:
-                  type:
-                  - string
-                  - 'null'
-                  description: Link to the comment that is being replied to.
-                  example: https://yourCompany.api.frontapp.com/comments/com_1ywg3f2
-        id:
-          type: string
-          description: Unique identifier of the comment
-          example: com_1ywg3f2
-        author:
-          description: Teammate who wrote the comment
-          $ref: '#/components/schemas/TeammateResponse'
-        body:
-          type: string
-          description: Content of the comment
-          example: Sometimes I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.
-        posted_at:
-          type: number
-          description: The timestamp when the comment was posted
-          example: 1698943401.378
-        attachments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attachment'
-          description: List of files attached to the comment
-        is_pinned:
-          type: boolean
-          description: Whether or not the comment is pinned in its conversation
-          example: true
-    CreateComment:
-      required:
-      - body
-      properties:
-        author_id:
-          type: string
-          description: ID of the teammate creating the comment. Alternatively, you can supply the author as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1). If omitted, will post as the API Token or OAuth client of the requester.
-        body:
-          type: string
-          description: Content of the comment. Can include markdown formatting.
-        is_pinned:
-          type: boolean
-          description: Whether or not the comment is pinned in its conversation.
-        attachments:
-          description: 'Binary data of attached files. Must use `Content-Type: multipart/form-data` if specified. See [example](https://gist.github.com/hdornier/e04d04921032e98271f46ff8a539a4cb) or read more about [Attachments](https://dev.frontapp.com/docs/attachments-1).  Max 25 MB.'
-          type: array
-          items:
-            type: string
-            format: binary
-    Attachment:
-      type: object
-      required:
-      - id
-      - url
-      - filename
-      - content_type
-      - size
-      - metadata
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the attachment.
-          example: fil_3q8a7mby
-        filename:
-          type: string
-          description: Name of the attached file
-          example: Andy_Anger_Management_Certificate.png
-        url:
-          type: string
-          description: URL to download the attached file
-          example: https://yourCompany.api.frontapp.com/download/fil_3q8a7mby
-        content_type:
-          type: string
-          description: Content type of the attached file in [MIME format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types). Note that some attachments types may not be supported.
-          example: image/png
-        size:
-          type: integer
-          description: Size (in byte) of the attached file
-          example: 4405
-        metadata:
-          description: Attachment metadata
-          type: object
-          properties:
-            is_inline:
-              type: boolean
-              description: Whether or not the attachment is part of the message body
-              example: true
-            cid:
-              type: string
-              description: Unique identifier used to link an attachment to where it is used in the message body
-              example: 526b45586d0e6b1c484afab63d1ef0be
     UpdateComment:
       properties:
         body:
@@ -394,24 +394,12 @@ components:
           type: boolean
           description: Whether or not the comment is pinned in its conversation.
   responses:
-    listOfComments:
-      description: Array of Comments
+    comment:
+      description: A comment
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/comments
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CommentResponse'
+            $ref: '#/components/schemas/CommentResponse'
     listOfTeammates:
       description: Array of teammates
       content:
@@ -430,12 +418,24 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/TeammateResponse'
-    comment:
-      description: A comment
+    listOfComments:
+      description: Array of Comments
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CommentResponse'
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/conversations/cnv_y4xb93i/comments
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentResponse'
   securitySchemes:
     http:
       type: http

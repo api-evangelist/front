@@ -75,14 +75,6 @@ paths:
       - message_templates:write
 components:
   schemas:
-    ApplicationMessageTemplateResponse:
-      description: Response for an application message template.
-      type: object
-      properties:
-        template_id:
-          type: number
-          description: ID of the application message template
-          example: msg_777
     ApplicationMessageTemplate:
       required:
       - external_id
@@ -98,6 +90,14 @@ components:
         properties:
           external_id:
             type: string
+    ApplicationMessageTemplateResponse:
+      description: Response for an application message template.
+      type: object
+      properties:
+        template_id:
+          type: number
+          description: ID of the application message template
+          example: msg_777
     ApplicationMessageTemplateEditBlob:
       properties:
         name:
