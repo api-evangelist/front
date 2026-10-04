@@ -357,6 +357,142 @@ paths:
       - teammate_groups:write
 components:
   schemas:
+    UpdateTeammateGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the teammate group
+        description:
+          type: string
+          description: Description of the teammate group
+        permissions:
+          type: object
+          description: Permissions for the teammate group
+          properties:
+            contacts:
+              type: object
+              description: Permissions for accessing contact lists. This only applies if shared contacts permissions are enabled.
+              required:
+              - access
+              properties:
+                access:
+                  type: string
+                  description: One of 'all', 'contact_groups', 'contact_lists', or 'none'.
+                contact_group_ids:
+                  type: array
+                  deprecated: true
+                  description: List of contact group ids. Can only be specified if access is set to 'contact_groups'. ⚠️ Deprecated. Use access 'contact_lists' and 'contact_list_ids' instead.
+                  items:
+                    type: string
+                contact_list_ids:
+                  type: array
+                  description: List of contact list ids. Can only be specified if access is set to 'contact_lists'.
+                  items:
+                    type: string
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
+    InboxResponse:
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6
+            related:
+              type: object
+              properties:
+                teammates:
+                  type: string
+                  description: Link to inbox teammates
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates
+                conversations:
+                  type: string
+                  description: Link to inbox conversations
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations
+                channels:
+                  type: string
+                  description: Link to inbox channels
+                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels
+                owner:
+                  type: string
+                  description: Link to inbox owner
+                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
+        id:
+          type: string
+          description: Unique identifier for the inbox
+          example: inb_1ix6
+        name:
+          type: string
+          description: Name of the inbox
+          example: The Dundies
+        is_private:
+          type: boolean
+          description: Whether or not the inbox is individual
+          example: false
+        is_public:
+          type: boolean
+          description: Whether or not the inbox is available to all members of a team by default
+          example: true
+        custom_fields:
+          description: Custom fields for this inbox
+          $ref: '#/components/schemas/CustomFieldParameter'
+    TeamIds:
+      type: object
+      required:
+      - team_ids
+      properties:
+        team_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    CreateTeammateGroup:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the teammate group
+        description:
+          type: string
+          description: Description of the teammate group
+        permissions:
+          type: object
+          description: Permissions for the teammate group
+          properties:
+            contacts:
+              type: object
+              description: Permissions for accessing contact lists. This only applies if shared contacts permissions are enabled.
+              required:
+              - access
+              properties:
+                access:
+                  type: string
+                  description: One of 'all', 'contact_groups', 'contact_lists', or 'none'.
+                contact_group_ids:
+                  type: array
+                  deprecated: true
+                  description: List of contact group ids. Can only be specified if access is set to 'contact_groups'. ⚠️ Deprecated. Use access 'contact_lists' and 'contact_list_ids' instead.
+                  items:
+                    type: string
+                contact_list_ids:
+                  type: array
+                  description: List of contact list ids. Can only be specified if access is set to 'contact_lists'.
+                  items:
+                    type: string
     TeammateGroupResponse:
       type: object
       description: A teammate group is a group of teammates in Front.
@@ -433,111 +569,6 @@ components:
                   - grp_456
                   items:
                     type: string
-    TeamIds:
-      type: object
-      required:
-      - team_ids
-      properties:
-        team_ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceID'
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
-    InboxResponse:
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6
-            related:
-              type: object
-              properties:
-                teammates:
-                  type: string
-                  description: Link to inbox teammates
-                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/teammates
-                conversations:
-                  type: string
-                  description: Link to inbox conversations
-                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/conversations
-                channels:
-                  type: string
-                  description: Link to inbox channels
-                  example: https://yourCompany.api.frontapp.com/inboxes/inb_1ix6/channels
-                owner:
-                  type: string
-                  description: Link to inbox owner
-                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
-        id:
-          type: string
-          description: Unique identifier for the inbox
-          example: inb_1ix6
-        name:
-          type: string
-          description: Name of the inbox
-          example: The Dundies
-        is_private:
-          type: boolean
-          description: Whether or not the inbox is individual
-          example: false
-        is_public:
-          type: boolean
-          description: Whether or not the inbox is available to all members of a team by default
-          example: true
-        custom_fields:
-          description: Custom fields for this inbox
-          $ref: '#/components/schemas/CustomFieldParameter'
-    CreateTeammateGroup:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the teammate group
-        description:
-          type: string
-          description: Description of the teammate group
-        permissions:
-          type: object
-          description: Permissions for the teammate group
-          properties:
-            contacts:
-              type: object
-              description: Permissions for accessing contact lists. This only applies if shared contacts permissions are enabled.
-              required:
-              - access
-              properties:
-                access:
-                  type: string
-                  description: One of 'all', 'contact_groups', 'contact_lists', or 'none'.
-                contact_group_ids:
-                  type: array
-                  deprecated: true
-                  description: List of contact group ids. Can only be specified if access is set to 'contact_groups'. ⚠️ Deprecated. Use access 'contact_lists' and 'contact_list_ids' instead.
-                  items:
-                    type: string
-                contact_list_ids:
-                  type: array
-                  description: List of contact list ids. Can only be specified if access is set to 'contact_lists'.
-                  items:
-                    type: string
-    ResourceID:
-      type: string
     TeammateResponse:
       type: object
       description: A teammate is a user in Front.
@@ -623,15 +654,6 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
-    InboxIds:
-      type: object
-      required:
-      - inbox_ids
-      properties:
-        inbox_ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceID'
     TeammateIds:
       type: object
       required:
@@ -641,6 +663,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceID'
+    ResourceID:
+      type: string
     TeamPreviewResponse:
       type: object
       required:
@@ -663,42 +687,18 @@ components:
           type: string
           description: Name of the team
           example: Stanley's crossword puzzle team
-    UpdateTeammateGroup:
+    InboxIds:
       type: object
+      required:
+      - inbox_ids
       properties:
-        name:
-          type: string
-          description: Name of the teammate group
-        description:
-          type: string
-          description: Description of the teammate group
-        permissions:
-          type: object
-          description: Permissions for the teammate group
-          properties:
-            contacts:
-              type: object
-              description: Permissions for accessing contact lists. This only applies if shared contacts permissions are enabled.
-              required:
-              - access
-              properties:
-                access:
-                  type: string
-                  description: One of 'all', 'contact_groups', 'contact_lists', or 'none'.
-                contact_group_ids:
-                  type: array
-                  deprecated: true
-                  description: List of contact group ids. Can only be specified if access is set to 'contact_groups'. ⚠️ Deprecated. Use access 'contact_lists' and 'contact_list_ids' instead.
-                  items:
-                    type: string
-                contact_list_ids:
-                  type: array
-                  description: List of contact list ids. Can only be specified if access is set to 'contact_lists'.
-                  items:
-                    type: string
+        inbox_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
   responses:
-    listOfInboxes:
-      description: Array of Inboxes
+    listOfTeammates:
+      description: Array of teammates
       content:
         application/json:
           schema:
@@ -710,11 +710,11 @@ components:
                   self:
                     type: string
                     description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/inboxes
+                    example: https://yourCompany.api.frontapp.com/teammates
               _results:
                 type: array
                 items:
-                  $ref: '#/components/schemas/InboxResponse'
+                  $ref: '#/components/schemas/TeammateResponse'
     listOfTeammateGroups:
       description: Array of teammate groups
       content:
@@ -739,6 +739,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/TeammateGroupResponse'
+    listOfInboxes:
+      description: Array of Inboxes
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/inboxes
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InboxResponse'
     listOfTeams:
       description: Array of teams
       content:
@@ -757,24 +775,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/TeamPreviewResponse'
-    listOfTeammates:
-      description: Array of teammates
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/teammates
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TeammateResponse'
   securitySchemes:
     http:
       type: http

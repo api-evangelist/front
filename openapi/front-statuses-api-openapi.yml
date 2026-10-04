@@ -53,31 +53,6 @@ paths:
       x-required-scopes:
       - statuses:read
 components:
-  responses:
-    listOfStatuses:
-      description: Array of ticket statuses
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/company/statuses
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StatusResponse'
-    status:
-      description: A ticket status
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/StatusResponse'
   schemas:
     StatusResponse:
       type: object
@@ -128,6 +103,31 @@ components:
           type: number
           description: Timestamp of the last ticket status update
           example: 1699575875.186
+  responses:
+    status:
+      description: A ticket status
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StatusResponse'
+    listOfStatuses:
+      description: Array of ticket statuses
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/company/statuses
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatusResponse'
   securitySchemes:
     http:
       type: http

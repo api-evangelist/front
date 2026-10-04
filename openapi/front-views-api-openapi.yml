@@ -171,22 +171,6 @@ paths:
       x-required-scopes:
       - views:write
 components:
-  parameters:
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
-    limit:
-      name: limit
-      in: query
-      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: integer
-        maximum: 100
-        example: 25
   schemas:
     UpdateView:
       properties:
@@ -224,6 +208,8 @@ components:
         highlight:
           type: string
           description: Color highlight for the view
+    ResourceID:
+      type: string
     CreateView:
       properties:
         name:
@@ -263,8 +249,6 @@ components:
       required:
       - name
       - inbox_ids
-    ResourceID:
-      type: string
     SharedViewResponse:
       type: object
       required:
@@ -337,13 +321,23 @@ components:
           items:
             type: string
           description: List of assignee IDs to exclude
+  parameters:
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
   responses:
-    view:
-      description: A view
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SharedViewResponse'
     listOfViews:
       description: Array of views
       content:
@@ -371,6 +365,12 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/SharedViewResponse'
+    view:
+      description: A view
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SharedViewResponse'
   securitySchemes:
     http:
       type: http

@@ -253,72 +253,6 @@ paths:
       - shifts:write
 components:
   schemas:
-    ShiftResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      - color
-      - timezone
-      - times
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/shifts/shf_1bri
-            related:
-              type: object
-              properties:
-                teammates:
-                  type: string
-                  description: Link to shift teammates
-                  example: https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates
-                owner:
-                  type: string
-                  description: Link to shift owner
-                  example: https://yourCompany.api.frontapp.com/teams/tim_4kxji
-        id:
-          type: string
-          description: Unique identifier of the shift
-          example: shf_1bri
-        name:
-          type: string
-          description: Name of the shift
-          example: Scranton Business Park shifts
-        color:
-          type: string
-          enum:
-          - black
-          - grey
-          - pink
-          - purple
-          - blue
-          - teal
-          - green
-          - yellow
-          - orange
-          - red
-          description: Color of the shift
-          example: green
-        timezone:
-          type: string
-          description: A timezone name as defined in the IANA tz database
-          example: America/New_York
-        times:
-          description: The shift intervals per day of the week
-          $ref: '#/components/schemas/ShiftIntervals'
-        created_at:
-          type: number
-          description: The timestamp when the shift was created.
-          example: 1606943265.298
-        updated_at:
-          type: number
-          description: The timestamp when the shift was updated.
-          example: 1701878404.43
     CustomFieldParameter:
       type: object
       description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
@@ -366,6 +300,22 @@ components:
           description: List of all the teammate ids who will be part of this shift. Alternatively, you can supply emails as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
           items:
             $ref: '#/components/schemas/ResourceID'
+    ShiftInterval:
+      type: object
+      required:
+      - start
+      - end
+      properties:
+        start:
+          type: string
+          description: Start of shift
+          example: 09:00
+        end:
+          type: string
+          description: End of shift
+          example: '17:00'
+    ResourceID:
+      type: string
     UpdateShift:
       type: object
       properties:
@@ -395,15 +345,6 @@ components:
         teammate_ids:
           type: array
           description: List of all the teammate ids who will be part of this shift. Alternatively, you can supply emails as a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
-          items:
-            $ref: '#/components/schemas/ResourceID'
-    TeammateIds:
-      type: object
-      required:
-      - teammate_ids
-      properties:
-        teammate_ids:
-          type: array
           items:
             $ref: '#/components/schemas/ResourceID'
     TeammateResponse:
@@ -491,8 +432,15 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
-    ResourceID:
-      type: string
+    TeammateIds:
+      type: object
+      required:
+      - teammate_ids
+      properties:
+        teammate_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
     ShiftIntervals:
       type: object
       properties:
@@ -510,39 +458,73 @@ components:
           $ref: '#/components/schemas/ShiftInterval'
         sun:
           $ref: '#/components/schemas/ShiftInterval'
-    ShiftInterval:
+    ShiftResponse:
       type: object
       required:
-      - start
-      - end
+      - _links
+      - id
+      - name
+      - color
+      - timezone
+      - times
       properties:
-        start:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/shifts/shf_1bri
+            related:
+              type: object
+              properties:
+                teammates:
+                  type: string
+                  description: Link to shift teammates
+                  example: https://yourCompany.api.frontapp.com/shifts/shf_1bri/teammates
+                owner:
+                  type: string
+                  description: Link to shift owner
+                  example: https://yourCompany.api.frontapp.com/teams/tim_4kxji
+        id:
           type: string
-          description: Start of shift
-          example: 09:00
-        end:
+          description: Unique identifier of the shift
+          example: shf_1bri
+        name:
           type: string
-          description: End of shift
-          example: '17:00'
+          description: Name of the shift
+          example: Scranton Business Park shifts
+        color:
+          type: string
+          enum:
+          - black
+          - grey
+          - pink
+          - purple
+          - blue
+          - teal
+          - green
+          - yellow
+          - orange
+          - red
+          description: Color of the shift
+          example: green
+        timezone:
+          type: string
+          description: A timezone name as defined in the IANA tz database
+          example: America/New_York
+        times:
+          description: The shift intervals per day of the week
+          $ref: '#/components/schemas/ShiftIntervals'
+        created_at:
+          type: number
+          description: The timestamp when the shift was created.
+          example: 1606943265.298
+        updated_at:
+          type: number
+          description: The timestamp when the shift was updated.
+          example: 1701878404.43
   responses:
-    listOfShifts:
-      description: Array of Shifts
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/shifts
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ShiftResponse'
     listOfTeammates:
       description: Array of teammates
       content:
@@ -567,6 +549,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ShiftResponse'
+    listOfShifts:
+      description: Array of Shifts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/shifts
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShiftResponse'
   securitySchemes:
     http:
       type: http

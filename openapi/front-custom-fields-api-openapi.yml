@@ -128,6 +128,25 @@ paths:
       x-required-scopes:
       - custom_fields:read
 components:
+  responses:
+    listOfCustomFields:
+      description: Array of Custom Fields
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/custom_fields
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomFieldResponse'
   schemas:
     CustomFieldResponse:
       type: object
@@ -183,25 +202,6 @@ components:
                 type: string
                 description: Human readable label for the value
                 example: Customer plan
-  responses:
-    listOfCustomFields:
-      description: Array of Custom Fields
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/custom_fields
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CustomFieldResponse'
   securitySchemes:
     http:
       type: http

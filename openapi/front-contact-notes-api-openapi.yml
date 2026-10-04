@@ -64,18 +64,17 @@ paths:
       - contacts:write
 components:
   schemas:
-    CreateContactNote:
+    CustomFieldParameter:
       type: object
-      required:
-      - author_id
-      - body
-      properties:
-        author_id:
-          type: string
-          description: ID of teammate creating the note
-        body:
-          type: string
-          description: Content of the note
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
     ContactNoteResponses:
       type: object
       required:
@@ -112,17 +111,18 @@ components:
           type: number
           description: The timestamp when the note was created
           example: 1701806790.536
-    CustomFieldParameter:
+    CreateContactNote:
       type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
+      required:
+      - author_id
+      - body
+      properties:
+        author_id:
+          type: string
+          description: ID of teammate creating the note
+        body:
+          type: string
+          description: Content of the note
     TeammateResponse:
       type: object
       description: A teammate is a user in Front.

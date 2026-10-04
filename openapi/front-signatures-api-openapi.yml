@@ -188,7 +188,109 @@ paths:
       x-required-scopes:
       - signatures:write
 components:
+  responses:
+    listOfSignatures:
+      description: Array of signatures
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/signatures?page_token=9fa92a7f385fd7be43f7153055b30e6d
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/signatures
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SignatureResponse'
+    signature:
+      description: A signature
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SignatureResponse'
   schemas:
+    SignatureResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - body
+      - sender_info
+      - is_private
+      - is_visible_for_all_teammate_channels
+      - is_default
+      - channel_ids
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/signatures/sig_6rrv2
+            related:
+              type: object
+              properties:
+                owner:
+                  type: string
+                  description: Link to signature's owner (either a team or teammate)
+                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
+        id:
+          type: string
+          description: Unique identifier of the signature
+          example: sig_6rrv2
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the signature
+          example: Finer Things Club signature
+        body:
+          type: string
+          description: Body of the signature
+          example: <div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>
+        sender_info:
+          type:
+          - string
+          - 'null'
+          description: Sender info of the signature
+          example:
+            '[object Object]': null
+        is_visible_for_all_teammate_channels:
+          type: boolean
+          description: Whether or not the signature is available in teammate channels.
+          example: true
+        is_default:
+          type: boolean
+          description: Whether the signature is the default signature for the team or teammate.
+          example: false
+        is_private:
+          type: boolean
+          description: Whether the signature is private to the teammate.
+          example: true
+        channel_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            description: List of channels the signature is available in. If belonging to a teammate, represents all channels this can be used in. If belonging to a team, represents all team channels this can be used in. If null, there are no restrictions.
+            example: null
     UpdateSignature:
       type: object
       description: A signature that can be used to sign messages.
@@ -267,108 +369,6 @@ components:
           description: The specific channels this signature is available in. If omitted or null, the signature will be available in all channels the teammate has access to. Alternatively, you can specify channels using a [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
           items:
             type: string
-    SignatureResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      - body
-      - sender_info
-      - is_private
-      - is_visible_for_all_teammate_channels
-      - is_default
-      - channel_ids
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/signatures/sig_6rrv2
-            related:
-              type: object
-              properties:
-                owner:
-                  type: string
-                  description: Link to signature's owner (either a team or teammate)
-                  example: https://yourCompany.api.frontapp.com/teams/tim_k30
-        id:
-          type: string
-          description: Unique identifier of the signature
-          example: sig_6rrv2
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the signature
-          example: Finer Things Club signature
-        body:
-          type: string
-          description: Body of the signature
-          example: <div>—<br />{{user.name}}<br />No paper, no plastic, and no work talk allowed<br /></div>
-        sender_info:
-          type:
-          - string
-          - 'null'
-          description: Sender info of the signature
-          example:
-            '[object Object]': null
-        is_visible_for_all_teammate_channels:
-          type: boolean
-          description: Whether or not the signature is available in teammate channels.
-          example: true
-        is_default:
-          type: boolean
-          description: Whether the signature is the default signature for the team or teammate.
-          example: false
-        is_private:
-          type: boolean
-          description: Whether the signature is private to the teammate.
-          example: true
-        channel_ids:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            description: List of channels the signature is available in. If belonging to a teammate, represents all channels this can be used in. If belonging to a team, represents all team channels this can be used in. If null, there are no restrictions.
-            example: null
-  responses:
-    signature:
-      description: A signature
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SignatureResponse'
-    listOfSignatures:
-      description: Array of signatures
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/signatures?page_token=9fa92a7f385fd7be43f7153055b30e6d
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/signatures
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SignatureResponse'
   securitySchemes:
     http:
       type: http
