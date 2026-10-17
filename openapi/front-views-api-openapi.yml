@@ -171,45 +171,23 @@ paths:
       x-required-scopes:
       - views:write
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
   schemas:
-    UpdateView:
-      properties:
-        name:
-          type: string
-          description: Name of the view
-        inbox_ids:
-          type: array
-          description: List of inbox IDs to filter by
-          items:
-            $ref: '#/components/schemas/ResourceID'
-        tag_ids:
-          type: array
-          description: List of tag IDs to filter by
-          items:
-            $ref: '#/components/schemas/ResourceID'
-        not_tag_ids:
-          type: array
-          description: List of tag IDs to exclude
-          items:
-            $ref: '#/components/schemas/ResourceID'
-        no_tags:
-          type: boolean
-          description: Whether to filter for conversations without tags
-        assignee_ids:
-          type: array
-          description: List of assignee IDs to filter by
-          items:
-            $ref: '#/components/schemas/ResourceID'
-        not_assignee_ids:
-          type: array
-          description: List of assignee IDs to exclude
-          items:
-            $ref: '#/components/schemas/ResourceID'
-        highlight:
-          type: string
-          description: Color highlight for the view
-    ResourceID:
-      type: string
     CreateView:
       properties:
         name:
@@ -321,23 +299,51 @@ components:
           items:
             type: string
           description: List of assignee IDs to exclude
-  parameters:
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
-    limit:
-      name: limit
-      in: query
-      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: integer
-        maximum: 100
-        example: 25
+    ResourceID:
+      type: string
+    UpdateView:
+      properties:
+        name:
+          type: string
+          description: Name of the view
+        inbox_ids:
+          type: array
+          description: List of inbox IDs to filter by
+          items:
+            $ref: '#/components/schemas/ResourceID'
+        tag_ids:
+          type: array
+          description: List of tag IDs to filter by
+          items:
+            $ref: '#/components/schemas/ResourceID'
+        not_tag_ids:
+          type: array
+          description: List of tag IDs to exclude
+          items:
+            $ref: '#/components/schemas/ResourceID'
+        no_tags:
+          type: boolean
+          description: Whether to filter for conversations without tags
+        assignee_ids:
+          type: array
+          description: List of assignee IDs to filter by
+          items:
+            $ref: '#/components/schemas/ResourceID'
+        not_assignee_ids:
+          type: array
+          description: List of assignee IDs to exclude
+          items:
+            $ref: '#/components/schemas/ResourceID'
+        highlight:
+          type: string
+          description: Color highlight for the view
   responses:
+    view:
+      description: A view
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SharedViewResponse'
     listOfViews:
       description: Array of views
       content:
@@ -365,12 +371,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/SharedViewResponse'
-    view:
-      description: A view
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SharedViewResponse'
   securitySchemes:
     http:
       type: http

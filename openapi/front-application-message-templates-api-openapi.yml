@@ -75,21 +75,14 @@ paths:
       - message_templates:write
 components:
   schemas:
-    ApplicationMessageTemplate:
-      required:
-      - external_id
-      - name
-      - blurb
-      - is_disabled
-      - status_name
-      - variable_mappings
-      - template_preview
-      allOf:
-      - $ref: '#/components/schemas/ApplicationMessageTemplateEditBlob'
-      - type: object
-        properties:
-          external_id:
-            type: string
+    ApplicationMessageTemplateResponse:
+      description: Response for an application message template.
+      type: object
+      properties:
+        template_id:
+          type: number
+          description: ID of the application message template
+          example: msg_777
     ApplicationMessageTemplateEditBlob:
       properties:
         name:
@@ -126,14 +119,21 @@ components:
         template_preview:
           type: string
           description: Preview of the template
-    ApplicationMessageTemplateResponse:
-      description: Response for an application message template.
-      type: object
-      properties:
-        template_id:
-          type: number
-          description: ID of the application message template
-          example: msg_777
+    ApplicationMessageTemplate:
+      required:
+      - external_id
+      - name
+      - blurb
+      - is_disabled
+      - status_name
+      - variable_mappings
+      - template_preview
+      allOf:
+      - $ref: '#/components/schemas/ApplicationMessageTemplateEditBlob'
+      - type: object
+        properties:
+          external_id:
+            type: string
   responses:
     applicationMessageTemplate:
       description: An application message template

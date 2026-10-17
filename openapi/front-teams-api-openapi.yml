@@ -108,18 +108,32 @@ paths:
       x-required-scopes:
       - teams:write
 components:
+  responses:
+    listOfTeams:
+      description: Array of teams
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/teams
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamPreviewResponse'
+    team:
+      description: A team
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TeamResponse'
   schemas:
-    CustomFieldParameter:
-      type: object
-      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
-      example:
-        city: London, UK
-        isVIP: true
-        renewal_date: 1525417200
-        sla_time: 90
-        owner: leela@planet-express.com
-        replyTo: inb_55c8c149
-        Job Title: firefighter
     InboxResponse:
       type: object
       properties:
@@ -168,6 +182,39 @@ components:
         custom_fields:
           description: Custom fields for this inbox
           $ref: '#/components/schemas/CustomFieldParameter'
+    TeamPreviewResponse:
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: Link to resource
+              example: https://yourCompany.api.frontapp.com/teams/tim_aqsa
+        id:
+          type: string
+          description: Unique identifier of the team
+          example: tim_aqsa
+        name:
+          type: string
+          description: Name of the team
+          example: Stanley's crossword puzzle team
+    TeammateIds:
+      type: object
+      required:
+      - teammate_ids
+      properties:
+        teammate_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceID'
+    ResourceID:
+      type: string
     TeammateResponse:
       type: object
       description: A teammate is a user in Front.
@@ -253,6 +300,17 @@ components:
         custom_fields:
           description: Custom fields for this teammate
           $ref: '#/components/schemas/CustomFieldParameter'
+    CustomFieldParameter:
+      type: object
+      description: An object whose key is the `name` property defined for the custom field in the Front UI. The value of the key must use the same `type` specified for the custom field, as described in https://dev.frontapp.com/reference/custom-fields
+      example:
+        city: London, UK
+        isVIP: true
+        renewal_date: 1525417200
+        sla_time: 90
+        owner: leela@planet-express.com
+        replyTo: inb_55c8c149
+        Job Title: firefighter
     TeamResponse:
       type: object
       required:
@@ -287,64 +345,6 @@ components:
           description: List of the teammates that have access to the team
           items:
             $ref: '#/components/schemas/TeammateResponse'
-    TeammateIds:
-      type: object
-      required:
-      - teammate_ids
-      properties:
-        teammate_ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceID'
-    ResourceID:
-      type: string
-    TeamPreviewResponse:
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: string
-              description: Link to resource
-              example: https://yourCompany.api.frontapp.com/teams/tim_aqsa
-        id:
-          type: string
-          description: Unique identifier of the team
-          example: tim_aqsa
-        name:
-          type: string
-          description: Name of the team
-          example: Stanley's crossword puzzle team
-  responses:
-    team:
-      description: A team
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TeamResponse'
-    listOfTeams:
-      description: Array of teams
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/teams
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TeamPreviewResponse'
   securitySchemes:
     http:
       type: http

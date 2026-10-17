@@ -257,80 +257,6 @@ paths:
       x-required-scopes:
       - knowledge_bases:read
 components:
-  responses:
-    knowledgeBaseArticle:
-      description: A knowledge base article with content
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseArticleResponse'
-    attachment:
-      description: The binary content of the attachment file
-      content:
-        '*/*':
-          schema:
-            type: string
-            format: binary
-      headers:
-        Content-Type:
-          description: The MIME type of the attachment file
-          schema:
-            type: string
-            example: application/pdf
-        Content-Length:
-          description: The size of the attachment file in bytes
-          schema:
-            type: string
-            example: '1024'
-    knowledgeBaseArticleSlim:
-      description: A knowledge base article
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
-    listOfKnowledgeBaseArticles:
-      description: Array of knowledge base articles
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              _pagination:
-                type: object
-                properties:
-                  next:
-                    type:
-                    - string
-                    - 'null'
-                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
-                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles?page_token=134287aba8eaa55cf366400c63300a75bab0c
-              _links:
-                type: object
-                properties:
-                  self:
-                    type: string
-                    description: Link to resource
-                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles
-              _results:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
-  parameters:
-    pageToken:
-      name: page_token
-      in: query
-      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: string
-        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
-    limit:
-      name: limit
-      in: query
-      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
-      schema:
-        type: integer
-        maximum: 100
-        example: 25
   schemas:
     KnowledgeBaseArticleSlimResponse:
       type: object
@@ -533,6 +459,80 @@ components:
           type: number
           description: Timestamp when the article was updated
           example: 1654309308.278
+  responses:
+    knowledgeBaseArticleSlim:
+      description: A knowledge base article
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
+    listOfKnowledgeBaseArticles:
+      description: Array of knowledge base articles
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _pagination:
+                type: object
+                properties:
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    description: Link to next [page of results](https://dev.frontapp.com/docs/pagination)
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles?page_token=134287aba8eaa55cf366400c63300a75bab0c
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link to resource
+                    example: https://yourCompany.api.frontapp.com/knowledge_bases/knb_1/articles
+              _results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KnowledgeBaseArticleSlimResponse'
+    knowledgeBaseArticle:
+      description: A knowledge base article with content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KnowledgeBaseArticleResponse'
+    attachment:
+      description: The binary content of the attachment file
+      content:
+        '*/*':
+          schema:
+            type: string
+            format: binary
+      headers:
+        Content-Type:
+          description: The MIME type of the attachment file
+          schema:
+            type: string
+            example: application/pdf
+        Content-Length:
+          description: The size of the attachment file in bytes
+          schema:
+            type: string
+            example: '1024'
+  parameters:
+    pageToken:
+      name: page_token
+      in: query
+      description: Token to use to request the [next page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: string
+        example: https://yourCompany.api.frontapp.com/endpoint?limit=25&page_token=92f32bcd7625333caf4e0f8fc26d920c812f
+    limit:
+      name: limit
+      in: query
+      description: Max number of results per [page](https://dev.frontapp.com/docs/pagination)
+      schema:
+        type: integer
+        maximum: 100
+        example: 25
   securitySchemes:
     http:
       type: http
