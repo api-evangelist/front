@@ -1,4 +1,4 @@
-# Front (front)
+# Front
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,449 +66,189 @@
 
 Front is a customer operations platform unifying shared inboxes, chat, SMS, social, and CRM workflows. Front exposes a Core API (conversations, messages, channels, contacts, teammates, analytics), a Channels API for custom messaging integrations, a Plugin SDK for embedded UI apps, a Chat Widget, and Connectors for low-code automations.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/front/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/front/refs/heads/main/apis.yml)
+**Areas:** Customer Service · Email · Inbox · Customer Operations · Collaboration · Omnichannel
+
+## Front on APIs.io
+
+Everything profiled for Front is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/front/](https://apis.io/providers/front/)** — or go straight to one of the APIs or properties below.
+
+### APIs (39)
+
+- [Front Plugin SDK](https://apis.io/apis/front/front-plugin-sdk/) — Build embedded UI applications that render inside the Front sidebar to surface third-party context alongside the conversation.
+- [Front Chat Widget](https://apis.io/apis/front/front-chat-widget/) — Embed Front's live chat widget on a website or web app to capture live conversations into shared inboxes.
+- [Front Connectors](https://apis.io/apis/front/front-connectors-api/) — Low-code connector framework for invoking external HTTP APIs from within Front rules and workflows.
+- [Front Accounts API](https://apis.io/apis/front/front-accounts-api/) — The Accounts API from Front — 3 operation(s) for accounts.
+- [Front Analytics API](https://apis.io/apis/front/front-analytics-api/) — The Analytics API from Front — 4 operation(s) for analytics.
+- [Front Application Message Templates API](https://apis.io/apis/front/front-application-message-templates-api/) — The Application Message Templates API from Front — 2 operation(s) for application message templates.
+- [Front Applications API](https://apis.io/apis/front/front-applications-api/) — The Applications API from Front — 1 operation(s) for applications.
+- [Front Attachments API](https://apis.io/apis/front/front-attachments-api/) — The Attachments API from Front — 4 operation(s) for attachments.
+- [Front Calls API](https://apis.io/apis/front/front-calls-api/) — The Calls API from Front — 5 operation(s) for calls.
+- [Front Channels API](https://apis.io/apis/front/front-channels-api/) — The Channels API from Front — 6 operation(s) for channels.
+- [Front Comments API](https://apis.io/apis/front/front-comments-api/) — The Comments API from Front — 5 operation(s) for comments.
+- [Front Contact Groups API](https://apis.io/apis/front/front-contact-groups-api/) — The Contact Groups API from Front — 5 operation(s) for contact groups.
+- [Front Contact Handles API](https://apis.io/apis/front/front-contact-handles-api/) — The Contact Handles API from Front — 1 operation(s) for contact handles.
+- [Front Contact Lists API](https://apis.io/apis/front/front-contact-lists-api/) — The Contact Lists API from Front — 5 operation(s) for contact lists.
+- [Front Contact Notes API](https://apis.io/apis/front/front-contact-notes-api/) — The Contact Notes API from Front — 1 operation(s) for contact notes.
+- [Front Contacts API](https://apis.io/apis/front/front-contacts-api/) — The Contacts API from Front — 6 operation(s) for contacts.
+- [Front Conversations API](https://apis.io/apis/front/front-conversations-api/) — The Conversations API from Front — 11 operation(s) for conversations.
+- [Front Custom Fields API](https://apis.io/apis/front/front-custom-fields-api/) — The Custom Fields API from Front — 7 operation(s) for custom fields.
+- [Front Drafts API](https://apis.io/apis/front/front-drafts-api/) — The Drafts API from Front — 4 operation(s) for drafts.
+- [Front Events API](https://apis.io/apis/front/front-events-api/) — The Events API from Front — 2 operation(s) for events.
+- [Front Inboxes API](https://apis.io/apis/front/front-inboxes-api/) — The Inboxes API from Front — 7 operation(s) for inboxes.
+- [Front Knowledge Base Articles API](https://apis.io/apis/front/front-knowledge-base-articles-api/) — The Knowledge Base Articles API from Front — 6 operation(s) for knowledge base articles.
+- [Front Knowledge Base Categories API](https://apis.io/apis/front/front-knowledge-base-categories-api/) — The Knowledge Base Categories API from Front — 4 operation(s) for knowledge base categories.
+- [Front Knowledge Bases API](https://apis.io/apis/front/front-knowledge-bases-api/) — The Knowledge Bases API from Front — 8 operation(s) for knowledge bases.
+- [Front Links API](https://apis.io/apis/front/front-links-api/) — The Links API from Front — 3 operation(s) for links.
+- [Front Message Template Folders API](https://apis.io/apis/front/front-message-template-folders-api/) — The Message Template Folders API from Front — 5 operation(s) for message template folders.
+- [Front Message Templates API](https://apis.io/apis/front/front-message-templates-api/) — The Message Templates API from Front — 5 operation(s) for message templates.
+- [Front Messages API](https://apis.io/apis/front/front-messages-api/) — The Messages API from Front — 9 operation(s) for messages.
+- [Front Rules API](https://apis.io/apis/front/front-rules-api/) — The Rules API from Front — 5 operation(s) for rules.
+- [Front Shifts API](https://apis.io/apis/front/front-shifts-api/) — The Shifts API from Front — 5 operation(s) for shifts.
+- [Front Signatures API](https://apis.io/apis/front/front-signatures-api/) — The Signatures API from Front — 3 operation(s) for signatures.
+- [Front Statuses API](https://apis.io/apis/front/front-statuses-api/) — The Statuses API from Front — 2 operation(s) for statuses.
+- [Front Tags API](https://apis.io/apis/front/front-tags-api/) — The Tags API from Front — 7 operation(s) for tags.
+- [Front Teammate groups API](https://apis.io/apis/front/front-teammate-groups-api/) — The Teammate groups API from Front — 5 operation(s) for teammate groups.
+- [Front Teammates API](https://apis.io/apis/front/front-teammates-api/) — The Teammates API from Front — 4 operation(s) for teammates.
+- [Front Teams API](https://apis.io/apis/front/front-teams-api/) — The Teams API from Front — 3 operation(s) for teams.
+- [Front Time Off API](https://apis.io/apis/front/front-time-off-api/) — The Time Off API from Front — 3 operation(s) for time off.
+- [Front Token Identity API](https://apis.io/apis/front/front-token-identity-api/) — The Token Identity API from Front — 1 operation(s) for token identity.
+- [Front Views API](https://apis.io/apis/front/front-views-api/) — The Views API from Front — 4 operation(s) for views.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Front Agentic Access](https://apis.io/agentic-access/front/front-agentic-access/)
+
+#### Collections (38)
+
+Postman and Open Collection request collections.
+
+- [Channel Accounts API](https://apis.io/collections/front/open-front-accounts-api/)
+- [Channel Accounts Analytics API](https://apis.io/collections/front/open-front-analytics-api/)
+- [Channel Accounts Application Message Templates API](https://apis.io/collections/front/open-front-application-message-templates-api/)
+- [Channel Accounts Applications API](https://apis.io/collections/front/open-front-applications-api/)
+- [Channel Accounts Attachments API](https://apis.io/collections/front/open-front-attachments-api/)
+- [Channel Accounts Calls API](https://apis.io/collections/front/open-front-calls-api/)
+- [Channel API](https://apis.io/collections/front/open-front-channel-api/)
+- [Channel Accounts Channels API](https://apis.io/collections/front/open-front-channels-api/)
+- [Channel Accounts Comments API](https://apis.io/collections/front/open-front-comments-api/)
+- [Channel Accounts Contact Groups API](https://apis.io/collections/front/open-front-contact-groups-api/)
+- [Channel Accounts Contact Handles API](https://apis.io/collections/front/open-front-contact-handles-api/)
+- [Channel Accounts Contact Lists API](https://apis.io/collections/front/open-front-contact-lists-api/)
+- [Channel Accounts Contact Notes API](https://apis.io/collections/front/open-front-contact-notes-api/)
+- [Channel Accounts Contacts API](https://apis.io/collections/front/open-front-contacts-api/)
+- [Channel Accounts Conversations API](https://apis.io/collections/front/open-front-conversations-api/)
+- [Core API](https://apis.io/collections/front/open-front-core-api/)
+- [Channel Accounts Custom Fields API](https://apis.io/collections/front/open-front-custom-fields-api/)
+- [Channel Accounts Drafts API](https://apis.io/collections/front/open-front-drafts-api/)
+- [Channel Accounts Events API](https://apis.io/collections/front/open-front-events-api/)
+- [Channel Accounts Inboxes API](https://apis.io/collections/front/open-front-inboxes-api/)
+- [Channel Accounts Knowledge Base Articles API](https://apis.io/collections/front/open-front-knowledge-base-articles-api/)
+- [Channel Accounts Knowledge Base Categories API](https://apis.io/collections/front/open-front-knowledge-base-categories-api/)
+- [Channel Accounts Knowledge Bases API](https://apis.io/collections/front/open-front-knowledge-bases-api/)
+- [Channel Accounts Links API](https://apis.io/collections/front/open-front-links-api/)
+- [Channel Accounts Message Template Folders API](https://apis.io/collections/front/open-front-message-template-folders-api/)
+- …and 13 more published on APIs.io
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Front Authentication](https://apis.io/security/front/front-authentication/)
+- [Front Domain Security](https://apis.io/security/front/front-domain-security/)
+- [Front Trust Center](https://apis.io/security/front/front-trust-center/)
+- [Front Vulnerability Disclosure](https://apis.io/security/front/front-vulnerability-disclosure/)
+
+#### Plans and pricing (2)
+
+Published plans, tiers and prices.
 
-## Tags
+- [Front Plans Pricing](https://apis.io/plans/front/front-plans-pricing/)
+- [Front Price Estimates](https://apis.io/plans/front/front-price-estimates/)
 
-- Customer Support
-- Email
-- Inbox
-- Customer Operations
-- Collaboration
-- Omnichannel
+#### Rate limits (1)
 
-## Timestamps
+Published request limits.
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-05-30
+- [Front Rate Limits](https://apis.io/rate-limits/front/front-rate-limits/)
 
-## APIs
+#### FinOps (1)
 
-### Front Conversations API
+What the API costs to run, by operation.
 
-Read, create, update, and delete conversations across email, SMS, chat, and social channels. Includes assign, archive, restore, snooze, follow, and merge actions.
+- [Front Finops](https://apis.io/finops/front/front-finops/)
 
-#### Tags
+## Where to find this API
 
-- Conversations
-- Tickets
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/)
-- [API Reference](https://dev.frontapp.com/reference/conversations)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Messages API
-
-Send and reply to messages on existing or new conversations across any channel; includes inbound import for sync use cases.
-
-#### Tags
-
-- Messages
-- Replies
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/messages)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Drafts API
-
-Create, edit, and delete message drafts assigned to a teammate or a shared inbox.
-
-#### Tags
-
-- Drafts
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/drafts)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Channels API
-
-Manage channels (email addresses, SMS numbers, chat connectors, custom channels) attached to inboxes.
-
-#### Tags
-
-- Channels
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/channels)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Inboxes API
-
-Manage shared inboxes and teammate access; attach channels to inboxes and read inbox configuration.
-
-#### Tags
-
-- Inboxes
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/inboxes)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Contacts API
-
-Manage Front contacts and their handles (email, phone, social). Contacts unify customer identity across channels.
-
-#### Tags
-
-- Contacts
-- People
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/contacts)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Contact Groups API
-
-Group contacts for segmentation and shared visibility across teammates.
-
-#### Tags
-
-- Groups
-- Segmentation
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/contact-groups)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Accounts API
-
-Read and manage company / account records that group multiple contacts under a single business relationship.
-
-#### Tags
-
-- Accounts
-- Companies
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/accounts)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Teammates API
-
-Read teammates (Front users) and their availability, roles, and assignments.
-
-#### Tags
-
-- Teammates
-- Users
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/teammates)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Teams API
-
-Read team membership and team-scoped resources for routing and analytics.
-
-#### Tags
-
-- Teams
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/teams)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Comments API
-
-Add, list, and remove internal comments on conversations for collaboration.
-
-#### Tags
-
-- Comments
-- Internal Notes
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/comments)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Tags API
-
-Manage tags and apply them to conversations for categorization, automation, and reporting.
-
-#### Tags
-
-- Tags
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/tags)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Topics API
-
-Read AI-generated topics that classify conversation content for analytics and routing.
-
-#### Tags
-
-- Topics
-- AI
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/topics)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Rules API
-
-Read configured automation rules; rule definitions are managed from the UI but exposed read-only via the API.
-
-#### Tags
-
-- Rules
-- Automation
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/rules)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Signatures API
-
-Read teammate and team signatures used on outbound messages.
-
-#### Tags
-
-- Signatures
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/signatures)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Shifts API
-
-Manage teammate shifts that drive routing rules and SLA timers.
-
-#### Tags
-
-- Shifts
-- Scheduling
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/shifts)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Knowledge Base API
-
-Manage knowledge bases, categories, and articles published to customers and used by Front AI for self-service responses.
-
-#### Tags
-
-- Knowledge Base
-- Articles
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/knowledge-base)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Analytics API
-
-Generate analytics report exports for conversations, response times, SLA performance, and teammate productivity.
-
-#### Tags
-
-- Analytics
-- Reports
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/analytics)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Events API
-
-Read the historical event stream for the company (assignments, replies, comments, tag changes) for audit and integration use.
-
-#### Tags
-
-- Events
-- Audit
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/events)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Webhooks API
-
-Subscribe to Front events (conversation.assigned, message.received, message.sent, comment.added) with HMAC-signed deliveries.
-
-#### Tags
-
-- Webhooks
-- Subscriptions
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/webhooks)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](openapi/front-webhooks-asyncapi.yaml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-
-### Front Channels Platform API
-
-Build custom messaging channels that bridge Front to proprietary messaging platforms (e.g. internal portals, niche chat networks).
-
-#### Tags
-
-- Channels
-- Custom
-- Platform
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/custom-channels-api)
-- [OpenAPI](openapi/front-channel-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-channel-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-channel-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Plugin SDK
-
-Build embedded UI applications that render inside the Front sidebar to surface third-party context alongside the conversation.
-
-#### Tags
-
-- Plugin
-- Embedded UI
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/docs/getting-started-with-plugins)
-- [Postman Collection](collections/front-channel-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-channel-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Chat Widget
-
-Embed Front's live chat widget on a website or web app to capture live conversations into shared inboxes.
-
-#### Tags
-
-- Chat Widget
-- Web
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/docs/chat-widget)
-- [Postman Collection](collections/front-channel-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-channel-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Connectors
-
-Low-code connector framework for invoking external HTTP APIs from within Front rules and workflows.
-
-#### Tags
-
-- Connectors
-- Low-Code
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/docs/connectors)
-- [Postman Collection](collections/front-channel-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-channel-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Front Links API
-
-Attach hyperlinks from external systems to Front conversations for cross-system traceability.
-
-#### Tags
-
-- Links
-- External Resources
-
-#### Properties
-
-- [Documentation](https://dev.frontapp.com/reference/links)
-- [OpenAPI](openapi/front-core-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/front-core-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/front-core-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/frontapp)
 - [Website](https://front.com/)
 - [Documentation](https://dev.frontapp.com/)
-- [API Reference](https://dev.frontapp.com/reference)
+- [API reference](https://dev.frontapp.com/reference)
 - [Pricing](https://front.com/pricing)
-- [Login](https://app.frontapp.com/)
-- [Status Page](https://status.frontapp.com/)
-- [Blog](https://front.com/blog)
 - [Support](https://help.frontapp.com/)
-- [GitHub Organization](https://github.com/frontapp)
-- [Privacy Policy](https://front.com/legal/privacy-notice)
-- [Terms of Service](https://front.com/legal/terms)
-- [Authentication](https://dev.frontapp.com/docs/authentication)
-- [Rate Limits](https://dev.frontapp.com/docs/rate-limiting)
-- [Webhooks](https://dev.frontapp.com/reference/webhooks)
-- [Plans](plans/front-plans-pricing.yml)
-- [Rate Limits](rate-limits/front-rate-limits.yml)
-- [Fin Ops](finops/front-finops.yml)
-- [Features](undefined)
-- [Integrations](https://front.com/integrations)
-- [L L Ms Txt](https://dev.frontapp.com/llms.txt)
+- [Blog](https://front.com/blog)
+- [Terms of service](https://front.com/legal/terms)
+- [Privacy policy](https://front.com/legal/privacy-notice)
+- [GitHub](https://github.com/frontapp)
+- [Status](https://status.frontapp.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 49.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 50.6 |
+| Contract governance | 0.0 |
+| Operational transparency | 64.5 |
+| Developer ergonomics | 29.8 |
+| Access clarity | 67.1 |
+
+**Agent readiness 27.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | unknown |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/front/](https://apis.io/providers/front/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Front: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/front/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
